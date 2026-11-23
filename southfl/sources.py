@@ -19,6 +19,8 @@ def _time():
 
 
 def station(dataset_id, provider, sid, name, lat, lon, source, kind="unknown"):
+    if sid is None or not str(sid).strip():
+        return None
     try:
         lat, lon = float(lat), float(lon)
     except (ValueError, TypeError):
@@ -33,17 +35,36 @@ def station(dataset_id, provider, sid, name, lat, lon, source, kind="unknown"):
                 coverage_status="metadata_only")
 
 
-def _unique(rows):
+def _unique(rows, conflict_sink=None):
+    """Deduplicate canonical IDs while retaining genuine mismatches for review.
+
+    With conflict_sink, quarantine conflicted keys but retain all unaffected
+    stations. The caller must flag the query as incomplete if any are found.
+    """
     by_id = {}
+    bad = set()
     for row in rows:
         if row is None:
             continue
         key = (row["dataset_id"], row["site_id"])
         if key in by_id and (row["latitude"], row["longitude"]) != (
                 by_id[key]["latitude"], by_id[key]["longitude"]):
-            raise AcquisitionError(f"conflicting coordinates for {key}")
-        by_id[key] = row
-    return sorted(by_id.values(), key=lambda r: (r["dataset_id"], r["site_id"]))
+            earlier = by_id[key]
+            problem = dict(dataset_id=key[0], site_id=key[1],
+                           latitude_a=earlier["latitude"], longitude_a=earlier["longitude"],
+                           latitude_b=row["latitude"], longitude_b=row["longitude"],
+                           source_a=earlier["source_url"], source_b=row["source_url"],
+                           reason="different_coordinates_for_canonical_id")
+            if conflict_sink is None:
+                raise AcquisitionError(f"conflicting coordinates for {key}: "
+                                       f"{problem['latitude_a']},{problem['longitude_a']} vs "
+                                       f"{problem['latitude_b']},{problem['longitude_b']}")
+            conflict_sink.append(problem)
+            bad.add(key)
+        if key not in bad:
+            by_id[key] = row
+    return sorted([r for k, r in by_id.items() if k not in bad],
+                  key=lambda r: (r["dataset_id"], r["site_id"]))
 
 
 def coops(bbox=DOMAIN):
@@ -79,7 +100,7 @@ def ndbc(bbox=DOMAIN):
     return _unique(rows)
 
 
-def usgs(bbox=DOMAIN, page_size=1000, max_pages=MAX_PAGES):
+def usgs(bbox=DOMAIN, page_size=1000, max_pages=MAX_PAGES, conflict_sink=None):
     """USGS Water Data OGC monitoring-locations, paginated.
 
     Broad domain queries may exceed page limits: raise rather than silently
@@ -102,7 +123,13 @@ def usgs(bbox=DOMAIN, page_size=1000, max_pages=MAX_PAGES):
             coords = geometry.get("coordinates") or []
             if len(coords) < 2:
                 continue
-            sid = p.get("monitoring_location_number") or p.get("id") or feature.get("id")
+            # Official ID is agency-qualified: USGS-02238500, for example.
+            # Bare monitoring_location_number is NOT a safe join key.
+            sid = feature.get("id") or p.get("id")
+            if not sid and p.get("agency_code") and p.get("monitoring_location_number"):
+                sid = f"{p['agency_code']}-{p['monitoring_location_number']}"
+            if not sid:
+                raise AcquisitionError("USGS monitoring location missing canonical agency-qualified ID")
             name = p.get("monitoring_location_name") or p.get("site_name") or sid
             row = station("usgs_water", "USGS", sid, name, coords[1], coords[0],
                           base, "monitoring location")
@@ -112,7 +139,7 @@ def usgs(bbox=DOMAIN, page_size=1000, max_pages=MAX_PAGES):
         next_url = next((urljoin(base, l["href"]) for l in links
                          if l.get("rel") == "next" and l.get("href")), None)
         if not next_url:
-            return _unique(rows)
+            return _unique(rows, conflict_sink=conflict_sink)
         if not next_url.startswith("https://api.waterdata.usgs.gov/"):
             raise AcquisitionError("USGS pagination redirected to an unexpected host")
     raise AcquisitionError("USGS pagination exceeded max_pages: split into smaller boxes")
