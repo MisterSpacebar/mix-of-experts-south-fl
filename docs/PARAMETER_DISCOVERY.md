@@ -45,6 +45,9 @@ python scripts/discover_parameters.py --sources usgs --regions north_biscayne --
 # WQP nutrient/physical annual activity summaries for one region, most recent 5 years
 python scripts/discover_parameters.py --sources wqp --regions florida_bay --wqp-years 5 --out data/inventory/parameters_wqp_bay
 
+# Optional biological characteristic summary, e.g. chlorophyll measurements
+python scripts/discover_parameters.py --sources wqp --regions upper_keys --wqp-types Biological --out data/inventory/parameters_wqp_bio
+
 # Full discovery; can generate large requests, run only if regional probes succeed
 python scripts/discover_parameters.py --sources coops ndbc usgs wqp --wqp-years 5 --out data/inventory/parameters_v1
 ```
@@ -56,6 +59,11 @@ input file is **local and ignored by Git**. You can select another with
 The script rejects a nonempty output directory unless `--overwrite` is
 specified, to avoid erasing successful previous discovery results. Use a new
 out directory when comparing runs.
+
+`--wqp-types Nutrient Physical Biological` is available to include
+biological characteristics; the default is Nutrient and Physical to reduce
+query burden. WQP chlorophyll classifications and other biological variables
+should be inspected by their raw characteristic names and sample methods.
 
 `--wqp-years all` is available for historical studies but may produce large
 regional responses and exceed the deliberately conservative 18 MB response cap.
@@ -115,3 +123,9 @@ Official documentation:
 - EPA WQP summary service: https://waterqualitydata.epa.gov/webservices_documentation/
 - NOAA CO-OPS metadata: https://api.tidesandcurrents.noaa.gov/mdapi/prod/
 - NOAA NDBC historical archives: https://www.ndbc.noaa.gov/historical_data.shtml
+
+USGS OGC v1 changed its time-series date fields to UTC-valued `begin` and
+`end` and removed the old `begin_utc`/`end_utc` fields. The adapter
+writes normalized `begin_utc`/`end_utc` CSV columns from the current v1
+fields and retains statistic ID, sublocation ID, primary/provisional flag,
+and gap interval when provided. Consult the v1 schema rather than the old v0.
