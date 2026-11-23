@@ -106,6 +106,43 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(rows[0]["evidence"], "station_class_only")
         self.assertIn("1950-01-01", rows[0]["quality_note"])
 
+    @patch("southfl.periods.get_json")
+    def test_coops_wrapped_single_station(self, mock):
+        mock.return_value = {"count": 1, "stations": [
+            {"id": "8723214", "name": "South Florida",
+             "details": {"established": "1964-05-01", "removed": ""}}], "self": None}
+        rows = coops_periods({"8723214"})
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["site_id"], "8723214")
+        self.assertIn("1964-05-01", rows[0]["quality_note"])
+        self.assertEqual(rows[0]["begin_utc"], "")
+        self.assertEqual(rows[0]["evidence"], "station_class_only")
+
+    @patch("southfl.periods.get_json")
+    def test_coops_wrong_wrapped_id_is_rejected(self, mock):
+        mock.return_value = {"count": 1, "stations": [{"id": "8729999"}]}
+        with self.assertRaisesRegex(AcquisitionError, "mismatch"):
+            coops_periods({"8723214"})
+
+    @patch("southfl.periods.get_json")
+    def test_coops_ambiguous_multiple_stations_fail(self, mock):
+        mock.return_value = {"count": 2, "stations": [
+            {"id": "8723214"}, {"id": "8724580"}]}
+        with self.assertRaisesRegex(AcquisitionError, "expected one station"):
+            coops_periods({"8723214"})
+
+    @patch("southfl.periods.get_json")
+    def test_coops_partial_station_failure_preserves_good_ones(self, mock):
+        mock.side_effect = [
+            {"count": 1, "stations": [{"id": "8723214"}]},
+            {"count": 1, "stations": [{"id": "other"}]},
+            {"count": 1, "stations": [{"id": "8724580"}]},
+        ]
+        problems = []
+        rows = coops_periods({"8723214", "8723970", "8724580"}, errors=problems)
+        self.assertEqual([x["site_id"] for x in rows], ["8723214", "8724580"])
+        self.assertEqual([x["site_id"] for x in problems], ["8723970"])
+
     @patch("southfl.periods.get_bytes")
     def test_ndbc_archive_index_only(self, mock):
         mock.return_value = (b'<a href="41010h2023.txt.gz">2023</a>'
@@ -142,6 +179,27 @@ class IntegrationTests(unittest.TestCase):
         rows = concept_summary([a], stations)
         self.assertEqual(rows[0]["region"], "unassigned")
         self.assertEqual(rows[0]["readiness"], "metadata_only_not_trainable")
+
+    @patch("scripts.discover_parameters.coops_periods")
+    def test_coops_partial_manifest_is_not_marked_success(self, mock):
+        from southfl.periods import _row
+        def partial(sites, errors):
+            errors.append({"site_id": "8723970", "error": "bad NOAA response"})
+            return [_row("noaa_coops", "8723214", "8723214|water_level_candidate",
+                         evidence="station_class_only", concept="water_level")]
+        mock.side_effect = partial
+        with tempfile.TemporaryDirectory() as d:
+            stations = Path(d) / "stations.csv"
+            write_stations(stations)
+            # Override the local fixture to supply the NOAA station IDs.
+            lines = stations.read_text()
+            stations.write_text(lines + "noaa_coops,,8723214,,25.7,-80.2,,,,\n", encoding="utf-8")
+            out = Path(d) / "run"
+            result = run(stations, out, ["coops"], [])
+            self.assertEqual(result["n_failed_requests"], 1)
+            self.assertEqual(result["n_failed_station_requests"], 1)
+            self.assertEqual(result["attempts"][0]["status"], "partial")
+            self.assertEqual(result["n_parameter_periods"], 1)
 
     @patch("scripts.discover_parameters.usgs_periods")
     def test_run_writes_auditable_partial_manifest(self, mock):
