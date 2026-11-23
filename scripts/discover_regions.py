@@ -44,8 +44,8 @@ def batch(sources, out_dir, regions=None, tiles=1):
         raise ValueError("output directory is nonempty; use a new snapshot path")
     if tiles < 1 or tiles > 10:
         raise ValueError("tiles must be between 1 and 10")
-    selected = list(REGIONS) if regions is None else list(regions)
-    if not selected or any(region not in REGIONS for region in selected):
+    region_names = list(REGIONS) if regions is None else list(regions)
+    if not region_names or any(region not in REGIONS for region in region_names):
         raise ValueError("regions must name at least one configured screening region")
     out.mkdir(parents=True, exist_ok=True)
     all_rows = []
@@ -58,7 +58,7 @@ def batch(sources, out_dir, regions=None, tiles=1):
             boxes = [("domain", DOMAIN)]
         else:
             boxes = [(f"{region}/tile_{i+1:02d}", bounds)
-                     for region in selected
+                     for region in region_names
                      for i, bounds in enumerate(tiles_for(REGIONS[region], tiles))]
         for region, bounds in boxes:
             try:
@@ -114,7 +114,7 @@ def batch(sources, out_dir, regions=None, tiles=1):
         "query_region"])
     manifest = {
         "retrieved_at_utc": datetime.now(timezone.utc).isoformat(),
-        "sources": sources, "regions": selected, "tiles_per_axis": tiles,
+        "sources": sources, "regions": region_names, "tiles_per_axis": tiles,
         "attempts": attempts,
         "n_unique_stations": len(selected),
         "n_quarantined_site_ids": len(bad),
