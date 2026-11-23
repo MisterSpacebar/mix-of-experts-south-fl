@@ -1,0 +1,345 @@
+{
+  "schema_version": "0.1",
+  "scope": "Biscayne Bay, Florida Bay, Florida Keys and connected South Florida watersheds",
+  "status": "discovery candidates; downloads and live coverage not yet verified",
+  "datasets": [
+    {
+      "id": "sfwmd_dbhydro_hydro",
+      "subsystem": "hydrology",
+      "agency": "SFWMD",
+      "dataset": "DBHYDRO hydrological time series",
+      "url": "https://www.sfwmd.gov/science-data/dbhydro",
+      "access": "portal_or_api",
+      "granularity": "station time series",
+      "cadence_candidate": "subdaily/daily",
+      "geography": "Biscayne watershed; Florida Bay inputs",
+      "candidate_variables": [
+        "stage",
+        "discharge",
+        "rainfall",
+        "groundwater level"
+      ],
+      "priority": "P0",
+      "caution": "Station/data-type selection and API entitlement must be verified"
+    },
+    {
+      "id": "sfwmd_dbhydro_quality",
+      "subsystem": "water_quality",
+      "agency": "SFWMD",
+      "dataset": "DBHYDRO water-quality results",
+      "url": "https://www.sfwmd.gov/science-data/dbhydro",
+      "access": "portal_or_api",
+      "granularity": "discrete samples",
+      "cadence_candidate": "variable",
+      "geography": "South Florida freshwater and estuarine stations",
+      "candidate_variables": [
+        "total nitrogen",
+        "total phosphorus",
+        "salinity",
+        "chlorophyll"
+      ],
+      "priority": "P0",
+      "caution": "Do not assume identical chemistry coverage across stations"
+    },
+    {
+      "id": "fdep_win",
+      "subsystem": "water_quality",
+      "agency": "FDEP",
+      "dataset": "Watershed Information Network (WIN) water-quality results",
+      "url": "https://prodapps.dep.state.fl.us/dear-spa/public/welcome",
+      "access": "portal_export",
+      "granularity": "discrete samples and metadata",
+      "cadence_candidate": "variable",
+      "geography": "Florida monitoring locations",
+      "candidate_variables": [
+        "dissolved oxygen",
+        "pH",
+        "nutrients",
+        "chlorophyll-a",
+        "conductivity"
+      ],
+      "priority": "P0",
+      "caution": "Potential duplicate records with EPA WQX; match activity/sample identifiers"
+    },
+    {
+      "id": "epa_wqp",
+      "subsystem": "water_quality",
+      "agency": "EPA / contributing organizations",
+      "dataset": "Water Quality Portal results and monitoring locations",
+      "url": "https://www.waterqualitydata.us/",
+      "access": "api_or_download",
+      "granularity": "discrete samples and metadata",
+      "cadence_candidate": "variable",
+      "geography": "Florida; bounding-box filtered",
+      "candidate_variables": [
+        "characteristics",
+        "result values",
+        "sample dates",
+        "site metadata"
+      ],
+      "priority": "P0",
+      "caution": "WQX/WQP mirrors contributing sources including FDEP; deduplicate"
+    },
+    {
+      "id": "fiu_keys_wq",
+      "subsystem": "water_quality",
+      "agency": "FIU / FKNMS partners",
+      "dataset": "Florida Keys National Marine Sanctuary Water Quality Monitoring Network",
+      "url": "https://serc.fiu.edu/wqmnetwork/",
+      "access": "portal_or_request",
+      "granularity": "long-term sampling",
+      "cadence_candidate": "monthly/quarterly by program",
+      "geography": "Florida Bay; Florida Keys sanctuary",
+      "candidate_variables": [
+        "salinity",
+        "nutrients",
+        "chlorophyll-a",
+        "turbidity"
+      ],
+      "priority": "P1",
+      "caution": "Confirm active publication/download route and site coordinates"
+    },
+    {
+      "id": "noaa_ndbc",
+      "subsystem": "oceanography",
+      "agency": "NOAA NDBC",
+      "dataset": "Historical standard meteorological buoy observations",
+      "url": "https://www.ndbc.noaa.gov/historical_data.shtml",
+      "access": "direct_file",
+      "granularity": "station time series",
+      "cadence_candidate": "hourly or variable",
+      "geography": "Florida Straits; Keys; nearby offshore stations",
+      "candidate_variables": [
+        "wind speed",
+        "wind direction",
+        "wave height",
+        "air temperature",
+        "sea temperature"
+      ],
+      "priority": "P0",
+      "caution": "Station coverage varies; no assumption that all buoys measure waves"
+    },
+    {
+      "id": "noaa_coops",
+      "subsystem": "oceanography",
+      "agency": "NOAA CO-OPS",
+      "dataset": "Observed water levels",
+      "url": "https://api.tidesandcurrents.noaa.gov/api/prod/",
+      "access": "api",
+      "granularity": "station time series",
+      "cadence_candidate": "six-minute/hourly",
+      "geography": "South Florida coast and Keys stations",
+      "candidate_variables": [
+        "water level",
+        "water temperature",
+        "salinity where provided"
+      ],
+      "priority": "P0",
+      "caution": "Use observed level, not tide prediction, for historical fitting"
+    },
+    {
+      "id": "usgs_water",
+      "subsystem": "hydrology",
+      "agency": "USGS",
+      "dataset": "USGS continuous and daily water data",
+      "url": "https://api.waterdata.usgs.gov/",
+      "access": "api",
+      "granularity": "station time series",
+      "cadence_candidate": "15-minute/daily or site-dependent",
+      "geography": "South Florida and Florida Keys",
+      "candidate_variables": [
+        "discharge",
+        "gage height",
+        "temperature",
+        "salinity where measured"
+      ],
+      "priority": "P0",
+      "caution": "Check current API endpoints and parameter/site availability"
+    },
+    {
+      "id": "noaa_crw",
+      "subsystem": "oceanography",
+      "agency": "NOAA Coral Reef Watch",
+      "dataset": "5-km satellite SST and Degree Heating Weeks",
+      "url": "https://coralreefwatch.noaa.gov/product/5km/",
+      "access": "netcdf_or_geotiff",
+      "granularity": "satellite gridded time series",
+      "cadence_candidate": "daily",
+      "geography": "Florida Reef Tract; Keys",
+      "candidate_variables": [
+        "sea surface temperature",
+        "SST anomaly",
+        "degree heating weeks"
+      ],
+      "priority": "P1",
+      "caution": "Gridded exposure proxy; not in-situ benthic temperature"
+    },
+    {
+      "id": "noaa_ncrmp_benthic",
+      "subsystem": "ecology",
+      "agency": "NOAA NCRMP",
+      "dataset": "Coral benthic monitoring surveys",
+      "url": "https://coralreef.noaa.gov/topics/national-coral-reef-monitoring-program/data",
+      "access": "portal_export",
+      "granularity": "site-level benthic surveys",
+      "cadence_candidate": "multi-year campaigns",
+      "geography": "Florida Reef Tract",
+      "candidate_variables": [
+        "benthic cover",
+        "coral condition",
+        "community composition"
+      ],
+      "priority": "P1",
+      "caution": "Survey methods and site design require harmonization"
+    },
+    {
+      "id": "noaa_ncrmp_fish",
+      "subsystem": "ecology",
+      "agency": "NOAA NCRMP",
+      "dataset": "Reef fish visual census",
+      "url": "https://coralreef.noaa.gov/topics/national-coral-reef-monitoring-program/data",
+      "access": "portal_export",
+      "granularity": "fish surveys",
+      "cadence_candidate": "multi-year campaigns",
+      "geography": "Florida Reef Tract",
+      "candidate_variables": [
+        "species",
+        "abundance",
+        "size",
+        "biomass"
+      ],
+      "priority": "P1",
+      "caution": "Sampling effort and design must be used before comparison"
+    },
+    {
+      "id": "fwc_cremp",
+      "subsystem": "ecology",
+      "agency": "FWC",
+      "dataset": "Coral Reef Evaluation and Monitoring Project",
+      "url": "https://myfwc.com/research/habitat/coral/cremp/data/",
+      "access": "portal_export",
+      "granularity": "repeated coral-site surveys",
+      "cadence_candidate": "annual/variable",
+      "geography": "Florida Keys Reef Tract",
+      "candidate_variables": [
+        "coral cover",
+        "colony condition",
+        "disease",
+        "bleaching"
+      ],
+      "priority": "P1",
+      "caution": "Verify site footprint; CREMP is an FWC program, not FDEP"
+    },
+    {
+      "id": "fwc_fim",
+      "subsystem": "ecology",
+      "agency": "FWC",
+      "dataset": "Fisheries-Independent Monitoring inshore",
+      "url": "https://myfwc.com/research/saltwater/fim/inshore/",
+      "access": "data_request_or_export",
+      "granularity": "stratified random fish surveys",
+      "cadence_candidate": "seasonal/variable",
+      "geography": "Florida Bay and relevant south Florida estuaries",
+      "candidate_variables": [
+        "catch per unit effort",
+        "species",
+        "length",
+        "gear",
+        "habitat"
+      ],
+      "priority": "P1",
+      "caution": "Raw records may require request and effort harmonization"
+    },
+    {
+      "id": "keys_seagrass",
+      "subsystem": "ecology",
+      "agency": "FIU / SFWMD / FKNMS partners",
+      "dataset": "Florida Bay / Florida Keys seagrass monitoring",
+      "url": "https://www.sfwmd.gov/science-data/sea-grass-monitoring",
+      "access": "portal_or_request",
+      "granularity": "spatially repeated vegetation surveys",
+      "cadence_candidate": "annual/variable",
+      "geography": "Florida Bay; Keys",
+      "candidate_variables": [
+        "seagrass percent cover",
+        "species",
+        "shoot density"
+      ],
+      "priority": "P1",
+      "caution": "Verify dataset-specific publishing authority and download"
+    },
+    {
+      "id": "fwc_landings",
+      "subsystem": "socioeconomic",
+      "agency": "FWC",
+      "dataset": "Commercial fisheries landings in Florida",
+      "url": "https://myfwc.com/research/saltwater/fishstats/commercial-fisheries/landings-in-florida/",
+      "access": "portal_export",
+      "granularity": "aggregated fisheries statistics",
+      "cadence_candidate": "annual",
+      "geography": "Monroe and Miami-Dade counties where available",
+      "candidate_variables": [
+        "species",
+        "landed pounds",
+        "dockside value"
+      ],
+      "priority": "P1",
+      "caution": "County of landing is not ecological harvest location"
+    },
+    {
+      "id": "fema_hazus",
+      "subsystem": "socioeconomic",
+      "agency": "FEMA",
+      "dataset": "Hazus flood inventory and consequence modeling",
+      "url": "https://www.fema.gov/flood-maps/products-tools/hazus",
+      "access": "software_or_export",
+      "granularity": "hazard inventory and modeled loss",
+      "cadence_candidate": "scenario/baseline",
+      "geography": "Miami-Dade; Monroe",
+      "candidate_variables": [
+        "building exposure",
+        "damage",
+        "economic loss"
+      ],
+      "priority": "P2",
+      "caution": "Hazus outputs are model estimates, not observed realized losses"
+    },
+    {
+      "id": "miami_dade_gis",
+      "subsystem": "socioeconomic",
+      "agency": "Miami-Dade County",
+      "dataset": "County open GIS parcels and land use",
+      "url": "https://opendata.miamidade.gov/",
+      "access": "portal_geo",
+      "granularity": "vector features",
+      "cadence_candidate": "periodic",
+      "geography": "Miami-Dade",
+      "candidate_variables": [
+        "parcel boundaries",
+        "land use",
+        "zoning",
+        "assessment"
+      ],
+      "priority": "P1",
+      "caution": "Select authoritative individual layers and snapshot dates"
+    },
+    {
+      "id": "monroe_gis",
+      "subsystem": "socioeconomic",
+      "agency": "Monroe County",
+      "dataset": "Monroe County GIS and parcel data",
+      "url": "https://www.monroecounty-fl.gov/",
+      "access": "portal_geo",
+      "granularity": "vector features",
+      "cadence_candidate": "periodic",
+      "geography": "Florida Keys/Monroe",
+      "candidate_variables": [
+        "parcel boundaries",
+        "land use",
+        "property value"
+      ],
+      "priority": "P1",
+      "caution": "Verify direct county GIS layer endpoint; no claim of bulk availability"
+    }
+  ]
+}
