@@ -1,33 +1,44 @@
 # South Florida Coastal Ecosystem — Mixture-of-Experts FCM
 
-A source-first foundation for a hierarchical, regionalized fuzzy cognitive map (FCM) mixture of experts across Biscayne Bay, Florida Bay, the Florida Keys, and adjacent watersheds and offshore reefs.
+A reproducible, source-first foundation for regionalized hierarchical fuzzy cognitive maps across Biscayne Bay, Florida Bay, the Florida Keys, and connected coastal watersheds.
 
-## Current milestone: dataset discovery
+## Milestone status
 
-**No agency observations have been ingested, no station coverage audit has been completed, and no FCM has been fitted.** The registry lists *candidate* data products and is not a statement that all variables are available for a given location or period.
+- **Milestone 1:** Structured source registry (`catalog/datasets.json`; 18 candidate datasets), acquisition priorities, NOAA CO-OPS observed-water-level downloader.
+- **Milestone 2:** Metadata-only station discovery adapters for NOAA CO-OPS, NOAA NDBC, USGS Water Data and EPA Water Quality Portal; regional assignment, co-location review, and observed-record/year coverage summaries.
+- **Not yet done:** Live bulk downloads, complete source product inventories, verified sensor-variable coverage, deduplication of actual measurements, and FCM model fitting. API access is network-dependent, and the source adapters may need adjustment to agency schema changes.
 
-- [Dataset inventory](catalog/datasets.json): 18 candidate dataset products across hydrology, water quality, oceanography, ecology and socioeconomic services.
-- [Acquisition and QA plan](docs/DATASETS.md): which specific products to select, regional caveats, duplicate handling, observation schema and staged priorities.
-- [Catalog validation](scripts/catalog.py): standard-library command-line validation of the structured source registry.
-- [NOAA CO-OPS example](scripts/fetch_coops.py): opt-in live extraction of observed water levels to local untracked CSV files.
-
-## Quick start
-
-Requires Python 3.10+ and no third-party dependencies for this milestone.
+## Quick start (Python 3.10+, standard library only)
 
 ```bash
 python scripts/catalog.py
 python -m unittest discover -s tests -v
+
+# First small metadata run (network needed)
+python -m southfl discover --sources coops ndbc --out data/inventory/initial
+
+# Source-by-source regional metadata discovery (can take time)
+python -m southfl discover --sources usgs --bbox=-80.55,25.3,-80.05,25.95 --out data/inventory/usgs_biscayne
+python -m southfl discover --sources wqp --bbox=-80.55,25.3,-80.05,25.95 --out data/inventory/wqp_biscayne
+
+# Direct observed water-level example (live CO-OPS request)
 python scripts/fetch_coops.py --station 8724580 --begin 20260101 --end 20260107
 ```
 
-CO-OPS requests use GMT and metric units, save the requested datum, and retain the original request URL. Choose station IDs and dates with verified data coverage; API failures are reported rather than fabricated.
+The downloader example may fail for dates without supported station products. Discovery failures exit nonzero and are recorded in the manifest. No source exports are checked into Git.
 
-## Modeling architecture (planned)
+## Documentation
 
-1. Fit independently validated dataset-level experts after station and variable coverage audits.
-2. Fuse compatible experts into hydrology/water-quality, oceanography, biological/ecological and socioeconomic subsystem representations.
-3. Couple regions and disciplines through signed, lagged, hypothesis-driven interface concepts and time-availability-safe expert gating.
-4. Validate model behavior with chronological and spatial holdouts, expert ablations, and non-FCM baselines.
+- [18-dataset source catalog](catalog/datasets.json)
+- [Source selection, data QA and acquisition plan](docs/DATASETS.md)
+- [Station discovery/coverage instructions and limitations](docs/DISCOVERY.md)
 
-Keep county-level fisheries landings, modeled Hazus consequences, sparse coral surveys and continuous water-level measurements on their appropriate clocks. EPA WQX and FDEP WIN can expose the same records: they must not be treated as independent observations.
+## Modeling design (planned)
+
+1. Station- and variable-level data coverage audits before model selection.
+2. Independent FCM experts trained on genuine observations, respecting missingness and source identities.
+3. Subsystem-level mixtures: hydrology/water quality, physical/oceanographic, ecology, and socioeconomic services.
+4. Lagged regional coupling with signed hypotheses, temporal aggregation and uncertainty-aware gating.
+5. Chronological and spatial validation against conventional baselines.
+
+The geographic rectangles are screening envelopes only, not watershed boundaries. Treat duplicated WQX/FDEP WIN records as one observation after an explicit record-level reconciliation. Never fabricate high-frequency measurements from sparse biological surveys.
