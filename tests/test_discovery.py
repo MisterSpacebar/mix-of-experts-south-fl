@@ -44,8 +44,9 @@ class SourceTests(unittest.TestCase):
     @patch("southfl.sources.get_json")
     def test_usgs_pagination(self, mock):
         mock.side_effect = [
-            {"features": [{"id": "site-a", "properties": {
-                "monitoring_location_number": "123", "monitoring_location_name": "A"},
+            {"features": [{"id": "USGS-123", "properties": {
+                "monitoring_location_number": "123", "agency_code": "USGS",
+                "monitoring_location_name": "A"},
                 "geometry": {"coordinates": [-80.25, 25.8]}}
               ], "links": [{"rel": "next", "href": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items?offset=1"}]},
             {"features": [], "links": []},
@@ -53,6 +54,36 @@ class SourceTests(unittest.TestCase):
         rows = usgs()
         self.assertEqual(len(rows), 1)
         self.assertEqual(mock.call_count, 2)
+        self.assertEqual(rows[0]["site_id"], "USGS-123")
+
+    @patch("southfl.sources.get_json")
+    def test_usgs_composite_id_prevents_false_conflicts(self, mock):
+        mock.return_value = {"features": [
+            {"id": "USGS-123", "properties": {
+                "agency_code": "USGS", "monitoring_location_number": "123"},
+                "geometry": {"coordinates": [-80.2, 25.7]}},
+            {"id": "FL001-123", "properties": {
+                "agency_code": "FL001", "monitoring_location_number": "123"},
+                "geometry": {"coordinates": [-80.3, 25.8]}},
+        ], "links": []}
+        rows = usgs()
+        self.assertEqual({x["site_id"] for x in rows}, {"USGS-123", "FL001-123"})
+
+    @patch("southfl.sources.get_json")
+    def test_true_conflict_quarantined_with_audit(self, mock):
+        mock.return_value = {"features": [
+            {"id": "USGS-123", "properties": {"agency_code": "USGS"},
+             "geometry": {"coordinates": [-80.2, 25.7]}},
+            {"id": "USGS-123", "properties": {"agency_code": "USGS"},
+             "geometry": {"coordinates": [-80.3, 25.8]}},
+            {"id": "USGS-456", "properties": {"agency_code": "USGS"},
+             "geometry": {"coordinates": [-80.4, 25.9]}},
+        ], "links": []}
+        conflicts = []
+        rows = usgs(conflict_sink=conflicts)
+        self.assertEqual([x["site_id"] for x in rows], ["USGS-456"])
+        self.assertEqual(len(conflicts), 1)
+        self.assertEqual(conflicts[0]["site_id"], "USGS-123")
 
     @patch("southfl.sources.get_json")
     def test_usgs_fails_incomplete_pagination(self, mock):
