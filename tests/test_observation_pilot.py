@@ -27,7 +27,7 @@ class SourceObservationTests(unittest.TestCase):
                 "qualifier": "E",
             }}], "links": []}
         rows, urls = usgs_observations("USGS-1", "00300", "2026-10-01",
-                                       "2026-10-03", "dissolved_oxygen")
+                                       "2026-10-03", "dissolved_oxygen", mode="continuous")
         self.assertEqual(rows[0]["timestamp_utc"], "2026-10-01T16:00:00Z")
         self.assertEqual(rows[0]["approval_status"], "Provisional")
         self.assertEqual(rows[0]["value"], "4.2")
