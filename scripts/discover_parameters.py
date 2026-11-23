@@ -56,8 +56,8 @@ def concept_summary(periods, station_rows):
     for row in periods:
         match = by_site.get((row["dataset_id"], row["site_id"]), {})
         # A station can appear in more than one screening region.
-        regions = (match.get("regions") or "").split(";")
-        for region in (r for r in regions if r) or ["unassigned"]:
+        regions = [r for r in (match.get("regions") or "").split(";") if r]
+        for region in regions or ["unassigned"]:
             groups[(row["dataset_id"], row["concept"], region)].append(row)
     output = []
     for (dataset, concept, region), recs in sorted(groups.items()):
