@@ -1,0 +1,148 @@
+# Milestone 4 — Expanded South Florida discovery and observed-data pilot
+
+This milestone extends the original Biscayne Bay / Florida Bay / Keys screening
+areas inland and westward **without changing existing IDs**, and provides a
+bounded extraction pipeline for real observations. It has two independent
+tracks: discovery expansion and a representative observed-data pilot. The
+pilot can run from the existing 21,988 metadata records, even if new
+regional discovery has not yet completed.
+
+**Scope:** Region-neutral environmental coverage. No FCM fitting is included.
+Existing `data/` outputs should remain untracked and must not be overwritten.
+
+## Track A — Expanded regional inventory
+
+New WGS84 rectangular discovery areas in `southfl/regions.py`:
+
+- Everglades interior
+- Big Cypress
+- Southwest Everglades coast and Ten Thousand Islands screening area
+- Lake Okeechobee
+- Everglades Agricultural Area
+- Caloosahatchee connection
+- St. Lucie connection
+
+These rectangles deliberately overlap and are **not** ecological zones,
+watersheds, legal boundaries, flow pathways or proof of mixing. The resulting
+site count measures metadata coverage only. We will need polygon boundaries
+and river/canal connectivity in a later step.
+
+From the repo root (PowerShell; Python 3.10+):
+
+```powershell
+git fetch origin
+git switch feat/expanded-region-observation-pilot
+python -m unittest discover -s tests -v
+
+# Optional smaller API probe before the whole regional extraction
+python scripts/discover_regions.py --sources usgs wqp --regions lake_okeechobee everglades_interior --tiles 2 --out data/inventory/expanded_probe
+
+# Full new regions (do not repeat old region queries)
+python scripts/discover_regions.py --sources usgs wqp --regions everglades_interior big_cypress southwest_everglades_coast lake_okeechobee everglades_agricultural_area caloosahatchee st_lucie_connection --tiles 2 --out data/inventory/expanded_v1
+
+# Merge 14,530 existing sites with newly discovered inland/west sites
+python scripts/merge_station_discoveries.py --previous data/inventory/batch_v2 --expanded data/inventory/expanded_v1 --out data/inventory/combined_v3
+
+# Discover parameters ONLY in expanded areas, using updated station IDs
+python scripts/discover_parameters.py --stations data/inventory/combined_v3/stations.csv --sources usgs wqp --regions everglades_interior big_cypress southwest_everglades_coast lake_okeechobee everglades_agricultural_area caloosahatchee st_lucie_connection --tiles 2 --wqp-years 5 --out data/inventory/parameters_expanded_v1
+
+# Merge new parameter records with your previously verified 21,988 records
+python scripts/merge_parameter_periods.py --previous data/inventory/parameters_v2 --expanded data/inventory/parameters_expanded_v1 --stations data/inventory/combined_v3/stations.csv --out data/inventory/parameters_combined_v3
+```
+
+Queries are grouped by source, region and spatial tile. Each incomplete
+discovery snapshot is recorded with a nonzero exit; **do not merge it as if
+fully discovered**. If an agency response is too large, choose a **new output
+directory** and retry with `--tiles 3` or `--tiles 4`. The scripts retain
+all successful outputs and log failures. Metadata collisions are quarantined
+and require manual reconciliation.
+
+Large WQP exports are not necessarily fresh, and WQP's NWIS/USGS portion may
+not contain updates after March 2024. Use USGS's current direct APIs for
+newer USGS sensor observations.
+
+## Track B — Actual observed-data pilot (can run independently now)
+
+The pilot is a **deliberately small subset** of stations distributed among
+regions based on candidate concepts, using the existing source metadata. It
+does not declare models trainable and does not make a definitive ecological
+sampling recommendation.
+
+```powershell
+# Create an explicit, inspectable source/site/time plan (NO internet required)
+python scripts/plan_observation_pilot.py --periods data/inventory/parameters_v2/parameter_periods.csv --stations data/inventory/batch_v2/stations.csv --end 2026-10-31 --max-total 18 --per-region 3 --per-source 7 --out data/pilot/plans/first
+
+# Inspect data/pilot/plans/first/pilot_plan.csv before any download
+# Dry run prints task count without network access
+python scripts/fetch_observation_pilot.py --plan data/pilot/plans/first/pilot_plan.csv --out data/pilot/runs/first
+
+# Actual source API downloads (EXPLICIT --execute REQUIRED)
+python scripts/fetch_observation_pilot.py --plan data/pilot/plans/first/pilot_plan.csv --out data/pilot/runs/first --execute
+```
+
+You can substitute the combined expanded files for both `--periods` and
+`--stations` after Track A succeeds. Using the original metadata is fine
+for this pilot: it tests ingestion, NOT South Florida-wide completeness.
+
+Planner defaults, configurable in `--help`:
+- USGS continuous: 14 calendar days per selected station/parameter.
+  Use `--usgs-mode daily --days-usgs 30` for a small daily aggregate pilot.
+- WQP discrete samples: up to 365 calendar days around a historical year
+  with prior reported results. Some queries can legitimately return zero.
+- CO-OPS six-minute observed water levels: maximum 14 days by default;
+  NOAA has a roughly one-month API limit for six-minute records.
+- At most 18 selected tasks by default, distributed across screening regions.
+  Repeat with manually chosen representative strata if some data source
+  or physical domain is underrepresented.
+
+The planner selects candidate site/concept combinations by metadata recency
+and a small concept priority set, preserving each underlying raw characteristic
+or parameter code. It does not claim a statistically representative random
+sample, nor does it guarantee all subsystems are included. A zero result is
+NOT a negative ecological event or proof the monitoring station is inactive.
+
+### Pilot output artifacts
+
+- `pilot_plan.csv` + `plan_manifest.json`: fixed candidate source/site/
+  concept/date windows and selection constraints.
+- `observations.csv`: numeric values when available and **original reported
+  values**, source units, QA qualifiers, result/sample identifiers, depth,
+  fraction, method, timestamp basis and request URL. Non-detects are never zero.
+- `sample_coverage.csv`: counts of source observations, numeric values,
+  distinct sample dates, unit differences, provisional flags, and potentially
+  repeated result IDs; leaves completeness blank.
+- `ingestion_manifest.json`: per-task success, empty result or failure,
+  query URLs, hashes of plan/output, provenance and source counts.
+
+Time basis is explicit: USGS high-frequency and NOAA timestamped data are
+converted to UTC; USGS daily values are dated calendar aggregates; WQP lab
+samples retain local collection dates without fabricated UTC timestamps.
+No interpolation, cross-dataset joining, unit conversion, censor imputation
+or hidden forward/backward data filling occurs.
+
+## Scientific acceptance criteria before FCMs
+
+1. **Actual values:** sample counts, observed dates, usable numeric fraction,
+   QA flags, and detection/censor limits at source-variable resolution.
+2. **Temporal density:** identify instrument deployment and expected sampling
+   schedule before estimating sensor completeness; annual WQP counts alone are
+   insufficient.
+3. **Methods:** inspect lab fraction/speciation, sample depth and units;
+   reject inappropriate combinations (e.g., all nitrogen forms as total N).
+4. **Space:** move from screening rectangles to polygon and connectivity
+   graphs; preserve source and sublocation IDs.
+5. **Duplication:** record-level reconciliation for overlapping EPA WQP,
+   FDEP WIN, USGS records; spatial proximity does not prove duplication.
+6. **Validation:** only after a stable observation panel should we evaluate
+   independent FCM experts using chronological/spatial holdouts and baselines.
+
+This first observed-data pilot supports USGS daily/continuous, WQP result
+records, and NOAA CO-OPS observed water levels. It does **not** yet ingest the
+SFWMD DBHYDRO, FDEP WIN direct export, FIU Keys, FWC, NOAA NCRMP, Coral Reef
+Watch or GIS/Hazus datasets. Those require additional source-specific adapters
+and appropriate ecological/annual temporal treatment.
+
+Official service references:
+- USGS OGC APIs: https://api.waterdata.usgs.gov/docs/ogcapi/
+- WQP web services: https://waterqualitydata.epa.gov/webservices_documentation/
+- NOAA CO-OPS data API: https://api.tidesandcurrents.noaa.gov/api/prod/
