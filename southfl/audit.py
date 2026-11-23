@@ -34,29 +34,40 @@ def validate_stations(rows):
 
 
 def coordinate_collisions(rows, threshold_m=75):
-    """Nearby station sites are REVIEW CANDIDATES, never automatically deduplicated.
+    """Flag neighboring sites from *different datasets* for manual review.
 
-    Approximate local planar distance is only for flagging proximity;
-    different agencies and depths may occupy the same pier legitimately.
+    A spatial hash avoids quadratic all-pairs comparisons when the inventory
+    reaches tens of thousands of stations. The final meter-distance test uses
+    the same local spherical approximation as the original implementation.
     """
-    from math import cos, radians, sqrt
+    from math import cos, floor, radians, sqrt
+    if threshold_m <= 0 or threshold_m > 500:
+        raise ValueError("spatial review threshold must be 0-500 meters")
+    cell = threshold_m / 111_195
+    # At South Florida latitudes (about 24-28 N), 2 adjacent longitude
+    # cells are sufficient for distances <= threshold_m.
+    buckets = {}
     out = []
-    for i, a in enumerate(rows):
-        for b in rows[i+1:]:
-            if a["dataset_id"] == b["dataset_id"]:
-                continue
-            lat1, lat2 = float(a["latitude"]), float(b["latitude"])
-            lon1, lon2 = float(a["longitude"]), float(b["longitude"])
-            mid = radians((lat1 + lat2) / 2)
-            distance = sqrt(((lat1-lat2)*111_195)**2 +
-                            ((lon1-lon2)*111_195*cos(mid))**2)
-            if distance <= threshold_m:
-                out.append(dict(site_id_a=a["site_id"], dataset_id_a=a["dataset_id"],
-                                site_id_b=b["site_id"], dataset_id_b=b["dataset_id"],
-                                distance_m=round(distance, 1),
-                                collision_type="spatial_proximity_review_only"))
+    for b in rows:
+        lat2, lon2 = float(b["latitude"]), float(b["longitude"])
+        x, y = floor(lon2 / cell), floor(lat2 / cell)
+        for dx in (-2, -1, 0, 1, 2):
+            for dy in (-1, 0, 1):
+                for a in buckets.get((x + dx, y + dy), []):
+                    if a["dataset_id"] == b["dataset_id"]:
+                        continue
+                    lat1, lon1 = float(a["latitude"]), float(a["longitude"])
+                    mid = radians((lat1 + lat2) / 2)
+                    distance = sqrt(((lat1-lat2)*111_195)**2 +
+                                    ((lon1-lon2)*111_195*cos(mid))**2)
+                    if distance <= threshold_m:
+                        out.append(dict(
+                            site_id_a=a["site_id"], dataset_id_a=a["dataset_id"],
+                            site_id_b=b["site_id"], dataset_id_b=b["dataset_id"],
+                            distance_m=round(distance, 1),
+                            collision_type="spatial_proximity_review_only"))
+        buckets.setdefault((x, y), []).append(b)
     return out
-
 
 def audit_observations(rows):
     """Count ACTUAL observed records by year; never infer hourly coverage from counts.
