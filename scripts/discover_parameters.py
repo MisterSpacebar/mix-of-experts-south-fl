@@ -102,23 +102,33 @@ def run(station_path, out, sources, regions, wqp_years="5", usgs_pages=60,
         station_ids[r["dataset_id"]].add(r["site_id"])
     rows, attempts = [], []
 
-    def attempt(source, region, subtype, fn):
+    def attempt(source, region, subtype, fn, site_errors=None):
         label = f"{source}/{region}/{subtype}"
         print("Discovering", label, flush=True)
         try:
             result = fn()
             rows.extend(result)
+            failed_sites = list(site_errors or [])
+            status = "partial" if failed_sites else "success"
             attempts.append(dict(source=source, region=region, subtype=subtype,
-                                 status="success", n_rows=len(result), error=""))
-            print(f"  {len(result)} candidate parameter-period records", flush=True)
+                                 status=status, n_rows=len(result),
+                                 n_failed_sites=len(failed_sites),
+                                 site_errors=failed_sites,
+                                 error=(f"{len(failed_sites)} station metadata requests failed"
+                                        if failed_sites else "")))
+            print(f"  {len(result)} candidate parameter-period records"
+                  f" ({len(failed_sites)} station failures)", flush=True)
         except (AcquisitionError, ValueError, KeyError, TypeError) as exc:
             attempts.append(dict(source=source, region=region, subtype=subtype,
-                                 status="failed", n_rows=0, error=str(exc)))
+                                 status="failed", n_rows=0, n_failed_sites=0,
+                                 site_errors=[], error=str(exc)))
             print(f"  FAILED: {exc}", flush=True)
 
     if "coops" in sources:
+        coops_errors = []
         attempt("coops", "domain", "waterlevel_station", lambda:
-                coops_periods(station_ids["noaa_coops"]))
+                coops_periods(station_ids["noaa_coops"], errors=coops_errors),
+                site_errors=coops_errors)
     if "ndbc" in sources:
         attempt("ndbc", "domain", "stdmet_archive", lambda:
                 ndbc_periods(station_ids["noaa_ndbc"]))
@@ -136,7 +146,8 @@ def run(station_path, out, sources, regions, wqp_years="5", usgs_pages=60,
     write_csv(out / "concept_summary.csv",
               concept_summary(deduped, station_rows), SUMMARY_COLUMNS)
     write_csv(out / "parameter_metadata_conflicts.csv", conflicts, CONFLICT_COLUMNS)
-    failures = sum(a["status"] == "failed" for a in attempts)
+    failures = sum(a["status"] != "success" for a in attempts)
+    failed_station_requests = sum(a.get("n_failed_sites", 0) for a in attempts)
     manifest = {
         "retrieved_at_utc": datetime.now(timezone.utc).isoformat(),
         "station_inventory": str(station_path),
@@ -145,7 +156,9 @@ def run(station_path, out, sources, regions, wqp_years="5", usgs_pages=60,
         "wqp_types": list(wqp_types),
         "n_raw_metadata_rows": len(rows), "n_parameter_periods": len(deduped),
         "n_conflicting_metadata_records": len(conflicts),
-        "n_failed_requests": failures, "attempts": attempts,
+        "n_failed_requests": failures,
+        "n_failed_station_requests": failed_station_requests,
+        "attempts": attempts,
         "observations_downloaded": False, "observation_coverage_verified": False,
         "note": ("USGS first/last timestamps may span large gaps; WQP annual counts "
                  "are NOT sampling completeness; CO-OPS station dates and NDBC "
@@ -153,7 +166,8 @@ def run(station_path, out, sources, regions, wqp_years="5", usgs_pages=60,
     }
     (out / "parameter_manifest.json").write_text(
         json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
-    print(f"Saved {len(deduped)} metadata records, {failures} failed requests, "
+    print(f"Saved {len(deduped)} metadata records, {failures} failed/partial "
+          f"requests ({failed_station_requests} station errors), "
           f"{len(conflicts)} conflicts in {out}")
     return manifest
 

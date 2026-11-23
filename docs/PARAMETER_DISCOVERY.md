@@ -129,3 +129,91 @@ USGS OGC v1 changed its time-series date fields to UTC-valued `begin` and
 writes normalized `begin_utc`/`end_utc` CSV columns from the current v1
 fields and retains statistic ID, sublocation ID, primary/provisional flag,
 and gap interval when provided. Consult the v1 schema rather than the old v0.
+
+## CO-OPS wrapped-envelope correction and source-only recovery
+
+The local full run returned 21,985 parameter metadata rows, with 23 of 24
+subtype queries successful and no metadata conflicts. The first CO-OPS station
+failed because the live single-station JSON was wrapped as
+`{"count":1,"stations":[{"id":"8723214",...}]}` rather than a flat record.
+The adapter now supports either form and verifies there is exactly one station
+with the requested ID.
+
+A single invalid NOAA station now appears under `site_errors` on the CO-OPS
+attempt. Its valid neighbors are preserved; the subtype status becomes
+`partial`, `n_failed_station_requests` is recorded, and the program still
+exits 2. Station-established dates never become measurement start dates.
+
+**Do not requery the entire USGS/WQP historical inventory solely for this.**
+Keep the original partial run unchanged and run only NOAA CO-OPS:
+
+```powershell
+git fetch origin
+git switch fix/coops-envelope-and-parameter-triage
+python -m unittest discover -s tests -v
+
+python scripts/discover_parameters.py --sources coops --out data/inventory/parameters_coops_v2
+
+python scripts/merge_parameter_discoveries.py --base data/inventory/parameters_v1 --supplement data/inventory/parameters_coops_v2 --stations data/inventory/batch_v2/stations.csv --out data/inventory/parameters_v2
+```
+
+The merge is intentionally strict: it requires that the only prior failed
+subtype was CO-OPS, the replacement succeeded for **every CO-OPS station in
+the station inventory**, the original USGS/NDBC/WQP data are untouched, and
+there are no unresolved metadata conflicts. It will refuse to overwrite
+nonempty output directories. No observation-level quality is established
+by a successful metadata-only merge.
+
+The consolidated output includes the same four CSV/JSON outputs as
+`discover_parameters.py`. Verify `n_failed_requests=0`,
+`n_conflicting_metadata_records=0`, and `observation_coverage_verified=false`.
+For the reported original results, three clean station candidates would raise
+the row count from **21,985 to 21,988**, provided no other changes occurred.
+This is a predicted record count, not a verified remote result.
+
+## Next scientifically meaningful milestone: data readiness and broad-region inventory
+
+For the model portfolio, prioritize datasets *by type of usable evidence*
+rather than Biscayne Bay versus Keys geography:
+
+1. **Continuous physical experts:** actual timestamps, source QA and
+   gaps for water level, flow, temperature, salinity and DO (USGS/CO-OPS).
+2. **Discrete chemistry experts:** actual WQP/WIN/SFWMD sample activities,
+   dates, depths, units and reporting limits. Annual result counts cannot
+   substitute for distinct sample dates or comparable methods.
+3. **Ecological experts:** FWC CREMP/FIM, NOAA NCRMP, Keys/FIU seagrass and
+   coral-monitoring campaigns; preserve design/effort and spatial footprint.
+4. **Socioeconomic experts:** fisheries landings, county parcels, Hazus
+   scenarios; model slow timescales without interpolating annual values daily.
+
+Before declaring study-wide spatial coverage, expand the original *discovery*
+boxes beyond Biscayne Bay/Florida Bay/Keys to include Everglades interior,
+Big Cypress/southwest coast, and Lake Okeechobee basin/connectors. Keep
+small regional API queries, record intersecting screening boxes, and
+subsequently replace them with actual watershed/coastal polygons.
+Do not modify old station IDs or silently treat rectangular overlap as
+hydrological connectivity.
+
+Use the existing `concept_summary.csv` to narrow the first acquisition
+tranche and choose a region-neutral set of stations with
+usable actual observations. Do not download raw historical values from all
+14,530 metadata-only sites automatically.
+
+### Site-level candidate shortlist (no new agency requests)
+
+After generating the consolidated metadata CSV, create a **region-neutral**
+site/concept shortlist for later measurement-level QA. This does not determine
+model trainability or create FCM weights.
+
+```powershell
+python scripts/shortlist_parameters.py --parameters data/inventory/parameters_v2/parameter_periods.csv --stations data/inventory/batch_v2/stations.csv --out data/inventory/shortlist_v1
+```
+
+The output `site_parameter_candidates.csv` records each station, candidate
+concept, screening region, source series/slice count, date hints, annual
+reported-result counts (when available), uncertainty, and the next QA action.
+A station appearing in multiple overlapping regional boxes yields multiple
+region rows; **do not sum them as independent stations**. Source availability
+is not sampling completeness, statistical independence, or FCM training
+readiness. This shortlist is the input for choosing a *small, representative*
+set of actual measurement downloads across South Florida.
