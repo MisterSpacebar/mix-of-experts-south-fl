@@ -18,7 +18,9 @@ def usgs_feature(site, code="00300", series="ts-1", begin="2019-01-01T00:00:00Z"
         "monitoring_location_id": site, "time_series_id": series,
         "parameter_code": code, "parameter_name": "Dissolved oxygen",
         "begin": begin, "end": "2026-01-01T00:00:00Z",
-        "unit_of_measure": "mg/L", "computation_identifier": "Instantaneous"},
+        "unit_of_measure": "mg/L", "computation_identifier": "Instantaneous",
+        "statistic_id": "00003", "sublocation_identifier": "surface",
+        "primary": "Primary", "data_gap_interval": "PT1H"},
         "geometry": {"type": "Point", "coordinates": [-80.2, 25.7]}}
 
 
@@ -61,6 +63,10 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(rows[0]["end_utc"], "2026-01-01T00:00:00Z")
         self.assertEqual(rows[0]["evidence"], "time_series_first_last_metadata")
         self.assertEqual(rows[0]["n_results"], "")
+        self.assertEqual(rows[0]["statistic_id"], "00003")
+        self.assertEqual(rows[0]["sublocation_identifier"], "surface")
+        self.assertEqual(rows[0]["primary_status"], "Primary")
+        self.assertEqual(rows[0]["data_gap_interval"], "PT1H")
 
     @patch("southfl.periods.get_json")
     def test_usgs_pagination_cycle_fails(self, mock):
