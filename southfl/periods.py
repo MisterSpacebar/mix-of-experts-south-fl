@@ -142,26 +142,66 @@ def wqp_periods(bbox, allowed, region="", characteristic_type="Nutrient",
     return rows
 
 
-def coops_periods(site_ids, region="domain"):
-    """Water-level station product CANDIDATES; no observed first/last dates."""
+def _coops_single_station(payload, site):
+    """Unwrap NOAA's single-station response without guessing among records.
+
+    The production MDAPI may return a single station under stations[] even
+    though some documentation/examples show a flat object. Never quietly
+    choose the first of multiple stations or accept an incorrect station ID.
+    """
+    if not isinstance(payload, dict):
+        raise AcquisitionError(f"CO-OPS expected object for {site}")
+    if "stations" in payload or "stationList" in payload:
+        if "stations" in payload and "stationList" in payload:
+            raise AcquisitionError(f"CO-OPS ambiguous station lists for {site}")
+        items = payload.get("stations") if "stations" in payload else payload.get("stationList")
+        if not isinstance(items, list) or len(items) != 1:
+            raise AcquisitionError(f"CO-OPS expected one station for {site}")
+        if "count" in payload:
+            try:
+                count = int(payload["count"])
+            except (ValueError, TypeError) as exc:
+                raise AcquisitionError(f"CO-OPS invalid count for {site}") from exc
+            if count != 1:
+                raise AcquisitionError(f"CO-OPS count mismatch for {site}")
+        item = items[0]
+    else:
+        item = payload  # historical/documented flat station-object format
+    if not isinstance(item, dict) or str(item.get("id") or "") != site:
+        raise AcquisitionError(f"CO-OPS station metadata mismatch for {site}")
+    return item
+
+
+def coops_periods(site_ids, region="domain", errors=None):
+    """Metadata-only CO-OPS water-level candidates; not observed date ranges.
+
+    errors=None: fail fast, for direct callers.
+    errors=[]: collect per-station errors and continue to retain valid sites.
+    The caller must mark any partial result as incomplete.
+    """
     rows = []
     for site in sorted(site_ids):
-        if not site.isdigit():
-            raise AcquisitionError(f"unexpected NOAA water-level station id: {site!r}")
         url = f"{COOPS_ROOT}/{site}.json?expand=details,products"
-        p = get_json(url)
-        if not isinstance(p, dict) or str(p.get("id") or "") != site:
-            raise AcquisitionError(f"CO-OPS station metadata mismatch for {site}")
-        details = p.get("details") or {}
-        # 'established'/'removed' are installation dates, NOT observed data availability.
-        stamp = "; ".join(f"{key}={details[key]}" for key in ("established", "removed")
-                          if details.get(key))
-        rows.append(_row(
-            "noaa_coops", site, site + "|water_level_candidate",
-            name="Observed water level (candidate)", concept="water_level",
-            series_type="water_level_station", evidence="station_class_only",
-            note="Station dates are NOT observation periods. " + stamp,
-            url=url, region=region, inventory="yes"))
+        try:
+            if not site.isdigit():
+                raise AcquisitionError(f"unexpected NOAA water-level station id: {site!r}")
+            item = _coops_single_station(get_json(url), site)
+            details = item.get("details") or {}
+            if not isinstance(details, dict):
+                raise AcquisitionError(f"CO-OPS invalid details for {site}")
+            # Establishment/removal dates describe the station, not measurements.
+            stamp = "; ".join(f"{key}={details[key]}" for key in ("established", "removed")
+                              if details.get(key))
+            rows.append(_row(
+                "noaa_coops", site, site + "|water_level_candidate",
+                name="Observed water level (candidate)", concept="water_level",
+                series_type="water_level_station", evidence="station_class_only",
+                note="Station dates are NOT observation periods. " + stamp,
+                url=url, region=region, inventory="yes"))
+        except (AcquisitionError, ValueError, KeyError, TypeError) as exc:
+            if errors is None:
+                raise
+            errors.append({"site_id": site, "source_url": url, "error": str(exc)})
     return rows
 
 
