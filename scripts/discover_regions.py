@@ -18,12 +18,35 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from southfl.audit import catalog_inventory
 from southfl.net import AcquisitionError
-from southfl.regions import REGIONS
+from southfl.regions import REGIONS, DOMAIN
 from southfl.sources import ADAPTERS
 
 
-def batch(sources, out_dir):
+def tiles_for(bbox, n):
+    """Divide a WGS84 screening box into n*n disjoint query rectangles.
+
+    Edges can return repeated sites; canonical IDs are reconciled afterward.
+    """
+    if n < 1 or n > 10:
+        raise ValueError("tiles must be from 1 to 10")
+    west, south, east, north = bbox
+    for row in range(n):
+        for col in range(n):
+            yield (west + (east-west) * col/n,
+                   south + (north-south) * row/n,
+                   west + (east-west) * (col+1)/n,
+                   south + (north-south) * (row+1)/n)
+
+
+def batch(sources, out_dir, regions=None, tiles=1):
     out = Path(out_dir)
+    if out.exists() and any(out.iterdir()):
+        raise ValueError("output directory is nonempty; use a new snapshot path")
+    if tiles < 1 or tiles > 10:
+        raise ValueError("tiles must be between 1 and 10")
+    region_names = list(REGIONS) if regions is None else list(regions)
+    if not region_names or any(region not in REGIONS for region in region_names):
+        raise ValueError("regions must name at least one configured screening region")
     out.mkdir(parents=True, exist_ok=True)
     all_rows = []
     attempts = []
@@ -31,8 +54,12 @@ def batch(sources, out_dir):
     for source in sources:
         # NOAA metadata sources provide all stations in one response and are
         # filtered locally; the larger USGS/WQP sets require regional queries.
-        boxes = [("domain", (-83.15, 24.35, -80.05, 26.02))] if source in (
-            "coops", "ndbc") else list(REGIONS.items())
+        if source in ("coops", "ndbc"):
+            boxes = [("domain", DOMAIN)]
+        else:
+            boxes = [(f"{region}/tile_{i+1:02d}", bounds)
+                     for region in region_names
+                     for i, bounds in enumerate(tiles_for(REGIONS[region], tiles))]
         for region, bounds in boxes:
             try:
                 regional_conflicts = []
@@ -44,6 +71,7 @@ def batch(sources, out_dir):
                     conflicts.append(dict(item, query_region=region))
                 all_rows.extend(rows)
                 attempts.append(dict(source=source, region=region,
+                                     bbox=list(bounds),
                                      success=not regional_conflicts,
                                      partial=bool(regional_conflicts),
                                      n_conflicts=len(regional_conflicts),
@@ -52,8 +80,8 @@ def batch(sources, out_dir):
                                             if regional_conflicts else "")))
                 print(f"{source:6s} {region:28s} {len(rows)} stations", flush=True)
             except (AcquisitionError, ValueError, KeyError, TypeError) as exc:
-                attempts.append(dict(source=source, region=region, success=False,
-                                     n_stations=0, error=str(exc)))
+                attempts.append(dict(source=source, region=region, bbox=list(bounds),
+                                     success=False, n_stations=0, error=str(exc)))
                 print(f"{source:6s} {region:28s} FAILED: {exc}", flush=True)
     # Overlapping discovery boxes can contain the same station. Conflicts
     # encountered between regions are quarantined and audited just like
@@ -86,7 +114,8 @@ def batch(sources, out_dir):
         "query_region"])
     manifest = {
         "retrieved_at_utc": datetime.now(timezone.utc).isoformat(),
-        "sources": sources, "attempts": attempts,
+        "sources": sources, "regions": region_names, "tiles_per_axis": tiles,
+        "attempts": attempts,
         "n_unique_stations": len(selected),
         "n_quarantined_site_ids": len(bad),
         "n_coordinate_conflicts": len(conflicts),
@@ -104,8 +133,12 @@ def main():
     parser.add_argument("--sources", nargs="+", choices=sorted(ADAPTERS),
                         default=["coops", "ndbc"])
     parser.add_argument("--out", type=Path, default=Path("data/inventory/batch"))
+    parser.add_argument("--regions", nargs="+", choices=sorted(REGIONS),
+                        help="default: all configured regions")
+    parser.add_argument("--tiles", type=int, default=1,
+                        help="n-by-n spatial query tiling for USGS/WQP, max 10")
     args = parser.parse_args()
-    result = batch(args.sources, args.out)
+    result = batch(args.sources, args.out, regions=args.regions, tiles=args.tiles)
     print(f"Unique station candidates: {result['n_unique_stations']}")
     print(f"Failed discovery queries: {result['n_failed_queries']}")
     if result["n_failed_queries"]:

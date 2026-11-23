@@ -43,12 +43,29 @@ This requires the untracked `data/inventory/batch_v2/stations.csv` from
 station discovery. **Do not infer sample completeness from first/last dates
 or an annual WQP result count.** See the source-specific instructions below.
 
+## Milestone 4: Expanded South Florida and observed-data pilot
+
+Added expanded screening regions for Everglades interior, Big Cypress,
+southwest coast, Lake Okeechobee, EAA, Caloosahatchee and St. Lucie.
+Station and parameter discovery can run only in these added areas with
+small spatial tiles, then merge with earlier snapshots without overwriting.
+
+A separate two-step ingestion pilot generates a balanced, bounded site/
+concept/date plan (offline) and then fetches **real source observations**
+from modern USGS OGC (continuous/daily), EPA WQP (discrete sample results),
+and NOAA CO-OPS (observed water level), using an explicit `--execute`.
+Actual sample-date counts and source flags are retained; model trainability
+and completeness are **not** inferred from metadata.
+
+See [the full Milestone 4 runbook](docs/EXPANDED_REGIONS_AND_OBSERVATIONS.md).
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
 - [Source selection, data QA and acquisition plan](docs/DATASETS.md)
 - [Station discovery/coverage instructions and limitations](docs/DISCOVERY.md)
 - [Parameter and period-of-record inventory instructions](docs/PARAMETER_DISCOVERY.md)
+- [Expanded region discovery and observed-data pilot](docs/EXPANDED_REGIONS_AND_OBSERVATIONS.md)
 
 ## Modeling design (planned)
 
