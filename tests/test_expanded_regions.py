@@ -1,4 +1,5 @@
 """Offline tests for expanded geography, safe station merge and fast co-location."""
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -64,6 +65,9 @@ class RegionalExpansionTests(unittest.TestCase):
                           "https://example.com")
             catalog_inventory([old], earlier)
             catalog_inventory([new], newer)
+            for directory in (earlier, newer):
+                (directory/"batch_manifest.json").write_text(json.dumps({
+                    "n_failed_queries": 0, "n_coordinate_conflicts": 0}))
             report = merge_stations(earlier, newer, dest)
             self.assertEqual(report["combined_unique_sites"], 2)
             from southfl.audit import read_csv
