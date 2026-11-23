@@ -20,7 +20,7 @@ USGS_URL = "https://api.waterdata.usgs.gov/ogcapi/v1/collections/time-series-met
 WQP_URL = "https://waterqualitydata.us/data/summary/monitoringLocation/search"
 COOPS_ROOT = "https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations"
 NDBC_INDEX = "https://www.ndbc.noaa.gov/data/historical/stdmet/"
-WQP_TYPES = ("Nutrient", "Physical")
+WQP_TYPES = ("Nutrient", "Physical", "Biological")
 
 
 def _row(dataset, site, series, code="", name="", concept="unmapped", unit="",
@@ -103,7 +103,7 @@ def wqp_periods(bbox, allowed, region="", characteristic_type="Nutrient",
                 years="5"):
     """EPA Water Quality Portal annual summary (not raw chemistry results)."""
     if characteristic_type not in WQP_TYPES:
-        raise ValueError("WQP type must be Nutrient or Physical")
+        raise ValueError("WQP type must be Nutrient, Physical or Biological")
     if str(years) not in ("1", "5", "all"):
         raise ValueError("WQP years must be 1, 5, or all")
     url = url_with_params(WQP_URL, {
