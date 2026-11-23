@@ -68,7 +68,7 @@ def usgs_observations(site, code, start, end, concept, mode="daily",
     base = f"{USGS_BASE}/{mode}/items"
     url = url_with_params(base, {
         "f": "json", "monitoring_location_id": site,
-        "parameter_code": code, "datetime": start + "/" + end,
+        "parameter_code": code, "time": start + "/" + end,
         "limit": page_size,
     })
     data, links, visited = [], [], set()
@@ -92,6 +92,8 @@ def usgs_observations(site, code, start, end, concept, mode="daily",
             else:
                 when = _utc_timestamp(raw_time)
                 day, time_basis = when[:10], "explicit_utc_datetime"
+            if not (date.fromisoformat(start) <= date.fromisoformat(day) <= date.fromisoformat(end)):
+                raise AcquisitionError("USGS returned observation outside requested time window")
             raw = p.get("value")
             approvals = p.get("approval_status", p.get("approvals_status", ""))
             if isinstance(approvals, list):
@@ -147,6 +149,8 @@ def wqp_observations(site, characteristic, start, end, concept,
                 item.get("CharacteristicName") != characteristic):
             raise AcquisitionError("WQP returned unexpected site/characteristic")
         day = _date(item.get("ActivityStartDate"))
+        if not (date.fromisoformat(start) <= date.fromisoformat(day) <= date.fromisoformat(end)):
+            raise AcquisitionError("WQP returned sample outside requested date window")
         raw = item.get("ResultMeasureValue")
         data.append(_row(
             dataset_id="epa_wqp", site_id=site, concept=concept,
