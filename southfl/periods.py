@@ -73,7 +73,9 @@ def usgs_periods(bbox, allowed, region="", limit=1000, max_pages=60):
                 "usgs_water", site, ts_id, code=code, name=name,
                 concept=usgs_concept(code, name), unit=p.get("unit_of_measure") or "",
                 series_type=str(p.get("computation_identifier") or "unspecified"),
-                begin=p.get("begin_utc"), end=p.get("end_utc"),
+                # OGC v1 renamed UTC fields to begin/end; v0 used begin_utc/end_utc.
+                begin=p.get("begin") or p.get("begin_utc"),
+                end=p.get("end") or p.get("end_utc"),
                 evidence="time_series_first_last_metadata",
                 note="Time series can contain substantial gaps; metadata is not completeness",
                 url=next_url, region=region, inventory="yes"))
