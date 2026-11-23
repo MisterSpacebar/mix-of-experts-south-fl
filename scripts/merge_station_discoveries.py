@@ -26,6 +26,16 @@ def merge_stations(previous, new, out):
         raise ValueError("out cannot overwrite an input directory")
     if out.exists() and any(out.iterdir()):
         raise ValueError("output directory is nonempty")
+    # A merged inventory is only complete when both agency query snapshots
+    # are complete. Do not silently promote partial tiled discovery.
+    for source in (previous, new):
+        manifest_path = source / "batch_manifest.json"
+        if not manifest_path.exists():
+            raise ValueError(f"missing source discovery manifest: {manifest_path}")
+        report = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if (report.get("n_failed_queries") != 0 or
+                report.get("n_coordinate_conflicts", 0) != 0):
+            raise ValueError(f"source inventory is incomplete: {source}")
     original = read_csv(previous / "stations.csv")
     added = read_csv(new / "stations.csv")
     validate_stations(original)
@@ -60,7 +70,7 @@ def merge_stations(previous, new, out):
         "previous": str(previous), "expanded": str(new),
         "original_site_count": len(original), "expanded_site_count": len(added),
         "combined_unique_sites": len(rows), "conflict_ids_quarantined": len(excluded),
-        "source_query_failures": None,
+        "source_query_failures": 0,
         "coverage_verified": False,
         "note": "Check each input discovery manifest for failed/partial queries. "
                 "This merge only proves source metadata consistency.",
