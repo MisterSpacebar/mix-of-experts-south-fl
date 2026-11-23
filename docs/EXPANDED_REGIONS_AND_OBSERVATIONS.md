@@ -38,19 +38,21 @@ python -m unittest discover -s tests -v
 python scripts/discover_regions.py --sources usgs wqp --regions lake_okeechobee everglades_interior --tiles 2 --out data/inventory/expanded_probe
 
 # Full new regions (do not repeat old region queries)
-python scripts/discover_regions.py --sources usgs wqp --regions everglades_interior big_cypress southwest_everglades_coast lake_okeechobee everglades_agricultural_area caloosahatchee st_lucie_connection --tiles 2 --out data/inventory/expanded_v1
+python scripts/discover_regions.py --sources coops ndbc usgs wqp --regions everglades_interior big_cypress southwest_everglades_coast lake_okeechobee everglades_agricultural_area caloosahatchee st_lucie_connection --tiles 2 --out data/inventory/expanded_v1
 
 # Merge 14,530 existing sites with newly discovered inland/west sites
 python scripts/merge_station_discoveries.py --previous data/inventory/batch_v2 --expanded data/inventory/expanded_v1 --out data/inventory/combined_v3
 
 # Discover parameters ONLY in expanded areas, using updated station IDs
-python scripts/discover_parameters.py --stations data/inventory/combined_v3/stations.csv --sources usgs wqp --regions everglades_interior big_cypress southwest_everglades_coast lake_okeechobee everglades_agricultural_area caloosahatchee st_lucie_connection --tiles 2 --wqp-years 5 --out data/inventory/parameters_expanded_v1
+python scripts/discover_parameters.py --stations data/inventory/combined_v3/stations.csv --sources coops ndbc usgs wqp --regions everglades_interior big_cypress southwest_everglades_coast lake_okeechobee everglades_agricultural_area caloosahatchee st_lucie_connection --tiles 2 --wqp-years 5 --out data/inventory/parameters_expanded_v1
 
 # Merge new parameter records with your previously verified 21,988 records
 python scripts/merge_parameter_periods.py --previous data/inventory/parameters_v2 --expanded data/inventory/parameters_expanded_v1 --stations data/inventory/combined_v3/stations.csv --out data/inventory/parameters_combined_v3
 ```
 
-Queries are grouped by source, region and spatial tile. Each incomplete
+NOAA CO-OPS/NDBC are domain-wide metadata queries (run once, not per
+tile); their station screening domain is expanded as well. USGS/WQP queries
+are grouped by source, region and spatial tile. Each incomplete
 discovery snapshot is recorded with a nonzero exit; **do not merge it as if
 fully discovered**. If an agency response is too large, choose a **new output
 directory** and retry with `--tiles 3` or `--tiles 4`. The scripts retain
