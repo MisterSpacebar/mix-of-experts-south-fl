@@ -125,10 +125,10 @@ def usgs(bbox=DOMAIN, page_size=1000, max_pages=MAX_PAGES, conflict_sink=None):
                 continue
             # Official ID is agency-qualified: USGS-02238500, for example.
             # Bare monitoring_location_number is NOT a safe join key.
-            sid = feature.get("id") or p.get("id")
+            sid = feature.get("id") or p.get("monitoring_location_id")
             if not sid and p.get("agency_code") and p.get("monitoring_location_number"):
                 sid = f"{p['agency_code']}-{p['monitoring_location_number']}"
-            if not sid:
+            if not sid or "-" not in str(sid):
                 raise AcquisitionError("USGS monitoring location missing canonical agency-qualified ID")
             name = p.get("monitoring_location_name") or p.get("site_name") or sid
             row = station("usgs_water", "USGS", sid, name, coords[1], coords[0],
