@@ -90,7 +90,7 @@ def concept_summary(periods, station_rows):
 
 
 def run(station_path, out, sources, regions, wqp_years="5", usgs_pages=60,
-        overwrite=False):
+        overwrite=False, wqp_types=("Nutrient", "Physical")):
     station_rows = read_csv(station_path)
     validate_stations(station_rows)
     out = Path(out)
@@ -128,7 +128,7 @@ def run(station_path, out, sources, regions, wqp_years="5", usgs_pages=60,
             attempt("usgs", region, "time_series_metadata", lambda b=bounds, r=region:
                     usgs_periods(b, station_ids["usgs_water"], r, max_pages=usgs_pages))
         if "wqp" in sources:
-            for typ in WQP_TYPES:
+            for typ in wqp_types:
                 attempt("wqp", region, typ, lambda b=bounds, r=region, t=typ:
                         wqp_periods(b, station_ids["epa_wqp"], r, t, wqp_years))
     deduped, conflicts = unique_periods(rows)
@@ -142,6 +142,7 @@ def run(station_path, out, sources, regions, wqp_years="5", usgs_pages=60,
         "station_inventory": str(station_path),
         "n_stations_input": len(station_rows), "sources": sources,
         "regions": regions, "wqp_summary_years": wqp_years,
+        "wqp_types": list(wqp_types),
         "n_raw_metadata_rows": len(rows), "n_parameter_periods": len(deduped),
         "n_conflicting_metadata_records": len(conflicts),
         "n_failed_requests": failures, "attempts": attempts,
@@ -168,13 +169,16 @@ def main(argv=None):
     parser.add_argument("--regions", nargs="+", choices=sorted(REGIONS),
                         default=list(REGIONS))
     parser.add_argument("--wqp-years", choices=["1", "5", "all"], default="5")
+    parser.add_argument("--wqp-types", nargs="+", choices=WQP_TYPES,
+                        default=["Nutrient", "Physical"])
     parser.add_argument("--usgs-pages", type=int, default=60)
     parser.add_argument("--overwrite", action="store_true")
     args = parser.parse_args(argv)
     if args.usgs_pages < 1:
         parser.error("--usgs-pages must be >= 1")
     result = run(args.stations, args.out, args.sources, args.regions,
-                 args.wqp_years, args.usgs_pages, args.overwrite)
+                 args.wqp_years, args.usgs_pages, args.overwrite,
+                 args.wqp_types)
     if result["n_failed_requests"] or result["n_conflicting_metadata_records"]:
         raise SystemExit(2)
 
