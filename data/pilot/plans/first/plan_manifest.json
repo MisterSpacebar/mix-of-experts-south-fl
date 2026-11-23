@@ -1,0 +1,34 @@
+{
+  "created_at_utc": "2026-11-23T05:22:52.590754+00:00",
+  "input_periods": "data\\inventory\\parameters_v2\\parameter_periods.csv",
+  "input_stations": "data\\inventory\\batch_v2\\stations.csv",
+  "requested_end_date": "2026-10-31",
+  "n_selected": 16,
+  "sites": 16,
+  "by_dataset": {
+    "epa_wqp": 7,
+    "noaa_coops": 2,
+    "usgs_water": 7
+  },
+  "by_region": {
+    "central_south_biscayne": 3,
+    "dry_tortugas": 1,
+    "florida_bay": 3,
+    "lower_keys": 3,
+    "middle_keys": 1,
+    "north_biscayne": 3,
+    "upper_keys": 2
+  },
+  "observations_downloaded": false,
+  "trainable": false,
+  "limits": {
+    "max_total": 18,
+    "per_region": 3,
+    "per_source": 7,
+    "usgs_mode": "continuous",
+    "days_usgs": 14,
+    "days_wqp": 365,
+    "days_coops": 14
+  },
+  "note": "Selection balances candidate regions using source metadata only; it does not establish actual station record continuity or independence."
+}

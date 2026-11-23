@@ -1,0 +1,17 @@
+dataset_id,site_id,region,concept,parameter_code,parameter_name,start_date,end_date,usgs_mode,evidence,last_date_hint,selection_status
+epa_wqp,21FLBBAP_WQX-BBMB1A,central_south_biscayne,dissolved_oxygen,,Dissolved oxygen (DO),2025-11-01,2026-10-31,,annual_result_and_activity_counts,2026-12-31,candidate_not_verified
+epa_wqp,21FLKNMS_WQX-G5AP0023,dry_tortugas,dissolved_oxygen,,Dissolved oxygen saturation,2025-01-01,2025-12-31,,annual_result_and_activity_counts,2025-12-31,candidate_not_verified
+epa_wqp,21FLDADE_WQX-AR03,florida_bay,dissolved_oxygen,,Dissolved oxygen saturation,2025-11-01,2026-10-31,,annual_result_and_activity_counts,2026-12-31,candidate_not_verified
+epa_wqp,MOTE_WQX-American Shoals,lower_keys,dissolved_oxygen,,Dissolved oxygen saturation,2025-11-01,2026-10-31,,annual_result_and_activity_counts,2026-12-31,candidate_not_verified
+epa_wqp,MOTE_WQX-Sombrero Reef,middle_keys,dissolved_oxygen,,Dissolved oxygen saturation,2025-11-01,2026-10-31,,annual_result_and_activity_counts,2026-12-31,candidate_not_verified
+epa_wqp,21FLBBAP_WQX-BB14,north_biscayne,dissolved_oxygen,,Dissolved oxygen (DO),2025-11-01,2026-10-31,,annual_result_and_activity_counts,2026-12-31,candidate_not_verified
+epa_wqp,21FLDADE_WQX-BB50,upper_keys,dissolved_oxygen,,Dissolved oxygen saturation,2025-11-01,2026-10-31,,annual_result_and_activity_counts,2026-12-31,candidate_not_verified
+usgs_water,USGS-0229070854,central_south_biscayne,salinity,00480,Salinity,2026-10-18,2026-10-31,continuous,time_series_first_last_metadata,2026-11-21,candidate_not_verified
+usgs_water,USGS-250802081035500,florida_bay,salinity,00480,Salinity,2026-10-18,2026-10-31,continuous,time_series_first_last_metadata,2026-11-20,candidate_not_verified
+noaa_coops,8723970,lower_keys,water_level,,Observed water level (candidate),2026-10-18,2026-10-31,,station_class_only,,candidate_not_verified
+usgs_water,USGS-02286328,north_biscayne,salinity,00480,Salinity,2026-10-18,2026-10-31,continuous,time_series_first_last_metadata,2026-11-21,candidate_not_verified
+usgs_water,USGS-251003080435500,upper_keys,salinity,00480,Salinity,2026-10-18,2026-10-31,continuous,time_series_first_last_metadata,2026-11-21,candidate_not_verified
+usgs_water,USGS-02290709,central_south_biscayne,salinity,00480,Salinity,2026-10-18,2026-10-31,continuous,time_series_first_last_metadata,2026-11-20,candidate_not_verified
+usgs_water,USGS-251105080231800,florida_bay,salinity,00480,Salinity,2026-10-18,2026-10-31,continuous,time_series_first_last_metadata,,candidate_not_verified
+noaa_coops,8724580,lower_keys,water_level,,Observed water level (candidate),2026-10-18,2026-10-31,,station_class_only,,candidate_not_verified
+usgs_water,USGS-254838080155301,north_biscayne,salinity,00480,Salinity,2026-10-18,2026-10-31,continuous,time_series_first_last_metadata,2026-11-21,candidate_not_verified

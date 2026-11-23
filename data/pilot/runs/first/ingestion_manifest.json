@@ -1,0 +1,217 @@
+{
+  "generated_at_utc": "2026-11-23T05:23:20.578619+00:00",
+  "plan_file": "data\\pilot\\plans\\first\\pilot_plan.csv",
+  "plan_sha256": "54887271086e95d5148c1e6f123cf6a9070ea9147bf2110b6a5e87e18f0f9367",
+  "output_sha256": "57d0ec58a7739baf730119dcd57a558864363f095e8b13fb48b8c23818e7be38",
+  "n_tasks": 16,
+  "n_failed_tasks": 0,
+  "n_observations": 16398,
+  "by_dataset": {
+    "epa_wqp": 80,
+    "usgs_water": 9598,
+    "noaa_coops": 6720
+  },
+  "requests": [
+    {
+      "task": 1,
+      "dataset_id": "epa_wqp",
+      "site_id": "21FLBBAP_WQX-BBMB1A",
+      "concept": "dissolved_oxygen",
+      "status": "success",
+      "n_records": 3,
+      "query_urls": [
+        "https://waterqualitydata.us/data/Result/search?siteid=21FLBBAP_WQX-BBMB1A&characteristicName=Dissolved+oxygen+%28DO%29&startDateLo=11-01-2025&startDateHi=10-31-2026&mimeType=csv&zip=no&sorted=no"
+      ],
+      "error": ""
+    },
+    {
+      "task": 2,
+      "dataset_id": "epa_wqp",
+      "site_id": "21FLKNMS_WQX-G5AP0023",
+      "concept": "dissolved_oxygen",
+      "status": "success",
+      "n_records": 3,
+      "query_urls": [
+        "https://waterqualitydata.us/data/Result/search?siteid=21FLKNMS_WQX-G5AP0023&characteristicName=Dissolved+oxygen+saturation&startDateLo=01-01-2025&startDateHi=12-31-2025&mimeType=csv&zip=no&sorted=no"
+      ],
+      "error": ""
+    },
+    {
+      "task": 3,
+      "dataset_id": "epa_wqp",
+      "site_id": "21FLDADE_WQX-AR03",
+      "concept": "dissolved_oxygen",
+      "status": "success",
+      "n_records": 21,
+      "query_urls": [
+        "https://waterqualitydata.us/data/Result/search?siteid=21FLDADE_WQX-AR03&characteristicName=Dissolved+oxygen+saturation&startDateLo=11-01-2025&startDateHi=10-31-2026&mimeType=csv&zip=no&sorted=no"
+      ],
+      "error": ""
+    },
+    {
+      "task": 4,
+      "dataset_id": "epa_wqp",
+      "site_id": "MOTE_WQX-American Shoals",
+      "concept": "dissolved_oxygen",
+      "status": "success",
+      "n_records": 16,
+      "query_urls": [
+        "https://waterqualitydata.us/data/Result/search?siteid=MOTE_WQX-American+Shoals&characteristicName=Dissolved+oxygen+saturation&startDateLo=11-01-2025&startDateHi=10-31-2026&mimeType=csv&zip=no&sorted=no"
+      ],
+      "error": ""
+    },
+    {
+      "task": 5,
+      "dataset_id": "epa_wqp",
+      "site_id": "MOTE_WQX-Sombrero Reef",
+      "concept": "dissolved_oxygen",
+      "status": "success",
+      "n_records": 6,
+      "query_urls": [
+        "https://waterqualitydata.us/data/Result/search?siteid=MOTE_WQX-Sombrero+Reef&characteristicName=Dissolved+oxygen+saturation&startDateLo=11-01-2025&startDateHi=10-31-2026&mimeType=csv&zip=no&sorted=no"
+      ],
+      "error": ""
+    },
+    {
+      "task": 6,
+      "dataset_id": "epa_wqp",
+      "site_id": "21FLBBAP_WQX-BB14",
+      "concept": "dissolved_oxygen",
+      "status": "success",
+      "n_records": 10,
+      "query_urls": [
+        "https://waterqualitydata.us/data/Result/search?siteid=21FLBBAP_WQX-BB14&characteristicName=Dissolved+oxygen+%28DO%29&startDateLo=11-01-2025&startDateHi=10-31-2026&mimeType=csv&zip=no&sorted=no"
+      ],
+      "error": ""
+    },
+    {
+      "task": 7,
+      "dataset_id": "epa_wqp",
+      "site_id": "21FLDADE_WQX-BB50",
+      "concept": "dissolved_oxygen",
+      "status": "success",
+      "n_records": 21,
+      "query_urls": [
+        "https://waterqualitydata.us/data/Result/search?siteid=21FLDADE_WQX-BB50&characteristicName=Dissolved+oxygen+saturation&startDateLo=11-01-2025&startDateHi=10-31-2026&mimeType=csv&zip=no&sorted=no"
+      ],
+      "error": ""
+    },
+    {
+      "task": 8,
+      "dataset_id": "usgs_water",
+      "site_id": "USGS-0229070854",
+      "concept": "salinity",
+      "status": "success",
+      "n_records": 1245,
+      "query_urls": [
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-0229070854&parameter_code=00480&time=2026-10-18%2F2026-10-31&limit=1000",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=YzljMzRmYmZkZDMwNGQ3NjgxOGJkN2Q0ZDVkNDAwMTl8MjAyNi0xMC0yOCAxMDo0NTowMCswMDowMA&monitoring_location_id=USGS-0229070854&parameter_code=00480&time=2026-10-18%2F2026-10-31&limit=1000&f=json"
+      ],
+      "error": ""
+    },
+    {
+      "task": 9,
+      "dataset_id": "usgs_water",
+      "site_id": "USGS-250802081035500",
+      "concept": "salinity",
+      "status": "success",
+      "n_records": 874,
+      "query_urls": [
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-250802081035500&parameter_code=00480&time=2026-10-18%2F2026-10-31&limit=1000"
+      ],
+      "error": ""
+    },
+    {
+      "task": 10,
+      "dataset_id": "noaa_coops",
+      "site_id": "8723970",
+      "concept": "water_level",
+      "status": "success",
+      "n_records": 3360,
+      "query_urls": [
+        "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?product=water_level&application=south_florida_fcm&begin_date=20261018&end_date=20261031&datum=MLLW&station=8723970&time_zone=gmt&units=metric&format=json"
+      ],
+      "error": ""
+    },
+    {
+      "task": 11,
+      "dataset_id": "usgs_water",
+      "site_id": "USGS-02286328",
+      "concept": "salinity",
+      "status": "success",
+      "n_records": 2489,
+      "query_urls": [
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-02286328&parameter_code=00480&time=2026-10-18%2F2026-10-31&limit=1000",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=MDJhZjI3ZGU2ZTdjNGRlNzgzZjViOGE2NDE0NGNiZmN8MjAyNi0xMC0yOCAxMToxNTowMCswMDowMA&monitoring_location_id=USGS-02286328&parameter_code=00480&time=2026-10-18%2F2026-10-31&limit=1000&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=ODc1ZDY3Njc5NzRiNGYxZWE2MDI2ZTNhNjU1NDEyZjR8MjAyNi0xMC0yNSAyMTozMDowMCswMDowMA&monitoring_location_id=USGS-02286328&parameter_code=00480&time=2026-10-18%2F2026-10-31&limit=1000&f=json"
+      ],
+      "error": ""
+    },
+    {
+      "task": 12,
+      "dataset_id": "usgs_water",
+      "site_id": "USGS-251003080435500",
+      "concept": "salinity",
+      "status": "success",
+      "n_records": 1249,
+      "query_urls": [
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-251003080435500&parameter_code=00480&time=2026-10-18%2F2026-10-31&limit=1000",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OTY0N2NhYzQ5ZjdiNGE0MWFlOTI2NGNlNGQwNTE1NDh8MjAyNi0xMC0yOCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-251003080435500&parameter_code=00480&time=2026-10-18%2F2026-10-31&limit=1000&f=json"
+      ],
+      "error": ""
+    },
+    {
+      "task": 13,
+      "dataset_id": "usgs_water",
+      "site_id": "USGS-02290709",
+      "concept": "salinity",
+      "status": "success",
+      "n_records": 2494,
+      "query_urls": [
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-02290709&parameter_code=00480&time=2026-10-18%2F2026-10-31&limit=1000",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=NTFlMzEzZjA5NzZjNDdmMjlkZjMxNDYyNmMzNWQ5Mjl8MjAyNi0xMC0yOCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-02290709&parameter_code=00480&time=2026-10-18%2F2026-10-31&limit=1000&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=NTdmOGYwZjRiZDU2NDE2ZDk2Yzk5OGQ2MjgzMmMwZDN8MjAyNi0xMC0yNSAyMDoxNTowMCswMDowMA&monitoring_location_id=USGS-02290709&parameter_code=00480&time=2026-10-18%2F2026-10-31&limit=1000&f=json"
+      ],
+      "error": ""
+    },
+    {
+      "task": 14,
+      "dataset_id": "usgs_water",
+      "site_id": "USGS-251105080231800",
+      "concept": "salinity",
+      "status": "success",
+      "n_records": 0,
+      "query_urls": [
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-251105080231800&parameter_code=00480&time=2026-10-18%2F2026-10-31&limit=1000"
+      ],
+      "error": ""
+    },
+    {
+      "task": 15,
+      "dataset_id": "noaa_coops",
+      "site_id": "8724580",
+      "concept": "water_level",
+      "status": "success",
+      "n_records": 3360,
+      "query_urls": [
+        "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?product=water_level&application=south_florida_fcm&begin_date=20261018&end_date=20261031&datum=MLLW&station=8724580&time_zone=gmt&units=metric&format=json"
+      ],
+      "error": ""
+    },
+    {
+      "task": 16,
+      "dataset_id": "usgs_water",
+      "site_id": "USGS-254838080155301",
+      "concept": "salinity",
+      "status": "success",
+      "n_records": 1247,
+      "query_urls": [
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-254838080155301&parameter_code=00480&time=2026-10-18%2F2026-10-31&limit=1000",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=YzFiZDlkMjNjZWZlNGVhYTg0Yjg3Zjk4ZTkyZDk2ZjF8MjAyNi0xMC0yOCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-254838080155301&parameter_code=00480&time=2026-10-18%2F2026-10-31&limit=1000&f=json"
+      ],
+      "error": ""
+    }
+  ],
+  "observation_coverage_verified": false,
+  "note": "Observed records only. Local sample dates (WQP) are not UTC timestamps. Actual sample-date counts are not sensor uptime or proof of independent biological events."
+}
