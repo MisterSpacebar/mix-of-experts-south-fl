@@ -81,3 +81,35 @@ individual source exports. The code uses standard-library HTTPS requests and
 limits response size. API requests may change or be rate-limited over time.
 The offline test suite uses mocked responses; a passing test does not establish
 that a live government API is reachable.
+
+## USGS ID correction and coordinate conflicts (2026-11-22)
+
+An extended local discovery run reported four USGS region failures where one
+monitoring-location key appeared with different coordinates. The earlier adapter
+used `monitoring_location_number` by itself, which is **not** a canonical ID:
+USGS defines `feature.id` as the agency-qualified monitoring-location ID
+(e.g. `USGS-02238500`). The initial failure therefore does **not** establish
+that the upstream USGS source contained contradictory coordinates.
+
+The corrected adapter uses the full ID. If a truly conflicting pair remains for
+the same full ID, the regional batch command:
+
+1. retains unambiguous stations from the affected query;
+2. excludes **all** variants of the conflicted ID from the combined station CSV;
+3. writes conflicting coordinates to `coordinate_conflicts.csv`;
+4. records partial/failed queries and counts in `batch_manifest.json`;
+5. returns exit code 2 if any regional queries remain incomplete.
+
+Never resolve an ambiguous location by choosing the latest or most common
+coordinate automatically. Raw cross-agency or cross-deployment metadata must be
+inspected first. Retain a copy of the original batch outputs before rerunning.
+
+```bash
+python -m unittest discover -s tests -v
+python scripts/discover_regions.py --sources coops ndbc usgs wqp --out data/inventory/batch_v2
+```
+
+Read `batch_v2/batch_manifest.json` first, particularly `n_failed_queries`,
+`n_coordinate_conflicts`, and `n_quarantined_site_ids`. The new site counts
+should not be directly compared with previous counts without accounting for
+identifier changes and completed USGS region queries.
