@@ -9,3 +9,4 @@ data/interim/
 data/processed/
 outputs/
 !data/.gitkeep
+data/inventory/
