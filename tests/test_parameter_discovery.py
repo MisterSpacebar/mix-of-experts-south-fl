@@ -193,7 +193,7 @@ class IntegrationTests(unittest.TestCase):
             write_stations(stations)
             # Override the local fixture to supply the NOAA station IDs.
             lines = stations.read_text()
-            stations.write_text(lines + "noaa_coops,,8723214,,25.7,-80.2,,,,\n", encoding="utf-8")
+            stations.write_text(lines + "noaa_coops,,8723214,,25.7,-80.2,,,,,\n", encoding="utf-8")
             out = Path(d) / "run"
             result = run(stations, out, ["coops"], [])
             self.assertEqual(result["n_failed_requests"], 1)
