@@ -20,6 +20,7 @@ from southfl.parameters import PRIORITY
 from southfl.periods import (PERIOD_COLUMNS, WQP_TYPES, coops_periods, ndbc_periods,
                              usgs_periods, wqp_periods)
 from southfl.regions import REGIONS
+from scripts.discover_regions import tiles_for
 
 SUMMARY_COLUMNS = ["dataset_id", "concept", "region", "n_sites", "n_series",
                    "n_annual_summary_rows", "n_result_reports", "first_date_hint",
@@ -90,7 +91,9 @@ def concept_summary(periods, station_rows):
 
 
 def run(station_path, out, sources, regions, wqp_years="5", usgs_pages=60,
-        overwrite=False, wqp_types=("Nutrient", "Physical")):
+        overwrite=False, wqp_types=("Nutrient", "Physical"), tiles=1):
+    if not (1 <= tiles <= 10):
+        raise ValueError("tiles must be between 1 and 10")
     station_rows = read_csv(station_path)
     validate_stations(station_rows)
     out = Path(out)
@@ -133,14 +136,18 @@ def run(station_path, out, sources, regions, wqp_years="5", usgs_pages=60,
         attempt("ndbc", "domain", "stdmet_archive", lambda:
                 ndbc_periods(station_ids["noaa_ndbc"]))
     for region in regions:
-        bounds = REGIONS[region]
-        if "usgs" in sources:
-            attempt("usgs", region, "time_series_metadata", lambda b=bounds, r=region:
-                    usgs_periods(b, station_ids["usgs_water"], r, max_pages=usgs_pages))
-        if "wqp" in sources:
-            for typ in wqp_types:
-                attempt("wqp", region, typ, lambda b=bounds, r=region, t=typ:
-                        wqp_periods(b, station_ids["epa_wqp"], r, t, wqp_years))
+        for i, bounds in enumerate(tiles_for(REGIONS[region], tiles)):
+            query_region = f"{region}/tile_{i+1:02d}"
+            if "usgs" in sources:
+                attempt("usgs", query_region, "time_series_metadata",
+                        lambda b=bounds, r=query_region:
+                        usgs_periods(b, station_ids["usgs_water"], r,
+                                     max_pages=usgs_pages))
+            if "wqp" in sources:
+                for typ in wqp_types:
+                    attempt("wqp", query_region, typ,
+                            lambda b=bounds, r=query_region, t=typ:
+                            wqp_periods(b, station_ids["epa_wqp"], r, t, wqp_years))
     deduped, conflicts = unique_periods(rows)
     write_csv(out / "parameter_periods.csv", deduped, PERIOD_COLUMNS)
     write_csv(out / "concept_summary.csv",
@@ -152,7 +159,8 @@ def run(station_path, out, sources, regions, wqp_years="5", usgs_pages=60,
         "retrieved_at_utc": datetime.now(timezone.utc).isoformat(),
         "station_inventory": str(station_path),
         "n_stations_input": len(station_rows), "sources": sources,
-        "regions": regions, "wqp_summary_years": wqp_years,
+        "regions": regions, "tiles_per_axis": tiles,
+        "wqp_summary_years": wqp_years,
         "wqp_types": list(wqp_types),
         "n_raw_metadata_rows": len(rows), "n_parameter_periods": len(deduped),
         "n_conflicting_metadata_records": len(conflicts),
@@ -186,13 +194,15 @@ def main(argv=None):
     parser.add_argument("--wqp-types", nargs="+", choices=WQP_TYPES,
                         default=["Nutrient", "Physical"])
     parser.add_argument("--usgs-pages", type=int, default=60)
+    parser.add_argument("--tiles", type=int, default=1,
+                        help="tile each region into N-by-N USGS/WQP requests")
     parser.add_argument("--overwrite", action="store_true")
     args = parser.parse_args(argv)
     if args.usgs_pages < 1:
         parser.error("--usgs-pages must be >= 1")
     result = run(args.stations, args.out, args.sources, args.regions,
                  args.wqp_years, args.usgs_pages, args.overwrite,
-                 args.wqp_types)
+                 args.wqp_types, args.tiles)
     if result["n_failed_requests"] or result["n_conflicting_metadata_records"]:
         raise SystemExit(2)
 
