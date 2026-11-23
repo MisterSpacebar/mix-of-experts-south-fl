@@ -198,3 +198,22 @@ Use the existing `concept_summary.csv` to narrow the first acquisition
 tranche and choose a region-neutral set of stations with
 usable actual observations. Do not download raw historical values from all
 14,530 metadata-only sites automatically.
+
+### Site-level candidate shortlist (no new agency requests)
+
+After generating the consolidated metadata CSV, create a **region-neutral**
+site/concept shortlist for later measurement-level QA. This does not determine
+model trainability or create FCM weights.
+
+```powershell
+python scripts/shortlist_parameters.py --parameters data/inventory/parameters_v2/parameter_periods.csv --stations data/inventory/batch_v2/stations.csv --out data/inventory/shortlist_v1
+```
+
+The output `site_parameter_candidates.csv` records each station, candidate
+concept, screening region, source series/slice count, date hints, annual
+reported-result counts (when available), uncertainty, and the next QA action.
+A station appearing in multiple overlapping regional boxes yields multiple
+region rows; **do not sum them as independent stations**. Source availability
+is not sampling completeness, statistical independence, or FCM training
+readiness. This shortlist is the input for choosing a *small, representative*
+set of actual measurement downloads across South Florida.
