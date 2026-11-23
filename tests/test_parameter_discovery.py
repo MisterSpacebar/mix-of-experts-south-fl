@@ -17,7 +17,7 @@ def usgs_feature(site, code="00300", series="ts-1", begin="2019-01-01T00:00:00Z"
     return {"id": series, "properties": {
         "monitoring_location_id": site, "time_series_id": series,
         "parameter_code": code, "parameter_name": "Dissolved oxygen",
-        "begin_utc": begin, "end_utc": "2026-01-01T00:00:00Z",
+        "begin": begin, "end": "2026-01-01T00:00:00Z",
         "unit_of_measure": "mg/L", "computation_identifier": "Instantaneous"},
         "geometry": {"type": "Point", "coordinates": [-80.2, 25.7]}}
 
@@ -57,6 +57,8 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(len(rows), 1)
         self.assertEqual(rows[0]["site_id"], "USGS-123")
         self.assertEqual(rows[0]["concept"], "dissolved_oxygen")
+        self.assertEqual(rows[0]["begin_utc"], "2019-01-01T00:00:00Z")
+        self.assertEqual(rows[0]["end_utc"], "2026-01-01T00:00:00Z")
         self.assertEqual(rows[0]["evidence"], "time_series_first_last_metadata")
         self.assertEqual(rows[0]["n_results"], "")
 
