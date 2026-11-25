@@ -7,7 +7,7 @@ discarding unexpected records.
 from datetime import date, datetime, timezone
 from urllib.parse import urljoin
 from .net import AcquisitionError, get_csv, get_json, url_with_params
-from .parameters import usgs_concept, wqp_concept
+from .parameters import USGS_PARAMETERS, usgs_concept, usgs_vertical_datum, wqp_concept
 
 USGS_BASE = "https://api.waterdata.usgs.gov/ogcapi/v1/collections"
 WQP_RESULT = "https://waterqualitydata.us/data/Result/search"
@@ -65,6 +65,8 @@ def usgs_observations(site, code, start, end, concept, mode="daily",
         raise ValueError("USGS mode must be daily or continuous")
     if not site or not str(code).isdigit() or len(str(code)) != 5:
         raise ValueError("USGS requires a site and five-character parameter code")
+    if code in USGS_PARAMETERS and concept != usgs_concept(code):
+        raise ValueError("stale USGS pilot concept for parameter code; regenerate plan")
     base = f"{USGS_BASE}/{mode}/items"
     url = url_with_params(base, {
         "f": "json", "monitoring_location_id": site,
@@ -110,6 +112,7 @@ def usgs_observations(site, code, start, end, concept, mode="daily",
                 timestamp_utc=when, sample_date=day, time_basis=time_basis,
                 value=_numeric(raw), original_value=str(raw if raw is not None else ""),
                 unit=str(p.get("unit_of_measure") or ""),
+                vertical_datum=usgs_vertical_datum(code, p.get("vertical_datum") or ""),
                 approval_status=str(approvals or ""), qualifier=str(qualifier),
                 result_id=str(f.get("id") or ""), source_url=url,
             ))
