@@ -59,6 +59,18 @@ and completeness are **not** inferred from metadata.
 
 See [the full Milestone 4 runbook](docs/EXPANDED_REGIONS_AND_OBSERVATIONS.md).
 
+## USGS hydraulic taxonomy and vertical-datum audit
+
+The latest metadata QC update separates groundwater elevation,
+stream-stage elevation, site-relative gage height, water velocity and
+coastal observed water level. Known USGS elevation codes now retain
+**NGVD29 or NAVD88** in a separate `vertical_datum` field; regional
+concept summaries are stratified by datum. A local migration command
+reclassifies verified CSV snapshots without downloading measurements.
+
+See [hydraulic concept mapping and metadata migration](docs/HYDRAULIC_TAXONOMY.md).
+No vertical conversions or FCM trainability are inferred.
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
@@ -66,6 +78,7 @@ See [the full Milestone 4 runbook](docs/EXPANDED_REGIONS_AND_OBSERVATIONS.md).
 - [Station discovery/coverage instructions and limitations](docs/DISCOVERY.md)
 - [Parameter and period-of-record inventory instructions](docs/PARAMETER_DISCOVERY.md)
 - [Expanded region discovery and observed-data pilot](docs/EXPANDED_REGIONS_AND_OBSERVATIONS.md)
+- [Hydraulic concept taxonomy and vertical-datum migration](docs/HYDRAULIC_TAXONOMY.md)
 
 ## Modeling design (planned)
 

@@ -5,9 +5,10 @@ source period hints where possible; no claim that these windows contain data.
 """
 from collections import defaultdict
 from datetime import date, timedelta
+from .parameters import harmonize_period_record
 
 PLAN_COLUMNS = ["dataset_id", "site_id", "region", "concept", "parameter_code",
-                "parameter_name", "start_date", "end_date", "usgs_mode",
+                "parameter_name", "vertical_datum", "start_date", "end_date", "usgs_mode",
                 "evidence", "last_date_hint", "selection_status"]
 
 
@@ -28,14 +29,19 @@ def plan(periods, stations, end_date, max_total=18, per_region=3,
     # site/characteristic identity and allowing ecological additions later.
     concept_order = {
         "dissolved_oxygen": 0, "salinity": 1, "water_temperature": 2,
-        "water_level": 3, "discharge": 4, "specific_conductance": 5,
+        "water_level": 3, "gage_height": 3,
+        "stream_stage_elevation": 3, "groundwater_elevation": 4,
+        "discharge": 4, "water_velocity": 5,
+        "groundwater_depth_below_land_surface": 5,
+        "specific_conductance": 5,
         "chlorophyll_a": 6, "nitrogen_total": 7, "phosphorus_total": 8,
         "nitrate_nitrite": 9, "nitrogen_unspecified_fraction": 10,
         "phosphorus_unspecified_fraction": 11, "turbidity": 12, "ph": 13,
     }
     by_site = {(s["dataset_id"], s["site_id"]): s for s in stations}
     candidates = {}
-    for row in periods:
+    for original_row in periods:
+        row = harmonize_period_record(original_row)
         dataset = row["dataset_id"]
         concept = row["concept"]
         if dataset not in allowed or concept not in concept_order:
@@ -82,12 +88,14 @@ def plan(periods, stations, end_date, max_total=18, per_region=3,
                 dataset_id=dataset, site_id=row["site_id"], region=region,
                 concept=concept, parameter_code=row["parameter_code"],
                 parameter_name=row["parameter_name"],
+                vertical_datum=row.get("vertical_datum", ""),
                 start_date=beginning.isoformat(), end_date=candidate_end.isoformat(),
                 usgs_mode=usgs_mode if dataset == "usgs_water" else "",
                 evidence=row["evidence"], last_date_hint=hint,
                 selection_status="candidate_not_verified",
             )
-            signature = (dataset, row["site_id"], region, concept)
+            signature = (dataset, row["site_id"], region, concept,
+                         row["parameter_code"], row.get("vertical_datum", ""))
             old = candidates.get(signature)
             score = (candidate_end.isoformat(), row["series_id"])
             if old is None or score > old[0]:
