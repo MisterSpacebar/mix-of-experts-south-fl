@@ -16,7 +16,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from southfl.audit import read_csv, validate_stations
 from southfl.net import AcquisitionError, write_csv
-from southfl.parameters import PRIORITY
+from southfl.parameters import PRIORITY, harmonize_period_record
 from southfl.periods import (PERIOD_COLUMNS, WQP_TYPES, coops_periods, ndbc_periods,
                              usgs_periods, wqp_periods)
 from southfl.regions import REGIONS
@@ -37,7 +37,8 @@ def unique_periods(rows):
     stable = lambda r: (r["dataset_id"], r["site_id"], r["series_id"], r["year"])
     compare = lambda r: tuple(r[c] for c in PERIOD_COLUMNS
                               if c not in ("source_url", "region_query"))
-    for row in rows:
+    for source_row in rows:
+        row = harmonize_period_record(source_row)
         key = stable(row)
         if key in seen and compare(seen[key]) != compare(row):
             conflicts.append(dict(dataset_id=key[0], site_id=key[1],
