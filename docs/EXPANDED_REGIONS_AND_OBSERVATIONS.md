@@ -148,3 +148,69 @@ Official service references:
 - USGS OGC APIs: https://api.waterdata.usgs.gov/docs/ogcapi/
 - WQP web services: https://waterqualitydata.epa.gov/webservices_documentation/
 - NOAA CO-OPS data API: https://api.tidesandcurrents.noaa.gov/api/prod/
+
+## Milestone 6: USGS live metadata end-time advances across snapshots
+
+The verified new discovery contains 47,689 station candidates and 113,663
+expanded parameter-period records. The combined station inventory contains
+59,222 unique source-qualified locations. The initial cross-snapshot parameter
+merge contained 354 quarantined duplicate USGS time-series keys, because
+`end_utc` advanced between acquisition dates. These were investigated
+against the actual uploaded conflict CSV on 2026-11-25:
+
+- 354/354 same canonical USGS site and series ID, unchanged scientific
+  attributes, and only an increasing `end_utc` difference (plus source query
+  URL and region path).
+- 81 distinct USGS locations affected.
+- End timestamps advanced by 24–72 hours, without regressions.
+- No changes to series units, initial timestamp, parameter code, statistic,
+  sublocation, primary status, or other scientific metadata.
+
+**Correct action: do not requery USGS or WQP merely to eliminate legitimate
+streaming data changes.** Instead, use the strict cross-snapshot reconciliation
+in `scripts/merge_parameter_periods.py`, now restricted to *USGS* time-series
+metadata where all non-end scientific fields are identical, the start time is
+valid, and the expanded `end_utc` is strictly later. Backward/unknown end
+times and other changed fields are still quarantined.
+
+Re-run only the local CSV merge, writing a **new snapshot**:
+
+```powershell
+git switch main
+git pull
+git fetch origin
+git switch fix/usgs-live-metadata-snapshot-drift
+
+python -m unittest discover -s tests -v
+
+python scripts/merge_parameter_periods.py --previous data/inventory/parameters_v2 --expanded data/inventory/parameters_expanded_v1 --stations data/inventory/combined_v3/stations.csv --out data/inventory/parameters_combined_v4
+```
+
+Outputs in `parameters_combined_v4`:
+- `parameter_periods.csv`: updated end dates for reconciled USGS time series.
+- `concept_summary.csv`: recomputed from the complete reconciled metadata.
+- `time_series_end_advances.csv`: one row per accepted end-date advance,
+  retaining old/new timestamps, elapsed hours, source URLs, discovery
+  regions and source-snapshot acquisition timestamps.
+- `parameter_metadata_conflicts.csv`: **unresolved** genuine metadata
+  discrepancies only.
+- `parameter_manifest.json`: separate counts for exact overlaps, expected
+  USGS advances and unresolved conflicts, plus metadata-only readiness flags.
+
+If both original source files are unchanged, expected results are
+**131,797 combined metadata rows**, **354 audited end advances** and
+**0 unresolved conflicts**. These are predictions, not yet a locally verified
+re-run. The original `parameters_combined_v3` remains unchanged for audit.
+
+No observation records were altered. First and last USGS timestamps remain
+period-of-record metadata, not proof of continuous usable data. Station and
+parameter screening rectangles are not hydrological flow relationships.
+
+### Follow-on data QA
+
+For model selection, prioritize validating sensor-specific expected schedules,
+observed data gaps, datum/units, sample depths, and independent stations.
+The conflict report includes USGS groundwater elevations in **NGVD29** and
+**NAVD88** among presently `unmapped` parameter codes. Those must not
+be indiscriminately combined with surface gage height or with each other
+without vertical-datum transformation and an explicit conceptual taxonomy.
