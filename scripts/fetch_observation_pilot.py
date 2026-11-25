@@ -18,6 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from southfl.audit import read_csv
 from southfl.coverage import COVERAGE_COLUMNS, coverage
 from southfl.net import AcquisitionError, write_csv
+from southfl.parameters import USGS_PARAMETERS, usgs_concept
 from southfl.observations import (COLS, coops_observations, usgs_observations,
                                    wqp_observations)
 
@@ -43,6 +44,11 @@ def validate_tasks(tasks, limit):
             raise ValueError("end date precedes start date")
         days = (end - start).days + 1
         dataset = t["dataset_id"]
+        if dataset == "usgs_water":
+            code = t["parameter_code"]
+            if code in USGS_PARAMETERS and t["concept"] != usgs_concept(code):
+                raise ValueError("USGS plan uses legacy concept for " + code +
+                                 "; regenerate from harmonized metadata")
         if ((dataset == "noaa_coops" and days > 28) or
             (dataset == "epa_wqp" and days > 366) or
             (dataset == "usgs_water" and days > (

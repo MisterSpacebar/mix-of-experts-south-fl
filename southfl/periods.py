@@ -7,11 +7,11 @@ from datetime import datetime, timezone
 import re
 from urllib.parse import urljoin
 from .net import AcquisitionError, get_bytes, get_csv, get_json, url_with_params
-from .parameters import usgs_concept, wqp_concept
+from .parameters import usgs_concept, usgs_vertical_datum, wqp_concept
 
 PERIOD_COLUMNS = [
     "dataset_id", "site_id", "series_id", "parameter_code", "parameter_name",
-    "concept", "unit", "series_type", "statistic_id", "sublocation_identifier",
+    "concept", "unit", "vertical_datum", "series_type", "statistic_id", "sublocation_identifier",
     "primary_status", "data_gap_interval", "begin_utc", "end_utc", "year",
     "n_results", "n_activities", "evidence", "quality_note", "source_url",
     "region_query", "in_station_inventory",
@@ -24,12 +24,13 @@ WQP_TYPES = ("Nutrient", "Physical", "Biological")
 
 
 def _row(dataset, site, series, code="", name="", concept="unmapped", unit="",
-         series_type="", statistic_id="", sublocation="", primary="",
+         datum="", series_type="", statistic_id="", sublocation="", primary="",
          gap_interval="", begin="", end="", year="", results="", activities="",
          evidence="", note="", url="", region="", inventory=""):
     return dict(dataset_id=dataset, site_id=str(site), series_id=str(series),
                 parameter_code=str(code), parameter_name=str(name),
-                concept=str(concept), unit=str(unit), series_type=str(series_type),
+                concept=str(concept), unit=str(unit),
+                vertical_datum=str(datum or ""), series_type=str(series_type),
                 statistic_id=str(statistic_id or ""),
                 sublocation_identifier=str(sublocation or ""),
                 primary_status=str(primary if primary is not None else ""),
@@ -78,6 +79,7 @@ def usgs_periods(bbox, allowed, region="", limit=1000, max_pages=60):
             rows.append(_row(
                 "usgs_water", site, ts_id, code=code, name=name,
                 concept=usgs_concept(code, name), unit=p.get("unit_of_measure") or "",
+                datum=usgs_vertical_datum(code, p.get("vertical_datum") or ""),
                 series_type=str(p.get("computation_identifier") or "unspecified"),
                 statistic_id=p.get("statistic_id"),
                 sublocation=p.get("sublocation_identifier"),

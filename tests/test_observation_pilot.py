@@ -132,7 +132,7 @@ class PlanAndCoverageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             plan_file = Path(d)/"plan.csv"
             task = dict(dataset_id="usgs_water", site_id="USGS-1",
-                        region="everglades_interior", concept="water_level",
+                        region="everglades_interior", concept="gage_height",
                         parameter_code="00065", parameter_name="gage height",
                         start_date="2026-10-01", end_date="2026-10-07",
                         usgs_mode="continuous", evidence="metadata",

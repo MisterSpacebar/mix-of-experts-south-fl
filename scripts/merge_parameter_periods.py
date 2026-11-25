@@ -18,6 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.discover_parameters import SUMMARY_COLUMNS, CONFLICT_COLUMNS, concept_summary
 from southfl.audit import read_csv, validate_stations
 from southfl.net import write_csv
+from southfl.parameters import harmonize_period_record
 from southfl.periods import PERIOD_COLUMNS
 
 RECONCILIATION_COLUMNS = [
@@ -163,8 +164,14 @@ def combine(previous, expanded, stations, out):
         manifests.append(m)
     sites = read_csv(stations)
     validate_stations(sites)
-    old_rows = read_csv(previous/"parameter_periods.csv")
-    new_rows = read_csv(expanded/"parameter_periods.csv")
+    # Original local snapshots predate the vertical_datum column and used
+    # 'water_level' for USGS 00065. Normalize BOTH inputs identically before
+    # comparing science fields so the verified end-date drift policy remains
+    # valid without requerying any agency or mutating source CSV files.
+    old_rows = [harmonize_period_record(r) for r in
+                read_csv(previous/"parameter_periods.csv")]
+    new_rows = [harmonize_period_record(r) for r in
+                read_csv(expanded/"parameter_periods.csv")]
     for rows, manifest, location in zip((old_rows, new_rows),
                                          manifests, (previous, expanded)):
         stated = manifest.get("n_parameter_periods")

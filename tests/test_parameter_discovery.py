@@ -39,7 +39,7 @@ def write_stations(path):
 class MappingTests(unittest.TestCase):
     def test_usgs_parameter_codes(self):
         self.assertEqual(usgs_concept("00300"), "dissolved_oxygen")
-        self.assertEqual(usgs_concept("00065"), "water_level")
+        self.assertEqual(usgs_concept("00065"), "gage_height")
         self.assertEqual(usgs_concept("00600"), "nitrogen_total")
 
     def test_conservative_nutrient_names(self):
