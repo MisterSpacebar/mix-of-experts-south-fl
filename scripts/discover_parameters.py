@@ -22,7 +22,8 @@ from southfl.periods import (PERIOD_COLUMNS, WQP_TYPES, coops_periods, ndbc_peri
 from southfl.regions import REGIONS
 from scripts.discover_regions import tiles_for
 
-SUMMARY_COLUMNS = ["dataset_id", "concept", "region", "n_sites", "n_series",
+SUMMARY_COLUMNS = ["dataset_id", "concept", "vertical_datum", "region",
+                   "n_sites", "n_series",
                    "n_annual_summary_rows", "n_result_reports", "first_date_hint",
                    "last_date_hint", "evidence", "priority",
                    "readiness", "next_action"]
@@ -60,9 +61,10 @@ def concept_summary(periods, station_rows):
         # A station can appear in more than one screening region.
         regions = [r for r in (match.get("regions") or "").split(";") if r]
         for region in regions or ["unassigned"]:
-            groups[(row["dataset_id"], row["concept"], region)].append(row)
+            groups[(row["dataset_id"], row["concept"],
+                    row.get("vertical_datum", ""), region)].append(row)
     output = []
-    for (dataset, concept, region), recs in sorted(groups.items()):
+    for (dataset, concept, datum, region), recs in sorted(groups.items()):
         dates = []
         for r in recs:
             if r["evidence"] == "time_series_first_last_metadata":
@@ -78,7 +80,8 @@ def concept_summary(periods, station_rows):
         # No FCM is ready on metadata alone. Different evidence -> next step.
         next_action = ("download_and_QA_actual_observations" if dates else
                        "verify_per_product_observed_data_availability")
-        output.append(dict(dataset_id=dataset, concept=concept, region=region,
+        output.append(dict(dataset_id=dataset, concept=concept,
+                           vertical_datum=datum, region=region,
                            n_sites=len({r["site_id"] for r in recs}),
                            n_series=len({(r["site_id"], r["series_id"]) for r in recs}),
                            n_annual_summary_rows=sum(r["evidence"] ==
