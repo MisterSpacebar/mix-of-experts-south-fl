@@ -138,6 +138,29 @@ higher-level experts. Use `--min-edge 0` with a new output directory
 to display all weak non-self links. See [FCM visualization and hierarchy
 runbook](docs/FCM_VISUALS_HIERARCHY.md).
 
+## Milestone 8: expanded station FCMs and per-layer evidence
+
+Milestone 8 adds a separate **offline training + findings/visual browser**
+for observed-only station panels. Each station is refitted and eligible
+subcategories/categories get **new independently fitted station-local FCM
+prototypes**, with chronological held-out comparisons to the full station
+model. Models require at least two measured concepts. Every level has
+data-lineage, findings, held-out performance and network/heatmap figures
+where data permit. This does **not** pool stations, train integrated
+regional categories or learn an overall mixture.
+
+For the existing successful Big Cypress observed daily panel:
+
+```powershell
+python scripts/train_m8_layers.py --panels data/m7/daily_panels_verified_01 --out data/m8/layers_first_v1
+```
+
+Browse `data/m8/layers_first_v1/INDEX.md`. For expansion to more stations,
+`scripts/plan_m8_batches.py` partitions a larger offline
+`plan_fcm_history.py` candidate plan by bounded request counts; each batch
+still requires a fresh identity preflight, source download and QA before
+modeling. See [Milestone 8 layered experts guide](docs/M8_LAYERED_EXPERTS.md).
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
@@ -149,6 +172,7 @@ runbook](docs/FCM_VISUALS_HIERARCHY.md).
 - [Observed-data QA, history and dynamic FCM preview (Milestone 7)](docs/M7_FCM_PREVIEW.md)
 - [USGS time-series identity and API-key recovery](docs/M7_USGS_RECOVERY.md)
 - [FCM plots, scale-free comparison, and hierarchy display](docs/FCM_VISUALS_HIERARCHY.md)
+- [Milestone 8: station-local scoped expert fitting and per-layer evidence](docs/M8_LAYERED_EXPERTS.md)
 
 ## Modeling design (planned)
 
