@@ -108,6 +108,30 @@ See [the USGS key and series-identity recovery runbook](docs/M7_USGS_RECOVERY.md
 The failing initial history run remains preserved: no unverified FCM
 training or hidden substitution occurred.
 
+## Visualization package and planned FCM hierarchy
+
+`visuals/` provides per-panel baseline and edge-weight charts, dimensionless
+cross-panel performance summaries, and **taxonomy-aware projections**:
+subcategory concept-grouped edge heatmaps, category/subcategory inventories,
+cross-subcategory link ledgers, and an explicit trained/not-trained status
+report. These are descriptive **views of existing trained station experts**,
+not separately trained subcategory/category/overall FCMs. The latter remain
+future research stages and are never fabricated from one station's matrix.
+
+Install the optional plotting libraries with
+`python -m pip install -r requirements.txt` (GitHub Actions does this
+automatically for the visualization regression tests). Re-render an existing
+preview into a *new* directory:
+
+```powershell
+python scripts/render_fcm_visuals.py --preview data/m7/fcm_preview_verified_02 --out data/m7/fcm_preview_verified_02/visuals_v2
+```
+
+The baseline comparison normalizes MAE by per-concept persistence MAE and
+the cross-panel comparison uses dimensionless skill (not averaged errors
+with different physical units). See [FCM visualization and hierarchy
+runbook](docs/FCM_VISUALS_HIERARCHY.md).
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
@@ -118,6 +142,7 @@ training or hidden substitution occurred.
 - [Hydraulic concept taxonomy and vertical-datum migration](docs/HYDRAULIC_TAXONOMY.md)
 - [Observed-data QA, history and dynamic FCM preview (Milestone 7)](docs/M7_FCM_PREVIEW.md)
 - [USGS time-series identity and API-key recovery](docs/M7_USGS_RECOVERY.md)
+- [FCM plots, scale-free comparison, and hierarchy display](docs/FCM_VISUALS_HIERARCHY.md)
 
 ## Modeling design (planned)
 

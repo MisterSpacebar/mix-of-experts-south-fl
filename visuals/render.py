@@ -18,6 +18,7 @@ import numpy as np
 from matplotlib.colors import TwoSlopeNorm
 
 from .common import ensure_clean_dir, write_csv
+from .hierarchy_render import render_hierarchy
 from .fcm_charts import (
     CONCEPT_SUMMARY_COLUMNS, SUMMARY_COLUMNS, concept_summary_rows,
     discover_panel_dirs, load_edge_matrix, load_manifest, load_metrics,
@@ -29,24 +30,38 @@ CAVEAT = ("Held-out one-day-ahead comparison only. Weights are standardized "
 
 
 def plot_baseline_comparison(panel_dir, out_path, dpi=180):
+    """Dimensionless MAE ratios; avoids comparing ft, ppt, degrees, etc."""
     metrics = load_metrics(panel_dir)
     concepts = [m["concept"] for m in metrics]
-    series = ["fcm_mae", "self_ar_mae", "persistence_mae", "train_climatology_mae"]
+    series = ["fcm_mae", "self_ar_mae", "persistence_mae",
+              "train_climatology_mae"]
     labels = ["Dynamic FCM", "Self-AR(1)", "Persistence", "Train climatology"]
     x = np.arange(len(concepts))
     width = 0.8 / len(series)
-    fig, ax = plt.subplots(figsize=(max(6.5, 1.6 * len(concepts) + 2), 5.2))
-    for i, (key, label) in enumerate(zip(series, labels)):
-        offset = (i - (len(series) - 1) / 2) * width
-        ax.bar(x + offset, [m[key] for m in metrics], width, label=label)
+    fig, ax = plt.subplots(figsize=(max(7.4,1.7*len(concepts)+2),5.2))
+    undefined = 0
+    for i,(key,label) in enumerate(zip(series,labels)):
+        offset=(i-(len(series)-1)/2)*width
+        vals=[]
+        for metric in metrics:
+            ref=metric["persistence_mae"]
+            if ref==0:
+                vals.append(float("nan"))
+                undefined+=1
+            else:
+                vals.append(metric[key]/ref)
+        ax.bar(x+offset,vals,width,label=label)
+    ax.axhline(1.0,color="#444444",linestyle="--",linewidth=1,
+               label="Persistence reference = 1")
     ax.set_xticks(x)
-    ax.set_xticklabels([c.replace("_", "\n") for c in concepts])
-    ax.set_ylabel("Held-out MAE (native source units; not comparable across concepts)")
-    ax.set_title(f"Baseline comparison — {Path(panel_dir).name}")
-    ax.legend(frameon=False)
-    fig.tight_layout(rect=(0, 0.06, 1, 1))
-    fig.text(0.01, 0.01, CAVEAT, fontsize=8, color="#555555")
-    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    ax.set_xticklabels([c.replace("_","\\n") for c in concepts])
+    ax.set_ylabel("MAE / persistence MAE (dimensionless; lower is better)")
+    ax.set_title(f"Held-out baseline comparison — {Path(panel_dir).name}")
+    ax.legend(frameon=False,ncol=2)
+    note=CAVEAT+" Values omitted where persistence MAE=0."
+    fig.tight_layout(rect=(0,0.09,1,1))
+    fig.text(0.01,0.01,note,fontsize=8,color="#555555",wrap=True)
+    fig.savefig(out_path,dpi=dpi,bbox_inches="tight")
     plt.close(fig)
 
 
@@ -79,28 +94,37 @@ def plot_edge_weight_heatmap(panel_dir, out_path, dpi=180):
 
 
 def plot_cross_panel_summary(panel_rows, out_path, dpi=180):
-    panels = [r["panel_id"] for r in panel_rows]
-    y = np.arange(len(panels))
-    h = 0.35
-    fig, ax = plt.subplots(figsize=(10, max(4.8, 1.2 + len(panels) * 0.8)))
-    ax.barh(y + h / 2, [r["mean_delta_persistence"] for r in panel_rows], h,
-            label="FCM minus Persistence")
-    ax.barh(y - h / 2, [r["mean_delta_self_ar"] for r in panel_rows], h,
-            label="FCM minus Self-AR")
-    ax.axvline(0, linewidth=1.0, color="black")
+    """Median dimensionless skill across concepts within each station panel.
+
+    Each concept has its own physical unit. Never average raw MAE deltas.
+    """
+    panels=[r["panel_id"] for r in panel_rows]
+    y=np.arange(len(panels))
+    h=.34
+    fig,ax=plt.subplots(figsize=(10,max(4.8,1.2+len(panels)*.85)))
+    def plotted(key):
+        return [float(r[key]) if r.get(key)!="" else float("nan")
+                for r in panel_rows]
+    ax.barh(y+h/2,plotted("median_skill_persistence"),h,
+            label="FCM vs Persistence")
+    ax.barh(y-h/2,plotted("median_skill_self_ar"),h,
+            label="FCM vs Self-AR")
+    ax.axvline(0,color="black",linewidth=1)
     ax.set_yticks(y)
     ax.set_yticklabels(panels)
-    ax.set_xlabel("Mean MAE delta across concepts (negative = FCM better)")
-    ax.set_title("Cross-panel performance summary")
+    ax.set_xlabel("Median skill = 1 − FCM MAE / baseline MAE (higher is better)")
+    ax.set_title("Cross-panel performance — scale-free median skill")
     ax.legend(frameon=False)
-    for i, row in enumerate(panel_rows):
-        note = (f"beats P {row['beats_persistence']}/{row['n_concepts']} | "
-                f"beats AR {row['beats_self_ar']}/{row['n_concepts']}")
-        edge = max(row["mean_delta_persistence"], row["mean_delta_self_ar"], 0)
-        ax.text(edge + 0.02, i, note, va="center", fontsize=9)
-    fig.tight_layout(rect=(0, 0.06, 1, 1))
-    fig.text(0.01, 0.01, CAVEAT, fontsize=8, color="#555555")
-    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    for i,row in enumerate(panel_rows):
+        note=(f"better than P: {row['beats_persistence']}/{row['n_concepts']} · "
+              f"better than AR: {row['beats_self_ar']}/{row['n_concepts']}")
+        ax.text(.99,i/ max(1,len(panel_rows)-1) if len(panel_rows)>1 else .5,
+                note,transform=ax.transAxes,ha="right",va="center",fontsize=8,
+                bbox={"facecolor":"white","edgecolor":"none","alpha":0.7})
+    fig.tight_layout(rect=(0,0.08,1,1))
+    fig.text(.01,.01,CAVEAT+" Undefined scores with zero-MAE baselines excluded.",
+             fontsize=8,color="#555555",wrap=True)
+    fig.savefig(out_path,dpi=dpi,bbox_inches="tight")
     plt.close(fig)
 
 
@@ -126,6 +150,8 @@ def render_all(preview_dir, out_dir=None, dpi=180):
             "edge_weight_heatmap": str(panel_out / "edge_weight_heatmap.png"),
         })
 
+    hierarchy = render_hierarchy(panel_dirs, out_dir / "hierarchy", dpi=dpi)
+
     cross_panel = out_dir / "cross_panel"
     write_csv(cross_panel / "panel_summary.csv", panel_summaries, SUMMARY_COLUMNS)
     write_csv(cross_panel / "concept_summary.csv", concept_rows, CONCEPT_SUMMARY_COLUMNS)
@@ -143,6 +169,7 @@ def render_all(preview_dir, out_dir=None, dpi=180):
         "cross_panel_summary_csv": str(cross_panel / "panel_summary.csv"),
         "cross_panel_concept_csv": str(cross_panel / "concept_summary.csv"),
         "cross_panel_performance_png": str(cross_panel_png) if cross_panel_png else "",
+        "hierarchy": hierarchy,
         "causal_discovery": False,
         "operational_ready": False,
         "note": CAVEAT,

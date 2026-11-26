@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from statistics import mean
+from statistics import median
 
 from .common import read_csv, to_float
 
@@ -18,13 +18,16 @@ METRIC_COLUMNS = [
     "persistence_mae", "train_climatology_mae", "fcm_vs_persistence_mae_delta",
     "fcm_vs_self_ar_mae_delta", "test_target_mean", "unit_note",
 ]
-CONCEPT_SUMMARY_COLUMNS = ["panel_id", "region", "site_id"] + METRIC_COLUMNS
+CONCEPT_SUMMARY_COLUMNS = ["panel_id", "region", "site_id"] + METRIC_COLUMNS + [
+    "skill_vs_persistence", "skill_vs_self_ar",
+]
 SUMMARY_COLUMNS = [
     "panel_id", "region", "site_id", "n_concepts", "n_test_pairs", "concepts",
-    "beats_persistence", "beats_self_ar", "mean_fcm_mae", "mean_self_ar_mae",
-    "mean_persistence_mae", "mean_climatology_mae", "mean_delta_persistence",
-    "mean_delta_self_ar", "best_concept_vs_self_ar", "best_delta_self_ar",
-    "worst_concept_vs_self_ar", "worst_delta_self_ar",
+    "beats_persistence", "beats_self_ar",
+    "median_skill_persistence", "median_skill_self_ar",
+    "n_defined_skill_persistence", "n_defined_skill_self_ar",
+    "best_concept_vs_self_ar", "best_skill_self_ar",
+    "worst_concept_vs_self_ar", "worst_skill_self_ar",
 ]
 
 
@@ -92,41 +95,63 @@ def load_metrics(panel_dir):
     return rows
 
 
-def summarize_panel(panel_id, region, site_id, metrics):
-    """One aggregate row per panel; NOT a claim of panel-level model skill
-    beyond the mean of per-concept held-out MAE deltas it reports.
+
+def safe_skill(model_mae, reference_mae):
+    """Dimensionless relative skill; zero-reference MAE is undefined.
+
+    Skill = 1 - FCM_MAE / reference_MAE, positive indicates improvement.
+    Native-unit errors must not be averaged across different concepts.
     """
-    beats_persistence = sum(m["fcm_vs_persistence_mae_delta"] < 0 for m in metrics)
-    beats_self_ar = sum(m["fcm_vs_self_ar_mae_delta"] < 0 for m in metrics)
-    best = min(metrics, key=lambda m: m["fcm_vs_self_ar_mae_delta"])
-    worst = max(metrics, key=lambda m: m["fcm_vs_self_ar_mae_delta"])
+    if model_mae < 0 or reference_mae < 0:
+        raise ValueError("MAE must be nonnegative")
+    if reference_mae == 0:
+        return None
+    return 1.0 - model_mae / reference_mae
+
+
+def _median_defined(values):
+    valid = [v for v in values if v is not None]
+    return median(valid) if valid else ""
+
+
+def summarize_panel(panel_id, region, site_id, metrics):
+    """Dimensionless skill summary for a single validated station model."""
+    if not metrics:
+        raise ValueError("cannot summarize a panel without held-out metrics")
+    p_scores = [safe_skill(m["fcm_mae"], m["persistence_mae"]) for m in metrics]
+    a_scores = [safe_skill(m["fcm_mae"], m["self_ar_mae"]) for m in metrics]
+    valid_ar = [(m, value) for m, value in zip(metrics, a_scores) if value is not None]
+    best = max(valid_ar, key=lambda pair: pair[1]) if valid_ar else None
+    worst = min(valid_ar, key=lambda pair: pair[1]) if valid_ar else None
     return {
         "panel_id": panel_id, "region": region, "site_id": site_id,
         "n_concepts": len(metrics),
         "n_test_pairs": metrics[0]["n_test_pairs"],
         "concepts": ";".join(m["concept"] for m in metrics),
-        "beats_persistence": beats_persistence,
-        "beats_self_ar": beats_self_ar,
-        "mean_fcm_mae": mean(m["fcm_mae"] for m in metrics),
-        "mean_self_ar_mae": mean(m["self_ar_mae"] for m in metrics),
-        "mean_persistence_mae": mean(m["persistence_mae"] for m in metrics),
-        "mean_climatology_mae": mean(m["train_climatology_mae"] for m in metrics),
-        "mean_delta_persistence": mean(m["fcm_vs_persistence_mae_delta"] for m in metrics),
-        "mean_delta_self_ar": mean(m["fcm_vs_self_ar_mae_delta"] for m in metrics),
-        "best_concept_vs_self_ar": best["concept"],
-        "best_delta_self_ar": best["fcm_vs_self_ar_mae_delta"],
-        "worst_concept_vs_self_ar": worst["concept"],
-        "worst_delta_self_ar": worst["fcm_vs_self_ar_mae_delta"],
+        "beats_persistence": sum(v is not None and v > 0 for v in p_scores),
+        "beats_self_ar": sum(v is not None and v > 0 for v in a_scores),
+        "median_skill_persistence": _median_defined(p_scores),
+        "median_skill_self_ar": _median_defined(a_scores),
+        "n_defined_skill_persistence": sum(v is not None for v in p_scores),
+        "n_defined_skill_self_ar": len(valid_ar),
+        "best_concept_vs_self_ar": best[0]["concept"] if best else "",
+        "best_skill_self_ar": best[1] if best else "",
+        "worst_concept_vs_self_ar": worst[0]["concept"] if worst else "",
+        "worst_skill_self_ar": worst[1] if worst else "",
     }
 
 
 def concept_summary_rows(panel_id, region, site_id, metrics):
-    rows = []
+    result = []
     for m in metrics:
         row = {"panel_id": panel_id, "region": region, "site_id": site_id}
         row.update({col: m[col] for col in METRIC_COLUMNS})
-        rows.append(row)
-    return rows
+        persistence = safe_skill(m["fcm_mae"], m["persistence_mae"])
+        self_ar = safe_skill(m["fcm_mae"], m["self_ar_mae"])
+        row["skill_vs_persistence"] = persistence if persistence is not None else ""
+        row["skill_vs_self_ar"] = self_ar if self_ar is not None else ""
+        result.append(row)
+    return result
 
 
 def load_edge_matrix(panel_dir):

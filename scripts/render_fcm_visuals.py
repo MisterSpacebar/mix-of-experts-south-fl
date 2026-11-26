@@ -7,9 +7,16 @@ It creates a NEW directory (default: <preview>/visuals) with:
 
 - panels/<panel_id>/baseline_comparison.png
 - panels/<panel_id>/edge_weight_heatmap.png
+- hierarchy/panels/<panel_id>/subcategory_grouped_heatmap.png
+- hierarchy/panels/<panel_id>/concept_assignments.csv, classified_edges.csv
+- hierarchy/subcategories/<category>/<subcategory>/<panel_id>_internal_edges.csv
+- hierarchy/categories/<category>/<panel_id>_concepts.csv
+- hierarchy/cross_subcategory_edges.csv
+- hierarchy/concept_coverage.csv, hierarchy_status.csv, subcategory_coverage.png
+- hierarchy/hierarchy_overview.png (trained station layer versus planned levels)
 - cross_panel/panel_summary.csv
 - cross_panel/concept_summary.csv
-- cross_panel/cross_panel_performance_summary.png
+- cross_panel/cross_panel_performance_summary.png (dimensionless median skill)
 - visuals_manifest.json
 
 python scripts/render_fcm_visuals.py --preview data/m7/fcm_preview_verified_02
