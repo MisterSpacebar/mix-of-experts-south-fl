@@ -38,6 +38,8 @@ class ModelTests(unittest.TestCase):
         self.assertLess(result["validation_end"],result["test_start"])
         self.assertTrue(result["forecast_type"].startswith("one-day-ahead"))
         self.assertEqual(len(result["evaluation"]),3)
+        self.assertEqual(len(result["self_ar_alphas"]),3)
+        self.assertTrue(all(x in (0.1,1.0,10.0,50.0) for x in result["self_ar_alphas"]))
         self.assertEqual(len(result["rollout"]),21)
         self.assertTrue(all(-1<=x<=1 for row in result["matrix_source_to_target"]
                             for x in row))
