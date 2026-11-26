@@ -37,6 +37,7 @@ def run(history_dir,out,min_samples=8,min_span_hours=8,approved_only=False):
                   ["n_"+c for c in concepts])
     for pid in sorted(failed):
         results.append(dict(panel_id=pid,region="",site_id="",concepts="",
+            concept_units="",concept_datums="",source_series_ids="",
             n_requested_days="",n_complete_days=0,n_consecutive_daily_pairs=0,
             n_dropped_partial_days="",n_excluded_source_values="",
             first_complete_day="",last_complete_day="",status="blocked_failed_download",
