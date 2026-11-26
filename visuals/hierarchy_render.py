@@ -5,7 +5,6 @@ merely labels and reorders the same within-panel weights. Subcategory and
 category ledgers are projections of that existing model, NOT new fitted
 FCMs. Cross-category edges are descriptive observed associations.
 """
-from collections import defaultdict
 from pathlib import Path
 
 import matplotlib
@@ -17,7 +16,7 @@ import numpy as np
 from .common import read_csv, write_csv
 from .fcm_charts import load_edge_matrix
 from .hierarchy import (
-    CATEGORIES, COVERAGE_COLS, EDGE_INDEX_COLS, STATUS_COLS, classify,
+    COVERAGE_COLS, EDGE_INDEX_COLS, STATUS_COLS, classify,
     concept_taxonomy_rows, edge_index_rows, summarize_hierarchy
 )
 
@@ -91,6 +90,41 @@ def plot_concept_coverage(coverage, dest, dpi=180):
     plt.close(fig)
 
 
+def plot_hierarchy_overview(statuses, dest, dpi=180):
+    """Show what is learned versus merely organized into a taxonomy."""
+    order={"overall":0,"category":1,"subcategory":2,"dataset_panel":3}
+    active=[r for r in statuses if r["level"] in ("overall","dataset_panel")
+            or int(r["n_observed_concepts"])>0]
+    active.sort(key=lambda r:(order.get(r["level"],9),r["scope"]))
+    fig,ax=plt.subplots(figsize=(11,max(4.5,len(active)*.52+1.6)))
+    ax.set_xlim(0,1)
+    ax.set_ylim(-1,len(active)+.65)
+    ax.axis("off")
+    for idx,item in enumerate(active):
+        y=len(active)-idx-.5
+        level=item["level"]
+        shift={"overall":0.025,"category":.075,
+               "subcategory":.125,"dataset_panel":.025}.get(level,.025)
+        color="#eaf3fa" if item["status"]=="trained_preview" else "#f1f1f1"
+        rect=plt.Rectangle((shift,y-.34),.96-shift,.68,
+                           facecolor=color,edgecolor="#cbd5dd",linewidth=.7)
+        ax.add_patch(rect)
+        scope=item["scope"].replace("_"," ")
+        label=f"{level.upper()}  |  {scope}"
+        ax.text(shift+.02,y+.10,label,va="center",fontsize=10,
+                fontweight="bold",color="#244865")
+        ax.text(shift+.02,y-.14,
+                f"{item['status']} · {item['n_observed_concepts']} distinct "
+                f"observed concepts · {item['n_contributing_panels']} panels",
+                va="center",fontsize=8,color="#5c6670")
+    ax.set_title("FCM hierarchy: trained station panels vs planned model levels",
+                 loc="left",fontsize=14,pad=12)
+    fig.text(.01,.015,HIERARCHY_CAVEAT,fontsize=9)
+    fig.tight_layout(rect=(0,.045,1,1))
+    fig.savefig(dest,dpi=dpi,bbox_inches="tight")
+    plt.close(fig)
+
+
 def render_hierarchy(panel_dirs, out_dir, dpi=180):
     """Write hierarchical reporting directories from existing fitted panels.
 
@@ -134,6 +168,7 @@ def render_hierarchy(panel_dirs, out_dir, dpi=180):
            (e["target_category"],e["target_subcategory"])]
     write_csv(out_dir/"cross_subcategory_edges.csv",cross,CROSS_COLS)
     plot_concept_coverage(coverage,out_dir/"subcategory_coverage.png",dpi=dpi)
+    plot_hierarchy_overview(statuses,out_dir/"hierarchy_overview.png",dpi=dpi)
     return {
         "taxonomy_version": "visual_concept_hierarchy_v1",
         "trained_dataset_panels": len(panel_concepts),
