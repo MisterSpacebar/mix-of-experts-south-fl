@@ -13,6 +13,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Install plotting dependencies for visuals tests
+        run: python -m pip install -r requirements.txt
       - name: Validate catalog
         run: python scripts/catalog.py --json
       - name: Offline unit tests (no network, no credentials)
