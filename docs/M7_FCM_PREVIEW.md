@@ -149,7 +149,9 @@ one-observation-day-lag relationship, **not a verified causal effect**.
 The script:
 1. Builds only consecutive measured day pairs without interpolation.
 2. Uses chronological 60% training / 20% validation / 20% final test.
-3. Selects ridge regularization using validation **only**.
+3. Selects FCM ridge regularization using validation **only**, and tunes
+   each simple self-AR(1) comparison separately on the same validation block,
+   rather than disadvantaging the baseline.
 4. Evaluates held-out one-day predictions, conditioned on the previously
    observed day's inputs.
 5. Compares FCM to persistence, individual concept AR(1) and training
