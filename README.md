@@ -7,7 +7,7 @@ A reproducible, source-first foundation for regionalized hierarchical fuzzy cogn
 - **Milestone 1:** Structured source registry (`catalog/datasets.json`; 18 candidate datasets), acquisition priorities, NOAA CO-OPS observed-water-level downloader.
 - **Milestone 2:** Metadata-only station discovery adapters for NOAA CO-OPS, NOAA NDBC, USGS Water Data and EPA Water Quality Portal; regional assignment, co-location review, and observed-record/year coverage summaries.
 - **Milestone 3 (new):** Parameter-level and period-of-record discovery from the local 14,530-station inventory. USGS time-series metadata and WQP annual characteristic counts are the principal evidence; NOAA CO-OPS and NDBC provide weaker product/archive availability indicators. The program writes normalized metadata, concept summaries, conflict reports, and a manifest. No observed completeness or model skill is claimed.
-- **Not yet done:** Live bulk downloads, complete source product inventories, verified sensor-variable coverage, deduplication of actual measurements, and FCM model fitting. API access is network-dependent, and the source adapters may need adjustment to agency schema changes.
+- **Not yet done:** Full ecological/socioeconomic source ingestion, complete station-variable temporal coverage, scientifically validated cross-system causal relationships, and operational FCM deployment. API access is network-dependent, and the source adapters may need adjustment to agency schema changes.
 
 ## Quick start (Python 3.10+, standard library only)
 
@@ -71,6 +71,28 @@ reclassifies verified CSV snapshots without downloading measurements.
 See [hydraulic concept mapping and metadata migration](docs/HYDRAULIC_TAXONOMY.md).
 No vertical conversions or FCM trainability are inferred.
 
+## Milestone 7: Observed-data QA and first FCM preview
+
+The project now includes an **offline QA audit** for the 16,398-record
+pilot and a strict next-phase pipeline for longer **same-site USGS**
+multivariate time-series: choose series from harmonized metadata, download
+bounded historical windows, build observed-only daily panels, and fit a
+small dynamic FCM with chronological train/validation/test and self-AR/
+persistence/climatology baselines.
+
+The preview exports signed network and held-out hindcast SVGs, edge weights,
+test predictions and an illustrative (unvalidated) forward rollout.
+**No trained model is bundled**: real outputs require user-side opt-in
+API downloads and will be refused when temporal overlap is insufficient.
+
+See [Milestone 7 runbook](docs/M7_FCM_PREVIEW.md) for full local commands.
+The first stage is:
+
+```bash
+python scripts/audit_model_readiness.py --observations data/pilot/runs/first/observations.csv --out data/m7/pilot_readiness_v1
+python scripts/plan_fcm_history.py --periods data/inventory/parameters_harmonized_v1/parameter_periods.csv --stations data/inventory/combined_v3/stations.csv --end 2026-10-31 --days 120 --out data/m7/history_plan_v1
+```
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
@@ -79,6 +101,7 @@ No vertical conversions or FCM trainability are inferred.
 - [Parameter and period-of-record inventory instructions](docs/PARAMETER_DISCOVERY.md)
 - [Expanded region discovery and observed-data pilot](docs/EXPANDED_REGIONS_AND_OBSERVATIONS.md)
 - [Hydraulic concept taxonomy and vertical-datum migration](docs/HYDRAULIC_TAXONOMY.md)
+- [Observed-data QA, history and dynamic FCM preview (Milestone 7)](docs/M7_FCM_PREVIEW.md)
 
 ## Modeling design (planned)
 
