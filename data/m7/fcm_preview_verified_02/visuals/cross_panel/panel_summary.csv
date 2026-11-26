@@ -1,0 +1,2 @@
+panel_id,region,site_id,n_concepts,n_test_pairs,concepts,beats_persistence,beats_self_ar,mean_fcm_mae,mean_self_ar_mae,mean_persistence_mae,mean_climatology_mae,mean_delta_persistence,mean_delta_self_ar,best_concept_vs_self_ar,best_delta_self_ar,worst_concept_vs_self_ar,worst_delta_self_ar
+panel_01_USGS_255327081275900,big_cypress,USGS-255327081275900,4,19.0,discharge;salinity;water_temperature;gage_height,2,3,8.82515225,9.12478475,9.5612295,15.988290999999998,-0.736077,-0.29963249999999997,discharge,-1.296001,salinity,0.137222

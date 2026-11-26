@@ -1,0 +1,31 @@
+{
+  "created_at_utc": "2026-11-26T02:26:55.202717+00:00",
+  "input_panels": "data\\m7\\daily_panels_verified_01",
+  "input_manifest": {
+    "generated_at_utc": "2026-11-26T02:12:41.487114+00:00",
+    "history_manifest_source": "data\\m7\\history_verified_01\\history_manifest.json",
+    "observations_sha256": "53567d360f1e48aaa345053d12117a7242131bb2c0375c08dc8d06e26f664cfb",
+    "min_samples_per_source_day": 8,
+    "min_utc_day_span_hours": 8,
+    "approved_only": false,
+    "n_panels": 1,
+    "n_candidate_panels": 1,
+    "incomplete_panels": [],
+    "note": "Daily arithmetic means from available within-day instants only, not instrument uptime-adjusted or gap-filled. A panel candidate still requires chronological validation."
+  },
+  "n_fitted_previews": 1,
+  "n_skipped": 0,
+  "results": [
+    {
+      "panel_id": "panel_01_USGS_255327081275900",
+      "status": "trained_preview",
+      "reason": "held_out_comparison_reported",
+      "n_pairs": 89,
+      "target_plotted": "gage_height",
+      "panel_sha256": "c18f40c29ad3ec9288d1f1c4da6e8f96d66c5ce64cd8f92f8119cf3d661252af"
+    }
+  ],
+  "validation": "chronological train-validation-test; no future-data features",
+  "causal_discovery": false,
+  "operational_ready": false
+}

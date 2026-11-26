@@ -1,0 +1,21 @@
+{
+  "created_at_utc": "2026-11-26T02:51:10.715534+00:00",
+  "input_preview": "data\\m7\\fcm_preview_verified_02",
+  "n_panels": 1,
+  "panel_ids": [
+    "panel_01_USGS_255327081275900"
+  ],
+  "panels": [
+    {
+      "panel_id": "panel_01_USGS_255327081275900",
+      "baseline_comparison": "data\\m7\\fcm_preview_verified_02\\visuals\\panels\\panel_01_USGS_255327081275900\\baseline_comparison.png",
+      "edge_weight_heatmap": "data\\m7\\fcm_preview_verified_02\\visuals\\panels\\panel_01_USGS_255327081275900\\edge_weight_heatmap.png"
+    }
+  ],
+  "cross_panel_summary_csv": "data\\m7\\fcm_preview_verified_02\\visuals\\cross_panel\\panel_summary.csv",
+  "cross_panel_concept_csv": "data\\m7\\fcm_preview_verified_02\\visuals\\cross_panel\\concept_summary.csv",
+  "cross_panel_performance_png": "data\\m7\\fcm_preview_verified_02\\visuals\\cross_panel\\cross_panel_performance_summary.png",
+  "causal_discovery": false,
+  "operational_ready": false,
+  "note": "Held-out one-day-ahead comparison only. Weights are standardized predictive associations, NOT demonstrated causal effects."
+}

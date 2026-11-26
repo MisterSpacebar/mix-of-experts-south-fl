@@ -1,0 +1,5 @@
+panel_id,region,site_id,concept,n_test_pairs,fcm_mae,fcm_rmse,self_ar_mae,persistence_mae,train_climatology_mae,fcm_vs_persistence_mae_delta,fcm_vs_self_ar_mae_delta,test_target_mean,unit_note
+panel_01_USGS_255327081275900,big_cypress,USGS-255327081275900,discharge,19.0,31.794355,40.991662,33.090356,36.563613,54.145264,-4.769258,-1.296001,43.930902,ft^3/s
+panel_01_USGS_255327081275900,big_cypress,USGS-255327081275900,salinity,19.0,1.755838,2.247641,1.618616,0.935855,6.091202,0.819983,0.137222,29.260134,ppt
+panel_01_USGS_255327081275900,big_cypress,USGS-255327081275900,water_temperature,19.0,1.527403,1.910979,1.556607,0.485691,3.372722,1.041713,-0.029204,26.80729,degC
+panel_01_USGS_255327081275900,big_cypress,USGS-255327081275900,gage_height,19.0,0.223013,0.310209,0.23356,0.259759,0.343976,-0.036746,-0.010547,7.851733,ft
