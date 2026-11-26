@@ -1,0 +1,18 @@
+{
+  "created_at_utc": "2026-11-26T03:43:08.634668+00:00",
+  "panel_inputs": [
+    "data\\m7\\daily_panels_verified_01"
+  ],
+  "n_panel_candidates": 1,
+  "n_fitted_dataset_models": 1,
+  "n_station_local_specialist_fits": 3,
+  "n_distinct_station_specialist_concept_sets": 2,
+  "n_redundant_scope_fits": 1,
+  "n_unfitted_scope_candidates": 2,
+  "regional_subcategory_experts_trained": 0,
+  "regional_category_experts_trained": 0,
+  "overall_experts_trained": 0,
+  "model_selection_on_test": false,
+  "causal_identification": false,
+  "all_source_data_stays_external": true
+}
