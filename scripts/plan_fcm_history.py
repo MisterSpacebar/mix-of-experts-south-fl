@@ -14,14 +14,17 @@ from southfl.net import write_csv
 from southfl.history_selection import PLAN_COLS,select_panels
 
 
-def run(periods,stations,end,days,out,max_panels=3,max_concepts=4,sites=None):
+def run(periods,stations,end,days,out,max_panels=3,max_concepts=4,
+        sites=None,exclude_sites=None):
     periods,stations,out=Path(periods),Path(stations),Path(out)
     if out.exists() and any(out.iterdir()):
         raise ValueError("output directory must be new/empty")
     station_rows=read_csv(stations)
     validate_stations(station_rows)
     plan=select_panels(read_csv(periods),station_rows,end,days,
-                       max_panels,max_concepts,site_filter=set(sites) if sites else None)
+                       max_panels,max_concepts,
+                       site_filter=set(sites) if sites else None,
+                       exclude_sites=set(exclude_sites or ()))
     if not plan:
         raise ValueError("no eligible same-site multivariate metadata candidates; "
                          "no panel or model fabricated")
@@ -36,6 +39,7 @@ def run(periods,stations,end,days,out,max_panels=3,max_concepts=4,sites=None):
         "n_series_tasks":len(plan),
         "regions":dict(Counter(r["region"] for r in plan)),
         "end":end,"days":days,"source":"USGS continuous",
+        "excluded_site_ids":sorted(set(exclude_sites or ())),
         "observations_downloaded":False,"trainable":False,
         "note":"First/last metadata only; actual temporal overlap must be verified. "
                "No cross-site merges, interpolation, or causal claims.",
@@ -58,9 +62,12 @@ def main():
     p.add_argument("--max-panels",type=int,default=3)
     p.add_argument("--max-concepts",type=int,default=4)
     p.add_argument("--site",action="append",help="optional canonical USGS ID; repeatable")
+    p.add_argument("--exclude-site",action="append",default=[],
+                   help="skip already-evaluated stations BEFORE ranking candidates")
     p.add_argument("--out",type=Path,default=Path("data/m7/history_plan_v1"))
     a=p.parse_args()
-    run(a.periods,a.stations,a.end,a.days,a.out,a.max_panels,a.max_concepts,a.site)
+    run(a.periods,a.stations,a.end,a.days,a.out,
+        a.max_panels,a.max_concepts,a.site,a.exclude_site)
 
 
 if __name__=="__main__":
