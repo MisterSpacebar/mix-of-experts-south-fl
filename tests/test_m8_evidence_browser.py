@@ -13,7 +13,7 @@ from southfl.m8_evidence import (
     transfer_diagnostics,edge_strength_diagnostics,uncertainty_integrity)
 from scripts.train_m8_layers import run as train
 from scripts.evaluate_m8_replication import run as evaluate
-from scripts.browse_m8_evidence import run as browse
+from scripts.browse_m8_evidence import run as browse, _check_text_lineage
 
 
 def fake_station(root,site,phase):
@@ -41,6 +41,19 @@ def fake_station(root,site,phase):
 
 
 class EvidenceUnitTests(unittest.TestCase):
+    def test_strict_line_ending_only_sha_equivalence(self):
+        import hashlib
+        with tempfile.TemporaryDirectory() as td:
+            path=Path(td)/"provenance.csv"
+            content=b"date,value\\n2026-11-24,123.4\\n"
+            path.write_bytes(content)
+            expected=hashlib.sha256(content.replace(b"\\n",b"\\r\\n")).hexdigest()
+            self.assertEqual(_check_text_lineage(path,expected,"test"),
+                             "line_ending_only_equivalent")
+            path.write_bytes(content.replace(b"123.4",b"123.5"))
+            with self.assertRaisesRegex(ValueError,"not newline-equivalent"):
+                _check_text_lineage(path,expected,"test")
+
     def test_transfer_shift_and_missing_datum_are_distinct(self):
         donor={"panel_id":"A","site_id":"A",
                "concept_units":"gage_height=ft",
