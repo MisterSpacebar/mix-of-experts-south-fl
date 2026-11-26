@@ -23,10 +23,9 @@ from southfl.net import write_csv
 from southfl.fcm_model import fit_preview,NotReadyError,EVAL_COLS,EDGE_COLS
 from southfl.fcm_figures import hindcast_svg
 from southfl.m8_layers import concept_scopes,fit_scoped,compare_matched,COMPARISON_COLS,STATUS_COLS
-from visuals.fcm_charts import summarize_panel, load_metrics
-from visuals.hierarchy import classify,CATEGORIES
+ from visuals.hierarchy import CATEGORIES
 from visuals.network_svg import network_svg
-from visuals.render import plot_baseline_comparison,plot_edge_weight_heatmap,plot_cross_panel_summary
+from visuals.render import plot_baseline_comparison,plot_edge_weight_heatmap
 
 PRED_COLS=["date","concept","actual","fcm","self_ar","persistence"]
 ROLL_COLS=["step","concept","simulated_value"]
@@ -218,7 +217,8 @@ def run(panel_dirs,out,min_pairs=79,dpi=150,min_edge=.08):
                          "trained_station_expert","chronological held-out evaluated",
                          base.relative_to(out).as_posix(),panel_sha,full))
         for level,cat,sub,subset in concept_scopes(concepts):
-            rel=Path("levels")/level/cat/(*( [sub] if sub else [] ),pid)
+            rel=(Path("levels")/level/cat/sub/pid if sub
+                 else Path("levels")/level/cat/pid)
             destination=out/rel
             scope=cat+(("/"+sub) if sub else "")
             level_members[(level,scope)].append(pid)
