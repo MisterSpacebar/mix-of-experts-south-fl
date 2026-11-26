@@ -1,0 +1,1 @@
+level,scope,donor_panel,donor_site,target_panel,target_site,concept,n_matched_test_days,donor_transfer_mae,target_local_fcm_mae,target_persistence_mae,transfer_skill_vs_persistence,transfer_skill_vs_local_fcm,interpretation

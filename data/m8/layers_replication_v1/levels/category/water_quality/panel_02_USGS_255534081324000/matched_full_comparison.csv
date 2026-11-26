@@ -1,0 +1,3 @@
+panel_id,level,scope,concept,n_aligned_test_days,specialist_fcm_mae,full_panel_fcm_mae,self_ar_mae,persistence_mae,specialist_minus_full_mae,specialist_skill_vs_full,specialist_skill_vs_self_ar,specialist_skill_vs_persistence,interpretation
+panel_02_USGS_255534081324000,category,water_quality,salinity,31,1.456731,1.377649,1.403834,1.248057,0.079082,-0.057403288131456565,-0.037680183527919686,-0.16719887213703655,same-site and same held-out dates; descriptive comparison only
+panel_02_USGS_255534081324000,category,water_quality,water_temperature,31,1.397325,1.449269,1.289153,0.494355,-0.051944,0.03584146514425901,-0.08390939370310968,-1.826561977972398,same-site and same held-out dates; descriptive comparison only

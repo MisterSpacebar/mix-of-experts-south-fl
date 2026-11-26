@@ -1,0 +1,17 @@
+panel_id,level,scope,fold,source_concept,target_concept,weight,sign,test_start,test_end
+panel_04_USGS_0229070854,dataset,full_station,1,discharge,discharge,0.523566,positive,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,salinity,discharge,0.424571,positive,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,water_temperature,discharge,0.121828,positive,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,gage_height,discharge,-0.164844,negative,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,discharge,salinity,0.2121,positive,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,salinity,salinity,0.816978,positive,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,water_temperature,salinity,0.060436,positive,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,gage_height,salinity,-0.067717,negative,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,discharge,water_temperature,-0.040967,negative,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,salinity,water_temperature,-0.010075,negative,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,water_temperature,water_temperature,0.889625,positive,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,gage_height,water_temperature,-0.000732,negative,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,discharge,gage_height,0.009593,positive,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,salinity,gage_height,-0.177864,negative,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,water_temperature,gage_height,0.198364,positive,2026-10-20,2026-11-23
+panel_04_USGS_0229070854,dataset,full_station,1,gage_height,gage_height,0.234261,positive,2026-10-20,2026-11-23

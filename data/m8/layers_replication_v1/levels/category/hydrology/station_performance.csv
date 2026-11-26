@@ -1,0 +1,4 @@
+panel_id,region,site_id,n_concepts,n_test_pairs,concepts,beats_persistence,beats_self_ar,median_skill_persistence,median_skill_self_ar,n_defined_skill_persistence,n_defined_skill_self_ar,best_concept_vs_self_ar,best_skill_self_ar,worst_concept_vs_self_ar,worst_skill_self_ar
+panel_01_USGS_255327081275900,big_cypress,USGS-255327081275900,2,19.0,discharge;gage_height,2,1,0.16952534736488223,0.0790932178806304,2,2,discharge,0.1649512927573218,gage_height,-0.006764856996060997
+panel_02_USGS_255534081324000,southwest_everglades_coast,USGS-255534081324000,2,31.0,discharge;gage_height,2,2,0.061979085211679,0.0671674032486877,2,2,gage_height,0.10478421573220886,discharge,0.02955059076516653
+panel_04_USGS_0229070854,central_south_biscayne,USGS-0229070854,2,31.0,discharge;gage_height,0,0,-1.1180709072186692,-0.14351219093284673,2,2,gage_height,-0.005312304402667722,discharge,-0.28171207746302573

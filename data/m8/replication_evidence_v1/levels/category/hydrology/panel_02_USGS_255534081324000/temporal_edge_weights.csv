@@ -1,0 +1,13 @@
+panel_id,level,scope,fold,source_concept,target_concept,weight,sign,test_start,test_end
+panel_02_USGS_255534081324000,category,hydrology,1,discharge,discharge,0.764041,positive,2026-08-28,2026-09-20
+panel_02_USGS_255534081324000,category,hydrology,1,gage_height,discharge,0.329311,positive,2026-08-28,2026-09-20
+panel_02_USGS_255534081324000,category,hydrology,1,discharge,gage_height,0.250186,positive,2026-08-28,2026-09-20
+panel_02_USGS_255534081324000,category,hydrology,1,gage_height,gage_height,0.614615,positive,2026-08-28,2026-09-20
+panel_02_USGS_255534081324000,category,hydrology,2,discharge,discharge,0.773405,positive,2026-09-21,2026-10-19
+panel_02_USGS_255534081324000,category,hydrology,2,gage_height,discharge,0.315084,positive,2026-09-21,2026-10-19
+panel_02_USGS_255534081324000,category,hydrology,2,discharge,gage_height,0.210498,positive,2026-09-21,2026-10-19
+panel_02_USGS_255534081324000,category,hydrology,2,gage_height,gage_height,0.616344,positive,2026-09-21,2026-10-19
+panel_02_USGS_255534081324000,category,hydrology,3,discharge,discharge,0.772723,positive,2026-10-20,2026-11-23
+panel_02_USGS_255534081324000,category,hydrology,3,gage_height,discharge,0.303536,positive,2026-10-20,2026-11-23
+panel_02_USGS_255534081324000,category,hydrology,3,discharge,gage_height,0.207399,positive,2026-10-20,2026-11-23
+panel_02_USGS_255534081324000,category,hydrology,3,gage_height,gage_height,0.636999,positive,2026-10-20,2026-11-23

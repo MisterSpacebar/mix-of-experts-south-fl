@@ -1,0 +1,5 @@
+source_concept,target_concept,weight,sign,edge_kind,interpretation
+discharge,discharge,0.772723,positive,self_memory,held-out predictive association; NOT demonstrated causality
+gage_height,discharge,0.303536,positive,cross_concept,held-out predictive association; NOT demonstrated causality
+discharge,gage_height,0.207399,positive,cross_concept,held-out predictive association; NOT demonstrated causality
+gage_height,gage_height,0.636999,positive,self_memory,held-out predictive association; NOT demonstrated causality

@@ -1,0 +1,25 @@
+{
+  "created_at_utc": "2026-11-26T04:05:43.889497+00:00",
+  "period_source": "data\\inventory\\parameters_harmonized_v1\\parameter_periods.csv",
+  "period_sha256": "5c0eea5df2e7dabadbc76ef42ab945fc5c8936af3331032a721cc373cb374e96",
+  "station_source": "data\\inventory\\combined_v3\\stations.csv",
+  "n_panels": 6,
+  "n_series_tasks": 24,
+  "regions": {
+    "big_cypress": 4,
+    "southwest_everglades_coast": 4,
+    "st_lucie_connection": 4,
+    "central_south_biscayne": 4,
+    "everglades_interior": 8
+  },
+  "end": "2026-11-24",
+  "days": 180,
+  "source": "USGS continuous",
+  "excluded_site_ids": [
+    "USGS-255327081275900"
+  ],
+  "max_panels_per_screening_region": 2,
+  "observations_downloaded": false,
+  "trainable": false,
+  "note": "First/last metadata only; actual temporal overlap must be verified. No cross-site merges, interpolation, or causal claims."
+}

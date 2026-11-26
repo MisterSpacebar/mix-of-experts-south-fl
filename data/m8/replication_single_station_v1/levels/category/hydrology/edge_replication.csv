@@ -1,0 +1,5 @@
+level,scope,concept_set,source_concept,target_concept,n_distinct_sites,n_positive,n_negative,n_zero,sign_consistency,median_weight,status,interpretation
+category,hydrology,discharge;gage_height,discharge,discharge,1,1,0,0,1.0,0.686556,insufficient_independent_sites,independent site fits and matched measurement schema only; sign frequency not regional causal evidence
+category,hydrology,discharge;gage_height,discharge,gage_height,1,0,1,0,1.0,-0.113072,insufficient_independent_sites,independent site fits and matched measurement schema only; sign frequency not regional causal evidence
+category,hydrology,discharge;gage_height,gage_height,discharge,1,1,0,0,1.0,0.249868,insufficient_independent_sites,independent site fits and matched measurement schema only; sign frequency not regional causal evidence
+category,hydrology,discharge;gage_height,gage_height,gage_height,1,1,0,0,1.0,0.69253,insufficient_independent_sites,independent site fits and matched measurement schema only; sign frequency not regional causal evidence

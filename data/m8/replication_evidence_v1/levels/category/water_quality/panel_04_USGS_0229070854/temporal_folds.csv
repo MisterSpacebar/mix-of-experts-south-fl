@@ -1,0 +1,3 @@
+panel_id,level,scope,fold,n_pairs,train_pairs,validation_pairs,test_pairs,train_end,validation_end,test_start,test_end,concept,fcm_mae,self_ar_mae,persistence_mae,skill_vs_self_ar,skill_vs_persistence
+panel_04_USGS_0229070854,category,water_quality,1,151,90,30,31,2026-09-13,2026-10-19,2026-10-20,2026-11-23,salinity,0.021636,0.020837,0.015746,-0.038345251235782474,-0.3740632541597866
+panel_04_USGS_0229070854,category,water_quality,1,151,90,30,31,2026-09-13,2026-10-19,2026-10-20,2026-11-23,water_temperature,0.238576,0.30486,0.202386,0.2174243915239782,-0.17881671657130438

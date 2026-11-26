@@ -1,0 +1,13 @@
+panel_id,level,scope,fold,source_concept,target_concept,weight,sign,test_start,test_end
+panel_02_USGS_255534081324000,category,water_quality,1,salinity,salinity,0.972864,positive,2026-08-28,2026-09-20
+panel_02_USGS_255534081324000,category,water_quality,1,water_temperature,salinity,0.021992,positive,2026-08-28,2026-09-20
+panel_02_USGS_255534081324000,category,water_quality,1,salinity,water_temperature,-0.08568,negative,2026-08-28,2026-09-20
+panel_02_USGS_255534081324000,category,water_quality,1,water_temperature,water_temperature,0.825545,positive,2026-08-28,2026-09-20
+panel_02_USGS_255534081324000,category,water_quality,2,salinity,salinity,0.953286,positive,2026-09-21,2026-10-19
+panel_02_USGS_255534081324000,category,water_quality,2,water_temperature,salinity,0.016554,positive,2026-09-21,2026-10-19
+panel_02_USGS_255534081324000,category,water_quality,2,salinity,water_temperature,-0.081514,negative,2026-09-21,2026-10-19
+panel_02_USGS_255534081324000,category,water_quality,2,water_temperature,water_temperature,0.824431,positive,2026-09-21,2026-10-19
+panel_02_USGS_255534081324000,category,water_quality,3,salinity,salinity,0.95628,positive,2026-10-20,2026-11-23
+panel_02_USGS_255534081324000,category,water_quality,3,water_temperature,salinity,-0.014881,negative,2026-10-20,2026-11-23
+panel_02_USGS_255534081324000,category,water_quality,3,salinity,water_temperature,-0.058474,negative,2026-10-20,2026-11-23
+panel_02_USGS_255534081324000,category,water_quality,3,water_temperature,water_temperature,0.80539,positive,2026-10-20,2026-11-23

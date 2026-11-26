@@ -1,0 +1,4 @@
+panel_id,region,site_id,n_concepts,n_test_pairs,concepts,beats_persistence,beats_self_ar,median_skill_persistence,median_skill_self_ar,n_defined_skill_persistence,n_defined_skill_self_ar,best_concept_vs_self_ar,best_skill_self_ar,worst_concept_vs_self_ar,worst_skill_self_ar
+panel_01_USGS_255327081275900,big_cypress,USGS-255327081275900,2,19.0,salinity;water_temperature,0,0,-1.5163162745748835,-0.02802706561990831,2,2,water_temperature,-0.0008081680218576803,salinity,-0.05524596321795894
+panel_02_USGS_255534081324000,southwest_everglades_coast,USGS-255534081324000,2,31.0,salinity;water_temperature,0,0,-0.9968804889693662,-0.06079486927655864,2,2,salinity,-0.03768038101370963,water_temperature,-0.08390935753940765
+panel_04_USGS_0229070854,central_south_biscayne,USGS-0229070854,2,31.0,salinity;water_temperature,0,1,-0.2764399853655455,0.08953957014409786,2,2,water_temperature,0.2174243915239782,salinity,-0.038345251235782474

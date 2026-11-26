@@ -1,0 +1,19 @@
+level,scope,donor_panel,target_panel,status,reason
+category,hydrology,panel_01_USGS_255327081275900,panel_02_USGS_255534081324000,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+category,hydrology,panel_01_USGS_255327081275900,panel_04_USGS_0229070854,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+category,hydrology,panel_02_USGS_255534081324000,panel_01_USGS_255327081275900,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+category,hydrology,panel_02_USGS_255534081324000,panel_04_USGS_0229070854,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+category,hydrology,panel_04_USGS_0229070854,panel_01_USGS_255327081275900,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+category,hydrology,panel_04_USGS_0229070854,panel_02_USGS_255534081324000,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+category,water_quality,panel_01_USGS_255327081275900,panel_02_USGS_255534081324000,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+category,water_quality,panel_01_USGS_255327081275900,panel_04_USGS_0229070854,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+category,water_quality,panel_02_USGS_255534081324000,panel_01_USGS_255327081275900,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+category,water_quality,panel_02_USGS_255534081324000,panel_04_USGS_0229070854,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+category,water_quality,panel_04_USGS_0229070854,panel_01_USGS_255327081275900,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+category,water_quality,panel_04_USGS_0229070854,panel_02_USGS_255534081324000,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+dataset,full_station,panel_01_USGS_255327081275900,panel_02_USGS_255534081324000,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+dataset,full_station,panel_01_USGS_255327081275900,panel_04_USGS_0229070854,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+dataset,full_station,panel_02_USGS_255534081324000,panel_01_USGS_255327081275900,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+dataset,full_station,panel_02_USGS_255534081324000,panel_04_USGS_0229070854,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+dataset,full_station,panel_04_USGS_0229070854,panel_01_USGS_255327081275900,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run
+dataset,full_station,panel_04_USGS_0229070854,panel_02_USGS_255534081324000,evaluated,donor only; matched concepts/units/datums; target test dates specified in prior run

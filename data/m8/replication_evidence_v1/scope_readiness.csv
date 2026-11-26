@@ -1,0 +1,4 @@
+level,scope,n_fitted_station_models,n_distinct_stations,n_edge_replication_rows,n_transfer_pairs,regional_expert_status
+category,hydrology,3,3,4,6,NOT_TRAINED
+category,water_quality,3,3,4,6,NOT_TRAINED
+dataset,full_station,3,3,16,6,NOT_TRAINED

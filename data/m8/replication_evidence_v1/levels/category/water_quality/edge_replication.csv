@@ -1,0 +1,5 @@
+level,scope,concept_set,source_concept,target_concept,n_distinct_sites,n_positive,n_negative,n_zero,sign_consistency,median_weight,status,interpretation
+category,water_quality,salinity;water_temperature,salinity,salinity,3,3,0,0,1.0,0.95628,replication_candidate_not_causal,independent site fits and matched measurement schema only; sign frequency not regional causal evidence
+category,water_quality,salinity;water_temperature,salinity,water_temperature,3,0,3,0,1.0,-0.038675,replication_candidate_not_causal,independent site fits and matched measurement schema only; sign frequency not regional causal evidence
+category,water_quality,salinity;water_temperature,water_temperature,salinity,3,2,1,0,0.6666666666666666,0.029601,replication_candidate_not_causal,independent site fits and matched measurement schema only; sign frequency not regional causal evidence
+category,water_quality,salinity;water_temperature,water_temperature,water_temperature,3,3,0,0,1.0,0.80539,replication_candidate_not_causal,independent site fits and matched measurement schema only; sign frequency not regional causal evidence
