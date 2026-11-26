@@ -120,6 +120,30 @@ class HistorySelection(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"max_per_region"):
             select_panels(rows,sites,"2026-10-31",max_per_region=0)
 
+    def test_targeted_region_recruitment_does_not_infer_connectivity(self):
+        rows=[]
+        stations=[]
+        for sid,regions in [
+            ("USGS-A","big_cypress;southwest_everglades_coast"),
+            ("USGS-B","big_cypress"),
+            ("USGS-C","central_south_biscayne"),
+        ]:
+            rows.extend([
+                metadata(sid,"00060","discharge",sid+"-flow"),
+                metadata(sid,"00480","salinity",sid+"-salinity"),
+                metadata(sid,"00010","water_temperature",sid+"-temperature"),
+            ])
+            stations.append(dict(dataset_id="usgs_water",site_id=sid,
+                                 regions=regions))
+        selected=select_panels(rows,stations,"2026-10-31",
+            max_panels=3,region_filter={"big_cypress"})
+        self.assertEqual({x["site_id"] for x in selected},
+                         {"USGS-A","USGS-B"})
+        self.assertEqual({x["region"] for x in selected},{"big_cypress"})
+        with self.assertRaisesRegex(ValueError,"unknown discovery region"):
+            select_panels(rows,stations,"2026-10-31",
+                          region_filter={"imaginary_bay"})
+
     def test_insufficient_multivariate_series_return_empty(self):
         r=[metadata("USGS-1","00060","discharge","ts")]
         s=[dict(dataset_id="usgs_water",site_id="USGS-1",
