@@ -145,6 +145,26 @@ class EvidenceEndToEndTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,"new/empty"):
                 browse(models,evidence,[panels],out,dpi=60)
 
+    def test_committed_three_station_snapshot_if_present(self):
+        """Real USGS snapshot regression; skip if large data excluded from clone."""
+        base=Path(__file__).resolve().parents[1]
+        models=base/"data/m8/layers_replication_v1"
+        evidence=base/"data/m8/replication_evidence_v1"
+        panels=[base/"data/m7/daily_panels_verified_01",
+                base/"data/m8/replication_daily_01"]
+        needed=[models/"manifest.json",models/"model_registry.csv",
+                evidence/"manifest.json",evidence/"cross_station_transfer.csv"]
+        needed += [p/"panel_readiness.csv" for p in panels]
+        if not all(x.is_file() for x in needed):
+            self.skipTest("real M8 station files not present in this checkout")
+        with tempfile.TemporaryDirectory() as td:
+            result=browse(models,evidence,panels,Path(td)/"browser",
+                          edge_threshold=.08,dpi=60)
+            self.assertEqual(result["n_transfer_diagnostics"],48)
+            self.assertEqual(result["n_edge_evidence_rows"],24)
+            self.assertEqual(result["n_unverified_stage_datum_rows"],12)
+            self.assertTrue((Path(td)/"browser"/"INDEX.md").exists())
+
     def test_evidence_hash_mismatch_is_refused(self):
         with tempfile.TemporaryDirectory() as td:
             root=Path(td)
