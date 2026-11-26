@@ -168,14 +168,14 @@ def fit_preview(rows,concepts,min_pairs=79):
     for target,j in enumerate(concepts):
         for source,i in enumerate(concepts):
             w=weights[target][source+1]
-            edges.append(dict(source_concept=i,target_concept=j,
+            edges.append(dict(source_concept=source,target_concept=target,
                 weight=round(w,6),sign="positive" if w>0 else
                 "negative" if w<0 else "zero",
                 edge_kind="self_memory" if source==target else "cross_concept",
                 interpretation="held-out predictive association; NOT demonstrated causality"))
     # Explicit forward recursion (no future observation inputs): illustrative,
     # not measured skill or an intervention effect.
-    last=rows[-1]
+    last=max(rows,key=lambda r:r["date"])
     state=[(numeric(last[c])-means[j])/scales[j] for j,c in enumerate(concepts)]
     roll=[]
     for step in range(1,8):
