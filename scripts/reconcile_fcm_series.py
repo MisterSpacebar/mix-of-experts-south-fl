@@ -74,6 +74,7 @@ def run(source,out,execute=False,panel_ids=None,probe_days=2,
     approved=[t for t in result if t["panel_id"] not in failures]
     write_csv(out/"history_plan.csv",approved,PLAN_COLS)
     write_csv(out/"series_identity_audit.csv",audit,AUDIT_COLUMNS)
+    approved_sha256=hashlib.sha256((out/"history_plan.csv").read_bytes()).hexdigest()
     report={
         "created_at_utc":datetime.now(timezone.utc).isoformat(),
         "input_plan":str(source),
@@ -85,6 +86,7 @@ def run(source,out,execute=False,panel_ids=None,probe_days=2,
             r["old_series_id"]!=r["resolved_series_id"] for r in audit),
         "n_failed_or_unattempted_tasks":sum(r["status"]!="verified" for r in audit),
         "n_verified_complete_panels":len({x["panel_id"] for x in approved}),
+        "verified_plan_sha256":approved_sha256,
         "failed_or_incomplete_panels":sorted(failures),
         "source_identity_verified":True,
         "observation_coverage_verified":False,
