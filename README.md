@@ -204,6 +204,36 @@ intervals that do not contain their own original point estimates.
 It makes **no** new fitted regional experts or pooled edge matrices.
 See [M8 evidence browser runbook](docs/M8_EVIDENCE_BROWSER.md).
 
+## Milestone 9: geographic-region FCM readiness
+
+Geographic regions are a **second modeling axis**, alongside
+environmental categories/subcategories. The new read-only regional
+browser inventories *observed* site assignments, source-dated concept
+coverage, verified (optional) station coordinates, within-region
+independent-station overlap, native unit/datum compatibility and
+training readiness by region × subsystem. Every regional FCM remains
+**NOT TRAINED** until independent in-region stations, provenance,
+connectivity and held-out spatial validation support real fitting.
+
+```powershell
+python scripts/build_m9_region_readiness.py --models data/m8/layers_replication_v1 --panels data/m7/daily_panels_verified_01 --panels data/m8/replication_daily_01 --out data/m9/regional_readiness_v1
+
+# After reading M9 region coverage, recruit more stations in one target area:
+python scripts/plan_fcm_history.py --periods data/inventory/parameters_harmonized_v1/parameter_periods.csv --stations data/inventory/combined_v3/stations.csv --end 2026-11-24 --days 180 --max-panels 6 --max-concepts 4 --region central_south_biscayne --exclude-site USGS-0229070854 --out data/m9/biscayne_history_candidates_v1
+```
+
+Read `data/m9/regional_readiness_v1/INDEX.md`. With the existing
+three-station dataset, each station belongs to a **different** selected
+screening region, so no region has an independent within-region
+station pair. The per-region station→concept SVG documents observed
+variables only, not learned regional FCM arrows. Optional `--stations`
+adds source-verified point coordinates from the locally ignored
+station-inventory file (no invented GIS points).
+
+See [M9 Geographic Readiness and Region-Specific Evidence](docs/M9_GEOGRAPHIC_READINESS.md)
+for source hashes, QA criteria, visual interpretation and bounded
+regional station expansion.
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
@@ -218,6 +248,7 @@ See [M8 evidence browser runbook](docs/M8_EVIDENCE_BROWSER.md).
 - [Milestone 8: station-local scoped expert fitting and per-layer evidence](docs/M8_LAYERED_EXPERTS.md)
 - [Milestone 8 continuation: independent station replication and transfer](docs/M8_REPLICATION_AND_TRANSFER.md)
 - [M8 scientific evidence browser and transfer-failure diagnostics](docs/M8_EVIDENCE_BROWSER.md)
+- [M9 geographic region FCM inventory and readiness](docs/M9_GEOGRAPHIC_READINESS.md)
 
 ## Modeling design (planned)
 
