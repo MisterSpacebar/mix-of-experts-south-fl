@@ -1,0 +1,56 @@
+dataset_id,site_id,series_id,concept,unit,vertical_datum,fraction,depth,time_basis,n_rows,n_numeric,n_censored,n_flagged,n_provisional,n_duplicate_ids,n_duplicate_times,n_conflicting_times,n_dates,start_date,end_date,observed_span_days,median_observed_gap_hours,readiness_note
+epa_wqp,21FLBBAP_WQX-BB14,,dissolved_oxygen,mg/L,,,.187 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2025-12-17,2025-12-17,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLBBAP_WQX-BB14,,dissolved_oxygen,mg/L,,,.21 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2025-11-19,2025-11-19,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLBBAP_WQX-BB14,,dissolved_oxygen,mg/L,,,.215 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-07-22,2026-07-22,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLBBAP_WQX-BB14,,dissolved_oxygen,mg/L,,,.232 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-03-17,2026-03-17,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLBBAP_WQX-BB14,,dissolved_oxygen,mg/L,,,.235 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-01-29,2026-01-29,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLBBAP_WQX-BB14,,dissolved_oxygen,mg/L,,,.237 m,source_local_date_not_utc,2,2,0,2,0,0,0,0,2,2026-03-17,2026-06-24,100,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLBBAP_WQX-BB14,,dissolved_oxygen,mg/L,,,.25 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-02-25,2026-02-25,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLBBAP_WQX-BB14,,dissolved_oxygen,mg/L,,,.285 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-05-27,2026-05-27,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLBBAP_WQX-BB14,,dissolved_oxygen,mg/L,,,.373 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-04-27,2026-04-27,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLBBAP_WQX-BBMB1A,,dissolved_oxygen,mg/L,,,.783 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-06-24,2026-06-24,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLBBAP_WQX-BBMB1A,,dissolved_oxygen,mg/L,,,.871 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-07-22,2026-07-22,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLBBAP_WQX-BBMB1A,,dissolved_oxygen,mg/L,,,.98 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-03-17,2026-03-17,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-AR03,,dissolved_oxygen,%,,,.1 m,source_local_date_not_utc,7,7,0,7,0,0,0,0,7,2025-11-05,2026-05-13,190,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-AR03,,dissolved_oxygen,%,,,.5 m,source_local_date_not_utc,7,7,0,7,0,0,0,0,7,2025-11-05,2026-05-13,190,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-AR03,,dissolved_oxygen,%,,,.994 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2025-11-05,2025-11-05,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-AR03,,dissolved_oxygen,%,,,1.073 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2025-12-03,2025-12-03,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-AR03,,dissolved_oxygen,%,,,4.057 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-02-04,2026-02-04,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-AR03,,dissolved_oxygen,%,,,4.314 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-03-04,2026-03-04,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-AR03,,dissolved_oxygen,%,,,4.339 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-01-07,2026-01-07,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-AR03,,dissolved_oxygen,%,,,4.408 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-05-13,2026-05-13,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-AR03,,dissolved_oxygen,%,,,4.667 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-04-08,2026-04-08,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-BB50,,dissolved_oxygen,%,,,.1 m,source_local_date_not_utc,7,7,0,7,0,0,0,0,7,2025-11-05,2026-05-13,190,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-BB50,,dissolved_oxygen,%,,,.5 m,source_local_date_not_utc,7,7,0,7,0,0,0,0,7,2025-11-05,2026-05-13,190,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-BB50,,dissolved_oxygen,%,,,2.814 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-04-08,2026-04-08,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-BB50,,dissolved_oxygen,%,,,2.884 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-01-07,2026-01-07,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-BB50,,dissolved_oxygen,%,,,2.918 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-03-04,2026-03-04,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-BB50,,dissolved_oxygen,%,,,2.955 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-02-04,2026-02-04,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-BB50,,dissolved_oxygen,%,,,2.956 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2025-12-03,2025-12-03,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-BB50,,dissolved_oxygen,%,,,2.969 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-05-13,2026-05-13,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLDADE_WQX-BB50,,dissolved_oxygen,%,,,3.13 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2025-11-05,2025-11-05,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLKNMS_WQX-G5AP0023,,dissolved_oxygen,%,,,10.3 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2025-09-15,2025-09-15,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLKNMS_WQX-G5AP0023,,dissolved_oxygen,%,,,11.336 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2025-03-26,2025-03-26,1,,too_few_observed_days_for_temporal_model
+epa_wqp,21FLKNMS_WQX-G5AP0023,,dissolved_oxygen,%,,,5.215 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2025-12-08,2025-12-08,1,,too_few_observed_days_for_temporal_model
+epa_wqp,MOTE_WQX-American Shoals,,dissolved_oxygen,%,,,1.0 m,source_local_date_not_utc,8,8,0,8,0,0,0,0,8,2025-11-19,2026-06-23,217,,too_few_observed_days_for_temporal_model
+epa_wqp,MOTE_WQX-American Shoals,,dissolved_oxygen,%,,,5.0 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-06-23,2026-06-23,1,,too_few_observed_days_for_temporal_model
+epa_wqp,MOTE_WQX-American Shoals,,dissolved_oxygen,%,,,5.4 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-04-28,2026-04-28,1,,too_few_observed_days_for_temporal_model
+epa_wqp,MOTE_WQX-American Shoals,,dissolved_oxygen,%,,,5.5 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-02-18,2026-02-18,1,,too_few_observed_days_for_temporal_model
+epa_wqp,MOTE_WQX-American Shoals,,dissolved_oxygen,%,,,5.8 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-03-25,2026-03-25,1,,too_few_observed_days_for_temporal_model
+epa_wqp,MOTE_WQX-American Shoals,,dissolved_oxygen,%,,,5.9 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2025-11-19,2025-11-19,1,,too_few_observed_days_for_temporal_model
+epa_wqp,MOTE_WQX-American Shoals,,dissolved_oxygen,%,,,6.0 m,source_local_date_not_utc,2,2,0,2,0,0,0,0,2,2025-12-19,2026-05-28,161,,too_few_observed_days_for_temporal_model
+epa_wqp,MOTE_WQX-American Shoals,,dissolved_oxygen,%,,,8.2 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-01-23,2026-01-23,1,,too_few_observed_days_for_temporal_model
+epa_wqp,MOTE_WQX-Sombrero Reef,,dissolved_oxygen,%,,,1.0 m,source_local_date_not_utc,3,3,0,3,0,0,0,0,3,2026-05-07,2026-07-01,56,,too_few_observed_days_for_temporal_model
+epa_wqp,MOTE_WQX-Sombrero Reef,,dissolved_oxygen,%,,,5.5 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-05-07,2026-05-07,1,,too_few_observed_days_for_temporal_model
+epa_wqp,MOTE_WQX-Sombrero Reef,,dissolved_oxygen,%,,,6.9 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-07-01,2026-07-01,1,,too_few_observed_days_for_temporal_model
+epa_wqp,MOTE_WQX-Sombrero Reef,,dissolved_oxygen,%,,,7.6 m,source_local_date_not_utc,1,1,0,1,0,0,0,0,1,2026-06-03,2026-06-03,1,,too_few_observed_days_for_temporal_model
+noaa_coops,8723970,8723970|water_level,water_level,m,MLLW,, ,explicit_utc_datetime,3360,3360,0,3360,0,0,0,0,14,2026-10-18,2026-10-31,14,0.1,too_few_observed_days_for_temporal_model
+noaa_coops,8724580,8724580|water_level,water_level,m,MLLW,, ,explicit_utc_datetime,3360,3360,0,3360,0,0,0,0,14,2026-10-18,2026-10-31,14,0.1,too_few_observed_days_for_temporal_model
+usgs_water,USGS-02286328,02af27de6e7c4de783f5b8a64144cbfc,salinity,ppt,,, ,explicit_utc_datetime,1243,1243,0,0,1243,0,0,0,14,2026-10-18,2026-10-31,14,0.25,too_few_observed_days_for_temporal_model
+usgs_water,USGS-02286328,875d6767974b4f1ea6026e3a655412f4,salinity,ppt,,, ,explicit_utc_datetime,1246,1246,0,0,1246,0,0,0,14,2026-10-18,2026-10-31,14,0.25,too_few_observed_days_for_temporal_model
+usgs_water,USGS-0229070854,c9c34fbfdd304d76818bd7d4d5d40019,salinity,ppt,,, ,explicit_utc_datetime,1245,1245,0,0,1245,0,0,0,14,2026-10-18,2026-10-31,14,0.25,too_few_observed_days_for_temporal_model
+usgs_water,USGS-02290709,51e313f0976c47f29df314626c35d929,salinity,ppt,,, ,explicit_utc_datetime,1247,1247,0,0,1247,0,0,0,14,2026-10-18,2026-10-31,14,0.25,too_few_observed_days_for_temporal_model
+usgs_water,USGS-02290709,57f8f0f4bd56416d96c998d62832c0d3,salinity,ppt,,, ,explicit_utc_datetime,1247,1247,0,0,1247,0,0,0,14,2026-10-18,2026-10-31,14,0.25,too_few_observed_days_for_temporal_model
+usgs_water,USGS-250802081035500,3cc1772d85be46b2803bd5d6b66a5990,salinity,ppt,,, ,explicit_utc_datetime,874,874,0,0,874,0,0,0,12,2026-10-20,2026-10-31,12,0.25,too_few_observed_days_for_temporal_model
+usgs_water,USGS-251003080435500,9647cac49f7b4a41ae9264ce4d051548,salinity,ppt,,, ,explicit_utc_datetime,1249,1249,0,0,1249,0,0,0,14,2026-10-18,2026-10-31,14,0.25,too_few_observed_days_for_temporal_model
+usgs_water,USGS-254838080155301,c1bd9d23cefe4eaa84b87f98e92d96f1,salinity,ppt,,, ,explicit_utc_datetime,1247,1247,0,0,1247,0,0,0,14,2026-10-18,2026-10-31,14,0.25,too_few_observed_days_for_temporal_model

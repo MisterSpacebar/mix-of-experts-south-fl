@@ -1,0 +1,12 @@
+{
+  "generated_at_utc": "2026-11-26T01:49:50.568765+00:00",
+  "input": "data\\pilot\\runs\\first\\observations.csv",
+  "input_sha256": "57d0ec58a7739baf730119dcd57a558864363f095e8b13fb48b8c23818e7be38",
+  "n_observation_rows": 16398,
+  "n_source_series_groups": 55,
+  "n_same_site_pairs": 0,
+  "n_conflicting_observation_times": 0,
+  "n_numeric_records": 16398,
+  "basis": "observed records/dates only; no inferred instrument uptime",
+  "trainable": false
+}

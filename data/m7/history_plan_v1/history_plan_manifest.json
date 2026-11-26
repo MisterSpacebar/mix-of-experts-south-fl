@@ -1,0 +1,18 @@
+{
+  "created_at_utc": "2026-11-26T01:49:57.857217+00:00",
+  "period_source": "data\\inventory\\parameters_harmonized_v1\\parameter_periods.csv",
+  "period_sha256": "5c0eea5df2e7dabadbc76ef42ab945fc5c8936af3331032a721cc373cb374e96",
+  "station_source": "data\\inventory\\combined_v3\\stations.csv",
+  "n_panels": 3,
+  "n_series_tasks": 12,
+  "regions": {
+    "big_cypress": 8,
+    "southwest_everglades_coast": 4
+  },
+  "end": "2026-10-31",
+  "days": 120,
+  "source": "USGS continuous",
+  "observations_downloaded": false,
+  "trainable": false,
+  "note": "First/last metadata only; actual temporal overlap must be verified. No cross-site merges, interpolation, or causal claims."
+}

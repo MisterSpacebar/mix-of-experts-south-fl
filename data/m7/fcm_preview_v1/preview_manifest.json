@@ -1,0 +1,40 @@
+{
+  "created_at_utc": "2026-11-26T01:55:04.602484+00:00",
+  "input_panels": "data\\m7\\daily_panels_v1",
+  "input_manifest": {
+    "generated_at_utc": "2026-11-26T01:54:52.265296+00:00",
+    "history_manifest_source": "data\\m7\\history_run_v1\\history_manifest.json",
+    "observations_sha256": "e2b3881a99a334d61fca9589b3afa9835a310f2f96ca92bd1b699feba9d614e2",
+    "min_samples_per_source_day": 8,
+    "min_utc_day_span_hours": 8,
+    "approved_only": false,
+    "n_panels": 2,
+    "n_candidate_panels": 0,
+    "incomplete_panels": [
+      "panel_03_USGS_255534081324000"
+    ],
+    "note": "Daily arithmetic means from available within-day instants only, not instrument uptime-adjusted or gap-filled. A panel candidate still requires chronological validation."
+  },
+  "n_fitted_previews": 0,
+  "n_skipped": 3,
+  "results": [
+    {
+      "panel_id": "panel_01_USGS_255327081275900",
+      "status": "skipped",
+      "reason": "insufficient_consecutive_observation_days"
+    },
+    {
+      "panel_id": "panel_02_USGS_255432081303900",
+      "status": "skipped",
+      "reason": "insufficient_consecutive_observation_days"
+    },
+    {
+      "panel_id": "panel_03_USGS_255534081324000",
+      "status": "skipped",
+      "reason": "blocked_failed_download"
+    }
+  ],
+  "validation": "chronological train-validation-test; no future-data features",
+  "causal_discovery": false,
+  "operational_ready": false
+}

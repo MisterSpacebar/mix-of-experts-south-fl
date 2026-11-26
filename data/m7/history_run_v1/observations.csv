@@ -1,0 +1,1 @@
+dataset_id,site_id,series_id,concept,parameter_code,parameter_name,measurement_type,timestamp_utc,sample_date,time_basis,value,original_value,unit,approval_status,qualifier,detection_condition,activity_id,result_id,fraction,sample_depth_value,sample_depth_unit,method,vertical_datum,source_url
