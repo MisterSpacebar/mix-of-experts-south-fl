@@ -35,8 +35,12 @@ def main():
     p.add_argument("--preview", type=Path, required=True)
     p.add_argument("--out", type=Path, default=None)
     p.add_argument("--dpi", type=int, default=180)
+    p.add_argument("--min-edge", type=float, default=0.08,
+                   help="Absolute signed weight cutoff for node-link SVGs only; "
+                        "CSV retains all original edges")
     a = p.parse_args()
-    report = render_all(a.preview, a.out, dpi=a.dpi)
+    report = render_all(a.preview, a.out, dpi=a.dpi,
+                        min_network_weight=a.min_edge)
     dest = a.out or (a.preview / "visuals")
     print(f"Rendered visuals for {report['n_panels']} panels -> {dest}")
     if not report["n_panels"]:
