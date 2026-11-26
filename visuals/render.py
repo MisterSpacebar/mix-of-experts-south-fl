@@ -128,7 +128,8 @@ def plot_cross_panel_summary(panel_rows, out_path, dpi=180):
     plt.close(fig)
 
 
-def render_all(preview_dir, out_dir=None, dpi=180):
+def render_all(preview_dir, out_dir=None, dpi=180,
+               min_network_weight=0.08):
     preview_dir = Path(preview_dir)
     manifest = load_manifest(preview_dir)
     out_dir = ensure_clean_dir(out_dir or (preview_dir / "visuals"))
@@ -150,7 +151,9 @@ def render_all(preview_dir, out_dir=None, dpi=180):
             "edge_weight_heatmap": str(panel_out / "edge_weight_heatmap.png"),
         })
 
-    hierarchy = render_hierarchy(panel_dirs, out_dir / "hierarchy", dpi=dpi)
+    hierarchy = render_hierarchy(
+        panel_dirs,out_dir / "hierarchy",dpi=dpi,
+        min_network_weight=min_network_weight)
 
     cross_panel = out_dir / "cross_panel"
     write_csv(cross_panel / "panel_summary.csv", panel_summaries, SUMMARY_COLUMNS)
