@@ -1,0 +1,2 @@
+panel_id,region,site_id,n_concepts,n_test_pairs,concepts,beats_persistence,beats_self_ar,median_skill_persistence,median_skill_self_ar,n_defined_skill_persistence,n_defined_skill_self_ar,best_concept_vs_self_ar,best_skill_self_ar,worst_concept_vs_self_ar,worst_skill_self_ar
+panel_01_USGS_255327081275900,big_cypress,USGS-255327081275900,4,19.0,discharge;salinity;water_temperature;gage_height,2,3,-0.37287433690467864,0.028963419348483843,4,4,gage_height,0.045157561226237375,salinity,-0.08477736535410485

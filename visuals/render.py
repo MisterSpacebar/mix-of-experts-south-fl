@@ -54,7 +54,7 @@ def plot_baseline_comparison(panel_dir, out_path, dpi=180):
     ax.axhline(1.0,color="#444444",linestyle="--",linewidth=1,
                label="Persistence reference = 1")
     ax.set_xticks(x)
-    ax.set_xticklabels([c.replace("_","\\n") for c in concepts])
+    ax.set_xticklabels([c.replace("_","\n") for c in concepts])
     ax.set_ylabel("MAE / persistence MAE (dimensionless; lower is better)")
     ax.set_title(f"Held-out baseline comparison — {Path(panel_dir).name}")
     ax.legend(frameon=False,ncol=2)
