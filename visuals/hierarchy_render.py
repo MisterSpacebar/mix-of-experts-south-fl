@@ -215,7 +215,7 @@ def render_panel_networks(panel_id, concepts, edges, panel_root,
     return rows
 
 
-def render_hierarchy(panel_dirs, out_dir, dpi=180):
+def render_hierarchy(panel_dirs, out_dir, dpi=180, min_network_weight=0.08):
     """Write hierarchical reporting directories from existing fitted panels.
 
     panel_dirs is [(panel_id, filesystem Path)] from preview manifest.
@@ -237,7 +237,8 @@ def render_hierarchy(panel_dirs, out_dir, dpi=180):
         all_edges.extend(edges)
         write_csv(panel_root/"classified_edges.csv",edges,EDGE_INDEX_COLS)
         network_rows.extend(render_panel_networks(
-            panel_id,concepts,edges,panel_root))
+            panel_id,concepts,edges,panel_root,
+            min_network_weight=min_network_weight))
         plot_grouped_edges(panel_path,panel_root/"subcategory_grouped_heatmap.png",
                            dpi=dpi)
         # Views contain only original learned edges, never averaged weights.
@@ -280,6 +281,7 @@ def render_hierarchy(panel_dirs, out_dir, dpi=180):
         "trained_dataset_panels": len(panel_concepts),
         "observed_subcategories": len(coverage),
         "network_svg_views": len(network_rows),
+        "network_min_abs_weight": min_network_weight,
         "network_catalog": str(out_dir/"network_views.csv"),
         "network_index": str(out_dir/"NETWORK_INDEX.md"),
         "trained_subcategory_models": 0,
