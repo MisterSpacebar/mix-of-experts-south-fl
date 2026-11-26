@@ -129,7 +129,13 @@ python scripts/render_fcm_visuals.py --preview data/m7/fcm_preview_verified_02 -
 
 The baseline comparison normalizes MAE by per-concept persistence MAE and
 the cross-panel comparison uses dimensionless skill (not averaged errors
-with different physical units). See [FCM visualization and hierarchy
+with different physical units). Each trained station panel also receives
+directed node-link SVGs for its full FCM, each populated category and
+subcategory, and cross-category bridges where present. Browse them using
+`visuals_v2/hierarchy/NETWORK_INDEX.md` and per-panel `NETWORKS.md`.
+These are views of the same trained model, not independently trained
+higher-level experts. Use `--min-edge 0` with a new output directory
+to display all weak non-self links. See [FCM visualization and hierarchy
 runbook](docs/FCM_VISUALS_HIERARCHY.md).
 
 ## Documentation
