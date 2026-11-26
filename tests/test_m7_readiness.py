@@ -35,8 +35,8 @@ class QA(unittest.TestCase):
         self.assertEqual(len(series),2)
         self.assertEqual(len(pairs),1)
         self.assertEqual(pairs[0]["shared_observed_dates"],1)
-        self.assertIn("NOT",series[0]["readiness_note"].upper()
-                      if "NOT" in series[0]["readiness_note"].upper() else "NOT") # source cadence not inferred
+        self.assertEqual(series[0]["readiness_note"],
+                         "too_few_observed_days_for_temporal_model")
 
     def test_censored_and_duplicate_observation_times(self):
         row=sensor()
@@ -59,9 +59,10 @@ class QA(unittest.TestCase):
         self.assertEqual(pairs,[])
 
     def test_bad_utc_stamp_rejected(self):
+        row=sensor()
+        row["timestamp_utc"]="not-a-date"
         with self.assertRaisesRegex(ValueError,"timestamp"):
-            audit([sensor(stamp="2026-10-01T00:00:00Z",
-                          timestamp_utc="not-a-date")])
+            audit([row])
 
     def test_writes_immutable_audit_outputs(self):
         from southfl.observations import COLS
