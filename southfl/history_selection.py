@@ -20,7 +20,7 @@ CONCEPT_ORDER=["dissolved_oxygen","discharge","salinity",
 
 def select_panels(periods,stations,end_date,days=120,max_panels=3,
                   max_concepts=4,min_concepts=3,site_filter=None,
-                  exclude_sites=None,max_per_region=None):
+                  exclude_sites=None,max_per_region=None,region_filter=None):
     end=date.fromisoformat(end_date)
     begin=end-timedelta(days=days-1)
     if not 60<=days<=366:
@@ -30,6 +30,11 @@ def select_panels(periods,stations,end_date,days=120,max_panels=3,
     if max_per_region is not None and not 1<=max_per_region<=8:
         raise ValueError("max_per_region must be 1..8")
     excluded=set(exclude_sites or ())
+    selected_regions=set(region_filter or ())
+    if selected_regions:
+        from .regions import REGIONS
+        if not selected_regions.issubset(REGIONS):
+            raise ValueError("region filter contains unknown discovery region")
     sites={(s["dataset_id"],s["site_id"]):s for s in stations}
     candidates=defaultdict(lambda:defaultdict(list))
     for r in periods:
@@ -83,6 +88,10 @@ def select_panels(periods,stations,end_date,days=120,max_panels=3,
         regions=[x for x in site_meta.get("regions","").split(";") if x]
         if not regions:
             regions=["unassigned"]
+        if selected_regions:
+            regions=[r for r in regions if r in selected_regions]
+            if not regions:
+                continue
         scored.append((len(ordered),len(chosen),site,regions,chosen,ordered))
     # Prefer sites with more independent concepts; balance across regions
     # rather than automatically prioritizing Biscayne.
