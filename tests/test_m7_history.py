@@ -45,6 +45,12 @@ class History(unittest.TestCase):
         self.assertEqual(unmatched,1)
         self.assertEqual(dups,1)
 
+    def test_conflicting_approval_metadata_fails_closed(self):
+        def fake(site,code,start,end,concept,mode):
+            return [obs(),obs(approval_status="Provisional")],[]
+        with self.assertRaisesRegex(AcquisitionError,"conflicting values"):
+            fetch_series(task(),fetcher=fake)
+
     def test_mixed_unit_fails_closed(self):
         def fake(site,code,start,end,concept,mode):
             return [obs(unit="m")],[]
