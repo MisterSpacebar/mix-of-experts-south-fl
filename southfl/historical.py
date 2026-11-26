@@ -54,8 +54,11 @@ def fetch_series(task,fetcher=usgs_observations,chunk_days=14):
         key=(row["series_id"],row["timestamp_utc"])
         old=seen.get(key)
         if old is not None:
-            if (old["original_value"],old["unit"],old["vertical_datum"])!=(
-                    row["original_value"],row["unit"],row["vertical_datum"]):
+            # Even an identical numeric value cannot be silently deduped if
+            # source approval or censoring metadata disagree for that instant.
+            compare_fields=("original_value","unit","vertical_datum",
+                            "approval_status","qualifier","detection_condition")
+            if any(old.get(field,"")!=row.get(field,"") for field in compare_fields):
                 conflicts.append({"site_id":task["site_id"],"series_id":task["series_id"],
                                   "timestamp_utc":row["timestamp_utc"],
                                   "prior_value":old["original_value"],
