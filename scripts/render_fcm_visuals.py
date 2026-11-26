@@ -13,6 +13,7 @@ It creates a NEW directory (default: <preview>/visuals) with:
 - hierarchy/categories/<category>/<panel_id>_concepts.csv
 - hierarchy/cross_subcategory_edges.csv
 - hierarchy/concept_coverage.csv, hierarchy_status.csv, subcategory_coverage.png
+- hierarchy/hierarchy_overview.png (trained station layer versus planned levels)
 - cross_panel/panel_summary.csv
 - cross_panel/concept_summary.csv
 - cross_panel/cross_panel_performance_summary.png (dimensionless median skill)
