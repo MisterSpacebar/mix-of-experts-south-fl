@@ -31,6 +31,8 @@ def run(panels,out,min_pairs=79):
             results.append(dict(panel_id=pid,status="skipped",reason=item["status"]))
             continue
         concepts=item["concepts"].split(";")
+        units=dict(part.split("=",1) for part in item.get("concept_units","").split(";") if "=" in part)
+        datums=dict(part.split("=",1) for part in item.get("concept_datums","").split(";") if "=" in part)
         path=panels/(pid+".csv")
         try:
             model=fit_preview(read_csv(path),concepts,min_pairs=min_pairs)
@@ -41,13 +43,16 @@ def run(panels,out,min_pairs=79):
                 ("evaluation","predictions","edges","rollout")
             },indent=2)+"\n",encoding="utf-8")
             write_csv(directory/"edge_weights.csv",model["edges"],EDGE_COLS)
+            for metric in model["evaluation"]:
+                datum=datums.get(metric["concept"],"")
+                metric["unit_note"]=units.get(metric["concept"],"") + (f" ({datum})" if datum else "")
             write_csv(directory/"heldout_metrics.csv",model["evaluation"],EVAL_COLS)
             write_csv(directory/"heldout_predictions.csv",model["predictions"],PRED_COLS)
             write_csv(directory/"illustrative_rollout.csv",model["rollout"],ROLL_COLS)
             (directory/"fcm_network.svg").write_text(network_svg(model),encoding="utf-8")
             target=min(model["evaluation"],key=lambda r:r["fcm_mae"])["concept"]
             (directory/"heldout_hindcast.svg").write_text(
-                hindcast_svg(model,target),encoding="utf-8")
+                hindcast_svg(model,target,units.get(target,"")),encoding="utf-8")
             metrics=["| Concept | FCM MAE | Self-AR MAE | Persistence MAE |",
                      "|---|---:|---:|---:|"]
             for m in model["evaluation"]:
@@ -57,7 +62,8 @@ def run(panels,out,min_pairs=79):
                 f'# First dynamic FCM preview: {pid}',
                 "",
                 f'Canonical station: `{item["site_id"]}`. Screening region: `{item["region"]}`.',
-                f'Concepts: {", ".join(concepts)}. Each concept retains its native unit.',
+                f'Concepts: {", ".join(concepts)}. Source units: {item.get("concept_units","")}.',
+                f'Vertical references: {item.get("concept_datums","")}.',
                 f'Chronological pairs: {model["n_pairs"]}. '
                 f'Train {model["train_pairs"]}, validation {model["validation_pairs"]}, '
                 f'test {model["test_pairs"]}.',
