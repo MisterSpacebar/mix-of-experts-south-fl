@@ -9,7 +9,8 @@ panels* and an explicit inventory of layers yet to be trained.
 
 The visualization tests import Matplotlib. GitHub Actions must install the
 committed `requirements.txt` before `python -m unittest discover -s tests -v`.
-This PR adds that step; locally use `python -m pip install -r requirements.txt`.
+The workflow already includes that dependency install; locally use
+`python -m pip install -r requirements.txt`.
 No agency API credentials or downloads are needed.
 
 ## Run on the existing 41,341-observation model preview
@@ -38,6 +39,8 @@ visuals_v2/
     concept_summary.csv                   # native MAEs + per-concept skill
     cross_panel_performance_summary.png   # scale-free median skill
   hierarchy/
+    NETWORK_INDEX.md                     # browse every trained panel
+    network_views.csv                    # index, scope, node/arrow counts
     concept_coverage.csv                  # grouped by category/subcategory
     hierarchy_status.csv                  # actual trained vs not trained
     subcategory_coverage.png              # concept counts, not model skill
@@ -46,6 +49,14 @@ visuals_v2/
     all_classified_edges.csv              # every original learned edge
     panels/
       <panel_id>/
+        NETWORKS.md                      # clickable links to each network
+        network_catalog.csv              # status and visible arrow counts
+        full_network.svg                 # all existing concepts and links
+        cross_category_bridge_network.svg # only if 2+ categories and bridges
+        categories/
+          <category>_network.svg         # same-category links only
+        subcategories/
+          <category>__<subcategory>_network.svg
         concept_assignments.csv
         classified_edges.csv
         subcategory_grouped_heatmap.png    # SAME fitted edge matrix, reordered
@@ -72,6 +83,41 @@ concepts are `unclassified`, not guessed. Category/source identities in
 `catalog/datasets.json` describe agency datasets; this visual taxonomy
 describes individual modeled environmental concepts. A USGS station can
 therefore contain both hydrology and water-quality concepts.
+
+## Reading the directed network views
+
+Start at `hierarchy/NETWORK_INDEX.md`, choose a trained panel, then
+open `NETWORKS.md` for links to each SVG. The root `network_views.csv`
+provides a searchable tabular index across all panels.
+
+Each network has **directed arrows** from source concept today to target
+concept the following day, with plus/minus signs and signed weight labels.
+Blue means positive predictive coefficient, rust means negative. Thickness
+tracks absolute standardized weight. Self-memory is drawn as an arrow
+loop above its node. The full panel uses all concepts; each category shows
+only its within-category learned edges, and each subcategory shows only
+within-subcategory edges. The cross-category bridge view retains only
+arrows whose source and target concepts belong to different categories,
+so scientifically interesting hydrology/water-quality links remain visible.
+
+Single-concept subcategories are intentionally rendered with their one
+node and self-memory loop, rather than implying an absent multivariate
+subcategory expert. Unclassified concepts remain visible and may be
+assigned later through an audited taxonomy revision.
+
+By default, non-self arrows below `|weight| < 0.08` are hidden in **SVG
+only** to reduce visual clutter. You can view all non-self arrows with:
+
+```powershell
+python scripts/render_fcm_visuals.py --preview data/m7/fcm_preview_verified_02 --out data/m7/fcm_preview_verified_02/visuals_network_all_v1 --min-edge 0
+```
+
+All original signed edges, even below threshold, remain unchanged in the
+source `edge_weights.csv` and exported `classified_edges.csv`. The
+visualized weights come from one trained FCM; grouping them never refits
+or averages weights into a higher-level FCM. The output manifest counts
+each SVG and records the display cutoff. Rendering is offline and
+**does not require a USGS key or another download**.
 
 ## Performance scale matters
 
