@@ -23,9 +23,14 @@ from southfl.net import write_csv
 from southfl.fcm_model import fit_preview,NotReadyError,EVAL_COLS,EDGE_COLS
 from southfl.fcm_figures import hindcast_svg
 from southfl.m8_layers import concept_scopes,fit_scoped,compare_matched,COMPARISON_COLS,STATUS_COLS
-from visuals.hierarchy import CATEGORIES
+from visuals.hierarchy import (
+    CATEGORIES,summarize_hierarchy,COVERAGE_COLS,STATUS_COLS as HIER_STATUS_COLS)
+from visuals.hierarchy_render import plot_concept_coverage,plot_hierarchy_overview
+from visuals.fcm_charts import load_metrics,summarize_panel,SUMMARY_COLUMNS
 from visuals.network_svg import network_svg
-from visuals.render import plot_baseline_comparison,plot_edge_weight_heatmap
+from visuals.render import (
+    plot_baseline_comparison,plot_edge_weight_heatmap,
+    plot_cross_panel_summary)
 
 PRED_COLS=["date","concept","actual","fcm","self_ar","persistence"]
 ROLL_COLS=["step","concept","simulated_value"]
@@ -179,6 +184,7 @@ def run(panel_dirs,out,min_pairs=79,dpi=150,min_edge=.08):
     comparisons=[]
     level_members=defaultdict(list)
     valid_panels=0
+    fitted_dataset_concepts={}
     for pid,(root,item,manifest) in sorted(index.items()):
         concepts=[c for c in item.get("concepts","").split(";") if c]
         units=_unit_map(item)
@@ -213,6 +219,7 @@ def run(panel_dirs,out,min_pairs=79,dpi=150,min_edge=.08):
                      f"{item['site_id']} · {item['region']}",dpi,min_edge)
         (base/"DATA.md").write_text(data_note,encoding="utf-8")
         valid_panels+=1
+        fitted_dataset_concepts[pid]=concepts
         statuses.append(_status("dataset","","",pid,item,concepts,
                          "trained_station_expert","chronological held-out evaluated",
                          base.relative_to(out).as_posix(),panel_sha,full))
@@ -280,6 +287,32 @@ def run(panel_dirs,out,min_pairs=79,dpi=150,min_edge=.08):
         "No cross-region coupling, timescale harmonization or mixture gating "
         "has been fitted. These station-local specialists do not establish "
         "a regional ecosystem model.\n",encoding="utf-8")
+    # Overall layer is an EVIDENCE INVENTORY, never a trained overall FCM.
+    coverage,hierarchy_status=summarize_hierarchy(fitted_dataset_concepts)
+    overall=out/"levels"/"overall"
+    write_csv(overall/"concept_coverage.csv",coverage,COVERAGE_COLS)
+    write_csv(overall/"regional_expert_status.csv",hierarchy_status,
+              HIER_STATUS_COLS)
+    overview_visuals=overall/"visuals"
+    overview_visuals.mkdir(parents=True,exist_ok=True)
+    plot_concept_coverage(
+        coverage,overview_visuals/"concept_coverage.png",dpi=dpi)
+    plot_hierarchy_overview(
+        hierarchy_status,overview_visuals/"training_status.png",dpi=dpi)
+    (overall/"DATA.md").write_text(
+        "# Overall input coverage (not a fitted overall model)\n\n"+
+        f"Trained station/dataset models available: {valid_panels}.\n"+
+        "See [concept coverage](concept_coverage.csv) and "
+        "[regional expert status](regional_expert_status.csv). "
+        "All station-level input lineages remain in individual DATA.md files.\n",
+        encoding="utf-8")
+    (overall/"FINDINGS.md").write_text(
+        "# Overall findings — evidence inventory only\n\n"
+        "There is no trained overall South Florida FCM or mixture gate. "
+        "No cross-site edge consensus or causal regional links are inferred.\n\n"
+        "[Observed concept coverage](visuals/concept_coverage.png) · "
+        "[Model hierarchy status](visuals/training_status.png)\n",
+        encoding="utf-8")
     for category in CATEGORIES:
         level_root=out/"levels"/"category"/category
         level_root.mkdir(parents=True,exist_ok=True)
@@ -328,6 +361,57 @@ def run(panel_dirs,out,min_pairs=79,dpi=150,min_edge=.08):
                 lines.append(f"- {item['panel_id']}: {item['status']}")
         (root/"INDEX.md").write_text("\n".join(lines)+"\n",
                                     encoding="utf-8")
+    # Every category and observed subcategory has DATA, FINDINGS and
+    # per-station performance visuals (NOT a pooled model or averaged matrix).
+    scoped={(r["level"],r["category"],r["subcategory"])
+            for r in statuses if r["level"] in ("category","subcategory")}
+    scoped.update(("category",cat,"") for cat in CATEGORIES)
+    for level,cat,sub in sorted(scoped):
+        folder=(out/"levels"/"subcategory"/cat/sub if level=="subcategory"
+                else out/"levels"/"category"/cat)
+        folder.mkdir(parents=True,exist_ok=True)
+        candidates=[r for r in statuses if r["level"]==level
+                    and r["category"]==cat and r["subcategory"]==sub]
+        fitted=[r for r in candidates
+                if r["status"]=="trained_within_station_prototype"]
+        (folder/"DATA.md").write_text(
+            f"# Evidence inventory — {level}: {cat}/{sub}\n\n"+
+            f"Observed panel candidates: {len(candidates)}. "
+            f"Station-local specialist fits: {len(fitted)}.\n"
+            "No station pooling; see each station's DATA.md for source "
+            "series, units, datums and hashes.\n",encoding="utf-8")
+        summary=[]
+        for entry in fitted:
+            d=out/entry["model_directory"]
+            summary.append(summarize_panel(entry["panel_id"],entry["region"],
+                                          entry["site_id"],load_metrics(d)))
+        write_csv(folder/"station_performance.csv",summary,SUMMARY_COLUMNS)
+        findings=[
+            f"# {level.title()} findings — {cat}/{sub}","",
+            "**Regional integrated expert: NOT TRAINED.**","",
+            f"Station-local models fitted: {len(fitted)}.",
+            "Each model has an independent fit and held-out evaluation, "
+            "but common edge signs or transferred predictive skill have "
+            "not been established.","",
+        ]
+        if summary:
+            visuals=folder/"visuals"
+            visuals.mkdir(parents=True,exist_ok=True)
+            plot_cross_panel_summary(
+                summary,visuals/"station_skill.png",dpi=dpi)
+            findings.append(
+                "[Per-station dimensionless skill](visuals/station_skill.png). "
+                "This compares separate models but is not a fitted pooled FCM.")
+            findings.append("")
+        else:
+            findings.append("No eligible multivariate specialist model yet.")
+        findings += [
+            "See [station-performance table](station_performance.csv) and "
+            "[source coverage](DATA.md).",
+            "No cross-station edge-weight averaging or causal inference.",
+        ]
+        (folder/"FINDINGS.md").write_text(
+            "\n".join(findings)+"\n",encoding="utf-8")
     if valid_panels:
         rendered_data=out/"levels"/"dataset"
         lines=["# Dataset / station FCMs",""]
