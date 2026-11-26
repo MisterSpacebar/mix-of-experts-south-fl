@@ -36,6 +36,12 @@ def run(panels,out,min_pairs=79):
         path=panels/(pid+".csv")
         try:
             model=fit_preview(read_csv(path),concepts,min_pairs=min_pairs)
+            # Validate/render everything BEFORE creating the panel's artifact
+            # directory. A plotting/programming failure must not leave a
+            # seemingly complete model report behind.
+            target=min(model["evaluation"],key=lambda r:r["fcm_mae"])["concept"]
+            network=network_svg(model)
+            hindcast=hindcast_svg(model,target,units.get(target,""))
             directory=out/pid
             directory.mkdir(parents=True,exist_ok=False)
             (directory/"fcm_model.json").write_text(json.dumps({
@@ -49,10 +55,8 @@ def run(panels,out,min_pairs=79):
             write_csv(directory/"heldout_metrics.csv",model["evaluation"],EVAL_COLS)
             write_csv(directory/"heldout_predictions.csv",model["predictions"],PRED_COLS)
             write_csv(directory/"illustrative_rollout.csv",model["rollout"],ROLL_COLS)
-            (directory/"fcm_network.svg").write_text(network_svg(model),encoding="utf-8")
-            target=min(model["evaluation"],key=lambda r:r["fcm_mae"])["concept"]
-            (directory/"heldout_hindcast.svg").write_text(
-                hindcast_svg(model,target,units.get(target,"")),encoding="utf-8")
+            (directory/"fcm_network.svg").write_text(network,encoding="utf-8")
+            (directory/"heldout_hindcast.svg").write_text(hindcast,encoding="utf-8")
             metrics=["| Concept | FCM MAE | Self-AR MAE | Persistence MAE |",
                      "|---|---:|---:|---:|"]
             for m in model["evaluation"]:
@@ -83,9 +87,17 @@ def run(panels,out,min_pairs=79):
                                 n_pairs=model["n_pairs"],target_plotted=target,
                                 panel_sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
             print(f"{pid}: {model['n_pairs']} pairs, held-out evaluation saved")
-        except (NotReadyError,ValueError,KeyError) as exc:
+        except NotReadyError as exc:
+            # Only a specific, scientifically defined readiness failure may
+            # be a skip. KeyError / ValueError may indicate a code, schema,
+            # or rendering defect and must fail loudly instead.
             results.append(dict(panel_id=pid,status="skipped",reason=str(exc)))
             print(f"{pid}: skipped — {exc}")
+        except (KeyError,ValueError) as exc:
+            raise RuntimeError(
+                f"FCM preview processing failed for {pid}: "
+                f"{type(exc).__name__}: {exc}"
+            ) from exc
     report={
         "created_at_utc":datetime.now(timezone.utc).isoformat(),
         "input_panels":str(panels),"input_manifest":source_manifest,

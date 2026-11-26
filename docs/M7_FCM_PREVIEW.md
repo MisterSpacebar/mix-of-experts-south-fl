@@ -179,7 +179,13 @@ Outputs per `panel_*`:
 - `PREVIEW.md` with chronological partitions and a baseline comparison.
 
 The root `preview_manifest.json` records which models ran or why they were
-**skipped**. No valid panel => zero model fits and nonzero exit, not a
+**skipped**. Only explicit `NotReadyError` failures (e.g. insufficient
+consecutive observed pairs or constant training concepts) count as legitimate
+readiness skips. Unexpected `KeyError` or `ValueError` in model code,
+input schema or SVG rendering is now a **hard failure** with the panel ID,
+preserving the traceback rather than reporting a misleading `skipped — 3`.
+The model and figures are precomputed before a per-panel output directory
+is created, avoiding partial artifacts after a rendering failure. No valid panel => zero model fits and nonzero exit, not a
 fabricated FCM demonstration.
 
 ### Scientific interpretation
