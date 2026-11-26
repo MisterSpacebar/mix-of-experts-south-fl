@@ -2,6 +2,7 @@
 import json,math,tempfile,unittest
 from datetime import date,timedelta
 from pathlib import Path
+from unittest.mock import patch
 from southfl.fcm_model import fit_preview,NotReadyError,build_pairs
 from southfl.fcm_figures import network_svg,hindcast_svg
 from southfl.net import write_csv
@@ -139,6 +140,64 @@ class ModelTests(unittest.TestCase):
             self.assertTrue((dest/"panel_test/heldout_metrics.csv").exists())
             with self.assertRaisesRegex(ValueError,"new output"):
                 run(panels,dest)
+
+    def test_renderer_keyerror_is_reported_as_failure_not_readiness_skip(self):
+        # Regression: a previous network_svg KeyError(3) was swallowed as
+        # a 'skipped — 3' panel, even though model training had succeeded.
+        with tempfile.TemporaryDirectory() as td:
+            panels=Path(td)/"panels"
+            panels.mkdir()
+            write_csv(panels/"panel_test.csv",synthetic(),
+                      ["date","site_id","panel_id"]+CONCEPTS)
+            write_csv(panels/"panel_readiness.csv",[dict(
+                panel_id="panel_test",region="caloosahatchee",
+                site_id="USGS-TEST",concepts=";".join(CONCEPTS),
+                status="candidate_for_held_out_evaluation")],
+                PANEL_SUMMARY_COLS)
+            (panels/"panels_manifest.json").write_text("{}")
+            dest=Path(td)/"preview"
+            with patch("scripts.preview_fcm.network_svg",
+                       side_effect=KeyError(3)):
+                with self.assertRaisesRegex(
+                        RuntimeError,"FCM preview processing failed for panel_test: KeyError: 3"):
+                    run(panels,dest)
+            # Rendering is preflighted before any per-panel outputs are saved.
+            self.assertFalse((dest/"panel_test").exists())
+
+    def test_model_schema_valueerror_is_not_a_readiness_skip(self):
+        with tempfile.TemporaryDirectory() as td:
+            panels=Path(td)/"panels"
+            panels.mkdir()
+            write_csv(panels/"panel_test.csv",synthetic(),
+                      ["date","site_id","panel_id"]+CONCEPTS)
+            write_csv(panels/"panel_readiness.csv",[dict(
+                panel_id="panel_test",region="big_cypress",
+                site_id="USGS-TEST",concepts=";".join(CONCEPTS),
+                status="candidate_for_held_out_evaluation")],
+                PANEL_SUMMARY_COLS)
+            (panels/"panels_manifest.json").write_text("{}")
+            with patch("scripts.preview_fcm.fit_preview",
+                       side_effect=ValueError("malformed panel")):
+                with self.assertRaisesRegex(
+                        RuntimeError,"panel_test: ValueError: malformed panel"):
+                    run(panels,Path(td)/"preview")
+
+    def test_genuine_readiness_exception_remains_a_skip(self):
+        with tempfile.TemporaryDirectory() as td:
+            panels=Path(td)/"panels"
+            panels.mkdir()
+            write_csv(panels/"panel_test.csv",synthetic(55),
+                      ["date","site_id","panel_id"]+CONCEPTS)
+            write_csv(panels/"panel_readiness.csv",[dict(
+                panel_id="panel_test",region="big_cypress",
+                site_id="USGS-TEST",concepts=";".join(CONCEPTS),
+                status="candidate_for_held_out_evaluation")],
+                PANEL_SUMMARY_COLS)
+            (panels/"panels_manifest.json").write_text("{}")
+            report=run(panels,Path(td)/"preview")
+            self.assertEqual(report["n_fitted_previews"],0)
+            self.assertEqual(report["n_skipped"],1)
+            self.assertIn("require",report["results"][0]["reason"])
 
     def test_insufficient_panel_produces_skip_not_fake_model(self):
         with tempfile.TemporaryDirectory() as td:
