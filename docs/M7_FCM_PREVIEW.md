@@ -1,5 +1,16 @@
 # Milestone 7 — Observation QA, longer history, and a first data-driven FCM preview
 
+> **Update after the first live run:** The old direct historical download
+> surfaced an incorrect USGS metadata-series identifier mapping and HTTP 429
+> throttling. Before running the Step 3 `fetch_fcm_history.py --execute`,
+> follow [the corrected USGS preflight and API-key guide](M7_USGS_RECOVERY.md).
+> It generates an identity-verified `history_plan.csv` from current metadata
+> plus short observed probes. Use the verified plan for downloads, not the
+> original candidate plan. The downloader now requires this evidence by
+> default for live CLI executions. The original unsuccessful run remains
+> a legitimate preserved diagnostic, not an FCM result.
+
+
 **Status:** Implemented tools and offline tests. Data outputs and trained model
 results are generated only when you run them on local, git-ignored
 observations. A successful pipeline does not prove causal relationships,
