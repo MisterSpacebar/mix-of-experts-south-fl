@@ -185,8 +185,8 @@ def run(models,panels,out,stations=None,min_sites=3,min_overlap_days=79,dpi=140)
                    "verified_point_inside_discovery_rectangle" for s in sites)
         by_status=defaultdict(int)
         for r in registry:
-            if r["site_id"] in {x["site_id"] for x in sites} and
-               r["status"].startswith("trained_"):
+            if (r["site_id"] in {x["site_id"] for x in sites} and
+                    r["status"].startswith("trained_")):
                 by_status[r["level"]]+=1
         main=next(s for s in scoped if s["level"]=="region")
         region_rows.append({
