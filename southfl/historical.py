@@ -5,6 +5,7 @@ series is downloaded in <=14-calendar-day nonoverlapping windows, preserving
 source timestamp/units/flags and rejecting mismatches. No interpolation.
 """
 from datetime import date,timedelta
+from time import sleep
 from .net import AcquisitionError
 from .observations import usgs_observations
 
@@ -19,7 +20,8 @@ def windows(start,end,days=14):
         cursor=stop+timedelta(days=1)
 
 
-def fetch_series(task,fetcher=usgs_observations,chunk_days=14):
+def fetch_series(task,fetcher=usgs_observations,chunk_days=14,
+                 request_pause_s=0):
     if task.get("dataset_id")!="usgs_water" or task.get("mode")!="continuous":
         raise ValueError("FCM history requires USGS continuous source data")
     if not task.get("series_id"):
@@ -27,10 +29,22 @@ def fetch_series(task,fetcher=usgs_observations,chunk_days=14):
     start,end=task["start_date"],task["end_date"]
     if (date.fromisoformat(end)-date.fromisoformat(start)).days+1>366:
         raise ValueError("history selection exceeds 366-day safety limit")
+    if not 0<=request_pause_s<=30:
+        raise ValueError("request pacing must be 0..30 seconds")
     queried,records,other_series=[],[],0
-    for a,b in windows(start,end,chunk_days):
-        result,urls=fetcher(task["site_id"],task["parameter_code"],a,b,
-                            task["concept"],mode="continuous")
+    for index,(a,b) in enumerate(windows(start,end,chunk_days)):
+        if index and request_pause_s:
+            sleep(request_pause_s)
+        if fetcher is usgs_observations:
+            # USGS documents time_series_id as a supported OGC filter.
+            # Fail closed if the backend ignores it.
+            result,urls=fetcher(
+                task["site_id"],task["parameter_code"],a,b,task["concept"],
+                mode="continuous",series_id_filter=task["series_id"])
+        else:
+            # Preserve injection of test doubles without a server filter.
+            result,urls=fetcher(task["site_id"],task["parameter_code"],a,b,
+                                task["concept"],mode="continuous")
         queried.extend(urls)
         for row in result:
             if row["dataset_id"]!="usgs_water" or row["site_id"]!=task["site_id"]:
