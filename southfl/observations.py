@@ -60,7 +60,8 @@ def _date(value):
 
 
 def usgs_observations(site, code, start, end, concept, mode="daily",
-                      max_pages=15, page_size=1000, max_records=15000):
+                      max_pages=15, page_size=1000, max_records=15000,
+                      series_id_filter=None):
     if mode not in ("daily", "continuous"):
         raise ValueError("USGS mode must be daily or continuous")
     if not site or not str(code).isdigit() or len(str(code)) != 5:
@@ -68,11 +69,12 @@ def usgs_observations(site, code, start, end, concept, mode="daily",
     if code in USGS_PARAMETERS and concept != usgs_concept(code):
         raise ValueError("stale USGS pilot concept for parameter code; regenerate plan")
     base = f"{USGS_BASE}/{mode}/items"
-    url = url_with_params(base, {
-        "f": "json", "monitoring_location_id": site,
-        "parameter_code": code, "time": start + "/" + end,
-        "limit": page_size,
-    })
+    params = {"f": "json", "monitoring_location_id": site,
+              "parameter_code": code, "time": start + "/" + end,
+              "limit": page_size}
+    if series_id_filter:
+        params["time_series_id"] = series_id_filter
+    url = url_with_params(base, params)
     data, links, visited = [], [], set()
     for _ in range(max_pages):
         if url in visited:
@@ -87,6 +89,11 @@ def usgs_observations(site, code, start, end, concept, mode="daily",
             if str(p.get("monitoring_location_id")) != site or str(
                     p.get("parameter_code")).zfill(5) != code:
                 raise AcquisitionError("USGS observation site/parameter query mismatch")
+            observed_id = str(p.get("time_series_id") or p.get("timeseries_id") or "")
+            if series_id_filter and not observed_id:
+                raise AcquisitionError("USGS observation missing canonical time_series_id")
+            if series_id_filter and observed_id != series_id_filter:
+                raise AcquisitionError("USGS ignored exact time_series_id filter")
             raw_time = str(p.get("time") or "")
             if mode == "daily":
                 day = _date(raw_time[:10])
@@ -105,7 +112,7 @@ def usgs_observations(site, code, start, end, concept, mode="daily",
                 qualifier = ";".join(map(str, qualifier))
             data.append(_row(
                 dataset_id="usgs_water", site_id=site,
-                series_id=str(p.get("time_series_id") or p.get("timeseries_id") or ""),
+                series_id=observed_id,
                 concept=concept, parameter_code=code,
                 parameter_name=str(p.get("parameter_name") or ""),
                 measurement_type="daily_statistic" if mode == "daily" else "instantaneous",

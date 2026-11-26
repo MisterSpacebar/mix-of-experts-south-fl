@@ -50,6 +50,75 @@ def _url_only_api(url):
     return url.startswith("https://api.waterdata.usgs.gov/")
 
 
+def _usgs_series_id(feature):
+    """USGS metadata schema defines properties.id as the canonical series ID.
+
+    GeoJSON feature.id is NOT automatically interchangeable with the
+    time-series identifier. Fall back for older/alternative payloads only.
+    """
+    props=feature.get("properties") or {}
+    declared=[str(props[field]).strip() for field in
+              ("id","time_series_id","timeseries_id")
+              if props.get(field)]
+    if len(set(declared))>1:
+        raise AcquisitionError("USGS metadata contains contradictory time-series IDs")
+    result=(declared[0] if declared else str(feature.get("id") or "").strip())
+    if not result:
+        raise AcquisitionError("USGS time-series metadata missing canonical series ID")
+    return result
+
+
+def _usgs_metadata_row(feature,source_url,region):
+    p=feature.get("properties") or {}
+    site=str(p.get("monitoring_location_id") or "").strip()
+    code=str(p.get("parameter_code") or "").zfill(5)
+    name=str(p.get("parameter_name") or p.get("parameter_description") or "")
+    return _row("usgs_water",site,_usgs_series_id(feature),
+        code=code,name=name,concept=usgs_concept(code,name),
+        unit=p.get("unit_of_measure") or "",
+        datum=usgs_vertical_datum(code,p.get("vertical_datum") or ""),
+        series_type=str(p.get("computation_identifier") or "unspecified"),
+        statistic_id=p.get("statistic_id"),
+        sublocation=p.get("sublocation_identifier"),
+        primary=p.get("primary"),gap_interval=p.get("data_gap_interval"),
+        begin=p.get("begin") or p.get("begin_utc"),
+        end=p.get("end") or p.get("end_utc"),
+        evidence="time_series_first_last_metadata",
+        note="Time series can contain substantial gaps; metadata is not completeness",
+        url=source_url,region=region,inventory="yes")
+
+
+def usgs_site_parameter_periods(site,code,max_pages=3):
+    """Query ONLY one source site and parameter, for safe identity preflight."""
+    if not site.startswith("USGS-") or not code.isdigit() or len(code)!=5:
+        raise ValueError("expected agency-qualified USGS site and 5-digit code")
+    url=url_with_params(USGS_URL,{
+        "f":"json","monitoring_location_id":site,"parameter_code":code,
+        "limit":500})
+    seen,rows=set(),[]
+    for _ in range(max_pages):
+        if url in seen:
+            raise AcquisitionError("USGS targeted metadata pagination loop")
+        seen.add(url)
+        response=get_json(url)
+        if not isinstance(response,dict) or not isinstance(response.get("features"),list):
+            raise AcquisitionError("USGS targeted metadata schema mismatch")
+        for feature in response["features"]:
+            p=feature.get("properties") or {}
+            if (p.get("monitoring_location_id")!=site or
+                    str(p.get("parameter_code") or "").zfill(5)!=code):
+                raise AcquisitionError("USGS targeted metadata query returned wrong site/parameter")
+            rows.append(_usgs_metadata_row(feature,url,"site_parameter_preflight"))
+        nxt=next((link.get("href") for link in response.get("links",[])
+                  if link.get("rel")=="next" and link.get("href")),None)
+        if not nxt:
+            return rows
+        url=urljoin(url,nxt)
+        if not _url_only_api(url):
+            raise AcquisitionError("USGS metadata pagination changed domain")
+    raise AcquisitionError("USGS targeted metadata exceeded page limit")
+
+
 def usgs_periods(bbox, allowed, region="", limit=1000, max_pages=60):
     """USGS OGC time-series metadata using geographic pagination.
 
@@ -71,26 +140,7 @@ def usgs_periods(bbox, allowed, region="", limit=1000, max_pages=60):
             site = str(p.get("monitoring_location_id") or "").strip()
             if not site or site not in allowed:
                 continue
-            code = str(p.get("parameter_code") or "").zfill(5)
-            name = str(p.get("parameter_name") or p.get("parameter_description") or "")
-            ts_id = str(p.get("time_series_id") or feature.get("id") or "").strip()
-            if not ts_id:
-                raise AcquisitionError("USGS time-series metadata missing series id")
-            rows.append(_row(
-                "usgs_water", site, ts_id, code=code, name=name,
-                concept=usgs_concept(code, name), unit=p.get("unit_of_measure") or "",
-                datum=usgs_vertical_datum(code, p.get("vertical_datum") or ""),
-                series_type=str(p.get("computation_identifier") or "unspecified"),
-                statistic_id=p.get("statistic_id"),
-                sublocation=p.get("sublocation_identifier"),
-                primary=p.get("primary"),
-                gap_interval=p.get("data_gap_interval"),
-                # OGC v1 renamed UTC fields to begin/end; v0 used begin_utc/end_utc.
-                begin=p.get("begin") or p.get("begin_utc"),
-                end=p.get("end") or p.get("end_utc"),
-                evidence="time_series_first_last_metadata",
-                note="Time series can contain substantial gaps; metadata is not completeness",
-                url=next_url, region=region, inventory="yes"))
+            rows.append(_usgs_metadata_row(feature,next_url,region))
         href = next((link.get("href") for link in payload.get("links", [])
                      if link.get("rel") == "next" and link.get("href")), None)
         if not href:

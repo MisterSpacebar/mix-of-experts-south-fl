@@ -93,6 +93,21 @@ python scripts/audit_model_readiness.py --observations data/pilot/runs/first/obs
 python scripts/plan_fcm_history.py --periods data/inventory/parameters_harmonized_v1/parameter_periods.csv --stations data/inventory/combined_v3/stations.csv --end 2026-10-31 --days 120 --out data/m7/history_plan_v1
 ```
 
+## Milestone 7 source-series recovery
+
+The first longer USGS pilot exposed two recoverable integration blockers:
+metadata/observation series-ID mismatch and HTTP 429 anonymous rate limits.
+Before any renewed long download, use a **short, source-verified preflight**
+that checks a selected station/parameter against fresh targeted USGS
+metadata and observed time-series IDs, writes an audit, and allows only
+unambiguous replacements. Optional free `USGS_API_KEY` authentication is
+sent only via the `X-Api-Key` header, with bounded 429 backoff and request
+pacing.
+
+See [the USGS key and series-identity recovery runbook](docs/M7_USGS_RECOVERY.md).
+The failing initial history run remains preserved: no unverified FCM
+training or hidden substitution occurred.
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
@@ -102,6 +117,7 @@ python scripts/plan_fcm_history.py --periods data/inventory/parameters_harmonize
 - [Expanded region discovery and observed-data pilot](docs/EXPANDED_REGIONS_AND_OBSERVATIONS.md)
 - [Hydraulic concept taxonomy and vertical-datum migration](docs/HYDRAULIC_TAXONOMY.md)
 - [Observed-data QA, history and dynamic FCM preview (Milestone 7)](docs/M7_FCM_PREVIEW.md)
+- [USGS time-series identity and API-key recovery](docs/M7_USGS_RECOVERY.md)
 
 ## Modeling design (planned)
 
