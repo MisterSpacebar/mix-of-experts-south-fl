@@ -19,19 +19,25 @@ CONCEPT_ORDER=["dissolved_oxygen","discharge","salinity",
 
 
 def select_panels(periods,stations,end_date,days=120,max_panels=3,
-                  max_concepts=4,min_concepts=3,site_filter=None):
+                  max_concepts=4,min_concepts=3,site_filter=None,
+                  exclude_sites=None,max_per_region=None):
     end=date.fromisoformat(end_date)
     begin=end-timedelta(days=days-1)
     if not 60<=days<=366:
         raise ValueError("history must span between 60 and 366 days")
     if not 1<=max_panels<=8 or not 2<=min_concepts<=max_concepts<=8:
         raise ValueError("bad panel or concept caps")
+    if max_per_region is not None and not 1<=max_per_region<=8:
+        raise ValueError("max_per_region must be 1..8")
+    excluded=set(exclude_sites or ())
     sites={(s["dataset_id"],s["site_id"]):s for s in stations}
     candidates=defaultdict(lambda:defaultdict(list))
     for r in periods:
         if r.get("dataset_id")!="usgs_water":
             continue
         site=r["site_id"]
+        if site in excluded:
+            continue
         if site_filter and site not in site_filter:
             continue
         if ("usgs_water",site) not in sites or r.get("concept") not in CONCEPT_ORDER:
@@ -84,7 +90,12 @@ def select_panels(periods,stations,end_date,days=120,max_panels=3,
     selected,region_counts=[],defaultdict(int)
     for row in scored:
         _,_,site,regions,chosen,ordered=row
-        region=min(regions,key=lambda x:(region_counts[x],x))
+        eligible=[region for region in regions
+                  if max_per_region is None or
+                  region_counts[region]<max_per_region]
+        if not eligible:
+            continue
+        region=min(eligible,key=lambda x:(region_counts[x],x))
         selected.append((site,region,chosen,ordered))
         region_counts[region]+=1
         if len(selected)==max_panels:

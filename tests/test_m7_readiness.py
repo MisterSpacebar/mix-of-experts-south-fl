@@ -96,6 +96,30 @@ class HistorySelection(unittest.TestCase):
         self.assertEqual({r["selection_status"] for r in selected},
                          {"metadata_candidate_validate_real_observations"})
 
+    def test_exclusion_before_ranking_and_screening_region_cap(self):
+        rows=[]
+        sites=[]
+        for site,region in [("USGS-1","big_cypress"),
+                            ("USGS-2","big_cypress"),
+                            ("USGS-3","florida_bay")]:
+            rows.extend([
+                metadata(site,"00060","discharge",site+"-flow"),
+                metadata(site,"00010","water_temperature",site+"-temp"),
+                metadata(site,"00480","salinity",site+"-salt"),
+            ])
+            sites.append(dict(dataset_id="usgs_water",site_id=site,
+                              regions=region))
+        chosen=select_panels(rows,sites,"2026-10-31",
+                             max_panels=3,max_concepts=3,
+                             exclude_sites={"USGS-1"},max_per_region=1)
+        self.assertEqual(len(chosen),6)
+        self.assertEqual({x["site_id"] for x in chosen},
+                         {"USGS-2","USGS-3"})
+        self.assertEqual({x["region"] for x in chosen},
+                         {"big_cypress","florida_bay"})
+        with self.assertRaisesRegex(ValueError,"max_per_region"):
+            select_panels(rows,sites,"2026-10-31",max_per_region=0)
+
     def test_insufficient_multivariate_series_return_empty(self):
         r=[metadata("USGS-1","00060","discharge","ts")]
         s=[dict(dataset_id="usgs_water",site_id="USGS-1",

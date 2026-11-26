@@ -161,6 +161,29 @@ Browse `data/m8/layers_first_v1/INDEX.md`. For expansion to more stations,
 still requires a fresh identity preflight, source download and QA before
 modeling. See [Milestone 8 layered experts guide](docs/M8_LAYERED_EXPERTS.md).
 
+## Milestone 8 continuation: repeated station evidence and robustness
+
+The next stage extends station-level FCM evaluation across additional
+USGS monitoring sites and longer 180–365-day historical records using
+the existing **bounded source-identity verified** acquisition workflow.
+`plan_fcm_history.py --exclude-site` now excludes already-fitted sites
+*before ranking* new candidates.
+
+An offline evaluator adds non-overlapping chronological test folds,
+paired block-bootstrap error differences, strict physical-unit/datum
+matched donor→target station transfers, and descriptive edge sign
+recurrence. Each model layer retains navigable `FINDINGS.md` and
+visual diagnostics. No regional subcategory/category/overall FCM or
+learned mixture-of-experts gate is claimed.
+
+```powershell
+# Run on an existing multi-station M8 model run and the exact daily input folders:
+python scripts/evaluate_m8_replication.py --models data/m8/layers_replication_v1 --panels data/m7/daily_panels_verified_01 --panels data/m8/replication_daily_01 --out data/m8/replication_evidence_v1
+```
+
+See [replication, station transfer and longer-history runbook](docs/M8_REPLICATION_AND_TRANSFER.md)
+for the acquisition steps and how to browse findings/figures by layer.
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
@@ -173,6 +196,7 @@ modeling. See [Milestone 8 layered experts guide](docs/M8_LAYERED_EXPERTS.md).
 - [USGS time-series identity and API-key recovery](docs/M7_USGS_RECOVERY.md)
 - [FCM plots, scale-free comparison, and hierarchy display](docs/FCM_VISUALS_HIERARCHY.md)
 - [Milestone 8: station-local scoped expert fitting and per-layer evidence](docs/M8_LAYERED_EXPERTS.md)
+- [Milestone 8 continuation: independent station replication and transfer](docs/M8_REPLICATION_AND_TRANSFER.md)
 
 ## Modeling design (planned)
 
