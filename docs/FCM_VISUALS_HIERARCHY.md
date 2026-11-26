@@ -41,6 +41,7 @@ visuals_v2/
     concept_coverage.csv                  # grouped by category/subcategory
     hierarchy_status.csv                  # actual trained vs not trained
     subcategory_coverage.png              # concept counts, not model skill
+    hierarchy_overview.png                # trained vs planned levels
     cross_subcategory_edges.csv           # raw directed links crossing groups
     all_classified_edges.csv              # every original learned edge
     panels/
