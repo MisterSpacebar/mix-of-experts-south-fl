@@ -14,13 +14,12 @@ The user's original 120-day Big Cypress snapshot should remain unchanged.
 ## First: expand the observed evidence at multiple stations
 
 Use the verified local metadata snapshots, and exclude the initial
-station **before candidate ranking**. The planner does not assume
-coincident, complete, or modern observations from metadata alone.
+station **before candidate ranking**. The optional `--max-per-region 2` cap prevents candidate discovery\nfrom selecting only one screened region; it may yield fewer than eight\nstations when the other regions lack comparable metadata. A discovery\nregion is not a hydrologically verified catchment. The planner does\nnot assume coincident, complete, or modern observations from metadata alone.
 
 ```powershell
 python -m unittest discover -s tests -v
 
-python scripts/plan_fcm_history.py --periods data/inventory/parameters_harmonized_v1/parameter_periods.csv --stations data/inventory/combined_v3/stations.csv --end 2026-10-31 --days 180 --max-panels 8 --max-concepts 4 --exclude-site USGS-255327081275900 --out data/m8/replication_candidates_180d_v1
+python scripts/plan_fcm_history.py --periods data/inventory/parameters_harmonized_v1/parameter_periods.csv --stations data/inventory/combined_v3/stations.csv --end 2026-10-31 --days 180 --max-panels 8 --max-concepts 4 --max-per-region 2 --exclude-site USGS-255327081275900 --out data/m8/replication_candidates_180d_v1
 
 python scripts/plan_m8_batches.py --plan data/m8/replication_candidates_180d_v1/history_plan.csv --max-requests 80 --max-batches 8 --out data/m8/replication_batches_180d_v1
 ```
