@@ -134,9 +134,20 @@ def fit_preview(rows,concepts,min_pairs=79):
     # Independent AR(1) per concept is a more meaningful baseline than
     # persistence when dynamics are smooth and self-autocorrelated.
     ar=[]
+    self_ar_alphas=[]
     for j in range(d):
-        fitted=ridge([[x[j]] for x in tx],[[y[j]] for y in ty],chosen)
-        ar.append(fitted[0])
+        # Give the simple AR(1) baseline its OWN chronological validation
+        # tuning. Reusing the FCM-selected alpha would bias this comparison.
+        choices=[]
+        for candidate_alpha in ALPHAS:
+            fitted=ridge([[x[j]] for x in tx],[[y[j]] for y in ty],
+                         candidate_alpha)[0]
+            val_forecast=[predict([fitted],[x[j]])[0] for x in vx]
+            val_loss=mae(val_forecast,[y[j] for y in vy])
+            choices.append((val_loss,candidate_alpha,fitted))
+        _,best_ar_alpha,coeff=min(choices,key=lambda x:(x[0],x[1]))
+        self_ar_alphas.append(best_ar_alpha)
+        ar.append(coeff)
     fcm=[predict(weights,x) for x in ex]
     self_ar=[[predict([ar[j]],[x[j]])[0] for j in range(d)] for x in ex]
     persistence=ex
@@ -190,7 +201,8 @@ def fit_preview(rows,concepts,min_pairs=79):
         "validation_start":val[0][0],"validation_end":val[-1][0],
         "test_start":test[0][0],"test_end":test[-1][0],
         "normalization_mean":means,"normalization_scale":scales,
-        "ridge_alpha":chosen,"intercepts":[w[0] for w in weights],
+        "ridge_alpha":chosen,"self_ar_alphas":self_ar_alphas,
+        "intercepts":[w[0] for w in weights],
         "matrix_source_to_target":[[weights[j][i+1] for j in range(d)] for i in range(d)],
         "evaluation":evaluation,"predictions":predictions,"edges":edges,
         "rollout":roll,
