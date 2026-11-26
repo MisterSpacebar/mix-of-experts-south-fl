@@ -64,6 +64,11 @@ def compare_matched(full_model, specialist_model, panel_id, level, scope):
     """
     full_index={(r["concept"],r["date"]):r
                 for r in full_model["predictions"]}
+    if len(full_index)!=len(full_model["predictions"]):
+        raise ValueError("full FCM contains duplicate held-out concept/date pairs")
+    specialist_index={(r["concept"],r["date"]) for r in specialist_model["predictions"]}
+    if len(specialist_index)!=len(specialist_model["predictions"]):
+        raise ValueError("specialist contains duplicate held-out concept/date pairs")
     output=[]
     for metric in specialist_model["evaluation"]:
         concept=metric["concept"]
