@@ -243,9 +243,24 @@ class GeographicBrowserTests(unittest.TestCase):
             rows=read_csv(panels/"panel_readiness.csv")
             row=next(r for r in rows if r["site_id"]=="USGS-A")
             another=dict(row,panel_id="panel_DUPLICATE")
+            existing=read_csv(panels/(row["panel_id"]+".csv"))
+            repeated=[dict(record,panel_id="panel_DUPLICATE") for record in existing]
+            copy_path=panels/"panel_DUPLICATE.csv"
+            write_csv(copy_path,repeated,list(repeated[0]))
             write_csv(panels/"panel_readiness.csv",rows+[another],
                       PANEL_SUMMARY_COLS)
-            with self.assertRaisesRegex(ValueError,"dataset models and daily"):
+            originals=read_csv(models/"model_registry.csv")
+            first=next(r for r in originals if r["panel_id"]==row["panel_id"])
+            model_dir="levels/dataset/panel_DUPLICATE"
+            (models/model_dir).mkdir(parents=True)
+            (models/model_dir/"fcm_model.json").write_text('{"method":"fixture"}')
+            replica=dict(first,panel_id="panel_DUPLICATE",
+                model_directory=model_dir,
+                panel_sha256=hashlib.sha256(copy_path.read_bytes()).hexdigest())
+            write_csv(models/"model_registry.csv",originals+[replica],
+                      list(originals[0]))
+            with self.assertRaisesRegex(ValueError,
+                    "same canonical site in multiple panels"):
                 regional_run(models,[panels],root/"out",dpi=65)
 
 
