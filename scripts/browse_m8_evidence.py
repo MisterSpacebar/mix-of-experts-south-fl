@@ -37,6 +37,24 @@ def _sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def _check_text_lineage(path, expected, label):
+    """Accept exactly stored bytes or an LF/CRLF-only portability change.
+
+    Git on Windows may normalize CSV/JSON newlines while checking out on
+    Linux. Do NOT relax numeric/data/manifest content: only byte-identical
+    or newline-equivalent hashes can be accepted.
+    """
+    data=Path(path).read_bytes()
+    if hashlib.sha256(data).hexdigest()==expected:
+        return "exact"
+    lf=data.replace(b"\\r\\n",b"\\n")
+    crlf=lf.replace(b"\\n",b"\\r\\n")
+    if (hashlib.sha256(lf).hexdigest()==expected or
+            hashlib.sha256(crlf).hexdigest()==expected):
+        return "line_ending_only_equivalent"
+    raise ValueError(f"{label} SHA256 mismatch: not newline-equivalent")
+
+
 def _scope(record):
     if record["level"]=="dataset":
         return "full_station"
@@ -91,18 +109,28 @@ def run(models,evidence,panels,out,edge_threshold=.08,dpi=140):
         raise ValueError("invalid plotting limits")
     original_manifest_path=models/"manifest.json"
     prior=json.loads((evidence/"manifest.json").read_text(encoding="utf-8"))
-    if prior["source_m8_manifest_sha256"]!=_sha(original_manifest_path):
-        raise ValueError("saved evidence does not belong to requested model run")
+    try:
+        manifest_hash_status=_check_text_lineage(
+            original_manifest_path,prior["source_m8_manifest_sha256"],
+            "source model manifest")
+    except ValueError as exc:
+        raise ValueError(
+            "saved evidence does not belong to requested model run"
+        ) from exc
     registry=read_csv(models/"model_registry.csv")
     source=_load_sources(panels)
+    reconciled_hashes=(1 if manifest_hash_status==
+                       "line_ending_only_equivalent" else 0)
     for entry in registry:
         pid=entry["panel_id"]
         if pid not in source:
             raise ValueError("model panel missing from selected daily sources: "+pid)
         _,fp=source[pid]
         if fp.exists() and entry.get("panel_sha256"):
-            if _sha(fp)!=entry["panel_sha256"]:
-                raise ValueError("daily panel SHA256 mismatch: "+pid)
+            status=_check_text_lineage(
+                fp,entry["panel_sha256"],"daily panel "+pid)
+            if status=="line_ending_only_equivalent":
+                reconciled_hashes+=1
         if entry["status"].startswith("trained_") and not fp.exists():
             raise ValueError("missing daily source panel: "+pid)
     # Freeze all input tables before creating any output files.
@@ -356,6 +384,8 @@ def run(models,evidence,panels,out,edge_threshold=.08,dpi=140):
             for r in ci),
         "n_scopes":len(summary),
         "edge_magnitude_threshold":edge_threshold,
+        "n_line_ending_only_source_hash_matches":reconciled_hashes,
+        "lineage_portability":"only exact or LF/CRLF-only SHA equivalence accepted",
         "regional_category_expert_trained":False,
         "regional_overall_expert_trained":False,
         "read_only_source_inputs":True,
