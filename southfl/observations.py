@@ -90,7 +90,7 @@ def usgs_observations(site, code, start, end, concept, mode="daily",
                     p.get("parameter_code")).zfill(5) != code:
                 raise AcquisitionError("USGS observation site/parameter query mismatch")
             observed_id = str(p.get("time_series_id") or p.get("timeseries_id") or "")
-            if not observed_id:
+            if series_id_filter and not observed_id:
                 raise AcquisitionError("USGS observation missing canonical time_series_id")
             if series_id_filter and observed_id != series_id_filter:
                 raise AcquisitionError("USGS ignored exact time_series_id filter")
