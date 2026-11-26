@@ -184,6 +184,26 @@ python scripts/evaluate_m8_replication.py --models data/m8/layers_replication_v1
 See [replication, station transfer and longer-history runbook](docs/M8_REPLICATION_AND_TRANSFER.md)
 for the acquisition steps and how to browse findings/figures by layer.
 
+## Evidence browser: interpret replication before fitting regional experts
+
+The three-station Milestone 8 snapshot contains source-specific FCMs,
+independent-station edge sign comparisons, and donor-to-target transfer
+results. A new read-only browser separates **observed evidence** from
+**untrained regional models** and links each layer's node-link diagrams,
+findings, and provenance:
+
+```powershell
+python scripts/browse_m8_evidence.py --models data/m8/layers_replication_v1 --evidence data/m8/replication_evidence_v1 --panels data/m7/daily_panels_verified_01 --panels data/m8/replication_daily_01 --out data/m8/evidence_browser_v1
+```
+
+Open `data/m8/evidence_browser_v1/INDEX.md` for the navigable summary.
+The browser recomputes prior transfers to verify MAE parity, flags
+cross-station datum gaps for stage measurements, identifies near-zero
+edges that happen to have consistent signs, and audits bootstrap
+intervals that do not contain their own original point estimates.
+It makes **no** new fitted regional experts or pooled edge matrices.
+See [M8 evidence browser runbook](docs/M8_EVIDENCE_BROWSER.md).
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
@@ -197,6 +217,7 @@ for the acquisition steps and how to browse findings/figures by layer.
 - [FCM plots, scale-free comparison, and hierarchy display](docs/FCM_VISUALS_HIERARCHY.md)
 - [Milestone 8: station-local scoped expert fitting and per-layer evidence](docs/M8_LAYERED_EXPERTS.md)
 - [Milestone 8 continuation: independent station replication and transfer](docs/M8_REPLICATION_AND_TRANSFER.md)
+- [M8 scientific evidence browser and transfer-failure diagnostics](docs/M8_EVIDENCE_BROWSER.md)
 
 ## Modeling design (planned)
 
