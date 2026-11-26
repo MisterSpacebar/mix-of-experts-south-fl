@@ -60,7 +60,7 @@ def network_svg(result,max_edges=14,min_abs=.08):
     return "\n".join(lines)
 
 
-def hindcast_svg(result,concept):
+def hindcast_svg(result,concept,unit=""):
     samples=[p for p in result["predictions"] if p["concept"]==concept]
     w,h=950,460
     values=[v for r in samples for v in (r["actual"],r["fcm"],r["persistence"])]
@@ -76,7 +76,7 @@ def hindcast_svg(result,concept):
         return f'<polyline points="{points}" stroke="{color}" fill="none" stroke-width="1.9" />'
     lines=[f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}">',
            '<rect width="100%" height="100%" fill="white"/>',
-           f'<text x="32" y="39" font-family="Arial" font-size="21" fill="#163b59">Held-out 1-day forecast: {escape(concept.replace("_"," "))}</text>',
+           f'<text x="32" y="39" font-family="Arial" font-size="21" fill="#163b59">Held-out 1-day forecast: {escape(concept.replace("_"," "))} ({escape(unit or "native unit")})</text>',
            '<text x="32" y="61" font-family="Arial" font-size="12" fill="#596b75">Each prediction uses the previous observed day. No future test targets used in fitting.</text>',
            f'<path d="M {left},{top} V {bottom} H {right}" stroke="#6a7f8f" stroke-width="1.1" fill="none"/>']
     for frac in (0,.25,.5,.75,1):
