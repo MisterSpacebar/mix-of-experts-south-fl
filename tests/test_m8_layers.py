@@ -108,6 +108,8 @@ class EndToEndTests(unittest.TestCase):
             report=train_m8([daily],out,dpi=75)
             self.assertEqual(report["n_fitted_dataset_models"],1)
             self.assertEqual(report["n_station_local_specialist_fits"],3)
+            self.assertEqual(report["n_distinct_station_specialist_concept_sets"],2)
+            self.assertEqual(report["n_redundant_scope_fits"],1)
             self.assertEqual(report["regional_subcategory_experts_trained"],0)
             self.assertEqual(report["regional_category_experts_trained"],0)
             self.assertEqual(report["overall_experts_trained"],0)
@@ -136,6 +138,12 @@ class EndToEndTests(unittest.TestCase):
             self.assertTrue((out/"levels"/"subcategory"/"hydrology"/"surface_flow"/"visuals"/"station_skill.png").exists())
             self.assertTrue((out/"matched_specialist_comparisons.csv").exists())
             self.assertTrue((out/"model_registry.csv").exists())
+            from southfl.audit import read_csv
+            scoped=read_csv(out/"model_registry.csv")
+            redundant=[r for r in scoped if r["same_concept_set_as"]]
+            self.assertEqual(len(redundant),1)
+            self.assertIn("Redundant concept scope",
+                          (out/redundant[0]["model_directory"]/"FINDINGS.md").read_text())
             self.assertTrue((out/"INDEX.md").exists())
             with self.assertRaisesRegex(ValueError,"new/empty"):
                 train_m8([daily],out,dpi=75)
