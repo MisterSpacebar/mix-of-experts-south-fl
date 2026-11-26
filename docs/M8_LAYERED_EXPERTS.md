@@ -38,7 +38,11 @@ The four-concept Big Cypress panel should be eligible to fit a new
 full model, a station-local **hydrology category** model (discharge and
 gage height), a **water-quality category** model (salinity and
 temperature) and a **surface-flow subcategory** model (discharge
-and gage height). The salinity-and-conductance and thermal-conditions
+and gage height). The hydrology and surface-flow scopes contain
+**identical source concepts at this station**: they are both rendered
+for hierarchical browsing, but the registry flags one as a duplicate
+concept-set refit, and the manifest counts only two distinct station-local
+specialist concept sets, not three independent discoveries. The salinity-and-conductance and thermal-conditions
 subcategories have one concept each and therefore **will be skipped** as
 new specialist models. This is the *expected eligibility*, not a claim
 about measured FCM skill. Actual results come from the local run.
