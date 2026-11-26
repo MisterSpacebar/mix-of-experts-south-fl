@@ -88,13 +88,13 @@ def plot_scope_coverage(rows,path,dpi=140):
         sorted_rows=sorted(rows,key=lambda x:(x["level"],x["scope"]))
         ys=list(range(len(sorted_rows)))
         labels=[r["level"]+" / "+r["scope"] for r in sorted_rows]
-        ns=[int(r["n_distinct_stations"]) for r in sorted_rows]
+        ns=[int(r["n_independent_station_signatures"]) for r in sorted_rows]
         ax.barh(ys,ns)
         ax.set_yticks(ys,labels=labels,fontsize=9)
         ax.invert_yaxis()
         for i,r in enumerate(sorted_rows):
             ax.text(ns[i]+.04,i,
-                    f"{r['n_scored_transfer_rows']} transfer concept rows",
+                    f"{r['n_transfer_concept_rows']} transfer concept rows",
                     va="center",fontsize=8)
         ax.set_xlim(0,max(ns)+1.9)
         ax.set_xlabel("Independent fitted stations (not regional expert count)")
