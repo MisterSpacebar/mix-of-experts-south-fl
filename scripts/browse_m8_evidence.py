@@ -47,8 +47,8 @@ def _check_text_lineage(path, expected, label):
     data=Path(path).read_bytes()
     if hashlib.sha256(data).hexdigest()==expected:
         return "exact"
-    lf=data.replace(b"\\r\\n",b"\\n")
-    crlf=lf.replace(b"\\n",b"\\r\\n")
+    lf=data.replace(b"\r\n",b"\n")
+    crlf=lf.replace(b"\n",b"\r\n")
     if (hashlib.sha256(lf).hexdigest()==expected or
             hashlib.sha256(crlf).hexdigest()==expected):
         return "line_ending_only_equivalent"
