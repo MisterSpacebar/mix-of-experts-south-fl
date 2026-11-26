@@ -179,7 +179,9 @@ def fit_preview(rows,concepts,min_pairs=79):
     for target,j in enumerate(concepts):
         for source,i in enumerate(concepts):
             w=weights[target][source+1]
-            edges.append(dict(source_concept=source,target_concept=target,
+            # Store concept NAMES, not loop indices: fcm_figures.network_svg
+            # looks edges up by name in a name-keyed point dictionary.
+            edges.append(dict(source_concept=i,target_concept=j,
                 weight=round(w,6),sign="positive" if w>0 else
                 "negative" if w<0 else "zero",
                 edge_kind="self_memory" if source==target else "cross_concept",

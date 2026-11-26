@@ -91,6 +91,33 @@ class ModelTests(unittest.TestCase):
         self.assertIn("<svg",chart)
         self.assertIn("previous observed day",chart)
 
+    def test_edges_keyed_by_concept_name_not_loop_index(self):
+        # Regression: edges previously stored the enumerate() loop index
+        # (an int) instead of the concept name, which crashed network_svg's
+        # name-keyed point lookup with KeyError once any cross-concept
+        # weight passed its drawing threshold.
+        model=fit_preview(synthetic(),CONCEPTS)
+        for edge in model["edges"]:
+            self.assertIn(edge["source_concept"],CONCEPTS)
+            self.assertIn(edge["target_concept"],CONCEPTS)
+
+    def test_network_svg_renders_strong_cross_concept_edge(self):
+        concepts=["a","b"]
+        day=date(2026,1,1)
+        rows=[]
+        a,b=10.0,5.0
+        for i in range(165):
+            rows.append(dict(date=(day+timedelta(days=i)).isoformat(),
+                             site_id="USGS-TEST",panel_id="panel_test",a=a,b=b))
+            a,b=.5*a+.01*(i%7),.9*a+.01*(i%5)
+        model=fit_preview(rows,concepts)
+        strongest=max(r["weight"] for r in model["edges"]
+                     if r["edge_kind"]=="cross_concept")
+        self.assertGreaterEqual(abs(strongest),.08)
+        diagram=network_svg(model)
+        self.assertIn("<svg",diagram)
+        self.assertIn("self ",diagram)
+
     def test_cli_writes_outputs_and_does_not_overwrite(self):
         with tempfile.TemporaryDirectory() as td:
             panels=Path(td)/"panels"

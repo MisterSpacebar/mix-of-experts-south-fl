@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 580">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<defs><marker id="pos" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#236fa1"/></marker>
+<marker id="neg" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b06054"/></marker></defs>
+<text x="35" y="45" fill="#173c59" font-size="24" font-family="Arial">Dynamic FCM: learned one-day associations</text>
+<text x="35" y="70" fill="#5d7181" font-size="14" font-family="Arial">Arrows predict tomorrow from today. NOT inferred causal effects.</text>
+<path d="M 296.2,256.8 L 424.5,128.5" stroke="#236fa1" stroke-width="1.9" fill="none" opacity=".63" marker-end="url(#pos)"/>
+<path d="M 603.8,256.8 L 475.5,128.5" stroke="#b06054" stroke-width="1.9" fill="none" opacity=".63" marker-end="url(#neg)"/>
+<path d="M 471.2,124.2 L 599.5,252.5" stroke="#b06054" stroke-width="1.7" fill="none" opacity=".63" marker-end="url(#neg)"/>
+<path d="M 428.8,431.8 L 300.5,303.5" stroke="#b06054" stroke-width="1.6" fill="none" opacity=".63" marker-end="url(#neg)"/>
+<path d="M 305.0,278.0 L 589.0,278.0" stroke="#b06054" stroke-width="1.6" fill="none" opacity=".63" marker-end="url(#neg)"/>
+<path d="M 428.8,124.2 L 300.5,252.5" stroke="#b06054" stroke-width="1.6" fill="none" opacity=".63" marker-end="url(#neg)"/>
+<path d="M 450.0,133.0 L 450.0,417.0" stroke="#b06054" stroke-width="1.5" fill="none" opacity=".63" marker-end="url(#neg)"/>
+<circle cx="450.0" cy="103.0" r="50" fill="#edf5fa" stroke="#518db5" stroke-width="1.7"/>
+<text x="450.0" y="100.0" fill="#17486a" text-anchor="middle" font-size="12" font-family="Arial">discharge</text>
+<text x="450.0" y="120.0" fill="#506f82" text-anchor="middle" font-size="11" font-family="Arial">self +0.63</text>
+<circle cx="625.0" cy="278.0" r="50" fill="#edf5fa" stroke="#518db5" stroke-width="1.7"/>
+<text x="625.0" y="275.0" fill="#17486a" text-anchor="middle" font-size="12" font-family="Arial">salinity</text>
+<text x="625.0" y="295.0" fill="#506f82" text-anchor="middle" font-size="11" font-family="Arial">self +0.91</text>
+<circle cx="450.0" cy="453.0" r="50" fill="#edf5fa" stroke="#518db5" stroke-width="1.7"/>
+<text x="450.0" y="450.0" fill="#17486a" text-anchor="middle" font-size="12" font-family="Arial">water temperature</text>
+<text x="450.0" y="470.0" fill="#506f82" text-anchor="middle" font-size="11" font-family="Arial">self +0.76</text>
+<circle cx="275.0" cy="278.0" r="50" fill="#edf5fa" stroke="#518db5" stroke-width="1.7"/>
+<text x="275.0" y="275.0" fill="#17486a" text-anchor="middle" font-size="12" font-family="Arial">gage height</text>
+<text x="275.0" y="295.0" fill="#506f82" text-anchor="middle" font-size="11" font-family="Arial">self +0.70</text>
+<rect x="35" y="497" width="16" height="4" rx="2" fill="#236fa1"/>
+<text x="60" y="504" font-family="Arial" font-size="13" fill="#405566">positive predictive weight</text>
+<rect x="305" y="497" width="16" height="4" rx="2" fill="#b06054"/>
+<text x="329" y="504" font-family="Arial" font-size="13" fill="#405566">negative predictive weight</text>
+<text x="35" y="539" font-family="Arial" font-size="12" fill="#6b7882">7 strongest displayed non-self edges; source units differ; weights are standardized.</text>
+</svg>
