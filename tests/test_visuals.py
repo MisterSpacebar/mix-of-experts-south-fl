@@ -136,6 +136,7 @@ class RenderTests(unittest.TestCase):
             self.assertTrue((out / "hierarchy/hierarchy_status.csv").exists())
             self.assertTrue((out / "hierarchy/concept_coverage.csv").exists())
             self.assertTrue((out / "hierarchy/subcategory_coverage.png").exists())
+            self.assertTrue((out / "hierarchy/hierarchy_overview.png").exists())
             self.assertTrue((out / "hierarchy/panels/panel_01_USGS_1/subcategory_grouped_heatmap.png").exists())
             self.assertEqual(report["hierarchy"]["trained_category_models"], 0)
             self.assertEqual(report["hierarchy"]["trained_overall_models"], 0)
