@@ -11,7 +11,8 @@ from statistics import mean
 from .readiness import parse_timestamp
 
 PANEL_SUMMARY_COLS=[
-    "panel_id","region","site_id","concepts","n_requested_days",
+    "panel_id","region","site_id","concepts",
+    "concept_units","concept_datums","source_series_ids","n_requested_days",
     "n_complete_days","n_consecutive_daily_pairs","n_dropped_partial_days",
     "n_excluded_source_values","first_complete_day","last_complete_day",
     "status","reason",
@@ -113,6 +114,9 @@ def build_daily_panels(rows,plan,min_samples_per_day=8,min_span_hours=8,
         summary.append({
             "panel_id":pid,"region":tasks[0]["region"],
             "site_id":tasks[0]["site_id"],"concepts":";".join(concepts),
+            "concept_units":";".join(f'{t["concept"]}={t.get("unit","")}' for t in tasks),
+            "concept_datums":";".join(f'{t["concept"]}={t.get("vertical_datum","")}' for t in tasks),
+            "source_series_ids":";".join(f'{t["concept"]}={t["series_id"]}' for t in tasks),
             "n_requested_days":n_requested,"n_complete_days":len(aligned),
             "n_consecutive_daily_pairs":pairs,
             "n_dropped_partial_days":len(dates)-len(aligned),
