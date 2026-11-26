@@ -8,6 +8,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from xml.etree import ElementTree
 
 from visuals.common import write_csv
 from visuals.fcm_charts import (
@@ -15,6 +16,7 @@ from visuals.fcm_charts import (
     panel_region_site, summarize_panel,
 )
 from visuals.render import render_all
+from visuals.network_svg import network_svg
 from visuals.hierarchy import classify, summarize_hierarchy
 from visuals.fcm_charts import safe_skill, concept_summary_rows
 
@@ -137,6 +139,17 @@ class RenderTests(unittest.TestCase):
             self.assertTrue((out / "hierarchy/concept_coverage.csv").exists())
             self.assertTrue((out / "hierarchy/subcategory_coverage.png").exists())
             self.assertTrue((out / "hierarchy/hierarchy_overview.png").exists())
+            root=out / "hierarchy/panels/panel_01_USGS_1"
+            self.assertTrue((root / "full_network.svg").exists())
+            self.assertTrue((root / "categories/water_quality_network.svg").exists())
+            self.assertTrue((root / "subcategories/water_quality__salinity_and_conductance_network.svg").exists())
+            self.assertTrue((root / "subcategories/water_quality__thermal_conditions_network.svg").exists())
+            self.assertFalse((root / "cross_category_bridge_network.svg").exists())
+            self.assertTrue((root / "network_catalog.csv").exists())
+            self.assertTrue((root / "NETWORKS.md").exists())
+            self.assertTrue((out / "hierarchy/NETWORK_INDEX.md").exists())
+            self.assertEqual(report["hierarchy"]["network_svg_views"],4)
+            ElementTree.parse(root / "full_network.svg")
             self.assertTrue((out / "hierarchy/panels/panel_01_USGS_1/subcategory_grouped_heatmap.png").exists())
             self.assertEqual(report["hierarchy"]["trained_category_models"], 0)
             self.assertEqual(report["hierarchy"]["trained_overall_models"], 0)
@@ -278,7 +291,85 @@ class VisualHierarchyTests(unittest.TestCase):
             self.assertTrue((root/"categories"/"water_quality"/
                              (pid+"_concepts.csv")).exists())
             self.assertEqual(report["hierarchy"]["trained_subcategory_models"],0)
+            self.assertTrue((root / "panels" / pid /
+                             "cross_category_bridge_network.svg").exists())
+            self.assertTrue((root / "panels" / pid /
+                             "categories/hydrology_network.svg").exists())
+            self.assertTrue((root / "panels" / pid /
+                             "categories/water_quality_network.svg").exists())
+            with (root / "panels" / pid /
+                  "cross_category_bridge_network.svg").open(encoding="utf-8") as f:
+                bridge=f.read()
+            self.assertIn("Cross-category bridge",bridge)
+            self.assertIn("Negative lag-one weight",bridge)
+            self.assertIn("not an independently fitted",bridge)
+            ElementTree.fromstring(bridge)
 
+
+
+class DirectedSvgNetworkTests(unittest.TestCase):
+    def test_source_to_target_directed_and_html_safe(self):
+        concepts=["discharge","salinity"]
+        edges=[
+            {"source_concept":"discharge","target_concept":"discharge",
+             "weight":"0.87"},
+            {"source_concept":"discharge","target_concept":"salinity",
+             "weight":"-0.42"},
+            {"source_concept":"salinity","target_concept":"discharge",
+             "weight":"0.20"},
+            {"source_concept":"salinity","target_concept":"salinity",
+             "weight":"0.81"},
+        ]
+        svg=network_svg(concepts,edges,title="FCM & network <demo>")
+        ElementTree.fromstring(svg)
+        self.assertIn("FCM &amp; network &lt;demo&gt;",svg)
+        self.assertIn('marker-end="url(#negative)"',svg)
+        self.assertIn('marker-end="url(#positive)"',svg)
+        self.assertIn("-0.42",svg)
+        self.assertIn("+0.20",svg)
+        self.assertIn("self +0.87",svg)
+        self.assertIn("2 of 2 non-self edges shown",svg)
+
+    def test_singleton_subcategory_renders_self_memory(self):
+        svg=network_svg(["salinity"],[
+            {"source_concept":"salinity","target_concept":"salinity",
+             "weight":"0.81"}],title="Salinity subcategory")
+        ElementTree.fromstring(svg)
+        self.assertIn("self +0.81",svg)
+        self.assertIn("0 of 0 non-self edges shown",svg)
+
+    def test_cross_edge_threshold_hides_svg_not_source_csv(self):
+        svg=network_svg(["discharge","salinity"],[
+            {"source_concept":"discharge","target_concept":"salinity",
+             "weight":"-0.04"},
+        ],title="Threshold",min_abs=.08)
+        self.assertNotIn("-0.04",svg)
+        self.assertIn("0 of 0 non-self edges shown",svg)
+        full=network_svg(["discharge","salinity"],[
+            {"source_concept":"discharge","target_concept":"salinity",
+             "weight":"-0.04"},
+        ],title="No threshold",min_abs=0.0)
+        self.assertIn("-0.04",full)
+        ElementTree.fromstring(full)
+
+    def test_invalid_direction_and_duplicate_edges_rejected(self):
+        with self.assertRaisesRegex(ValueError,"outside selected scope"):
+            network_svg(["discharge"],[
+                {"source_concept":"salinity","target_concept":"discharge",
+                 "weight":".3"}],title="bad")
+        duplicate=[
+            {"source_concept":"salinity","target_concept":"salinity",
+             "weight":"0.7"},
+            {"source_concept":"salinity","target_concept":"salinity",
+             "weight":"0.9"},
+        ]
+        with self.assertRaisesRegex(ValueError,"duplicate directed"):
+            network_svg(["salinity"],duplicate,title="bad")
+        with self.assertRaisesRegex(ValueError,"finite"):
+            network_svg(["salinity"],[
+                {"source_concept":"salinity","target_concept":"salinity",
+                 "weight":"NaN"},
+            ],title="bad")
 
 if __name__ == "__main__":
     unittest.main()

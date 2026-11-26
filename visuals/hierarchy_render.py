@@ -15,6 +15,7 @@ import numpy as np
 
 from .common import read_csv, write_csv
 from .fcm_charts import load_edge_matrix
+from .network_svg import network_svg
 from .hierarchy import (
     COVERAGE_COLS, EDGE_INDEX_COLS, STATUS_COLS, classify,
     concept_taxonomy_rows, edge_index_rows, summarize_hierarchy
@@ -23,6 +24,11 @@ from .hierarchy import (
 CONCEPT_ASSIGNMENT_COLS = ["panel_id", "concept", "category", "subcategory",
                            "status"]
 CROSS_COLS = EDGE_INDEX_COLS
+NETWORK_CATALOG_COLS = [
+    "panel_id", "level", "category", "subcategory", "relative_path",
+    "n_nodes", "n_source_edges", "n_visible_cross_edges",
+    "model_status",
+]
 HIERARCHY_CAVEAT = ("Views of previously trained station FCMs only. "
                     "No independently trained category, subcategory or overall FCM.")
 
@@ -125,7 +131,91 @@ def plot_hierarchy_overview(statuses, dest, dpi=180):
     plt.close(fig)
 
 
-def render_hierarchy(panel_dirs, out_dir, dpi=180):
+def render_panel_networks(panel_id, concepts, edges, panel_root,
+                          min_network_weight=0.08):
+    """Render scope-specific SVGs without learning or aggregating new weights."""
+    panel_root=Path(panel_root)
+    if not 0 <= min_network_weight <= 1:
+        raise ValueError("min_network_weight must be between 0 and 1")
+    rows=[]
+    def add(level,category,subcategory,selected,links,relative,title):
+        destination=panel_root/relative
+        destination.parent.mkdir(parents=True,exist_ok=True)
+        subtitle=(f"Station panel {panel_id} · "
+                  "source t → target t+1 · single fitted model")
+        content=network_svg(
+            selected,links,title=title,subtitle=subtitle,
+            min_abs=min_network_weight)
+        destination.write_text(content,encoding="utf-8")
+        visible=sum(
+            x["source_concept"] != x["target_concept"]
+            and abs(float(x["weight"]))>=min_network_weight
+            for x in links
+        )
+        rows.append(dict(
+            panel_id=panel_id,level=level,category=category,
+            subcategory=subcategory,relative_path=relative,
+            n_nodes=len(selected),n_source_edges=len(links),
+            n_visible_cross_edges=min(visible,36),
+            model_status=("trained_station_panel" if level=="dataset_panel"
+                          else "projection_only_not_a_separately_trained_fcm"),
+        ))
+
+    ordered=sorted(concepts,key=lambda concept:(*classify(concept),concept))
+    add("dataset_panel","","",ordered,edges,"full_network.svg",
+        "Full station FCM: all concepts")
+    for cat in sorted({classify(c)[0] for c in concepts}):
+        selected=[c for c in ordered if classify(c)[0]==cat]
+        same=[edge for edge in edges
+              if edge["source_concept"] in selected
+              and edge["target_concept"] in selected]
+        add("category",cat,"",selected,same,
+            f"categories/{cat}_network.svg",
+            f"{cat.replace('_',' ').title()} — category view")
+    for cat,sub in sorted({classify(c) for c in concepts}):
+        selected=[c for c in ordered if classify(c)==(cat,sub)]
+        same=[edge for edge in edges
+              if edge["source_concept"] in selected
+              and edge["target_concept"] in selected]
+        add("subcategory",cat,sub,selected,same,
+            f"subcategories/{cat}__{sub}_network.svg",
+            f"{sub.replace('_',' ').title()} — subcategory view")
+    categories={classify(c)[0] for c in concepts}
+    if len(categories)>1:
+        bridges=[edge for edge in edges if
+                 classify(edge["source_concept"])[0] !=
+                 classify(edge["target_concept"])[0]]
+        bridged={e["source_concept"] for e in bridges} | {
+            e["target_concept"] for e in bridges
+        }
+        selected=[c for c in ordered if c in bridged]
+        if selected:
+            add("cross_category","","",selected,bridges,
+                "cross_category_bridge_network.svg",
+                "Cross-category bridge edges (same trained panel)")
+    write_csv(panel_root/"network_catalog.csv",rows,NETWORK_CATALOG_COLS)
+    lines=[
+        f"# Network views — {panel_id}","",
+        "These SVGs are filtered views of ONE trained station-level FCM.",
+        "Category and subcategory networks are not separately trained models.",
+        "Arrowheads show the one-day predictive direction, not causality.",
+        "Cross-concept edges below the display cutoff are hidden only in figures.",
+        "The original `edge_weights.csv` and classified edges CSV preserve every weight.","",
+    ]
+    for row in rows:
+        level=row["level"].replace("_"," ").title()
+        scope="/".join(x for x in (row["category"],row["subcategory"]) if x)
+        lines.append(
+            f"- [{level}: {scope or 'all concepts'}]({row['relative_path']}) "
+            f"— {row['n_nodes']} nodes, {row['n_visible_cross_edges']} "
+            "displayed non-self arrows"
+        )
+    (panel_root/"NETWORKS.md").write_text("\n".join(lines)+"\n",
+                                          encoding="utf-8")
+    return rows
+
+
+def render_hierarchy(panel_dirs, out_dir, dpi=180, min_network_weight=0.08):
     """Write hierarchical reporting directories from existing fitted panels.
 
     panel_dirs is [(panel_id, filesystem Path)] from preview manifest.
@@ -134,6 +224,7 @@ def render_hierarchy(panel_dirs, out_dir, dpi=180):
     out_dir.mkdir(parents=True,exist_ok=True)
     panel_concepts={}
     all_edges=[]
+    network_rows=[]
     for panel_id, panel_path in panel_dirs:
         concepts, _ = load_edge_matrix(panel_path)
         panel_concepts[panel_id] = concepts
@@ -145,6 +236,9 @@ def render_hierarchy(panel_dirs, out_dir, dpi=180):
         edges=edge_index_rows(panel_id,read_csv(Path(panel_path)/"edge_weights.csv"))
         all_edges.extend(edges)
         write_csv(panel_root/"classified_edges.csv",edges,EDGE_INDEX_COLS)
+        network_rows.extend(render_panel_networks(
+            panel_id,concepts,edges,panel_root,
+            min_network_weight=min_network_weight))
         plot_grouped_edges(panel_path,panel_root/"subcategory_grouped_heatmap.png",
                            dpi=dpi)
         # Views contain only original learned edges, never averaged weights.
@@ -169,10 +263,27 @@ def render_hierarchy(panel_dirs, out_dir, dpi=180):
     write_csv(out_dir/"cross_subcategory_edges.csv",cross,CROSS_COLS)
     plot_concept_coverage(coverage,out_dir/"subcategory_coverage.png",dpi=dpi)
     plot_hierarchy_overview(statuses,out_dir/"hierarchy_overview.png",dpi=dpi)
+    write_csv(out_dir/"network_views.csv",network_rows,NETWORK_CATALOG_COLS)
+    index=[
+        "# FCM node-link network browser","",
+        "These are signed, directional views of trained station-level FCMs.",
+        "Subcategory/category files are **not independent fitted models**.","",
+        "## Available station panels","",
+    ]
+    for panel_id,_ in panel_dirs:
+        index.append(f"- [{panel_id}](panels/{panel_id}/NETWORKS.md)")
+    if not panel_dirs:
+        index.append("No trained panels are available in this preview.")
+    index+=["","See `hierarchy_status.csv` for the actual training status of each level."]
+    (out_dir/"NETWORK_INDEX.md").write_text("\n".join(index)+"\n",encoding="utf-8")
     return {
         "taxonomy_version": "visual_concept_hierarchy_v1",
         "trained_dataset_panels": len(panel_concepts),
         "observed_subcategories": len(coverage),
+        "network_svg_views": len(network_rows),
+        "network_min_abs_weight": min_network_weight,
+        "network_catalog": str(out_dir/"network_views.csv"),
+        "network_index": str(out_dir/"NETWORK_INDEX.md"),
         "trained_subcategory_models": 0,
         "trained_category_models": 0,
         "trained_overall_models": 0,
