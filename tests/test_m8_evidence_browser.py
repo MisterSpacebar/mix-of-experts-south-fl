@@ -45,9 +45,9 @@ class EvidenceUnitTests(unittest.TestCase):
         import hashlib
         with tempfile.TemporaryDirectory() as td:
             path=Path(td)/"provenance.csv"
-            content=b"date,value\\n2026-11-24,123.4\\n"
+            content=b"date,value\n2026-11-24,123.4\n"
             path.write_bytes(content)
-            expected=hashlib.sha256(content.replace(b"\\n",b"\\r\\n")).hexdigest()
+            expected=hashlib.sha256(content.replace(b"\n",b"\r\n")).hexdigest()
             self.assertEqual(_check_text_lineage(path,expected,"test"),
                              "line_ending_only_equivalent")
             path.write_bytes(content.replace(b"123.4",b"123.5"))
