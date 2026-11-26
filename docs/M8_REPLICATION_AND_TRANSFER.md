@@ -11,6 +11,24 @@ The work here adds **bounded acquisition planning** and an entirely
 or cross-station model was downloaded/trained in CI or in this PR.
 The user's original 120-day Big Cypress snapshot should remain unchanged.
 
+## Run now on the existing Big Cypress M8 model (no new data)
+
+Before any USGS download, you can generate an exploratory paired
+uncertainty report and any eligible expanding-origin temporal folds from
+the existing saved Milestone 8 station-local models:
+
+```powershell
+python scripts/evaluate_m8_replication.py --models data/m8/layers_first_v1 --panels data/m7/daily_panels_verified_01 --out data/m8/replication_single_station_v1 --max-folds 3 --block-days 7 --bootstrap 400
+```
+
+Open `data/m8/replication_single_station_v1/INDEX.md`. With only
+one eligible station, this cannot create any donor-to-target validation
+or independent-station edge recurrence. Because the original record
+contains only 89 consecutive one-day pairs, additional non-overlapping
+chronological folds may also be unavailable; that is a scientifically
+meaningful insufficient-data result, not a bug. Preserve this output
+as a reference before extending the study.
+
 ## First: expand the observed evidence at multiple stations
 
 Use the verified local metadata snapshots, and exclude the initial
