@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 720" role="img"
+ aria-label="Full station FCM: all concepts">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<defs>
+<marker id="positive" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#256f9c"/></marker>
+<marker id="negative" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#b26750"/></marker>
+</defs>
+<text x="40" y="44" font-size="23" font-weight="bold" font-family="Arial,sans-serif" fill="#173d58">Full station FCM: all concepts</text>
+<text x="40" y="70" font-size="13" font-family="Arial,sans-serif" fill="#506675">Station panel panel_01_USGS_255327081275900 · source t → target t+1 · single fitted model</text>
+<g fill="none" stroke-linecap="round">
+<path d="M 694.2,286.2 Q 672.1,182.1 568.1,160.1" stroke="#256f9c" stroke-width="2.16" opacity=".86" marker-end="url(#positive)"/>
+<rect x="628.6" y="190.6" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="651.6" y="205.6" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#256f9c">+0.20</text>
+<path d="M 520.0,486.0 Q 578.0,333.0 520.0,180.0" stroke="#b26750" stroke-width="2.12" opacity=".86" marker-end="url(#negative)"/>
+<rect x="526.0" y="321.0" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="549.0" y="336.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.19</text>
+<path d="M 520.0,174.0 Q 462.0,327.0 520.0,480.0" stroke="#b26750" stroke-width="1.95" opacity=".86" marker-end="url(#negative)"/>
+<rect x="468.0" y="315.0" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="491.0" y="330.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.14</text>
+<path d="M 364.0,330.0 Q 517.0,388.0 670.0,330.0" stroke="#b26750" stroke-width="1.79" opacity=".86" marker-end="url(#negative)"/>
+<rect x="494.0" y="347.0" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="517.0" y="362.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.09</text>
+<path d="M 694.2,373.8 Q 590.1,395.9 568.1,499.9" stroke="#b26750" stroke-width="1.79" opacity=".86" marker-end="url(#negative)"/>
+<rect x="587.6" y="404.4" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="610.6" y="419.4" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.09</text>
+<path d="M 563.8,155.8 Q 585.9,259.9 689.9,281.9" stroke="#b26750" stroke-width="1.78" opacity=".86" marker-end="url(#negative)"/>
+<rect x="583.4" y="227.4" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="606.4" y="242.4" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.08</text>
+<path d="M 476.2,155.8 Q 372.1,177.9 350.1,281.9" stroke="#b26750" stroke-width="1.77" opacity=".86" marker-end="url(#negative)"/>
+<rect x="369.6" y="186.4" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="392.6" y="201.4" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.08</text>
+<path d="M 345.8,373.8 Q 367.9,477.9 471.9,499.9" stroke="#256f9c" stroke-width="1.66" opacity=".86" marker-end="url(#positive)"/>
+<rect x="365.4" y="445.4" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="388.4" y="460.4" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#256f9c">+0.05</text>
+<path d="M 563.8,504.2 Q 667.9,482.1 689.9,378.1" stroke="#256f9c" stroke-width="1.64" opacity=".86" marker-end="url(#positive)"/>
+<rect x="624.4" y="449.6" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="647.4" y="464.6" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#256f9c">+0.04</text>
+<path d="M 476.2,504.2 Q 454.1,400.1 350.1,378.1" stroke="#b26750" stroke-width="1.57" opacity=".86" marker-end="url(#negative)"/>
+<rect x="410.6" y="408.6" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="433.6" y="423.6" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.02</text>
+<path d="M 345.8,286.2 Q 449.9,264.1 471.9,160.1" stroke="#b26750" stroke-width="1.54" opacity=".86" marker-end="url(#negative)"/>
+<rect x="406.4" y="231.6" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="429.4" y="246.6" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.01</text>
+<path d="M 676.0,330.0 Q 523.0,272.0 370.0,330.0" stroke="#b26750" stroke-width="1.50" opacity=".86" marker-end="url(#negative)"/>
+<rect x="500.0" y="289.0" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="523.0" y="304.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.00</text>
+</g>
+<circle cx="520.0" cy="112.0" r="57" fill="#e7f1fc" stroke="#46677b" stroke-width="1.5"/>
+<text x="520.0" y="100.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">discharge</text>
+<text x="520.0" y="130.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#556e7b">hydrology</text>
+<path d="M 562.0,76.0 C 625.0,13.0 540.0,5.0 528.0,54.0" fill="none" stroke="#256f9c" stroke-width="1.7" marker-end="url(#positive)"/>
+<text x="578.0" y="24.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#256f9c">self +0.63</text>
+<circle cx="738.0" cy="330.0" r="57" fill="#e7f1fc" stroke="#46677b" stroke-width="1.5"/>
+<text x="738.0" y="318.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">gage height</text>
+<text x="738.0" y="348.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#556e7b">hydrology</text>
+<path d="M 780.0,294.0 C 843.0,231.0 758.0,223.0 746.0,272.0" fill="none" stroke="#256f9c" stroke-width="1.7" marker-end="url(#positive)"/>
+<text x="796.0" y="242.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#256f9c">self +0.70</text>
+<circle cx="520.0" cy="548.0" r="57" fill="#e3f5f1" stroke="#46677b" stroke-width="1.5"/>
+<text x="520.0" y="536.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">salinity</text>
+<text x="520.0" y="566.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#556e7b">water quality</text>
+<path d="M 562.0,512.0 C 625.0,449.0 540.0,441.0 528.0,490.0" fill="none" stroke="#256f9c" stroke-width="1.7" marker-end="url(#positive)"/>
+<text x="578.0" y="460.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#256f9c">self +0.91</text>
+<circle cx="302.0" cy="330.0" r="57" fill="#e3f5f1" stroke="#46677b" stroke-width="1.5"/>
+<text x="302.0" y="310.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">water</text>
+<text x="302.0" y="325.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">temperature</text>
+<text x="302.0" y="348.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#556e7b">water quality</text>
+<path d="M 344.0,294.0 C 407.0,231.0 322.0,223.0 310.0,272.0" fill="none" stroke="#256f9c" stroke-width="1.7" marker-end="url(#positive)"/>
+<text x="360.0" y="242.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#256f9c">self +0.76</text>
+<rect x="40" y="607" width="20" height="4" rx="2" fill="#256f9c"/>
+<text x="70" y="613" font-family="Arial,sans-serif" font-size="12" fill="#526778">Positive lag-one weight</text>
+<rect x="290" y="607" width="20" height="4" rx="2" fill="#b26750"/>
+<text x="320" y="613" font-family="Arial,sans-serif" font-size="12" fill="#526778">Negative lag-one weight</text>
+<text x="40" y="643" font-family="Arial,sans-serif" font-size="12" fill="#5f7181">12 of 12 non-self edges shown at |weight| ≥ 0.00; 0 capped for readability.</text>
+<text x="40" y="670" font-family="Arial,sans-serif" font-size="12" fill="#5f7181">Descriptive projection of one trained station FCM; not an independently fitted category/subcategory model or causal graph.</text>
+<text x="40" y="697" font-family="Arial,sans-serif" font-size="11" fill="#72838d">Edge direction: source today → target next day. Self arrows denote memory, not causality.</text>
+</svg>

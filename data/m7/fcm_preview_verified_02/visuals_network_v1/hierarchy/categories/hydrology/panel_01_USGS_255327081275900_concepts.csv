@@ -1,0 +1,3 @@
+panel_id,concept,category,subcategory,status
+panel_01_USGS_255327081275900,discharge,hydrology,surface_flow,observed_in_station_panel_not_independently_trained
+panel_01_USGS_255327081275900,gage_height,hydrology,surface_flow,observed_in_station_panel_not_independently_trained

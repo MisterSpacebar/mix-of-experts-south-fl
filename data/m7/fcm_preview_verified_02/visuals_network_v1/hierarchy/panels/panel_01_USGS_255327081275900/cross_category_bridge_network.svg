@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 720" role="img"
+ aria-label="Cross-category bridge edges (same trained panel)">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<defs>
+<marker id="positive" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#256f9c"/></marker>
+<marker id="negative" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#b26750"/></marker>
+</defs>
+<text x="40" y="44" font-size="23" font-weight="bold" font-family="Arial,sans-serif" fill="#173d58">Cross-category bridge edges (same trained panel)</text>
+<text x="40" y="70" font-size="13" font-family="Arial,sans-serif" fill="#506675">Station panel panel_01_USGS_255327081275900 · source t → target t+1 · single fitted model</text>
+<g fill="none" stroke-linecap="round">
+<path d="M 520.0,486.0 Q 578.0,333.0 520.0,180.0" stroke="#b26750" stroke-width="2.12" opacity=".86" marker-end="url(#negative)"/>
+<rect x="526.0" y="321.0" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="549.0" y="336.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.19</text>
+<path d="M 520.0,174.0 Q 462.0,327.0 520.0,480.0" stroke="#b26750" stroke-width="1.95" opacity=".86" marker-end="url(#negative)"/>
+<rect x="468.0" y="315.0" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="491.0" y="330.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.14</text>
+<path d="M 364.0,330.0 Q 517.0,344.0 670.0,330.0" stroke="#b26750" stroke-width="1.79" opacity=".86" marker-end="url(#negative)"/>
+<rect x="494.0" y="325.0" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="517.0" y="340.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.09</text>
+<path d="M 694.2,373.8 Q 621.2,427.0 568.1,499.9" stroke="#b26750" stroke-width="1.79" opacity=".86" marker-end="url(#negative)"/>
+<rect x="603.2" y="419.9" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="626.2" y="434.9" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.09</text>
+<path d="M 476.2,155.8 Q 403.2,209.0 350.1,281.9" stroke="#b26750" stroke-width="1.77" opacity=".86" marker-end="url(#negative)"/>
+<rect x="385.2" y="201.9" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="408.2" y="216.9" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.08</text>
+</g>
+<circle cx="520.0" cy="112.0" r="57" fill="#e7f1fc" stroke="#46677b" stroke-width="1.5"/>
+<text x="520.0" y="100.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">discharge</text>
+<text x="520.0" y="130.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#556e7b">hydrology</text>
+<circle cx="738.0" cy="330.0" r="57" fill="#e7f1fc" stroke="#46677b" stroke-width="1.5"/>
+<text x="738.0" y="318.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">gage height</text>
+<text x="738.0" y="348.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#556e7b">hydrology</text>
+<circle cx="520.0" cy="548.0" r="57" fill="#e3f5f1" stroke="#46677b" stroke-width="1.5"/>
+<text x="520.0" y="536.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">salinity</text>
+<text x="520.0" y="566.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#556e7b">water quality</text>
+<circle cx="302.0" cy="330.0" r="57" fill="#e3f5f1" stroke="#46677b" stroke-width="1.5"/>
+<text x="302.0" y="310.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">water</text>
+<text x="302.0" y="325.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">temperature</text>
+<text x="302.0" y="348.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#556e7b">water quality</text>
+<rect x="40" y="607" width="20" height="4" rx="2" fill="#256f9c"/>
+<text x="70" y="613" font-family="Arial,sans-serif" font-size="12" fill="#526778">Positive lag-one weight</text>
+<rect x="290" y="607" width="20" height="4" rx="2" fill="#b26750"/>
+<text x="320" y="613" font-family="Arial,sans-serif" font-size="12" fill="#526778">Negative lag-one weight</text>
+<text x="40" y="643" font-family="Arial,sans-serif" font-size="12" fill="#5f7181">5 of 5 non-self edges shown at |weight| ≥ 0.08; 0 capped for readability.</text>
+<text x="40" y="670" font-family="Arial,sans-serif" font-size="12" fill="#5f7181">Descriptive projection of one trained station FCM; not an independently fitted category/subcategory model or causal graph.</text>
+<text x="40" y="697" font-family="Arial,sans-serif" font-size="11" fill="#72838d">Edge direction: source today → target next day. Self arrows denote memory, not causality.</text>
+</svg>
