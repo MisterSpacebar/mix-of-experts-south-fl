@@ -217,15 +217,15 @@ def run(model_run,panels,out,block_days=7,bootstrap=400,
             status="expanding_origin_evaluated",
             reason=unit_sig_status,model_dir=rec["model_directory"],
             panel_sha256=rec["panel_sha256"],n_temporal_folds=len(folds)))
-        trained.append(dict(
-            **rec,scope=scope,concepts=concepts,
-            model_json=model,model_dir=model_dir,
-            panel_dir=panel_dir,source_row=source_row,
-            unit_signature=unit_signature,
-            edges=read_csv(model_dir/"edge_weights.csv"),
-            target_predictions=predictions,
-            source_rows=source_rows,
-        ))
+        trained.append({
+            **rec,"scope":scope,"concepts":concepts,
+            "model_json":model,"model_dir":model_dir,
+            "panel_dir":panel_dir,"source_row":source_row,
+            "unit_signature":unit_signature,
+            "edges":read_csv(model_dir/"edge_weights.csv"),
+            "target_predictions":predictions,
+            "source_rows":source_rows,
+        })
     write_csv(out/"evaluation_registry.csv",indexed,INDEX_COLS)
     write_csv(out/"temporal_folds_all.csv",all_folds,FOLD_COLS)
     write_csv(out/"temporal_edges_all.csv",all_fold_edges,FOLD_EDGE_COLS)
