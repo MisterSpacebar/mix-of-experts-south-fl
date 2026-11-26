@@ -23,7 +23,7 @@ from southfl.net import write_csv
 from southfl.fcm_model import fit_preview,NotReadyError,EVAL_COLS,EDGE_COLS
 from southfl.fcm_figures import hindcast_svg
 from southfl.m8_layers import concept_scopes,fit_scoped,compare_matched,COMPARISON_COLS,STATUS_COLS
- from visuals.hierarchy import CATEGORIES
+from visuals.hierarchy import CATEGORIES
 from visuals.network_svg import network_svg
 from visuals.render import plot_baseline_comparison,plot_edge_weight_heatmap
 
