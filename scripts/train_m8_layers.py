@@ -34,7 +34,9 @@ from visuals.render import (
 
 PRED_COLS=["date","concept","actual","fcm","self_ar","persistence"]
 ROLL_COLS=["step","concept","simulated_value"]
-REGISTRY_COLS=STATUS_COLS+["n_train_pairs","n_validation_pairs","n_test_pairs","n_beating_self_ar","n_beating_persistence"]
+REGISTRY_COLS=STATUS_COLS+["n_train_pairs","n_validation_pairs","n_test_pairs",
+                            "n_beating_self_ar","n_beating_persistence",
+                            "same_concept_set_as"]
 FINDING_COLS=["panel_id","level","scope","concept","n_test_pairs","fcm_mae",
               "self_ar_mae","persistence_mae","skill_vs_self_ar",
               "skill_vs_persistence","note"]
@@ -138,7 +140,8 @@ def _status(level,cat,sub,pid,item,concepts,status,reason,relative="",sha="",mod
         n_consecutive_daily_pairs=item.get("n_consecutive_daily_pairs",""),
         status=status,reason=reason,model_directory=relative,panel_sha256=sha,
         n_train_pairs="",n_validation_pairs="",n_test_pairs="",
-        n_beating_self_ar="",n_beating_persistence="")
+        n_beating_self_ar="",n_beating_persistence="",
+        same_concept_set_as="")
     if model is not None:
         result.update(
             n_train_pairs=model["train_pairs"],
@@ -276,6 +279,25 @@ def run(panel_dirs,out,min_pairs=79,dpi=150,min_edge=.08):
                 "trained_within_station_prototype",
                 "independent restricted-concept fit; no cross-station pooling",
                 rel.as_posix(),panel_sha,fitted))
+    # A hydrology category and surface-flow subcategory may contain exactly
+    # the same two variables at one station. Two refits are NOT independent
+    # scientific evidence when they share identical source data and targets.
+    distinct_signatures={}
+    for entry in statuses:
+        if entry["status"] != "trained_within_station_prototype":
+            continue
+        signature=(entry["panel_id"],entry["concepts"])
+        previous=distinct_signatures.get(signature)
+        if previous:
+            entry["same_concept_set_as"]=previous
+            d=out/entry["model_directory"]
+            (d/"FINDINGS.md").open("a",encoding="utf-8").write(
+                "\n## Redundant concept scope\n\n"
+                f"This scope contains exactly the same station/concepts as "
+                f"`{previous}`. The separately invoked deterministic fit "
+                "does **not** add independent observational evidence.\n")
+        else:
+            distinct_signatures[signature]=entry["model_directory"]
     write_csv(out/"model_registry.csv",statuses,REGISTRY_COLS)
     write_csv(out/"matched_specialist_comparisons.csv",comparisons,COMPARISON_COLS)
 
@@ -412,7 +434,7 @@ def run(panel_dirs,out,min_pairs=79,dpi=150,min_edge=.08):
         ]
         (folder/"FINDINGS.md").write_text(
             "\n".join(findings)+"\n",encoding="utf-8")
-    if valid_panels:
+    if statuses:
         rendered_data=out/"levels"/"dataset"
         lines=["# Dataset / station FCMs",""]
         for r in statuses:
@@ -428,6 +450,8 @@ def run(panel_dirs,out,min_pairs=79,dpi=150,min_edge=.08):
         f"New full dataset-level fits: {valid_panels}.",
         f"Within-station restricted-concept specialist fits: "
         f"{sum(r['status']=='trained_within_station_prototype' for r in statuses)}.",
+        f"Unique station/concept-set signatures: {len(distinct_signatures)}; "
+        "duplicate category/subcategory signatures are flagged in the registry.",
         "**Regional subcategory, category and overall experts: NOT TRAINED.**","",
         "All model results are chronological held-out fits, "
         "not causal identification or spatial generalization.","",
@@ -458,6 +482,9 @@ def run(panel_dirs,out,min_pairs=79,dpi=150,min_edge=.08):
         "n_panel_candidates":len(index),"n_fitted_dataset_models":valid_panels,
         "n_station_local_specialist_fits":sum(
             r["status"]=="trained_within_station_prototype" for r in statuses),
+        "n_distinct_station_specialist_concept_sets":len(distinct_signatures),
+        "n_redundant_scope_fits":sum(
+            bool(r["same_concept_set_as"]) for r in statuses),
         "n_unfitted_scope_candidates":sum(
             r["level"] in ("subcategory","category") and
             r["status"].startswith("not_trained") for r in statuses),
