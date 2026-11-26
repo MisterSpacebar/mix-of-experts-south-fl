@@ -79,10 +79,11 @@ git switch fix/usgs-series-identity-auth-preflight
 python -m unittest discover -s tests -v
 
 # First run requires no agency calls and creates no output files.
-python scripts/reconcile_fcm_series.py --plan data/m7/history_plan_v1/history_plan.csv --panel panel_01 --out data/m7/identity_probe_01
+$firstPanel = (Import-Csv data/m7/history_plan_v1/history_plan.csv | Select-Object -First 1).panel_id
+python scripts/reconcile_fcm_series.py --plan data/m7/history_plan_v1/history_plan.csv --panel $firstPanel --out data/m7/identity_probe_01
 
 # After USGS key is set; two short calls per concept, not 120-day histories.
-python scripts/reconcile_fcm_series.py --plan data/m7/history_plan_v1/history_plan.csv --panel panel_01 --probe-days 2 --min-delay 2 --out data/m7/identity_probe_01 --execute
+python scripts/reconcile_fcm_series.py --plan data/m7/history_plan_v1/history_plan.csv --panel $firstPanel --probe-days 2 --min-delay 2 --out data/m7/identity_probe_01 --execute
 
 # Review series_identity_audit.csv and identity_manifest.json FIRST.
 # Download history using only the fully verified, source-matched plan.
@@ -94,8 +95,8 @@ python scripts/build_fcm_panels.py --history data/m7/history_verified_01 --out d
 python scripts/preview_fcm.py --panels data/m7/daily_panels_verified_01 --out data/m7/fcm_preview_verified_01
 ```
 
-Replace `panel_01` above with an **exact panel_id from the local plan**
-(e.g., `panel_01_USGS_...`). It is not necessarily the literal `panel_01`.
+The PowerShell `$firstPanel` variable selects an exact, existing panel
+identifier from the local plan (for example, `panel_01_USGS_...`).
 
 When the single-panel preflight succeeds, test all planned panels in new
 directories by *omitting* `--panel`, then download only the verified plan.
