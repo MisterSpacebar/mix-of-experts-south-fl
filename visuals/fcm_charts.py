@@ -18,7 +18,10 @@ METRIC_COLUMNS = [
     "persistence_mae", "train_climatology_mae", "fcm_vs_persistence_mae_delta",
     "fcm_vs_self_ar_mae_delta", "test_target_mean", "unit_note",
 ]
-CONCEPT_SUMMARY_COLUMNS = [
+CONCEPT_SUMMARY_COLUMNS = ["panel_id", "region", "site_id"] + METRIC_COLUMNS + [
+    "skill_vs_persistence", "skill_vs_self_ar",
+]
+SUMMARY_COLUMNS = [
     "panel_id", "region", "site_id", "n_concepts", "n_test_pairs", "concepts",
     "beats_persistence", "beats_self_ar",
     "median_skill_persistence", "median_skill_self_ar",
