@@ -75,6 +75,32 @@ class MetadataIdTests(unittest.TestCase):
             with self.assertRaisesRegex(AcquisitionError,"wrong site"):
                 usgs_site_parameter_periods("USGS-12345","00060")
 
+class ExactObservationFilterTests(unittest.TestCase):
+    @patch("southfl.observations.get_json")
+    def test_exact_series_query_and_correct_observation(self, request):
+        request.return_value={"features":[{"id":"sample-1","properties":{
+            "monitoring_location_id":"USGS-12345",
+            "parameter_code":"00060","time_series_id":"canonical-001",
+            "time":"2026-10-30T12:00:00Z","value":"37",
+            "unit_of_measure":"ft3/s"}}],"links":[]}
+        rows,urls=usgs_observations("USGS-12345","00060",
+            "2026-10-30","2026-10-31","discharge",mode="continuous",
+            series_id_filter="canonical-001")
+        self.assertEqual(rows[0]["series_id"],"canonical-001")
+        self.assertIn("time_series_id=canonical-001",urls[0])
+
+    @patch("southfl.observations.get_json")
+    def test_server_ignoring_exact_series_filter_is_rejected(self, request):
+        request.return_value={"features":[{"id":"sample-1","properties":{
+            "monitoring_location_id":"USGS-12345",
+            "parameter_code":"00060","time_series_id":"other-series",
+            "time":"2026-10-30T12:00:00Z","value":"37"}}],"links":[]}
+        with self.assertRaisesRegex(AcquisitionError,"ignored exact"):
+            usgs_observations("USGS-12345","00060",
+                "2026-10-30","2026-10-31","discharge",mode="continuous",
+                series_id_filter="canonical-001")
+
+
 class PreflightTests(unittest.TestCase):
     def test_one_matching_current_id_and_real_observation_can_replace_old(self):
         def metadata(site,code): return [source("canonical-001")]
