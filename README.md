@@ -279,6 +279,16 @@ overview. [M9.2 evidence atlas guide](docs/M9_CROSS_AXIS_ATLAS.md)
 details relationship types, filters, full category/region reports,
 source integrity and scientific interpretation.
 
+## Milestone 10 — regional observation expansion
+
+Start ranked, synchronized, station-bounded acquisition with the committed
+M9 recruitment snapshot. No network calls or new model fits occur during
+planning. See [M10 runbook](docs/M10_REGIONAL_EXPANSION.md).
+
+```powershell
+python scripts/plan_m10_expansion.py --out data/m10/expansion_plan_v1
+```
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
