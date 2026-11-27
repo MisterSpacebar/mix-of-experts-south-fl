@@ -105,8 +105,7 @@ class AtlasEvidenceUnitTests(unittest.TestCase):
                     _edges={})
         svg=atlas_svg([sample],[],minimum=.08)
         ElementTree.fromstring(svg)
-        self.assertIn("REGIONAL",svg.upper()) if False else self.assertIn(
-            "NOT TRAINED",svg.upper())
+        self.assertIn("NOT TRAINED",svg.upper())
 
     def test_no_cross_site_changes_when_not_geographic_candidate(self):
         day=date(2026,1,1)
