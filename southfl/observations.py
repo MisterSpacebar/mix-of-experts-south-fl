@@ -4,7 +4,7 @@ Each record retains the source unit, method, status, and time basis. The
 downloaders validate agency site/parameter identity rather than silently
 discarding unexpected records.
 """
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from urllib.parse import urljoin
 from .net import AcquisitionError, get_csv, get_json, url_with_params
 from .parameters import USGS_PARAMETERS, usgs_concept, usgs_vertical_datum, wqp_concept
@@ -68,9 +68,19 @@ def usgs_observations(site, code, start, end, concept, mode="daily",
         raise ValueError("USGS requires a site and five-character parameter code")
     if code in USGS_PARAMETERS and concept != usgs_concept(code):
         raise ValueError("stale USGS pilot concept for parameter code; regenerate plan")
+    begin, finish = date.fromisoformat(start), date.fromisoformat(end)
+    if finish < begin:
+        raise ValueError("USGS observation end precedes start")
+    # Continuous instants use explicit UTC half-open calendar-day windows.
+    # OGC interval intersection may include the upper endpoint; remove only
+    # that exact instant after checking source identity. Daily statistics
+    # have source calendar dates and retain the existing date filter.
+    upper = (finish + timedelta(days=1)).isoformat() + "T00:00:00Z"
+    interval = (start + "T00:00:00Z/" + upper if mode == "continuous"
+                else start + "/" + end)
     base = f"{USGS_BASE}/{mode}/items"
     params = {"f": "json", "monitoring_location_id": site,
-              "parameter_code": code, "time": start + "/" + end,
+              "parameter_code": code, "time": interval,
               "limit": page_size}
     if series_id_filter:
         params["time_series_id"] = series_id_filter
@@ -100,6 +110,8 @@ def usgs_observations(site, code, start, end, concept, mode="daily",
                 when, time_basis = "", "source_daily_calendar_date"
             else:
                 when = _utc_timestamp(raw_time)
+                if when == upper:
+                    continue  # inclusive OGC endpoint belongs to next UTC day
                 day, time_basis = when[:10], "explicit_utc_datetime"
             if not (date.fromisoformat(start) <= date.fromisoformat(day) <= date.fromisoformat(end)):
                 raise AcquisitionError("USGS returned observation outside requested time window")
