@@ -40,7 +40,7 @@ observed coverage; all actual observations go through the corrected
 UTC half-open downloader and observed-only panel QA.
 
 Regional eligibility retains M10 sensor/units and temporal checks and
-requires at least four compatible stations. Sites failing minimum observed split counts are retained locally but excluded from the regional pool by coverage only, not test errors. Fixed 60/20/20 calendar
+requires at least four compatible stations. Sites failing minimum observed split counts or with a constant core training predictor are retained locally but excluded from the regional pool by coverage only, not test errors. Fixed 60/20/20 calendar
 splits; common observed target dates (>=15) for matched test evaluation.
 Insufficient contiguous block support yields a point estimate without
 an interval, not an artificial interpolated block. No test errors select

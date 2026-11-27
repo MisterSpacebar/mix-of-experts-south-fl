@@ -213,8 +213,9 @@ def run(cohort,out,verify_raw=False,draws=2000,config=None):
             "- [Fold parameters and donor-only scalers](fold_models.json)",
             "- [FCM edges](edge_weights.csv) · [Lineage](manifest.json)","",
             "Target-local FCM uses target history and is an adaptation reference, not zero-shot. "
-            "Previous-day target observations are available at issue time. These data have already "
-            been examined descriptively in M10; the M11 protocol is predeclared. Results are retrospective, not prospective confirmation. "
+            "Previous-day target observations are available at issue time. "+
+            ("These data have already been examined descriptively; " if config is None else "The model protocol was frozen before acquisition; ")+
+            "results are retrospective, not prospective confirmation. "
             "Exact sensor depth, common forcing and connectivity remain unverified."]
     (out/"INDEX.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
     return report

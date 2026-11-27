@@ -246,6 +246,12 @@ def run(snapshots, out, assignments=ASSIGNMENTS, shortlist=SHORTLIST,
                     counts[period(d)]+=1
             if sum(counts.values())<min_pairs or any(counts[k]<n for k,n in (("train",35),("validation",15),("test",15))):
                 r["cohort_status"]="insufficient_split_coverage"
+                continue
+            rows=[row for row in r["_rows"] if date.fromisoformat(row["date"]) in days]
+            training=[x for d,x,_ in build_pairs(rows,CONCEPTS) if period(date.fromisoformat(d))=="train"]
+            from statistics import pstdev
+            if any(pstdev(x[j] for x in training)<=1e-10 for j in range(len(CONCEPTS))):
+                r["cohort_status"]="constant_training_concept"
     eligible = sorted(s for s,r in stations.items() if r["cohort_status"] == "eligible_metadata_screen")
     for sid,r in stations.items():
         r["common_window_days"], r["common_window_pairs"], r["common_window_longest_days"] = dates_summary(r["_dates"])

@@ -68,3 +68,28 @@ class PipelineTests(unittest.TestCase):
                local_only=True,forcing_config=DEFAULT,cohort_config=dict(snapshots=[(Path("d"),Path("h"),Path("i"))],
                coordinates=Path("s"),min_sites=4))
         self.assertEqual(deserialize_bundle(serial_bundle(b)),b)
+
+    def test_parameterized_cohort_replays_frozen_m10(self):
+        from scripts.train_m10_regional_fcm import COHORT,SNAPSHOTS,load_cohort
+        # New bundle code must reproduce the real existing cohort, without
+        # network or assuming the M11 geography is populated.
+        m,splits,_=load_cohort(COHORT,False,dict(snapshots=SNAPSHOTS,
+            coordinates=COHORT/"station_cohort.csv",min_sites=4))
+        self.assertEqual(len(splits),4)
+        self.assertEqual(sum(len(x["test"]) for x in splits.values()),144)
+
+    def test_local_only_bundle_retains_station_experts(self):
+        from scripts.train_m10_regional_fcm import COHORT,SNAPSHOTS
+        from scripts.build_m10_hierarchical_atlas import context,replay
+        bundle=dict(cohort=COHORT,base=COHORT,combined=COHORT,forcing=COHORT,
+                    layers=Path("data/m10/layers_expanded_v1"),local_only=True,
+                    cohort_config=dict(snapshots=SNAPSHOTS,coordinates=COHORT/"station_cohort.csv",min_sites=4),
+                    forcing_config=None)
+        router,entries,manifest,*_=context(bundle=bundle)
+        rows,edges,residual,weights,nmix=replay(router,entries,manifest,bundle)
+        self.assertEqual(len(rows),2293)
+        self.assertEqual(len(edges),185)
+        self.assertEqual(nmix,0)
+        self.assertFalse(router.folds)
+        self.assertFalse(residual)
+        self.assertFalse(weights)
