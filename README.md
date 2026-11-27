@@ -330,6 +330,14 @@ Replay frozen station/category and regional mixture experts through an archive-o
 python scripts/build_m10_hierarchical_atlas.py --verify-raw --out data/m10/hierarchical_atlas_v1
 ```
 
+## M11 — consolidated Biscayne Bay replication
+
+See [M11 runbook](docs/M11_BISCAYNE_PIPELINE.md). One resumable acquisition and model integration pipeline; M10 snapshots remain immutable.
+
+```powershell
+python scripts/run_m11_biscayne.py --execute --resume --out data/m11/biscayne_v1
+```
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
