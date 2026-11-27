@@ -15,7 +15,7 @@ from southfl.history_selection import PLAN_COLS,select_panels
 
 
 def run(periods,stations,end,days,out,max_panels=3,max_concepts=4,
-        sites=None,exclude_sites=None,max_per_region=None):
+        sites=None,exclude_sites=None,max_per_region=None,regions=None):
     periods,stations,out=Path(periods),Path(stations),Path(out)
     if out.exists() and any(out.iterdir()):
         raise ValueError("output directory must be new/empty")
@@ -25,7 +25,8 @@ def run(periods,stations,end,days,out,max_panels=3,max_concepts=4,
                        max_panels,max_concepts,
                        site_filter=set(sites) if sites else None,
                        exclude_sites=set(exclude_sites or ()),
-                       max_per_region=max_per_region)
+                       max_per_region=max_per_region,
+                       region_filter=set(regions or ()))
     if not plan:
         raise ValueError("no eligible same-site multivariate metadata candidates; "
                          "no panel or model fabricated")
@@ -42,6 +43,7 @@ def run(periods,stations,end,days,out,max_panels=3,max_concepts=4,
         "end":end,"days":days,"source":"USGS continuous",
         "excluded_site_ids":sorted(set(exclude_sites or ())),
         "max_panels_per_screening_region":max_per_region,
+        "selected_discovery_region_filter":sorted(set(regions or ())),
         "observations_downloaded":False,"trainable":False,
         "note":"First/last metadata only; actual temporal overlap must be verified. "
                "No cross-site merges, interpolation, or causal claims.",
@@ -68,11 +70,14 @@ def main():
                    help="skip already-evaluated stations BEFORE ranking candidates")
     p.add_argument("--max-per-region",type=int,default=None,
                    help="optional cap on selected stations per screened region")
+    p.add_argument("--region",action="append",default=[],
+                   help="restrict candidate stations to one or more screening "
+                        "regions; repeatable, NOT validated watershed polygons")
     p.add_argument("--out",type=Path,default=Path("data/m7/history_plan_v1"))
     a=p.parse_args()
     run(a.periods,a.stations,a.end,a.days,a.out,
         a.max_panels,a.max_concepts,a.site,a.exclude_site,
-        a.max_per_region)
+        a.max_per_region,a.region)
 
 
 if __name__=="__main__":
