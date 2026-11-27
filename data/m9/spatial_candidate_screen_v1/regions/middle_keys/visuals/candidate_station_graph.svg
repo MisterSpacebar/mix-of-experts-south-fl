@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" role="img" aria-label="Middle Keys · observed screening pairs">
+<rect width="100%" height="100%" fill="white"/>
+<text x="30" y="42" font-size="24" font-weight="bold" font-family="Arial,sans-serif" fill="#193c51">Middle Keys · observed screening pairs</text>
+<text x="30" y="67" font-size="13" font-family="Arial,sans-serif" fill="#526776">Gray dashed lines = shared discovery rectangle or proximity screening ONLY; never a trained FCM or confirmed flow.</text>
+<text x="550" y="285" text-anchor="middle" font-size="17" font-family="Arial,sans-serif" fill="#647587">No source-verified point coordinates supplied</text>
+<text x="550" y="310" text-anchor="middle" font-size="13" font-family="Arial,sans-serif">No candidate edges drawn</text>
+<text x="30" y="580" font-size="13" font-family="Arial,sans-serif" fill="#596b79">Observed monitoring sites only. Dotted proximity is NOT a hydrological connection. Regional FCM: NOT TRAINED.</text>
+</svg>

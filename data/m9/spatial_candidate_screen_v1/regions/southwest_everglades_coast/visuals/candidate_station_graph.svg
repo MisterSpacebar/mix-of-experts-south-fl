@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" role="img" aria-label="Southwest Everglades Coast · observed screening pairs">
+<rect width="100%" height="100%" fill="white"/>
+<text x="30" y="42" font-size="24" font-weight="bold" font-family="Arial,sans-serif" fill="#193c51">Southwest Everglades Coast · observed screening pairs</text>
+<text x="30" y="67" font-size="13" font-family="Arial,sans-serif" fill="#526776">Gray dashed lines = shared discovery rectangle or proximity screening ONLY; never a trained FCM or confirmed flow.</text>
+<line x1="850.0" y1="399.5" x2="250.0" y2="290.5" stroke="#879ca9" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="550.0" y="335.0" text-anchor="middle" font-size="11" font-family="Arial,sans-serif" fill="#465e6f">9.5 km straight-line</text>
+<circle cx="850.0" cy="399.5" r="9" fill="#e2f0fb" stroke="#2f6788" stroke-width="2"/>
+<text x="862.0" y="389.5" font-size="13" font-family="Arial,sans-serif" fill="#184258">255327081275900</text>
+<text x="862.0" y="409.5" font-size="10" font-family="Arial,sans-serif" fill="#718492">big cypress</text>
+<circle cx="250.0" cy="290.5" r="9" fill="#e2f0fb" stroke="#2f6788" stroke-width="2"/>
+<text x="262.0" y="280.5" font-size="13" font-family="Arial,sans-serif" fill="#184258">255534081324000</text>
+<text x="262.0" y="300.5" font-size="10" font-family="Arial,sans-serif" fill="#718492">southwest everglades coast</text>
+<text x="30" y="580" font-size="13" font-family="Arial,sans-serif" fill="#596b79">Observed monitoring sites only. Dotted proximity is NOT a hydrological connection. Regional FCM: NOT TRAINED.</text>
+</svg>

@@ -1,0 +1,25 @@
+{
+  "created_at_utc": "2026-11-27T02:14:47.326015+00:00",
+  "target_discovery_region": "big_cypress",
+  "start": "2026-05-29",
+  "end": "2026-11-24",
+  "days": 180,
+  "n_metadata_eligible_nearby_station_candidates": 6,
+  "n_selected_new_panel_candidates": 6,
+  "n_candidate_source_series": 20,
+  "source_reference_assignments_sha256": "0d11fe2c7a46c77e3e8496ae1efb5ae49cbd12e3391d03da0a7603386f49de2f",
+  "source_observed_panel_roots": [
+    "data\\m7\\daily_panels_verified_01",
+    "data\\m8\\replication_daily_01"
+  ],
+  "source_inventory_sha256": "d8026fd6def49de808d34ddcd14e4cf788479e66b7ace8c784930011db677255",
+  "source_parameter_periods_sha256": "5c0eea5df2e7dabadbc76ef42ab945fc5c8936af3331032a721cc373cb374e96",
+  "n_alt_agency_namespace_inventory_exclusions": 99,
+  "max_straight_line_distance_km_screening_only": 60,
+  "station_coordinates_are_from_source_inventory": true,
+  "hydrological_connectivity_verified": false,
+  "period_of_record_not_observed_coverage": true,
+  "identity_preflight_complete": false,
+  "observations_downloaded": false,
+  "regional_fcms_trained": 0
+}

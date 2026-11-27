@@ -1,0 +1,24 @@
+{
+  "created_at_utc": "2026-11-27T02:14:25.082375+00:00",
+  "source_model_manifest_sha256": "d0d54d40a5896d4f2359b826ea6ee30624c8de5acf55276dfd951157c252ab5e",
+  "input_panel_roots": [
+    "data\\m7\\daily_panels_verified_01",
+    "data\\m8\\replication_daily_01"
+  ],
+  "coordinate_source_mode": "local_canonical_agency_inventory",
+  "coordinate_source_sha256": "d8026fd6def49de808d34ddcd14e4cf788479e66b7ace8c784930011db677255",
+  "alternate_namespace_ids_audited": true,
+  "n_original_sites": 3,
+  "n_unique_independent_station_pairs": 3,
+  "n_geographic_screening_candidates": 1,
+  "n_unique_pairs_in_shared_rectangles": 1,
+  "n_alternate_inventory_identifiers_skipped": 99,
+  "max_distance_km_proximity_screen_only": 30,
+  "min_accumulated_aligned_one_day_transitions": 79,
+  "min_verified_compatible_concepts": 2,
+  "n_regional_fcms_trained": 0,
+  "n_regional_subsystem_fcms_trained": 0,
+  "n_confirmed_hydrological_connectivity_edges": 0,
+  "no_new_agency_requests": true,
+  "source_files_untouched": true
+}
