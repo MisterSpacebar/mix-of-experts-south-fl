@@ -21,6 +21,7 @@ from southfl.regions import REGIONS,regions_for
 from southfl.history_selection import PLAN_COLS,CONCEPT_ORDER,select_panels
 from southfl.m9_regions import haversine_km,parse_semicolon_map,STAGE_CONCEPTS
 from southfl.m9_candidates import inventory_audit,INVENTORY_AUDIT_COLS
+from scripts.build_m9_region_readiness import _known_readiness,_check_sha
 
 SHORTLIST_COLS=[
     "rank","site_id","site_name","target_discovery_region",
@@ -39,7 +40,7 @@ def _sha(path):
 
 
 def shortlist(periods,stations,assignments,region,end,days=180,
-              max_distance_km=60,min_concepts=3):
+              max_distance_km=60,min_concepts=3,reference_readiness=None):
     if region not in REGIONS:
         raise ValueError("unknown target discovery region")
     if not 60<=days<=366 or not 0<max_distance_km<=250:
@@ -53,6 +54,14 @@ def shortlist(periods,stations,assignments,region,end,days=180,
             raise ValueError("duplicate modeled source station in M9 assignment")
         if not site.startswith("USGS-"):
             raise ValueError("modeled reference station must use canonical USGS ID")
+        if reference_readiness is not None:
+            if row["panel_id"] not in reference_readiness:
+                raise ValueError("reference coordinate assignment lacks original panel")
+            observed=reference_readiness[row["panel_id"]]
+            if (observed["site_id"]!=site or observed["region"]!=row["region"]):
+                raise ValueError("reference coordinate assignment/site mismatch")
+            row=dict(row,concept_units=observed["concept_units"],
+                     concept_datums=observed["concept_datums"])
         known[site]=row
     reference=[]
     for row in known.values():
@@ -154,7 +163,7 @@ def shortlist(periods,stations,assignments,region,end,days=180,
     return rows,audit
 
 
-def run(periods,stations,assignments,region,end,days,out,max_panels=6,
+def run(periods,stations,assignments,panels,region,end,days,out,max_panels=6,
         max_concepts=4,max_distance_km=60,min_concepts=3):
     periods,stations,assignments,out=map(
         Path,(periods,stations,assignments,out))
@@ -163,11 +172,20 @@ def run(periods,stations,assignments,region,end,days,out,max_panels=6,
     if not 1<=max_panels<=8 or not 2<=min_concepts<=max_concepts<=8:
         raise ValueError("invalid panel/concept quotas")
     observed_assignments=read_csv(assignments)
+    originals=_known_readiness(panels)
+    reference_readiness={key:value[0] for key,value in originals.items()}
+    for row in observed_assignments:
+        original=originals.get(row["panel_id"])
+        if original is None:
+            raise ValueError("saved coordinate assignment missing observed source")
+        _check_sha(original[1],row["panel_sha256"])
+    if len(observed_assignments)!=len(originals):
+        raise ValueError("reference assignment and observed snapshot set differ")
     source_stations=read_csv(stations)
     source_periods=read_csv(periods)
     ranked,audit=shortlist(
         source_periods,source_stations,observed_assignments,
-        region,end,days,max_distance_km,min_concepts)
+        region,end,days,max_distance_km,min_concepts,reference_readiness)
     if not ranked:
         raise ValueError("no metadata-eligible nearby new station candidates")
     sites={r["site_id"] for r in ranked[:max_panels]}
@@ -197,6 +215,7 @@ def run(periods,stations,assignments,region,end,days,out,max_panels=6,
         "n_selected_new_panel_candidates":len(chosen),
         "n_candidate_source_series":len(selected),
         "source_reference_assignments_sha256":_sha(assignments),
+        "source_observed_panel_roots":[str(Path(p)) for p in panels],
         "source_inventory_sha256":_sha(stations),
         "source_parameter_periods_sha256":_sha(periods),
         "n_alt_agency_namespace_inventory_exclusions":sum(
@@ -251,6 +270,8 @@ def main():
     p.add_argument("--periods",type=Path,required=True)
     p.add_argument("--stations",type=Path,required=True)
     p.add_argument("--assignments",type=Path,required=True)
+    p.add_argument("--panels",type=Path,action="append",required=True,
+                   help="original observed daily panel dirs supplying reference unit/datum metadata")
     p.add_argument("--region",required=True)
     p.add_argument("--end",required=True)
     p.add_argument("--days",type=int,default=180)
@@ -260,7 +281,7 @@ def main():
     p.add_argument("--max-distance-km",type=float,default=60)
     p.add_argument("--out",type=Path,required=True)
     a=p.parse_args()
-    result=run(a.periods,a.stations,a.assignments,
+    result=run(a.periods,a.stations,a.assignments,a.panels,
                a.region,a.end,a.days,a.out,
                a.max_panels,a.max_concepts,a.max_distance_km,
                a.min_concepts)
