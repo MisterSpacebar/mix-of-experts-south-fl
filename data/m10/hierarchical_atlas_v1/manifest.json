@@ -1,0 +1,398 @@
+{
+  "n_observed_stations": 8,
+  "n_registry_entries": 95,
+  "registry_counts": {
+    "station_fcm": 25,
+    "unfitted_candidate": 14,
+    "persistence": 8,
+    "residual_component": 24,
+    "mixture": 24
+  },
+  "n_duplicate_scope_aliases": 4,
+  "n_regional_holdout_folds": 4,
+  "n_station_replay_targets": 2293,
+  "n_mixture_replay_targets": 1728,
+  "n_route_replay_rows": 4021,
+  "n_station_edges": 185,
+  "n_residual_edges": 256,
+  "n_mixture_weight_rows": 48,
+  "n_region_category_cells": 70,
+  "replay_matches_original": true,
+  "raw_reverified": true,
+  "source_lineage": {
+    "data\\m10\\daily_01_recovered": {
+      "history_manifest": {
+        "actual_sha256": "05b9a6c54778a5155d3d5e4eac5ff573c21d861e31ea62c017d63cac4ea39595",
+        "recorded_sha256": "05b9a6c54778a5155d3d5e4eac5ff573c21d861e31ea62c017d63cac4ea39595",
+        "match": "exact"
+      },
+      "panels_manifest": {
+        "actual_sha256": "514be41c9d3998239f9d335a4950ef247e534a57ec254fdf7fc064afe8d372fd",
+        "recorded_sha256": "514be41c9d3998239f9d335a4950ef247e534a57ec254fdf7fc064afe8d372fd",
+        "match": "exact"
+      },
+      "identity_manifest": {
+        "actual_sha256": "9e91b99ca062a0730a8408355b7604de364c3efccc3144e45058afe8c58af7cb",
+        "recorded_sha256": "9e91b99ca062a0730a8408355b7604de364c3efccc3144e45058afe8c58af7cb",
+        "match": "exact"
+      },
+      "identity_audit": {
+        "actual_sha256": "1140290e45b7356a38fa60e2dc1dcaa777debd73a5c658a88d122774d6fe8518",
+        "recorded_sha256": "1140290e45b7356a38fa60e2dc1dcaa777debd73a5c658a88d122774d6fe8518",
+        "match": "exact"
+      },
+      "panel_readiness": {
+        "actual_sha256": "44552f6a046dac2e892c69879e53af373d5d0c5967872e4f7bcdac18e905905b",
+        "recorded_sha256": "44552f6a046dac2e892c69879e53af373d5d0c5967872e4f7bcdac18e905905b",
+        "match": "exact"
+      }
+    },
+    "data\\m10\\daily_02": {
+      "history_manifest": {
+        "actual_sha256": "4713982b9fa08179c5ec15e8a01dcd45ea3a9aa464b73bb884e0b308e6698de5",
+        "recorded_sha256": "4713982b9fa08179c5ec15e8a01dcd45ea3a9aa464b73bb884e0b308e6698de5",
+        "match": "exact"
+      },
+      "panels_manifest": {
+        "actual_sha256": "f1cb3dc40ef6c8c39749232420e659e37b299bcf5227e74c69e418341e87c694",
+        "recorded_sha256": "f1cb3dc40ef6c8c39749232420e659e37b299bcf5227e74c69e418341e87c694",
+        "match": "exact"
+      },
+      "identity_manifest": {
+        "actual_sha256": "ebc46ac4ea2e3dce1e0fc3a1a5f0809f15f6af07cdb2d3968556de0ee195d8d8",
+        "recorded_sha256": "ebc46ac4ea2e3dce1e0fc3a1a5f0809f15f6af07cdb2d3968556de0ee195d8d8",
+        "match": "exact"
+      },
+      "identity_audit": {
+        "actual_sha256": "60afd41f1e4ec1e0920078b01bd3ceaad665e35054514dcc1d60c4a7ad80792a",
+        "recorded_sha256": "60afd41f1e4ec1e0920078b01bd3ceaad665e35054514dcc1d60c4a7ad80792a",
+        "match": "exact"
+      },
+      "panel_readiness": {
+        "actual_sha256": "6b8fc13c86cb8ec9305a78b3c427ece709d65e75b3285eb271965aae2ea7e6e2",
+        "recorded_sha256": "6b8fc13c86cb8ec9305a78b3c427ece709d65e75b3285eb271965aae2ea7e6e2",
+        "match": "exact"
+      }
+    },
+    "data\\m10\\daily_m8_recovered": {
+      "history_manifest": {
+        "actual_sha256": "f1622a96442d0c03209f1b2bc398003bd0dc207679f50e40c2229a20bb559d69",
+        "recorded_sha256": "f1622a96442d0c03209f1b2bc398003bd0dc207679f50e40c2229a20bb559d69",
+        "match": "exact"
+      },
+      "panels_manifest": {
+        "actual_sha256": "ae4fb4a4478f125054c0ec519651a6006f0990502f7700a8449c285d50a58fd6",
+        "recorded_sha256": "ae4fb4a4478f125054c0ec519651a6006f0990502f7700a8449c285d50a58fd6",
+        "match": "exact"
+      },
+      "identity_manifest": {
+        "actual_sha256": "9d055fbd59ba3ba7405a6276e2acd90ef50608e915ab9b4c9f95116221abe8dc",
+        "recorded_sha256": "9d055fbd59ba3ba7405a6276e2acd90ef50608e915ab9b4c9f95116221abe8dc",
+        "match": "exact"
+      },
+      "identity_audit": {
+        "actual_sha256": "b80066f66863459e5f9c23342408129fd18176c089452dc1636132004ea43ad3",
+        "recorded_sha256": "b80066f66863459e5f9c23342408129fd18176c089452dc1636132004ea43ad3",
+        "match": "exact"
+      },
+      "panel_readiness": {
+        "actual_sha256": "d5db35fb803ca9e68efde60c24074f8d4be3abefb0981a35c357da4dc4f41c6f",
+        "recorded_sha256": "d5db35fb803ca9e68efde60c24074f8d4be3abefb0981a35c357da4dc4f41c6f",
+        "match": "exact"
+      }
+    },
+    "data\\m10\\daily_03": {
+      "history_manifest": {
+        "actual_sha256": "e951752840f5cfd9cf6a63c8eb924cac5a42e702c64ef379c476c8a25370ae2e",
+        "recorded_sha256": "e951752840f5cfd9cf6a63c8eb924cac5a42e702c64ef379c476c8a25370ae2e",
+        "match": "exact"
+      },
+      "panels_manifest": {
+        "actual_sha256": "bbfe92c796119c7d47f07032d44ca800d3204aec51c4c60a2744697e64820407",
+        "recorded_sha256": "bbfe92c796119c7d47f07032d44ca800d3204aec51c4c60a2744697e64820407",
+        "match": "exact"
+      },
+      "identity_manifest": {
+        "actual_sha256": "cb4a8c93d95c106f7fcad45fcb7abb82423b004af44f1b16aecd9f37bc15872e",
+        "recorded_sha256": "cb4a8c93d95c106f7fcad45fcb7abb82423b004af44f1b16aecd9f37bc15872e",
+        "match": "exact"
+      },
+      "identity_audit": {
+        "actual_sha256": "8d585aceb321a81ef12ae05e76b048b67c8e508d6362013e40b805a6bc21c531",
+        "recorded_sha256": "8d585aceb321a81ef12ae05e76b048b67c8e508d6362013e40b805a6bc21c531",
+        "match": "exact"
+      },
+      "panel_readiness": {
+        "actual_sha256": "2835fa5ac5ba6ac4df80dae10822e30b0a6a2937864e7cc99b3fbc92df92c8cd",
+        "recorded_sha256": "2835fa5ac5ba6ac4df80dae10822e30b0a6a2937864e7cc99b3fbc92df92c8cd",
+        "match": "exact"
+      }
+    },
+    "data\\m10\\daily_04": {
+      "history_manifest": {
+        "actual_sha256": "4ffc97d6b5ac0cc0f18f75b9be1a02a41152c2fe36c07386faf2131b3ac0462b",
+        "recorded_sha256": "4ffc97d6b5ac0cc0f18f75b9be1a02a41152c2fe36c07386faf2131b3ac0462b",
+        "match": "exact"
+      },
+      "panels_manifest": {
+        "actual_sha256": "c15094aaeab04a1451bfa20be64fa20cd3db258017e12cdf7317ef28f3a99858",
+        "recorded_sha256": "c15094aaeab04a1451bfa20be64fa20cd3db258017e12cdf7317ef28f3a99858",
+        "match": "exact"
+      },
+      "identity_manifest": {
+        "actual_sha256": "271aac3e85f6dd9a3c6627e5f4a049c6041a3ab4e19cca8a7f34995e80fd594c",
+        "recorded_sha256": "271aac3e85f6dd9a3c6627e5f4a049c6041a3ab4e19cca8a7f34995e80fd594c",
+        "match": "exact"
+      },
+      "identity_audit": {
+        "actual_sha256": "c7a0f3aec4d08a844bfb507eb1d4e39d3457794fe7b2bb43757fed7986a0197e",
+        "recorded_sha256": "c7a0f3aec4d08a844bfb507eb1d4e39d3457794fe7b2bb43757fed7986a0197e",
+        "match": "exact"
+      },
+      "panel_readiness": {
+        "actual_sha256": "19d830e0590a9f8dbc49735bc3a3aaf600fa94e05024f4dcc00104eb2d8051ec",
+        "recorded_sha256": "19d830e0590a9f8dbc49735bc3a3aaf600fa94e05024f4dcc00104eb2d8051ec",
+        "match": "exact"
+      }
+    },
+    "data\\m10\\daily_05": {
+      "history_manifest": {
+        "actual_sha256": "3d0b67d1543fa79f0b7a56c3af1270cff706b79e2ade4601262832e8499c8cef",
+        "recorded_sha256": "3d0b67d1543fa79f0b7a56c3af1270cff706b79e2ade4601262832e8499c8cef",
+        "match": "exact"
+      },
+      "panels_manifest": {
+        "actual_sha256": "a1c84074dff35d7184640351470297e50a61705b8d6f33bda9ea225e5dcff70a",
+        "recorded_sha256": "a1c84074dff35d7184640351470297e50a61705b8d6f33bda9ea225e5dcff70a",
+        "match": "exact"
+      },
+      "identity_manifest": {
+        "actual_sha256": "9c172e34d7206514d273bfded622db868448c5b1a3c2c8d45d8eba1ae62c22d8",
+        "recorded_sha256": "9c172e34d7206514d273bfded622db868448c5b1a3c2c8d45d8eba1ae62c22d8",
+        "match": "exact"
+      },
+      "identity_audit": {
+        "actual_sha256": "3510a9b35f9abb5dc9ef4a0590394d77a59436288dd8e8e04344fe0b85a6bf8a",
+        "recorded_sha256": "3510a9b35f9abb5dc9ef4a0590394d77a59436288dd8e8e04344fe0b85a6bf8a",
+        "match": "exact"
+      },
+      "panel_readiness": {
+        "actual_sha256": "26362a45a53fe648cff4e98b1b5efda152f65a555ba76cd1af0574ac9055545a",
+        "recorded_sha256": "26362a45a53fe648cff4e98b1b5efda152f65a555ba76cd1af0574ac9055545a",
+        "match": "exact"
+      }
+    },
+    "data\\m10\\daily_06": {
+      "history_manifest": {
+        "actual_sha256": "c69e01257e4e9d97d4d7ce627e4dad58767968958f0b147c4e087b278d8efe51",
+        "recorded_sha256": "c69e01257e4e9d97d4d7ce627e4dad58767968958f0b147c4e087b278d8efe51",
+        "match": "exact"
+      },
+      "panels_manifest": {
+        "actual_sha256": "973be763000be660078e145a451c278cef835a47dec548df8d68b8768085da42",
+        "recorded_sha256": "973be763000be660078e145a451c278cef835a47dec548df8d68b8768085da42",
+        "match": "exact"
+      },
+      "identity_manifest": {
+        "actual_sha256": "8c399568a3b158b66cf9b09d0be61edf0c98e8074e13be277177288e4a3b22fb",
+        "recorded_sha256": "8c399568a3b158b66cf9b09d0be61edf0c98e8074e13be277177288e4a3b22fb",
+        "match": "exact"
+      },
+      "identity_audit": {
+        "actual_sha256": "d1b26f3d8c39fb7d9a4e3e2b10d499683cc7d9294fa9cf56837665f542375c04",
+        "recorded_sha256": "d1b26f3d8c39fb7d9a4e3e2b10d499683cc7d9294fa9cf56837665f542375c04",
+        "match": "exact"
+      },
+      "panel_readiness": {
+        "actual_sha256": "d97cf5b13ae3cad9279093dd32b9e990b87f9d3100ac33a0c0efb054104dbe64",
+        "recorded_sha256": "d97cf5b13ae3cad9279093dd32b9e990b87f9d3100ac33a0c0efb054104dbe64",
+        "match": "exact"
+      }
+    },
+    "USGS-255432081303900": {
+      "actual_sha256": "61ca9868ffacf24eec008c289f334e1c5cb1cbe198802723a1e6f4c23993f234",
+      "recorded_sha256": "61ca9868ffacf24eec008c289f334e1c5cb1cbe198802723a1e6f4c23993f234",
+      "match": "exact"
+    },
+    "USGS-255327081275900": {
+      "actual_sha256": "b3a236119080563cae10062da8de32387d3c0402adf51a6fdcd9b252ff6ce1e8",
+      "recorded_sha256": "b3a236119080563cae10062da8de32387d3c0402adf51a6fdcd9b252ff6ce1e8",
+      "match": "exact"
+    },
+    "USGS-255534081324000": {
+      "actual_sha256": "284fa0802ae73b9b002cbb1051d6cc26dd9ad7a2c1204593f3ce57805d0789db",
+      "recorded_sha256": "284fa0802ae73b9b002cbb1051d6cc26dd9ad7a2c1204593f3ce57805d0789db",
+      "match": "exact"
+    },
+    "USGS-0229070854": {
+      "actual_sha256": "46dce62ae6ea21ce24536c98996195fec71c286fc76c25a27124a660ae8d17a9",
+      "recorded_sha256": "46dce62ae6ea21ce24536c98996195fec71c286fc76c25a27124a660ae8d17a9",
+      "match": "exact"
+    },
+    "USGS-255726081303700": {
+      "actual_sha256": "76c8f1511a3169cae2ef855231ed041d855accda70cf7cff6b0412ebc41ed427",
+      "recorded_sha256": "76c8f1511a3169cae2ef855231ed041d855accda70cf7cff6b0412ebc41ed427",
+      "match": "exact"
+    },
+    "USGS-255654081350200": {
+      "actual_sha256": "86d5978f800ba2b6d778c74fee42db51d022554ffbc6cebe3ee13ea755c159e2",
+      "recorded_sha256": "86d5978f800ba2b6d778c74fee42db51d022554ffbc6cebe3ee13ea755c159e2",
+      "match": "exact"
+    },
+    "USGS-255138081321701": {
+      "actual_sha256": "e3ca0b74ed041d5142498edbe92a54a2943cdb42d8c97fbfc7a4d1f168dfd452",
+      "recorded_sha256": "e3ca0b74ed041d5142498edbe92a54a2943cdb42d8c97fbfc7a4d1f168dfd452",
+      "match": "exact"
+    },
+    "USGS-02290930": {
+      "actual_sha256": "9c2266de06d87f5aa411d5093c973ffe4b460cb3673e573ca6fab214b7524eb1",
+      "recorded_sha256": "9c2266de06d87f5aa411d5093c973ffe4b460cb3673e573ca6fab214b7524eb1",
+      "match": "exact"
+    }
+  },
+  "source_hashes": {
+    "data\\m10\\cohort_expanded_v1\\station_cohort.csv": "a5d5f1065b84f4b35a3726bdbeb17040b994d97baf5128248a3291f51ba7a90a",
+    "data\\m10\\layers_expanded_v1\\manifest.json": "fbcb5e93ede9846cf5c9c5aa3e1389aa81e2c247038bca622c7ef8ec0575fdfc",
+    "data\\m10\\layers_expanded_v1\\model_registry.csv": "470c8914fbd173aaf13048fb65b7d7a883d231c0b9b95debaea79733b4fea430",
+    "data\\m10\\residual_forcing_mixture_v1\\manifest.json": "c489ffba74aa8d9cd833fa8e301192db3356fda91244e01ee602ce6ded50fb21",
+    "data\\m10\\forcing_v1\\manifest.json": "813b6c356a2bd6e529177973167781ff343d2402e7f188ed2c62ceb3fbf387af",
+    "data\\m10\\regional_fcm_v1\\manifest.json": "3deb4e0943c4cacfba412f1a843260a34153f415f04d99a2c65cb9d952ba84fd",
+    "data\\m10\\daily_01_recovered\\panel_01_USGS_255432081303900.csv": "61ca9868ffacf24eec008c289f334e1c5cb1cbe198802723a1e6f4c23993f234",
+    "data\\m10\\daily_01_recovered\\panel_readiness.csv": "44552f6a046dac2e892c69879e53af373d5d0c5967872e4f7bcdac18e905905b",
+    "data\\m10\\daily_02\\panel_01_USGS_255327081275900.csv": "b3a236119080563cae10062da8de32387d3c0402adf51a6fdcd9b252ff6ce1e8",
+    "data\\m10\\daily_02\\panel_readiness.csv": "6b8fc13c86cb8ec9305a78b3c427ece709d65e75b3285eb271965aae2ea7e6e2",
+    "data\\m10\\daily_m8_recovered\\panel_02_USGS_255534081324000.csv": "284fa0802ae73b9b002cbb1051d6cc26dd9ad7a2c1204593f3ce57805d0789db",
+    "data\\m10\\daily_m8_recovered\\panel_readiness.csv": "d5db35fb803ca9e68efde60c24074f8d4be3abefb0981a35c357da4dc4f41c6f",
+    "data\\m10\\daily_m8_recovered\\panel_04_USGS_0229070854.csv": "46dce62ae6ea21ce24536c98996195fec71c286fc76c25a27124a660ae8d17a9",
+    "data\\m10\\daily_03\\panel_05_USGS_255726081303700.csv": "76c8f1511a3169cae2ef855231ed041d855accda70cf7cff6b0412ebc41ed427",
+    "data\\m10\\daily_03\\panel_readiness.csv": "2835fa5ac5ba6ac4df80dae10822e30b0a6a2937864e7cc99b3fbc92df92c8cd",
+    "data\\m10\\daily_04\\panel_04_USGS_255654081350200.csv": "86d5978f800ba2b6d778c74fee42db51d022554ffbc6cebe3ee13ea755c159e2",
+    "data\\m10\\daily_04\\panel_readiness.csv": "19d830e0590a9f8dbc49735bc3a3aaf600fa94e05024f4dcc00104eb2d8051ec",
+    "data\\m10\\daily_05\\panel_03_USGS_255138081321701.csv": "e3ca0b74ed041d5142498edbe92a54a2943cdb42d8c97fbfc7a4d1f168dfd452",
+    "data\\m10\\daily_05\\panel_readiness.csv": "26362a45a53fe648cff4e98b1b5efda152f65a555ba76cd1af0574ac9055545a",
+    "data\\m10\\daily_06\\panel_02_USGS_02290930.csv": "9c2266de06d87f5aa411d5093c973ffe4b460cb3673e573ca6fab214b7524eb1",
+    "data\\m10\\daily_06\\panel_readiness.csv": "d97cf5b13ae3cad9279093dd32b9e990b87f9d3100ac33a0c0efb054104dbe64",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_01_USGS_255327081275900\\fcm_model.json": "c3f5be70f5c73c15c858806164047170e6a6318d179985f20769e474d338a7a0",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_01_USGS_255327081275900\\edge_weights.csv": "994af039e281d582e47d5d21f627a91d63a1187a395eb83b91a132ee073d3995",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_01_USGS_255327081275900\\heldout_predictions.csv": "50d6995f17025bfd35d7ee59c2162c361bd1e436317a169faaf5977e0fc48f5a",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_01_USGS_255327081275900\\heldout_metrics.csv": "79a76ed50f9ac83559815222489ababf411a749e8ecf8e0a2d0aeb319b429c13",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_01_USGS_255327081275900\\fcm_model.json": "ac0bdd7e8320fd44573e43ce08cb27c8b44ef4ebc1527ef2af6a15cf5c009a1e",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_01_USGS_255327081275900\\edge_weights.csv": "f4b5fe13ea32ffc22a697ea6d84a21bcbbd01dcb53a33e00f2d3d917a51a9c21",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_01_USGS_255327081275900\\heldout_predictions.csv": "c7c782af35f3c20cdb48367810dd47b3999d4dac9d6b9b04b891594cdbde0c5f",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_01_USGS_255327081275900\\heldout_metrics.csv": "73f0c3cf32e47bdf15fb16906ff3d2221811cd57898fe754a9b7d2eeae206c5c",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_01_USGS_255327081275900\\fcm_model.json": "1b0c636ddb978533449e50d0129f47b5681f001f0ccc3ec6a70e7f355db02596",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_01_USGS_255327081275900\\edge_weights.csv": "a989b3159960fa0278ea4edddab05423c589a565c16b5a157a70a7dc4d16e75d",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_01_USGS_255327081275900\\heldout_predictions.csv": "e168d3444728ef476bcf503f7a00b85bb0e8431534daf111d41499aa1167a929",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_01_USGS_255327081275900\\heldout_metrics.csv": "76626effdfbf4e94224bbb32ce00b78171f4f17d0e0d81d427f3257de1b4027b",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_01_USGS_255327081275900\\fcm_model.json": "ac0bdd7e8320fd44573e43ce08cb27c8b44ef4ebc1527ef2af6a15cf5c009a1e",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_01_USGS_255327081275900\\edge_weights.csv": "f4b5fe13ea32ffc22a697ea6d84a21bcbbd01dcb53a33e00f2d3d917a51a9c21",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_01_USGS_255327081275900\\heldout_predictions.csv": "c7c782af35f3c20cdb48367810dd47b3999d4dac9d6b9b04b891594cdbde0c5f",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_01_USGS_255327081275900\\heldout_metrics.csv": "73f0c3cf32e47bdf15fb16906ff3d2221811cd57898fe754a9b7d2eeae206c5c",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_01_USGS_255432081303900\\fcm_model.json": "7d6e45a548bb6ac8c0a3d2827a3ccbadd71e43b87b3479f1b0afdc313bc09eb5",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_01_USGS_255432081303900\\edge_weights.csv": "0474df9d2915ef26a65cf1f5963935ac52ad688ea5640569efc5f6c12cd01b2f",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_01_USGS_255432081303900\\heldout_predictions.csv": "b654b760fefd9d35ea321408819fa9423d2ba897eeb22de8dae4978828dbae3f",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_01_USGS_255432081303900\\heldout_metrics.csv": "b8877b2a73bc7f125122309590250ec3f2e7ce0085616ed0b2e6d6bcfe4dd66b",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_01_USGS_255432081303900\\fcm_model.json": "08c3122ced84597b8916a0d4be6e7ce65de8dbbd3822d2ef7717a36325ec7f72",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_01_USGS_255432081303900\\edge_weights.csv": "a095dadfdb2eadeb9e5dae96a803f0a2de86f0bc6d82f9b59d23b9fc1852f927",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_01_USGS_255432081303900\\heldout_predictions.csv": "bf21ee6e3b92d5a5a549a96900ed4a034104d1394a12768184799230c403f387",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_01_USGS_255432081303900\\heldout_metrics.csv": "41e5eddedd1b8ef9d20fa7cff134d1f39f848b125a8b2dfee2d3fa96944d2cc1",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_01_USGS_255432081303900\\fcm_model.json": "896ea57eafb7d475e380da480e804b44933eef577127c11acf9d3b854ddf888f",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_01_USGS_255432081303900\\edge_weights.csv": "e812801738e4e4b026cfc610472fc194a6d21d687b168e01700b6c7635aba102",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_01_USGS_255432081303900\\heldout_predictions.csv": "2564c8a911af4ba2b6f2319b720be8faf1055a8e2bb87ecbcaa60b0e4505b2ec",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_01_USGS_255432081303900\\heldout_metrics.csv": "8d852807b9e00b4282ff5c280cfc96c5075a5548ecc68fe66173e0871d75616b",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_01_USGS_255432081303900\\fcm_model.json": "08c3122ced84597b8916a0d4be6e7ce65de8dbbd3822d2ef7717a36325ec7f72",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_01_USGS_255432081303900\\edge_weights.csv": "a095dadfdb2eadeb9e5dae96a803f0a2de86f0bc6d82f9b59d23b9fc1852f927",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_01_USGS_255432081303900\\heldout_predictions.csv": "bf21ee6e3b92d5a5a549a96900ed4a034104d1394a12768184799230c403f387",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_01_USGS_255432081303900\\heldout_metrics.csv": "41e5eddedd1b8ef9d20fa7cff134d1f39f848b125a8b2dfee2d3fa96944d2cc1",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_02_USGS_02290930\\fcm_model.json": "965eb5911c4c61d2f47236e5f9a69b924863177eea817e1238f12dd844873e23",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_02_USGS_02290930\\edge_weights.csv": "e78e2adad6b6895ec31b829540d3069a80896b29549cdaae5db7c37849941b0f",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_02_USGS_02290930\\heldout_predictions.csv": "5b53261d775b6d340bd62270e32628e453df888b473cb19caa85e89ad4c1ec2c",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_02_USGS_02290930\\heldout_metrics.csv": "d1daaf32593d9e312151e23bc76cbe9fb5e226d8ce14fc322330e6bf9a371bea",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_02_USGS_02290930\\fcm_model.json": "3c465ae197bffaf6e2c05ce4ec8020a284e76684ef260d4799a95e221802dcf8",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_02_USGS_02290930\\edge_weights.csv": "3b7b04ef641c608669673afb0012169124aa1f2d7dc88c89cb4d5a57a20ade89",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_02_USGS_02290930\\heldout_predictions.csv": "457d0f21cd68059a40862d45a92189ce095c33d4f6b86ad349b3823b13b21d62",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_02_USGS_02290930\\heldout_metrics.csv": "1208b9ac0c62bd144beffe2340fa3067776137d5a1ded1b4906cf389968a74b6",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\water_quality\\salinity_and_conductance\\panel_02_USGS_02290930\\fcm_model.json": "554583403a8f4d5635567898239670885311ef4ddc9dd51a982c8ffee32b0e8b",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\water_quality\\salinity_and_conductance\\panel_02_USGS_02290930\\edge_weights.csv": "696902ecaba5bdabd49c3dcb9f06027191bf4ea3f94456f6cf84d96f6539f58e",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\water_quality\\salinity_and_conductance\\panel_02_USGS_02290930\\heldout_predictions.csv": "4dc7baa4fa0cdd3dc39d503f743e5f3a4c0adff7a32e287cc7ee68e3c719175e",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\water_quality\\salinity_and_conductance\\panel_02_USGS_02290930\\heldout_metrics.csv": "518e1456b03aa06a94b88749ea56d43ac10a0c3301c4fa2c314e2a5ccaf0727a",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_02_USGS_255534081324000\\fcm_model.json": "f06b23385bef3c393f1226caf761da332f275fa7bd96071d8109b03a486a8a35",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_02_USGS_255534081324000\\edge_weights.csv": "33586b4675af69a53b43aea1be9d3a6491e7aecb44a64b1586063405a8e83779",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_02_USGS_255534081324000\\heldout_predictions.csv": "e4bd03da4b6e128a76a53ff1822b07dac230eafe96eabb7f1f40125fd2fd3cf3",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_02_USGS_255534081324000\\heldout_metrics.csv": "b4a4594e8b3c525bf15e2c44682eb00df3116193a0d4b20f7d7520d391b5884e",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_02_USGS_255534081324000\\fcm_model.json": "ccea530d839904385725a2668851d3d8e05f83047fb94f715aba4ada3aa0fc6a",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_02_USGS_255534081324000\\edge_weights.csv": "022e9c789d4cb8483046618c271609c7a7aac550317dda0c28cf82e360a59bec",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_02_USGS_255534081324000\\heldout_predictions.csv": "2642026745b26b9b0fad3533979d485a40da703de66332ce9c5cff6351e8d8a1",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_02_USGS_255534081324000\\heldout_metrics.csv": "6fd81653c076fab295bdf1f04727c1d8b31a3a519f89ad3ea16058b32c7132bb",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_02_USGS_255534081324000\\fcm_model.json": "3f6d82e2401b51eeb01da890aed3cde2345924791bcb3a539add86a446db9f9c",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_02_USGS_255534081324000\\edge_weights.csv": "74be9457c7fcf8f1847f3d564534dba3c992c8be215a5a29afc1a381146be16a",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_02_USGS_255534081324000\\heldout_predictions.csv": "aa3d7551a002ce56078a996e28f55075f8b41780cebc887ff543cc9a2ffd9de2",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_02_USGS_255534081324000\\heldout_metrics.csv": "50792ff564c0b4713733817fcef38d62375c9194a17b0513988cc7e652b43228",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_02_USGS_255534081324000\\fcm_model.json": "ccea530d839904385725a2668851d3d8e05f83047fb94f715aba4ada3aa0fc6a",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_02_USGS_255534081324000\\edge_weights.csv": "022e9c789d4cb8483046618c271609c7a7aac550317dda0c28cf82e360a59bec",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_02_USGS_255534081324000\\heldout_predictions.csv": "2642026745b26b9b0fad3533979d485a40da703de66332ce9c5cff6351e8d8a1",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_02_USGS_255534081324000\\heldout_metrics.csv": "6fd81653c076fab295bdf1f04727c1d8b31a3a519f89ad3ea16058b32c7132bb",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_03_USGS_255138081321701\\fcm_model.json": "2158144c6adbd5ecd61c6cbd536b463d70ef3ad6f61a343b7d4f4a6d44a403d5",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_03_USGS_255138081321701\\edge_weights.csv": "1203840195bed2d2ef586d74332855caf6c0cbe8d49d60b40b1921d900002aad",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_03_USGS_255138081321701\\heldout_predictions.csv": "422a0d74eb4ca676f6fa2843da26f921242d7d8c6b5c972db32ea1044bf2ef3e",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_03_USGS_255138081321701\\heldout_metrics.csv": "a446eb3386276e94c72191c5fb815f02aa8dd99e4a846d5dd8a7de107f6a2fbb",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_03_USGS_255138081321701\\fcm_model.json": "2158144c6adbd5ecd61c6cbd536b463d70ef3ad6f61a343b7d4f4a6d44a403d5",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_03_USGS_255138081321701\\edge_weights.csv": "1203840195bed2d2ef586d74332855caf6c0cbe8d49d60b40b1921d900002aad",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_03_USGS_255138081321701\\heldout_predictions.csv": "422a0d74eb4ca676f6fa2843da26f921242d7d8c6b5c972db32ea1044bf2ef3e",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_03_USGS_255138081321701\\heldout_metrics.csv": "a446eb3386276e94c72191c5fb815f02aa8dd99e4a846d5dd8a7de107f6a2fbb",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\water_quality\\salinity_and_conductance\\panel_03_USGS_255138081321701\\fcm_model.json": "a38735dc8b46db6c0158f4f2a4e03ebf74a200f33b5c107e0dc5d7aa596f2116",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\water_quality\\salinity_and_conductance\\panel_03_USGS_255138081321701\\edge_weights.csv": "2c46a41f7cf9ffe48442c4b8c7b03264503602b151c87cc2acda16b7055a6698",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\water_quality\\salinity_and_conductance\\panel_03_USGS_255138081321701\\heldout_predictions.csv": "055571fdb4b3d5e632c19e94e056efa1d2a7c04a89081163fc1c4345c2f65d41",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\water_quality\\salinity_and_conductance\\panel_03_USGS_255138081321701\\heldout_metrics.csv": "ddc934b3969d31556a6669a4bbd3e30700942fc1f4da1eeb07935914ef27a0fa",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_04_USGS_0229070854\\fcm_model.json": "b5663f4fcca3e9bb11b4b7995d52aea601cd470a5beeb5b4470e7dc5e5ff7974",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_04_USGS_0229070854\\edge_weights.csv": "79dae9e1eda16a75e879048f872b10b93baae0c719f633a4319a913620b88f61",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_04_USGS_0229070854\\heldout_predictions.csv": "ded9d917602faa074c9dde70571fb5848cedcd356f5d87e364f5c1a5e8518299",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_04_USGS_0229070854\\heldout_metrics.csv": "9f85472b6f89214645106a9a73552cc8709b701d28f1ae932095f89300decd17",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_04_USGS_0229070854\\fcm_model.json": "c6c16a1d15a194b96b7d85236374241429228c868e3e4916a6e671cc89ffa7ae",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_04_USGS_0229070854\\edge_weights.csv": "f5bdebebe6875e29425823f3b92e2fc89f67c7a08c83d833d43d58bca7a03770",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_04_USGS_0229070854\\heldout_predictions.csv": "2c71b433ba364945dae9bcc0a2b2be345a1bf47d1f3de4a496a6856a3e8b0b30",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\hydrology\\panel_04_USGS_0229070854\\heldout_metrics.csv": "596fba9eccb825a00e4028cc0925a33159040805dfca0c85d7146f0dc1e08023",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_04_USGS_0229070854\\fcm_model.json": "8fd97c5889b2bb6a5bcf506c8c639b1bf93661fe5eaf54628ef6e07bc8850899",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_04_USGS_0229070854\\edge_weights.csv": "cca22e7bf66860d5c9ccbdc0b82d80341b1c4a5253df82490d46965ff5b63b9b",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_04_USGS_0229070854\\heldout_predictions.csv": "e8ac2dd2cee2185f4705bffee17746681022967bfee3fff3d609a39beb8c5d20",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_04_USGS_0229070854\\heldout_metrics.csv": "e7945fa4a568465d63db52141b1f8fd5a9be4bdb9c33485394180b3993a62c59",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_04_USGS_0229070854\\fcm_model.json": "c6c16a1d15a194b96b7d85236374241429228c868e3e4916a6e671cc89ffa7ae",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_04_USGS_0229070854\\edge_weights.csv": "f5bdebebe6875e29425823f3b92e2fc89f67c7a08c83d833d43d58bca7a03770",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_04_USGS_0229070854\\heldout_predictions.csv": "2c71b433ba364945dae9bcc0a2b2be345a1bf47d1f3de4a496a6856a3e8b0b30",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\hydrology\\surface_flow\\panel_04_USGS_0229070854\\heldout_metrics.csv": "596fba9eccb825a00e4028cc0925a33159040805dfca0c85d7146f0dc1e08023",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_04_USGS_255654081350200\\fcm_model.json": "6c3fe952b08cdf14065684ecd7f978fb614eda85d2c21f4177dca454e6f4e8bf",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_04_USGS_255654081350200\\edge_weights.csv": "38ddc6d6f04415e53de3406d45a26aa110ac7f447c876480e2268651d12b993d",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_04_USGS_255654081350200\\heldout_predictions.csv": "f2e8460afb02bfa0fbd1324f8512e5ade726a5f84ab61fec4d033407a918225e",
+    "data\\m10\\layers_expanded_v1\\levels\\dataset\\panel_04_USGS_255654081350200\\heldout_metrics.csv": "a06d2ca8551f144f93097d6523142030b4e5d23aee2f79cebb3f9819c122440d",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_04_USGS_255654081350200\\fcm_model.json": "6c3fe952b08cdf14065684ecd7f978fb614eda85d2c21f4177dca454e6f4e8bf",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_04_USGS_255654081350200\\edge_weights.csv": "38ddc6d6f04415e53de3406d45a26aa110ac7f447c876480e2268651d12b993d",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_04_USGS_255654081350200\\heldout_predictions.csv": "f2e8460afb02bfa0fbd1324f8512e5ade726a5f84ab61fec4d033407a918225e",
+    "data\\m10\\layers_expanded_v1\\levels\\category\\water_quality\\panel_04_USGS_255654081350200\\heldout_metrics.csv": "a06d2ca8551f144f93097d6523142030b4e5d23aee2f79cebb3f9819c122440d",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\water_quality\\salinity_and_conductance\\panel_04_USGS_255654081350200\\fcm_model.json": "114e763d99e02268d53694d27be546ddc5c98fc433f71867926140956325e010",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\water_quality\\salinity_and_conductance\\panel_04_USGS_255654081350200\\edge_weights.csv": "654fa676c720339c34de4e6b76e0d27c95442c8eaeecb45cf313e7e37b1c35b0",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\water_quality\\salinity_and_conductance\\panel_04_USGS_255654081350200\\heldout_predictions.csv": "749a970e3a5f3e6d9b9cd7f1e9a5402d87c410f689335df1d1d87ea4b9bbec4a",
+    "data\\m10\\layers_expanded_v1\\levels\\subcategory\\water_quality\\salinity_and_conductance\\panel_04_USGS_255654081350200\\heldout_metrics.csv": "07db67a7d1d2d37c9b826925ae4b4a191e178d2feeee2fb6e532607c337c8de1"
+  },
+  "source_experiment_manifest_sha256": "c489ffba74aa8d9cd833fa8e301192db3356fda91244e01ee602ce6ded50fb21",
+  "model_selection_on_test": false,
+  "exploratory_reused_test_period": true,
+  "deployed_experts": 0,
+  "overall_ecosystem_fcms_trained": 0,
+  "new_models_trained": 0,
+  "regional_transport_model_trained": false,
+  "hydrological_connectivity_verified": false,
+  "as_issued_availability_verified": false,
+  "exact_sensor_depth_verified": false,
+  "outputs_sha256": {
+    "atlas.html": "b363a051cd8959ea9c3eae92c586812a601704f6ecdd74b6a6d9413e9dc809c1",
+    "expert_registry.csv": "8e3ad43949317e98b03551408448c868c0ae41a7c74c3cf1b9648722d1364f83",
+    "mixture_weights.csv": "7e0e23de15ffa3fad4671a16d45f42bde6eeb94bcd2fb95d6c889ab61c968acd",
+    "paired_policy_evidence.csv": "93eb42b42e9d9576e66cf24161eb1fb447c15502069376e30ac304ee80ce80c4",
+    "region_category_coverage.csv": "b6ae4a3b5da84b696f541c2f1199e41b18a71bd56a99ed5cf24ffbb7b5ffa050",
+    "residual_edges.csv": "f211e087e881b56d5d848603dd1255422b11d69492a482fe9c8c7877d060f243",
+    "route_metrics.csv": "20717e5e76e5621b4cb4cb6bd9b569f1f75cd640ea9f0c0914f8081e28862a65",
+    "route_replay.csv": "f011de1ff5ae81e5851b7a27bafdfce0a40f3737ae72b850c93aaf2d9df0fbba",
+    "station_edges.csv": "f56396edcf7f25fc083ea9896989bb77c7d6f2a1f36d29b8430cc1d873a5b55b",
+    "INDEX.md": "78277a88b6cfb9ba4825d9bb359b643a583a55d4615c044a4f7033b5e73df799"
+  }
+}
