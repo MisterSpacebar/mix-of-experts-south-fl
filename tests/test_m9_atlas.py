@@ -168,6 +168,11 @@ class RealSourceIntegrationTests(unittest.TestCase):
                              {"70"})
             self.assertFalse(any(r["concept_a"]=="gage_height"
                                  for r in pairs))
+            same={r["concept_a"]:float(r["concurrent_change_pearson_r"])
+                  for r in pairs if r["concept_a"]==r["concept_b"]}
+            self.assertAlmostEqual(same["discharge"],.679,delta=.02)
+            self.assertAlmostEqual(same["salinity"],.537,delta=.02)
+            self.assertAlmostEqual(same["water_temperature"],.875,delta=.02)
             self.assertTrue((dest/"INDEX.md").is_file())
             combined=dest/"visuals/geography_category_evidence_atlas.svg"
             ElementTree.parse(combined)
