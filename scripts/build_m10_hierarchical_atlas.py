@@ -52,30 +52,43 @@ def context(verify_raw=False,bundle=None):
     COHORT,BASE,LAYERS,COMBINED,FORCING=(globals()[k] for k in ('COHORT','BASE','LAYERS','COMBINED','FORCING')) if bundle is None else (bundle[k] for k in ('cohort','base','layers','combined','forcing'))
     config=None if bundle is None else bundle['cohort_config']
     forcing_config=None if bundle is None else bundle['forcing_config']
-    cm,splits,lineage=load_cohort(COHORT,verify_raw,config)
-    verify_original(splits,BASE)
-    manifest=json_at(COMBINED/"manifest.json")
-    if (manifest["sites"]!=sorted(splits) or manifest["deployed_model_trained"] is not False or
-        manifest["model_selection_on_test"] is not False or
-        manifest["regional_transport_model_trained"] is not False):
-        raise ValueError("unexpected combined experiment scope")
-    for p,key in ((COHORT/"manifest.json","cohort_manifest_sha256"),
-                  (BASE/"manifest.json","original_manifest_sha256"),
-                  (FORCING/"manifest.json","forcing_manifest_sha256")):
-        verify_historical_hash(p,manifest[key])
-    for f,h in manifest["outputs_sha256"].items():
-        verify_historical_hash(safe_under(COMBINED,f),h)
-    forcing,fm=load_forcing(FORCING,forcing_config)
-    folds=json_at(COMBINED/"fold_models.json")
-    if set(folds)!=set(splits):
-        raise ValueError("missing or unexpected heldout fold")
-    for site,fold in folds.items():
-        validate_fold(site,fold,sorted(splits),cm["train_target_date_end"],cm["validation_target_date_end"])
+    local_only=bundle is not None and bundle.get("local_only",False)
+    if local_only:
+        from scripts.audit_m10_regional_cohort import load_snapshot
+        cm=json_at(COHORT/"manifest.json")
+        lineage={}
+        for daily,history,identity in config["snapshots"]:
+            _,audit=load_snapshot(daily,history,identity,verify_raw)
+            lineage[str(daily)]=audit
+        folds,forcing,fm={}, {}, {}
+        manifest={"n_prediction_rows":0,"n_reference_targets":0}
+    else:
+        cm,splits,lineage=load_cohort(COHORT,verify_raw,config)
+        verify_original(splits,BASE)
+        manifest=json_at(COMBINED/"manifest.json")
+        if (manifest["sites"]!=sorted(splits) or manifest["deployed_model_trained"] is not False or
+            manifest["model_selection_on_test"] is not False or
+            manifest["regional_transport_model_trained"] is not False):
+            raise ValueError("unexpected combined experiment scope")
+        for p,key in ((COHORT/"manifest.json","cohort_manifest_sha256"),
+                      (BASE/"manifest.json","original_manifest_sha256"),
+                      (FORCING/"manifest.json","forcing_manifest_sha256")):
+            verify_historical_hash(p,manifest[key])
+        for f,h in manifest["outputs_sha256"].items():
+            verify_historical_hash(safe_under(COMBINED,f),h)
+        forcing,fm=load_forcing(FORCING,forcing_config)
+        folds=json_at(COMBINED/"fold_models.json")
+        if set(folds)!=set(splits):
+            raise ValueError("missing or unexpected heldout fold")
+        for site,fold in folds.items():
+            validate_fold(site,fold,sorted(splits),cm["train_target_date_end"],cm["validation_target_date_end"])
     registry={}; models={}; stations={}; source_hashes={}
     def track(p):
         source_hashes[str(p)]=sha(p)
-    for p in (COHORT/"station_cohort.csv",LAYERS/"manifest.json",LAYERS/"model_registry.csv",
-              COMBINED/"manifest.json",FORCING/"manifest.json",BASE/"manifest.json"):
+    tracked=[COHORT/"station_cohort.csv",LAYERS/"manifest.json",LAYERS/"model_registry.csv"]
+    if not local_only:
+        tracked.extend([COMBINED/"manifest.json",FORCING/"manifest.json",BASE/"manifest.json"])
+    for p in tracked:
         track(p)
     for r in read_csv(COHORT/"station_cohort.csv"):
         site=r["site_id"]; path=normalize(r["daily_path"])
@@ -189,7 +202,7 @@ def replay(router,entries,manifest,bundle=None):
     # Station experts have their OWN original chronological test windows.
     # Never compare their errors to regional models on unmatched dates.
     rows=[]; expected={}
-    for r in read_csv(COMBINED/"predictions.csv"):
+    for r in ([] if bundle is not None and bundle.get("local_only",False) else read_csv(COMBINED/"predictions.csv")):
         k=(r["site_id"],r["date"],r["concept"],r["model"])
         if k in expected:
             raise ValueError("duplicate combined prediction")
@@ -291,7 +304,7 @@ def coverage(router):
             local=[e for e in router.registry.values() if e["kind"]=="station_fcm" and
                    not e["alias_of"] and e["region"]==region and
                    any(classify(c)[0]==cat for c in e["concepts"])]
-            regional=(region==router.cohort["region_screen"] and cat=="water_quality")
+            regional=(bool(router.folds) and region==router.cohort["region_screen"] and cat=="water_quality")
             result.append(dict(region=region,category=cat,primary_observed_sites=len(observed),
                 screened_observed_sites=len(screened),distinct_local_fitted_scopes=len(local),
                 regional_holdout_folds=len(router.folds) if regional else 0,
@@ -351,7 +364,7 @@ def run(out,verify_raw=False,bundle=None):
     rows,se,re,weights,nmix=replay(router,entries,manifest,bundle)
     scores=summarize(rows); cover=coverage(router)
     original_comparisons={(r["site_id"],r["concept"],r["model"],r["baseline"]):r
-        for r in read_csv(COMBINED/"paired_comparisons.csv")}
+        for r in ([] if bundle is not None and bundle.get("local_only",False) else read_csv(COMBINED/"paired_comparisons.csv"))}
     paired=[]
     for r in scores:
         if r["evidence"]!="original_spatial_temporal_holdout":
@@ -366,6 +379,8 @@ def run(out,verify_raw=False,bundle=None):
         # JSON-encode nested values to preserve schema in CSV.
         flat=[{k:json.dumps(v,sort_keys=True) if isinstance(v,(dict,list)) else v for k,v in r.items()} for r in rs]
         fields=list(dict.fromkeys(k for r in flat for k in r))
+        if not fields:
+            fields={"route_replay.csv":["site_id","concept","prediction"],"route_metrics.csv":["site_id","concept","mae"],"station_edges.csv":["expert_id","weight"],"residual_edges.csv":["expert_id","weight"],"mixture_weights.csv":["site_id","scope","policy"],"paired_policy_evidence.csv":["site_id","concept","policy","scope"]}.get(name,["status"])
         write_csv(out/name,flat,fields)
     export("expert_registry.csv",list(router.registry.values()))
     export("route_replay.csv",rows); export("route_metrics.csv",scores)
@@ -380,7 +395,7 @@ def run(out,verify_raw=False,bundle=None):
         n_mixture_replay_targets=nmix,n_route_replay_rows=len(rows),n_station_edges=len(se),
         n_residual_edges=len(re),n_mixture_weight_rows=len(weights),n_region_category_cells=len(cover),
         replay_matches_original=True,raw_reverified=verify_raw,source_lineage=lineage,
-        source_hashes=source_hashes,source_experiment_manifest_sha256=sha(COMBINED/"manifest.json"),
+        source_hashes=source_hashes,source_experiment_manifest_sha256=(None if bundle is not None and bundle.get("local_only",False) else sha(COMBINED/"manifest.json")),
         model_selection_on_test=False,exploratory_reused_test_period=bundle is None,
         deployed_experts=0,overall_ecosystem_fcms_trained=0,new_models_trained=0,
         regional_transport_model_trained=False,hydrological_connectivity_verified=False,
@@ -407,7 +422,7 @@ def run(out,verify_raw=False,bundle=None):
             "","See [lineage](manifest.json), [station edges](station_edges.csv), [regional residual edges](residual_edges.csv) "
             "and [gate weights](mixture_weights.csv). The original M9 evidence atlas remains immutable."]
     if bundle is not None:
-        lines=["# Regional research evidence atlas","",f"Region: {router.cohort['region_screen']}. Frozen M10 protocol; independent geographic replication, retrospective only.",""]+lines[10:]
+        lines=["# Regional research evidence atlas","",f"Region: {router.cohort['region_screen']}. Frozen M10 protocol; independent geographic replication, retrospective only.","",f"Regional holdout folds: {len(router.folds)}. Station-local evidence retained regardless of regional readiness.","","| Concept | Policy | Scope | n | MAE | Persistence MAE |","|---|---|---|---:|---:|---:|"]+[line for line in lines if line.startswith("| ") and not line.startswith("| Concept")]
         lines+=["","No best policy selected from these test results."]
     (out/"INDEX.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
     report["outputs_sha256"]["INDEX.md"]=sha(out/"INDEX.md")
