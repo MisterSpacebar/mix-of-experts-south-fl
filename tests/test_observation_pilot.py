@@ -5,6 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
+from urllib.parse import parse_qs, urlsplit
 
 from southfl.net import AcquisitionError, write_csv
 from southfl.observations import (
@@ -31,7 +32,8 @@ class SourceObservationTests(unittest.TestCase):
         self.assertEqual(rows[0]["timestamp_utc"], "2026-10-01T16:00:00Z")
         self.assertEqual(rows[0]["approval_status"], "Provisional")
         self.assertEqual(rows[0]["value"], "4.2")
-        self.assertIn("time=2026-10-01%2F2026-10-03", urls[0])
+        self.assertEqual(parse_qs(urlsplit(urls[0]).query)["time"],
+                         ["2026-10-01T00:00:00Z/2026-10-04T00:00:00Z"])
 
     @patch("southfl.observations.get_json")
     def test_usgs_daily_does_not_fake_utc(self, request):
