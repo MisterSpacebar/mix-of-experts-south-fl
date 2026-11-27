@@ -294,6 +294,16 @@ python scripts/plan_m10_expansion.py --out data/m10/expansion_plan_v1
 Continuous USGS acquisition uses explicit UTC day intervals. Earlier
 history runs may omit request-endpoint days; see the [recovery runbook](docs/M10_TEMPORAL_INTEGRITY.md) for a controlled live probe, targeted source recovery, and synchronized East River expansion. Prior snapshots remain unchanged.
 
+## M10.1.2 / M10.2 — corrected regional cohort readiness
+
+The corrected four-station snapshot enables a geography- and sensor-aware
+water-quality cohort audit with fixed chronological held-out station folds.
+See [M10 regional cohort and acquisition runbook](docs/M10_REGIONAL_COHORT.md).
+
+```powershell
+python scripts/audit_m10_regional_cohort.py --verify-raw --out data/m10/cohort_corrected_v1
+```
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
