@@ -37,7 +37,7 @@ def safe_under(root,relative):
     p=(root/normalize(relative)).resolve()
     if not p.is_relative_to(root.resolve()):
         raise ValueError("unsafe expert artifact path")
-    return p
+    return root/normalize(relative)
 
 
 def map_field(text):
@@ -115,7 +115,7 @@ def context(verify_raw=False):
                site_id=site,region=r["region"],kind="station_fcm" if trained else "unfitted_candidate",
                level=r["level"],category=r["category"],subcategory=r["subcategory"],concepts=cs,
                units={c:s["units"][c] for c in cs},status=r["status"],
-               reason=r["reason"],source=r["model_directory"],alias_of="",
+               reason=r["reason"],source=r["model_directory"],source_root=str(LAYERS),alias_of="",
                fit_sites=[site] if trained else [],required_forcing=[],train_end="",validation_end="",
                test_start="",test_end="",deployable=False)
         if trained:
@@ -158,7 +158,9 @@ def context(verify_raw=False):
                          category="water_quality",subcategory="",concepts=cm["concepts"],
                          units={"salinity":"ppt","water_temperature":"degC"},
                          status="retrospective_fold_fit",fit_sites=m["fit_sites"],
-                         required_forcing=list(FEATURES.get(scope,())),source="fold_models.json",
+                         source_selector=([site,"residual_"+name] if scope=="unforced" else
+                                          [site,"forcing",scope,"forced" if name=="regional" else "local_forced"]),
+                         required_forcing=list(FEATURES.get(scope,())),source=str(COMBINED/"fold_models.json"),artifact_sha256=sha(COMBINED/"fold_models.json"),
                          alias_of="",train_end=m["train_end"],validation_end=m["validation_end"],
                          test_start=(date.fromisoformat(cm["validation_target_date_end"])+timedelta(days=1)).isoformat(),
                          test_end=cm["end"],deployable=False))
@@ -170,8 +172,10 @@ def context(verify_raw=False):
                          category="water_quality",subcategory="",concepts=cm["concepts"],
                          units={"salinity":"ppt","water_temperature":"degC"},
                          status="retrospective_policy" if fitted else "fallback_only",
-                         fit_sites=f["gate_validation_sites"][policy],
-                         required_forcing=list(FEATURES.get(scope,())),source="fold_models.json",
+                         source_selector=([site,policy+"_gate"] if scope=="unforced" else
+                                          [site,"forcing",scope,policy+"_gate"]),
+                         fit_sites=[],gate_validation_sites=f["gate_validation_sites"][policy],
+                         required_forcing=list(FEATURES.get(scope,())),source=str(COMBINED/"fold_models.json"),artifact_sha256=sha(COMBINED/"fold_models.json"),
                          alias_of="",validation_end=cm["validation_target_date_end"],deployable=False))
     router=ResearchRouter(stations,registry,models,folds,forcing,cm)
     return router,entries,manifest,fm,source_hashes,lineage
@@ -314,7 +318,7 @@ def html_atlas(out,router,cover,summary,weights):
         ("expert_registry.csv","Expert registry"),("region_category_coverage.csv","Region/category coverage"),
         ("station_edges.csv","Station FCM edges"),("residual_edges.csv","Residual predictive coefficients"),
         ("mixture_weights.csv","Validation-selected weights"),("route_replay.csv","Inference replay"),
-        ("route_metrics.csv","Route performance"),("manifest.json","Source lineage")))
+        ("route_metrics.csv","Route performance"),("paired_policy_evidence.csv","Conditional paired uncertainty"),("manifest.json","Source lineage")))
     content=("<!doctype html><html lang='en'><meta charset='utf-8'><title>M10.4 evidence atlas</title>"
              "<style>body{font:15px system-ui;margin:32px;color:#18324b;max-width:1500px}h1,h2{color:#245b89}"
              "table{border-collapse:collapse;width:100%;font-size:13px}td,th{padding:9px;border:1px solid #cbd5df;"
@@ -341,6 +345,17 @@ def run(out,verify_raw=False):
     router,entries,manifest,fm,source_hashes,lineage=context(verify_raw)
     rows,se,re,weights,nmix=replay(router,entries,manifest)
     scores=summarize(rows); cover=coverage(router)
+    original_comparisons={(r["site_id"],r["concept"],r["model"],r["baseline"]):r
+        for r in read_csv(COMBINED/"paired_comparisons.csv")}
+    paired=[]
+    for r in scores:
+        if r["evidence"]!="original_spatial_temporal_holdout":
+            continue
+        name=r["policy"]+"_blend" if r["scope"]=="unforced" else r["scope"]+"_"+r["policy"]+"_fallback"
+        src=original_comparisons[r["site_id"],r["concept"],name,"persistence"]
+        if int(src["n"])!=r["n"] or not close(src["delta_mae"],r["mae"]-r["persistence_mae"]):
+            raise ValueError("paired comparison point estimate mismatch")
+        paired.append(dict(src,policy=r["policy"],scope=r["scope"]))
     out.mkdir(parents=True,exist_ok=True)
     def export(name,rs):
         # JSON-encode nested values to preserve schema in CSV.
@@ -351,6 +366,7 @@ def run(out,verify_raw=False):
     export("route_replay.csv",rows); export("route_metrics.csv",scores)
     export("station_edges.csv",se); export("residual_edges.csv",re)
     export("mixture_weights.csv",weights); export("region_category_coverage.csv",cover)
+    export("paired_policy_evidence.csv",paired)
     html_atlas(out,router,cover,scores,weights)
     counts=Counter(e["kind"] for e in router.registry.values())
     report=dict(n_observed_stations=len(router.stations),n_registry_entries=len(router.registry),
@@ -365,7 +381,6 @@ def run(out,verify_raw=False):
         regional_transport_model_trained=False,hydrological_connectivity_verified=False,
         as_issued_availability_verified=False,exact_sensor_depth_verified=False,
         outputs_sha256={p.name:sha(p) for p in sorted(out.iterdir()) if p.is_file()})
-    (out/"manifest.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
     lines=["# M10.4 — hierarchical research evidence atlas","",
            f"{report['n_observed_stations']} stations; {report['n_registry_entries']} registry entries; "
            f"{report['n_regional_holdout_folds']} regional folds; {len(rows)} reproduced predictions.",
@@ -387,6 +402,8 @@ def run(out,verify_raw=False):
             "","See [lineage](manifest.json), [station edges](station_edges.csv), [regional residual edges](residual_edges.csv) "
             "and [gate weights](mixture_weights.csv). The original M9 evidence atlas remains immutable."]
     (out/"INDEX.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
+    report["outputs_sha256"]["INDEX.md"]=sha(out/"INDEX.md")
+    (out/"manifest.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
     return report
 
 

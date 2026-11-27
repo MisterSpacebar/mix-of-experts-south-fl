@@ -50,12 +50,12 @@ connectivity are not verified.
 
 The offline HTML atlas links registry, region × category coverage,
 station coefficients, regional residual coefficients, mixture weights,
-route-level predictions and metrics. Registry preserves 25 station-local
-fits (7 full, 18 specialist) and 13 unfitted candidates; four specialist
+route-level predictions, metrics and original conditional paired intervals (point estimates checked). Registry preserves 25 station-local
+fits (7 full, 18 specialist) and 14 unfitted candidates (13 insufficient-concept scopes and one insufficient-observation panel); four specialist
 scope aliases are explicitly marked. It registers persistence and the
 actual residual/mixture fold artifacts, not a deployed model.
-Registry mixture fit_sites denotes gate validation sites; component
-records show the fitting sites. Alias rows are callable individually but
+Mixture records store gate_validation_sites separately; component
+records show fitting sites. Source selectors label the scope/role inside the fold bundle. Alias rows are callable individually but
 not counted as independent evidence. Unrepresented regions/categories
 remain visible as gaps. Primary region counts and overlapping discovery
 screens are separate.
