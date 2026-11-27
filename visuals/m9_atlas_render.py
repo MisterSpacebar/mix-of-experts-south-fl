@@ -261,7 +261,7 @@ def plot_region_taxonomy_matrix(rows,path,dpi=150):
     from southfl.regions import REGIONS
     from visuals.hierarchy import CATEGORIES
     path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
-    lookup={(r["primary_region"],r["category"]):r for r in rows}
+    lookup={(r["discovery_region"],r["category"]):r for r in rows}
     values=np.array([[
         int(lookup[(region,cat)]["n_distinct_trained_station_panels"])
         for cat in CATEGORIES] for region in REGIONS])
