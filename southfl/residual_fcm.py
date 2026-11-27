@@ -134,6 +134,10 @@ def fold(splits,held,forcing,feature_sets):
                                   for d,_,_,_ in predictions)}
         detail=dict(features=list(features),counts=counts,status="insufficient_train_or_validation")
         metadata["forcing"][label]=detail
+        # Always emit full-date fallback policies, even when a fold cannot fit forcing.
+        for _,_,_,preds in predictions:
+            preds[label+"_zero_shot_fallback"]=preds["zero_shot_blend"]
+            preds[label+"_adapted_fallback"]=preds["adapted_blend"]
         if not adequate(ft,fv):
             continue
         try:

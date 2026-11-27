@@ -58,6 +58,8 @@ def weather_rows(raw,start=START,end=END):
                 continue
             if code in ("PRCP","AWND") and v<0:
                 continue
+            if code=="PRCP" and flags[0].strip().upper()=="P":
+                continue  # missing precipitation presumed zero is not observed zero
             row[name]=v
         if all(k in row for k in WEATHER[-2:]) and row[WEATHER[-2]]>row[WEATHER[-1]]:
             raise ValueError("inverted air temperature extrema")

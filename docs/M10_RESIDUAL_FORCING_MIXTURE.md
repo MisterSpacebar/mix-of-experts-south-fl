@@ -35,7 +35,7 @@ range guarantee or recursive stability claim.
 
 - [NOAA NCEI Naples Municipal Airport USW00012897](https://www.ncei.noaa.gov/cdo-web/datasets/GHCND/stations/GHCND%3AUSW00012897/detail):
   PRCP, AWND, TMIN and TMAX in metric units, reject missing/failed quality
-  flags; trace zero is retained as reported. Source calendar date D-2 for
+  flags; reject presumed-missing-zero precipitation, retain reported trace zero. Source calendar date D-2 for
   target UTC day D, conservative relative to local calendar completion.
 - [NOAA CO-OPS Fort Myers 8725520](https://tidesandcurrents.noaa.gov/stationhome.html?id=8725520):
   observed six-minute water level, MSL, metric, UTC D-1; daily mean
@@ -63,7 +63,7 @@ Convex weights in increments of .25, per concept, sum to one.
 Zero-shot: donor validation only (regional + persistence).
 Adapted: target pre-test validation (regional + target-local + persistence).
 Forced variants use matching available inputs and fall back to the
-unforced gate when forcing is absent. Gate tuning reuses validation
+unforced gate when forcing is absent or cannot be fitted in a fold. Gate tuning reuses validation
 used for component tuning; no test labels, no claim of nested independent
 gate validation. These are fixed validation-selected mixtures, not a
 contextual learned gate. Missing forcing on a test date is not a dropped

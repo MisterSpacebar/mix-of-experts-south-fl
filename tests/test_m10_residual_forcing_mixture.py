@@ -76,6 +76,9 @@ class CombinedTests(unittest.TestCase):
         self.assertEqual(count("weather_forced"),48)
         self.assertEqual(count("weather_matched_unforced"),48)
         self.assertEqual(count("weather_zero_shot_fallback"),50)
+        blocked,rr=fold(data,"c",{},{"weather":("rain",)})
+        self.assertEqual(blocked["forcing"]["weather"]["status"],"insufficient_train_or_validation")
+        self.assertEqual(sum(r["model"]=="weather_zero_shot_fallback" for r in rr),50)
 
     def test_actual_baseline_replay(self):
         with tempfile.TemporaryDirectory() as tmp:
