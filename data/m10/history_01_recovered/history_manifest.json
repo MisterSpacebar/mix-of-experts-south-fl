@@ -1,0 +1,3940 @@
+{
+  "original_history": "data\\m10\\history_01",
+  "original_manifest_sha256": "60685d73104a0d5fb64eb65b106e9aaf8c52710caf944eb3e01ba5d3714b563c",
+  "original_lineage": {
+    "plan": {
+      "actual_sha256": "9428de0b03fff1952cfbd5b3364d43893de4d71fc16783ea39a86fa9b68d21b8",
+      "recorded_sha256": "9428de0b03fff1952cfbd5b3364d43893de4d71fc16783ea39a86fa9b68d21b8",
+      "match": "exact"
+    },
+    "observations": {
+      "actual_sha256": "b648c164e839a5672d09db08e917462a20f320a8ef80f2416477511b2aa76cd9",
+      "recorded_sha256": "b648c164e839a5672d09db08e917462a20f320a8ef80f2416477511b2aa76cd9",
+      "match": "exact"
+    }
+  },
+  "n_boundary_series_requests": 52,
+  "n_tasks": 4,
+  "regional_fcms_trained": 0,
+  "fresh_identity_manifest_sha256": "9e91b99ca062a0730a8408355b7604de364c3efccc3144e45058afe8c58af7cb",
+  "fresh_identity_plan_lineage": {
+    "actual_sha256": "9428de0b03fff1952cfbd5b3364d43893de4d71fc16783ea39a86fa9b68d21b8",
+    "recorded_sha256": "9428de0b03fff1952cfbd5b3364d43893de4d71fc16783ea39a86fa9b68d21b8",
+    "match": "exact"
+  },
+  "status": "boundary_recovery_complete",
+  "n_completed": 52,
+  "n_original_observations": 63008,
+  "n_added_observations": 4937,
+  "n_observations": 67945,
+  "n_empty_boundary_responses": 0,
+  "generated_at_utc": "2026-11-27T03:17:39.989638+00:00",
+  "plan_sha256": "9428de0b03fff1952cfbd5b3364d43893de4d71fc16783ea39a86fa9b68d21b8",
+  "observations_sha256": "f70092df06467189645fd543f4beb1a9a965fb473fac6529655ecb9599e3a5d2",
+  "n_failed_tasks": 0,
+  "incomplete_panels": [],
+  "n_panels": 1,
+  "by_concept": {
+    "gage_height": 16991,
+    "water_temperature": 16985,
+    "discharge": 16984,
+    "salinity": 16985
+  },
+  "requests": [
+    {
+      "panel_id": "panel_01_USGS_255432081303900",
+      "site_id": "USGS-255432081303900",
+      "series_id": "db32c9f656064854b8a3cc1e28ee1d32",
+      "concept": "discharge",
+      "status": "success",
+      "n_records": 16984,
+      "window_coverage": [
+        {
+          "start": "2026-05-29",
+          "end": "2026-06-11",
+          "days": [
+            {
+              "date": "2026-05-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-05-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-05-31",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-02",
+              "n_distinct_instants": 94,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-09",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-10",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-06-12",
+          "end": "2026-06-25",
+          "days": [
+            {
+              "date": "2026-06-12",
+              "n_distinct_instants": 94,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-16",
+              "n_distinct_instants": 93,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-06-26",
+          "end": "2026-07-09",
+          "days": [
+            {
+              "date": "2026-06-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-07-10",
+          "end": "2026-07-23",
+          "days": [
+            {
+              "date": "2026-07-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-14",
+              "n_distinct_instants": 92,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-07-24",
+          "end": "2026-08-06",
+          "days": [
+            {
+              "date": "2026-07-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-04",
+              "n_distinct_instants": 101,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-08-07",
+          "end": "2026-08-20",
+          "days": [
+            {
+              "date": "2026-08-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-08-21",
+          "end": "2026-09-03",
+          "days": [
+            {
+              "date": "2026-08-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-09-04",
+          "end": "2026-09-17",
+          "days": [
+            {
+              "date": "2026-09-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-09-18",
+          "end": "2026-10-01",
+          "days": [
+            {
+              "date": "2026-09-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-02",
+          "end": "2026-10-15",
+          "days": [
+            {
+              "date": "2026-10-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-16",
+          "end": "2026-10-29",
+          "days": [
+            {
+              "date": "2026-10-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-21",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-22",
+              "n_distinct_instants": 98,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-30",
+          "end": "2026-11-12",
+          "days": [
+            {
+              "date": "2026-10-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-11-13",
+          "end": "2026-11-21",
+          "days": [
+            {
+              "date": "2026-11-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "panel_id": "panel_01_USGS_255432081303900",
+      "site_id": "USGS-255432081303900",
+      "series_id": "fdd8020bf80f435585a724c31e3cd3ac",
+      "concept": "salinity",
+      "status": "success",
+      "n_records": 16985,
+      "window_coverage": [
+        {
+          "start": "2026-05-29",
+          "end": "2026-06-11",
+          "days": [
+            {
+              "date": "2026-05-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-05-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-05-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-06-12",
+          "end": "2026-06-25",
+          "days": [
+            {
+              "date": "2026-06-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-06-26",
+          "end": "2026-07-09",
+          "days": [
+            {
+              "date": "2026-06-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-07-10",
+          "end": "2026-07-23",
+          "days": [
+            {
+              "date": "2026-07-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-07-24",
+          "end": "2026-08-06",
+          "days": [
+            {
+              "date": "2026-07-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-04",
+              "n_distinct_instants": 93,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-08-07",
+          "end": "2026-08-20",
+          "days": [
+            {
+              "date": "2026-08-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-08-21",
+          "end": "2026-09-03",
+          "days": [
+            {
+              "date": "2026-08-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-09-04",
+          "end": "2026-09-17",
+          "days": [
+            {
+              "date": "2026-09-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-09-18",
+          "end": "2026-10-01",
+          "days": [
+            {
+              "date": "2026-09-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-02",
+          "end": "2026-10-15",
+          "days": [
+            {
+              "date": "2026-10-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-16",
+          "end": "2026-10-29",
+          "days": [
+            {
+              "date": "2026-10-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-21",
+              "n_distinct_instants": 92,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-30",
+          "end": "2026-11-12",
+          "days": [
+            {
+              "date": "2026-10-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-11-13",
+          "end": "2026-11-21",
+          "days": [
+            {
+              "date": "2026-11-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "panel_id": "panel_01_USGS_255432081303900",
+      "site_id": "USGS-255432081303900",
+      "series_id": "8126af5d68bd492c8179bdb2b380d4ed",
+      "concept": "water_temperature",
+      "status": "success",
+      "n_records": 16985,
+      "window_coverage": [
+        {
+          "start": "2026-05-29",
+          "end": "2026-06-11",
+          "days": [
+            {
+              "date": "2026-05-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-05-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-05-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-06-12",
+          "end": "2026-06-25",
+          "days": [
+            {
+              "date": "2026-06-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-06-26",
+          "end": "2026-07-09",
+          "days": [
+            {
+              "date": "2026-06-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-07-10",
+          "end": "2026-07-23",
+          "days": [
+            {
+              "date": "2026-07-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-07-24",
+          "end": "2026-08-06",
+          "days": [
+            {
+              "date": "2026-07-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-04",
+              "n_distinct_instants": 93,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-08-07",
+          "end": "2026-08-20",
+          "days": [
+            {
+              "date": "2026-08-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-08-21",
+          "end": "2026-09-03",
+          "days": [
+            {
+              "date": "2026-08-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-09-04",
+          "end": "2026-09-17",
+          "days": [
+            {
+              "date": "2026-09-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-09-18",
+          "end": "2026-10-01",
+          "days": [
+            {
+              "date": "2026-09-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-02",
+          "end": "2026-10-15",
+          "days": [
+            {
+              "date": "2026-10-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-16",
+          "end": "2026-10-29",
+          "days": [
+            {
+              "date": "2026-10-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-21",
+              "n_distinct_instants": 92,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-30",
+          "end": "2026-11-12",
+          "days": [
+            {
+              "date": "2026-10-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-11-13",
+          "end": "2026-11-21",
+          "days": [
+            {
+              "date": "2026-11-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "panel_id": "panel_01_USGS_255432081303900",
+      "site_id": "USGS-255432081303900",
+      "series_id": "0384db6ce8c3432ea422e6b142d935d8",
+      "concept": "gage_height",
+      "status": "success",
+      "n_records": 16991,
+      "window_coverage": [
+        {
+          "start": "2026-05-29",
+          "end": "2026-06-11",
+          "days": [
+            {
+              "date": "2026-05-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-05-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-05-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-01",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-09",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-06-12",
+          "end": "2026-06-25",
+          "days": [
+            {
+              "date": "2026-06-12",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-16",
+              "n_distinct_instants": 100,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-20",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-21",
+              "n_distinct_instants": 94,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-24",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-06-26",
+          "end": "2026-07-09",
+          "days": [
+            {
+              "date": "2026-06-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-09",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-07-10",
+          "end": "2026-07-23",
+          "days": [
+            {
+              "date": "2026-07-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-12",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-17",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-20",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-21",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-23",
+              "n_distinct_instants": 94,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-07-24",
+          "end": "2026-08-06",
+          "days": [
+            {
+              "date": "2026-07-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-01",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-02",
+              "n_distinct_instants": 95,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-04",
+              "n_distinct_instants": 104,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-08-07",
+          "end": "2026-08-20",
+          "days": [
+            {
+              "date": "2026-08-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-08-21",
+          "end": "2026-09-03",
+          "days": [
+            {
+              "date": "2026-08-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-09-04",
+          "end": "2026-09-17",
+          "days": [
+            {
+              "date": "2026-09-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-09-18",
+          "end": "2026-10-01",
+          "days": [
+            {
+              "date": "2026-09-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-02",
+          "end": "2026-10-15",
+          "days": [
+            {
+              "date": "2026-10-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-16",
+          "end": "2026-10-29",
+          "days": [
+            {
+              "date": "2026-10-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-22",
+              "n_distinct_instants": 99,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-30",
+          "end": "2026-11-12",
+          "days": [
+            {
+              "date": "2026-10-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-11-13",
+          "end": "2026-11-21",
+          "days": [
+            {
+              "date": "2026-11-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "observation_coverage_verified": false,
+  "trained_models": 0,
+  "continuous_interval_policy": "boundary_recovery_v1"
+}

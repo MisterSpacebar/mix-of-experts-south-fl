@@ -1,0 +1,31 @@
+{
+  "original_history": "data\\m8\\history_replication_v1",
+  "original_manifest_sha256": "9416fa91cfe7c656bcc9fb71890fdb4cfe185c2442acb34450096126d13e22dd",
+  "original_lineage": {
+    "plan": {
+      "actual_sha256": "d84cce837ad5cfb2fb86c4c4dd7c6b8003daf507636411a2b08e9267200ca4c7",
+      "recorded_sha256": "d84cce837ad5cfb2fb86c4c4dd7c6b8003daf507636411a2b08e9267200ca4c7",
+      "match": "exact"
+    },
+    "observations": {
+      "actual_sha256": "eefae8d32bf67c770c545daa8ce3fcfae9182ae0268cde0ad03a50ee3dcf5654",
+      "recorded_sha256": "eefae8d32bf67c770c545daa8ce3fcfae9182ae0268cde0ad03a50ee3dcf5654",
+      "match": "exact"
+    }
+  },
+  "n_boundary_series_requests": 104,
+  "n_tasks": 8,
+  "regional_fcms_trained": 0,
+  "fresh_identity_manifest_sha256": "9d055fbd59ba3ba7405a6276e2acd90ef50608e915ab9b4c9f95116221abe8dc",
+  "fresh_identity_plan_lineage": {
+    "actual_sha256": "d84cce837ad5cfb2fb86c4c4dd7c6b8003daf507636411a2b08e9267200ca4c7",
+    "recorded_sha256": "d84cce837ad5cfb2fb86c4c4dd7c6b8003daf507636411a2b08e9267200ca4c7",
+    "match": "exact"
+  },
+  "status": "boundary_recovery_complete",
+  "n_completed": 104,
+  "n_original_observations": 127592,
+  "n_added_observations": 9886,
+  "n_observations": 137478,
+  "n_empty_boundary_responses": 0
+}

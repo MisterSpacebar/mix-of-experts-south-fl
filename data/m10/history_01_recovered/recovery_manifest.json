@@ -1,0 +1,31 @@
+{
+  "original_history": "data\\m10\\history_01",
+  "original_manifest_sha256": "60685d73104a0d5fb64eb65b106e9aaf8c52710caf944eb3e01ba5d3714b563c",
+  "original_lineage": {
+    "plan": {
+      "actual_sha256": "9428de0b03fff1952cfbd5b3364d43893de4d71fc16783ea39a86fa9b68d21b8",
+      "recorded_sha256": "9428de0b03fff1952cfbd5b3364d43893de4d71fc16783ea39a86fa9b68d21b8",
+      "match": "exact"
+    },
+    "observations": {
+      "actual_sha256": "b648c164e839a5672d09db08e917462a20f320a8ef80f2416477511b2aa76cd9",
+      "recorded_sha256": "b648c164e839a5672d09db08e917462a20f320a8ef80f2416477511b2aa76cd9",
+      "match": "exact"
+    }
+  },
+  "n_boundary_series_requests": 52,
+  "n_tasks": 4,
+  "regional_fcms_trained": 0,
+  "fresh_identity_manifest_sha256": "9e91b99ca062a0730a8408355b7604de364c3efccc3144e45058afe8c58af7cb",
+  "fresh_identity_plan_lineage": {
+    "actual_sha256": "9428de0b03fff1952cfbd5b3364d43893de4d71fc16783ea39a86fa9b68d21b8",
+    "recorded_sha256": "9428de0b03fff1952cfbd5b3364d43893de4d71fc16783ea39a86fa9b68d21b8",
+    "match": "exact"
+  },
+  "status": "boundary_recovery_complete",
+  "n_completed": 52,
+  "n_original_observations": 63008,
+  "n_added_observations": 4937,
+  "n_observations": 67945,
+  "n_empty_boundary_responses": 0
+}
