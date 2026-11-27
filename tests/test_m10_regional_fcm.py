@@ -28,9 +28,11 @@ class RegionalTests(unittest.TestCase):
         data=synthetic()
         fit,rows=evaluate_fold(data,"c")
         changed=copy.deepcopy(data)
-        for p in changed["c"]["train"]+changed["c"]["validation"]+changed["a"]["test"]:
-            p[1][0]+=100
-            p[2][0]+=100
+        # Replace tuples rather than mutate shared consecutive-day lists:
+        # the last validation outcome can also be the first test input.
+        for site,period in (("c","train"),("c","validation"),("a","test")):
+            changed[site][period]=[(d,[x[0]+100,x[1]],[y[0]+100,y[1]])
+                                   for d,x,y in changed[site][period]]
         f2,r2=evaluate_fold(changed,"c")
         for m in ("regional_fcm","pooled_ridge","pooled_self_ar"):
             self.assertEqual(fit[m],f2[m])
