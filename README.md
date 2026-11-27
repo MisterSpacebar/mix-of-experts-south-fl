@@ -257,6 +257,28 @@ It audits skipped alternate USGS ID namespaces without fabricating
 canonical matches. **No regional predictive FCM is trained.**
 See [M9.1 spatial screening and recruitment guide](docs/M9_SPATIAL_CANDIDATES.md).
 
+## Milestone 9.2 — unified geography × environmental FCM evidence atlas
+
+The data are less disconnected than the older category and geography
+figures suggest. The trained full station FCMs contain *cross-category*
+directed predictive links, while the M9.1 dashed geographic-pair line
+has a different, noncausal meaning. The new cross-axis atlas brings
+both types into a **single labeled SVG** with separate source-backed
+coefficient tables and exploratory aligned cross-station daily-change
+correlation charts. All original station models remain unchanged; no
+regional FCM, environmental gate or inferred transport connection
+is fabricated.
+
+```powershell
+python scripts/build_m9_cross_axis_atlas.py --models data/m8/layers_replication_v1 --panels data/m7/daily_panels_verified_01 --panels data/m8/replication_daily_01 --assignments data/m9/regional_readiness_v1_with_coords/station_assignments.csv --screen data/m9/spatial_candidate_screen_v1 --out data/m9/cross_axis_atlas_v1
+```
+
+Open `data/m9/cross_axis_atlas_v1/INDEX.md` and click
+`visuals/geography_category_evidence_atlas.svg` for the combined
+overview. [M9.2 evidence atlas guide](docs/M9_CROSS_AXIS_ATLAS.md)
+details relationship types, filters, full category/region reports,
+source integrity and scientific interpretation.
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
@@ -273,6 +295,7 @@ See [M9.1 spatial screening and recruitment guide](docs/M9_SPATIAL_CANDIDATES.md
 - [M8 scientific evidence browser and transfer-failure diagnostics](docs/M8_EVIDENCE_BROWSER.md)
 - [M9 geographic region FCM inventory and readiness](docs/M9_GEOGRAPHIC_READINESS.md)
 - [M9.1 spatial candidate pairs and regional source recruitment](docs/M9_SPATIAL_CANDIDATES.md)
+- [M9.2 geography × environmental FCM evidence atlas](docs/M9_CROSS_AXIS_ATLAS.md)
 
 ## Modeling design (planned)
 
