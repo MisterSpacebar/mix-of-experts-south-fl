@@ -1,0 +1,7 @@
+batch_id,site_id,shortlist_rank,role,n_series,n_history_windows,unverified_stage_concepts,status
+batch_01,USGS-255432081303900,1,new_station,4,52,gage_height,awaiting_fresh_identity_preflight
+batch_02,USGS-255327081275900,,reference_extension,4,52,gage_height,awaiting_fresh_identity_preflight
+batch_03,USGS-255726081303700,2,new_station,3,39,,awaiting_fresh_identity_preflight
+batch_04,USGS-255654081350200,3,new_station,3,39,,awaiting_fresh_identity_preflight
+batch_05,USGS-255138081321701,4,new_station,3,39,,awaiting_fresh_identity_preflight
+batch_06,USGS-02290930,5,new_station,4,52,gage_height,awaiting_fresh_identity_preflight

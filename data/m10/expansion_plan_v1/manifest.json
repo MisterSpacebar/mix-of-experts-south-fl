@@ -1,0 +1,28 @@
+{
+  "inputs": {
+    "data\\m9\\recruitment_big_cypress_v1\\history_plan.csv": "98df3c6802447301dadb3761a77d8e52f371a987a65be93257898b4e6db977bf",
+    "data\\m9\\recruitment_big_cypress_v1\\metadata_recruitment_shortlist.csv": "79bf660317fe0544fe288628cdec3b925e2934aba8ed364ae9f5a7c19833102f",
+    "data\\m7\\identity_probe_01\\history_plan.csv": "880e4f9bd5b089cd37c22ec1779824159c0666bd214277aeef42b67a596d86df",
+    "data\\m9\\cross_axis_atlas_v1\\manifest.json": "73e1d72cbe9880bbc7adc83b99781b3bc88f7aa4259b6ad33bb0bad33f75bef2"
+  },
+  "start": "2026-05-29",
+  "end": "2026-11-21",
+  "n_new_station_candidates": 5,
+  "n_reference_extensions": 1,
+  "n_batches": 6,
+  "n_candidate_series": 21,
+  "n_history_windows": 273,
+  "batch_plan_sha256": {
+    "batch_01": "3fc19731b962a2139308fcfe3cf49609e64b53619726c89fc80ec88047ecab32",
+    "batch_02": "27016c66d4a4774931e71c995a63c1afd9d58ef915a515d482f97260258cb698",
+    "batch_03": "f3b43d660d567e7947e7bdf3f4f9c2fd2de11ddbf15fed08a825317b66d3ecfd",
+    "batch_04": "b9e2a54af3156245710b381384cb7902a524161f0d00211b82c0bc7f50d74a8e",
+    "batch_05": "d598fddb6730b57d797a022472c5537829670383670125b175eee0031c070d4f",
+    "batch_06": "27d00de85ba2093bba9ce237fa6e9953e545e16fd0576b4392599b3bbf7cfe4b"
+  },
+  "baseline_station_fcms": 3,
+  "identity_verified": false,
+  "observations_downloaded": false,
+  "connectivity_verified": false,
+  "regional_fcms_trained": 0
+}

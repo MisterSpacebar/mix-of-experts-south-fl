@@ -1,0 +1,16 @@
+{
+  "created_at_utc": "2026-11-27T02:50:21.188139+00:00",
+  "input_plan": "data\\m10\\expansion_plan_v1\\batch_01\\history_plan.csv",
+  "input_sha256": "3fc19731b962a2139308fcfe3cf49609e64b53619726c89fc80ec88047ecab32",
+  "usgs_key_configured": true,
+  "n_input_tasks": 4,
+  "n_verified_tasks": 4,
+  "n_changed_series_ids": 0,
+  "n_failed_or_unattempted_tasks": 0,
+  "n_verified_complete_panels": 1,
+  "verified_plan_sha256": "9428de0b03fff1952cfbd5b3364d43893de4d71fc16783ea39a86fa9b68d21b8",
+  "failed_or_incomplete_panels": [],
+  "source_identity_verified": true,
+  "observation_coverage_verified": false,
+  "note": "Only complete panels enter the revised history plan; each new ID must be supported by current USGS time-series metadata and exact source ID in short observed probe. No approval inferred for source timestamps or FCM training."
+}
