@@ -1,0 +1,24 @@
+{
+  "created_at_utc": "2026-11-27T04:10:36.478469+00:00",
+  "panel_inputs": [
+    "data\\m10\\daily_01_recovered",
+    "data\\m10\\daily_02",
+    "data\\m10\\daily_m8_recovered",
+    "data\\m10\\daily_03",
+    "data\\m10\\daily_04",
+    "data\\m10\\daily_05",
+    "data\\m10\\daily_06"
+  ],
+  "n_panel_candidates": 8,
+  "n_fitted_dataset_models": 7,
+  "n_station_local_specialist_fits": 18,
+  "n_distinct_station_specialist_concept_sets": 14,
+  "n_redundant_scope_fits": 4,
+  "n_unfitted_scope_candidates": 13,
+  "regional_subcategory_experts_trained": 0,
+  "regional_category_experts_trained": 0,
+  "overall_experts_trained": 0,
+  "model_selection_on_test": false,
+  "causal_identification": false,
+  "all_source_data_stays_external": true
+}

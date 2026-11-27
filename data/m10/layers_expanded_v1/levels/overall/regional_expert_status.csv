@@ -1,0 +1,11 @@
+level,scope,status,n_observed_concepts,n_contributing_panels,interpretation
+dataset_panel,individual_station_fcms,trained_preview,5,7,each panel model fitted and validated separately
+category,hydrology,not_trained,2,5,taxonomy coverage only; no category expert or mixture fitted
+category,water_quality,not_trained,3,7,taxonomy coverage only; no category expert or mixture fitted
+category,oceanography,not_trained,0,0,taxonomy coverage only; no category expert or mixture fitted
+category,ecology,not_trained,0,0,taxonomy coverage only; no category expert or mixture fitted
+category,socioeconomic,not_trained,0,0,taxonomy coverage only; no category expert or mixture fitted
+subcategory,hydrology/surface_flow,not_trained,2,5,"projection of station concepts, not a separately trained FCM"
+subcategory,water_quality/salinity_and_conductance,not_trained,2,7,"projection of station concepts, not a separately trained FCM"
+subcategory,water_quality/thermal_conditions,not_trained,1,7,"projection of station concepts, not a separately trained FCM"
+overall,south_florida,not_trained,5,7,overall ecosystem coupling/gating remains future work

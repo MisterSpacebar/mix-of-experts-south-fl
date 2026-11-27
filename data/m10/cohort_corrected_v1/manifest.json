@@ -1,0 +1,75 @@
+{
+  "region_screen": "big_cypress",
+  "start": "2026-05-29",
+  "end": "2026-11-21",
+  "train_target_date_end": "2026-09-11",
+  "validation_target_date_end": "2026-10-16",
+  "n_observed_sites": 4,
+  "eligible_sites": [
+    "USGS-255327081275900",
+    "USGS-255432081303900",
+    "USGS-255534081324000"
+  ],
+  "common_days": 163,
+  "common_transitions": 159,
+  "longest_common_stretch": 95,
+  "temporal_metadata_screen_pass": true,
+  "n_spatial_folds": 3,
+  "concepts": [
+    "salinity",
+    "water_temperature"
+  ],
+  "hydrological_connectivity_verified": false,
+  "exact_sensor_depth_verified": false,
+  "raw_bytes_verified": true,
+  "regional_fcms_trained": 0,
+  "snapshots": {
+    "data\\m10\\daily_01_recovered": {
+      "history_manifest": "05b9a6c54778a5155d3d5e4eac5ff573c21d861e31ea62c017d63cac4ea39595",
+      "panels_manifest": "514be41c9d3998239f9d335a4950ef247e534a57ec254fdf7fc064afe8d372fd",
+      "identity_manifest": "9e91b99ca062a0730a8408355b7604de364c3efccc3144e45058afe8c58af7cb",
+      "identity_audit": "1140290e45b7356a38fa60e2dc1dcaa777debd73a5c658a88d122774d6fe8518",
+      "panel_readiness": "44552f6a046dac2e892c69879e53af373d5d0c5967872e4f7bcdac18e905905b",
+      "raw_sha256_recorded": "f70092df06467189645fd543f4beb1a9a965fb473fac6529655ecb9599e3a5d2",
+      "raw_bytes_verified": true,
+      "raw_verification": {
+        "actual_sha256": "f70092df06467189645fd543f4beb1a9a965fb473fac6529655ecb9599e3a5d2",
+        "recorded_sha256": "f70092df06467189645fd543f4beb1a9a965fb473fac6529655ecb9599e3a5d2",
+        "match": "exact"
+      }
+    },
+    "data\\m10\\daily_02": {
+      "history_manifest": "4713982b9fa08179c5ec15e8a01dcd45ea3a9aa464b73bb884e0b308e6698de5",
+      "panels_manifest": "f1cb3dc40ef6c8c39749232420e659e37b299bcf5227e74c69e418341e87c694",
+      "identity_manifest": "ebc46ac4ea2e3dce1e0fc3a1a5f0809f15f6af07cdb2d3968556de0ee195d8d8",
+      "identity_audit": "60afd41f1e4ec1e0920078b01bd3ceaad665e35054514dcc1d60c4a7ad80792a",
+      "panel_readiness": "6b8fc13c86cb8ec9305a78b3c427ece709d65e75b3285eb271965aae2ea7e6e2",
+      "raw_sha256_recorded": "b9242f1a1b953571bc0397e106239eb145fe15fb1c3547e95b14b4bcd9585fd0",
+      "raw_bytes_verified": true,
+      "raw_verification": {
+        "actual_sha256": "b9242f1a1b953571bc0397e106239eb145fe15fb1c3547e95b14b4bcd9585fd0",
+        "recorded_sha256": "b9242f1a1b953571bc0397e106239eb145fe15fb1c3547e95b14b4bcd9585fd0",
+        "match": "exact"
+      }
+    },
+    "data\\m10\\daily_m8_recovered": {
+      "history_manifest": "f1622a96442d0c03209f1b2bc398003bd0dc207679f50e40c2229a20bb559d69",
+      "panels_manifest": "ae4fb4a4478f125054c0ec519651a6006f0990502f7700a8449c285d50a58fd6",
+      "identity_manifest": "9d055fbd59ba3ba7405a6276e2acd90ef50608e915ab9b4c9f95116221abe8dc",
+      "identity_audit": "b80066f66863459e5f9c23342408129fd18176c089452dc1636132004ea43ad3",
+      "panel_readiness": "d5db35fb803ca9e68efde60c24074f8d4be3abefb0981a35c357da4dc4f41c6f",
+      "raw_sha256_recorded": "2b5a7737095c7aa6e8b894834edc2cb62e3d460c91786a1e4353b68176ea4cd8",
+      "raw_bytes_verified": true,
+      "raw_verification": {
+        "actual_sha256": "2b5a7737095c7aa6e8b894834edc2cb62e3d460c91786a1e4353b68176ea4cd8",
+        "recorded_sha256": "2b5a7737095c7aa6e8b894834edc2cb62e3d460c91786a1e4353b68176ea4cd8",
+        "match": "exact"
+      }
+    }
+  },
+  "coordinate_sources": {
+    "data\\m9\\regional_readiness_v1_with_coords\\station_assignments.csv": "0d11fe2c7a46c77e3e8496ae1efb5ae49cbd12e3391d03da0a7603386f49de2f",
+    "data\\m9\\recruitment_big_cypress_v1\\metadata_recruitment_shortlist.csv": "79bf660317fe0544fe288628cdec3b925e2934aba8ed364ae9f5a7c19833102f"
+  },
+  "note": "Near Bottom matching and discovery rectangle membership are screening evidence only; complete full-panel days are used conservatively."
+}

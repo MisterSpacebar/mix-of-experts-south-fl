@@ -1,0 +1,3 @@
+panel_id,level,scope,concept,n_aligned_test_days,specialist_fcm_mae,full_panel_fcm_mae,self_ar_mae,persistence_mae,specialist_minus_full_mae,specialist_skill_vs_full,specialist_skill_vs_self_ar,specialist_skill_vs_persistence,interpretation
+panel_01_USGS_255432081303900,category,hydrology,discharge,36,146.168221,143.372517,171.341266,176.447141,2.795704,-0.019499582446287134,0.14691758354272866,0.17160334585342985,same-site and same held-out dates; descriptive comparison only
+panel_01_USGS_255432081303900,category,hydrology,gage_height,36,0.209726,0.189544,0.205996,0.198637,0.020182,-0.10647448863640352,-0.018106744080425896,-0.055825031860083696,same-site and same held-out dates; descriptive comparison only

@@ -1,0 +1,3 @@
+concept,n_test_pairs,fcm_mae,fcm_rmse,self_ar_mae,persistence_mae,train_climatology_mae,fcm_vs_persistence_mae_delta,fcm_vs_self_ar_mae_delta,test_target_mean,unit_note
+discharge,33,23.528774,27.245055,25.36629,26.54673,39.324164,-3.017956,-1.837516,29.257846,ft^3/s
+gage_height,33,0.196556,0.249771,0.187001,0.177699,0.443585,0.018857,0.009555,7.959296,ft

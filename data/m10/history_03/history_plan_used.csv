@@ -1,0 +1,4 @@
+panel_id,region,dataset_id,site_id,concept,parameter_code,series_id,unit,vertical_datum,start_date,end_date,mode,metadata_start,metadata_end,selection_status
+panel_05_USGS_255726081303700,big_cypress,usgs_water,USGS-255726081303700,salinity,00480,1cf43ebc43dd4a3d8374ab4970a83732,ppt,,2026-05-29,2026-11-21,continuous,2007-10-01T05:00:00+00:00,2026-11-24T08:15:00+00:00,metadata_candidate_validate_real_observations
+panel_05_USGS_255726081303700,big_cypress,usgs_water,USGS-255726081303700,water_temperature,00010,a7774a74ebcc4579bbfc8e1a852bb18c,degC,,2026-05-29,2026-11-21,continuous,2007-10-01T05:00:00+00:00,2026-11-24T08:15:00+00:00,metadata_candidate_validate_real_observations
+panel_05_USGS_255726081303700,big_cypress,usgs_water,USGS-255726081303700,specific_conductance,00095,87dbdfd61ffa469589bf3f67746830d0,uS/cm,,2026-05-29,2026-11-21,continuous,2010-10-01T05:00:00+00:00,2026-11-24T06:15:00+00:00,metadata_candidate_validate_real_observations

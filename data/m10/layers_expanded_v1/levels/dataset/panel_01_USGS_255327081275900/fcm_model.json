@@ -1,0 +1,74 @@
+{
+  "concepts": [
+    "discharge",
+    "salinity",
+    "water_temperature",
+    "gage_height"
+  ],
+  "n_pairs": 161,
+  "train_pairs": 96,
+  "validation_pairs": 32,
+  "test_pairs": 33,
+  "train_start": "2026-05-30",
+  "train_end": "2026-09-17",
+  "validation_start": "2026-09-18",
+  "validation_end": "2026-10-19",
+  "test_start": "2026-10-20",
+  "test_end": "2026-11-21",
+  "normalization_mean": [
+    10.052650265787085,
+    36.902891993835865,
+    29.972502471009207,
+    7.619551637878031
+  ],
+  "normalization_scale": [
+    26.795598159704916,
+    2.5475135515062433,
+    0.9848647142578703,
+    0.20381317553694678
+  ],
+  "ridge_alpha": 0.1,
+  "self_ar_alphas": [
+    0.1,
+    0.1,
+    0.1,
+    0.1
+  ],
+  "intercepts": [
+    -0.04468276436059633,
+    -0.032220056124972675,
+    -0.0403437572144994,
+    -0.009652069714114687
+  ],
+  "matrix_source_to_target": [
+    [
+      0.651815672845063,
+      -0.12113000191376767,
+      -0.03986925631932224,
+      -0.09017472055864595
+    ],
+    [
+      -0.032252261560633017,
+      0.893274971233636,
+      -0.0507123712144879,
+      -0.09115232652940924
+    ],
+    [
+      0.01612833152416316,
+      0.03080148521432484,
+      0.8040241789138559,
+      -0.042925303471785775
+    ],
+    [
+      0.14917856933301543,
+      -0.10224050969396198,
+      0.06346101751098962,
+      0.7956731699235687
+    ]
+  ],
+  "method": "train-standardized ridge, signed clipped FCM weights, bounded linear-threshold activation, chronological holdout",
+  "forecast_type": "one-day-ahead prediction conditioned on observed previous-day state",
+  "limitations": "predictive associations not causal effects; daily mean and one site only; test result not an operational risk estimate",
+  "scope_model_status": "independently_fitted_within_one_station",
+  "regional_category_expert": false
+}

@@ -1,0 +1,4 @@
+heldout_site,donor_sites,donor_train_pairs,donor_validation_pairs,target_test_pairs,temporal_screen_pass,status
+USGS-255327081275900,USGS-255432081303900;USGS-255534081324000,208,70,36,True,candidate_not_fitted
+USGS-255432081303900,USGS-255327081275900;USGS-255534081324000,193,70,36,True,candidate_not_fitted
+USGS-255534081324000,USGS-255327081275900;USGS-255432081303900,195,70,36,True,candidate_not_fitted

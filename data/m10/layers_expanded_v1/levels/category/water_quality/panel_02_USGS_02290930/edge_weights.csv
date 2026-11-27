@@ -1,0 +1,10 @@
+source_concept,target_concept,weight,sign,edge_kind,interpretation
+salinity,salinity,0.739054,positive,self_memory,held-out predictive association; NOT demonstrated causality
+water_temperature,salinity,-0.053641,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+specific_conductance,salinity,0.235199,positive,cross_concept,held-out predictive association; NOT demonstrated causality
+salinity,water_temperature,0.010674,positive,cross_concept,held-out predictive association; NOT demonstrated causality
+water_temperature,water_temperature,0.832786,positive,self_memory,held-out predictive association; NOT demonstrated causality
+specific_conductance,water_temperature,-0.090913,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+salinity,specific_conductance,0.671937,positive,cross_concept,held-out predictive association; NOT demonstrated causality
+water_temperature,specific_conductance,-0.053365,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+specific_conductance,specific_conductance,0.302921,positive,self_memory,held-out predictive association; NOT demonstrated causality

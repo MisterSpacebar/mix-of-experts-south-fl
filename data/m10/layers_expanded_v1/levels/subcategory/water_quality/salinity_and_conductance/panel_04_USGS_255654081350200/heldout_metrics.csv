@@ -1,0 +1,3 @@
+concept,n_test_pairs,fcm_mae,fcm_rmse,self_ar_mae,persistence_mae,train_climatology_mae,fcm_vs_persistence_mae_delta,fcm_vs_self_ar_mae_delta,test_target_mean,unit_note
+salinity,36,2.416025,3.20387,2.393377,2.086487,15.665095,0.329538,0.022648,12.50282,ppt
+specific_conductance,36,3865.773135,5183.820988,3849.936399,3190.460069,23075.864182,675.313066,15.836736,20400.080178,uS/cm

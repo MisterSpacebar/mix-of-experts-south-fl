@@ -1,0 +1,5 @@
+source_concept,target_concept,weight,sign,edge_kind,interpretation
+salinity,salinity,0.793354,positive,self_memory,held-out predictive association; NOT demonstrated causality
+specific_conductance,salinity,0.209886,positive,cross_concept,held-out predictive association; NOT demonstrated causality
+salinity,specific_conductance,0.193519,positive,cross_concept,held-out predictive association; NOT demonstrated causality
+specific_conductance,specific_conductance,0.807487,positive,self_memory,held-out predictive association; NOT demonstrated causality

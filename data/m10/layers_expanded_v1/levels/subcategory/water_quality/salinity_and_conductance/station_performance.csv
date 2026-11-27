@@ -1,0 +1,4 @@
+panel_id,region,site_id,n_concepts,n_test_pairs,concepts,beats_persistence,beats_self_ar,median_skill_persistence,median_skill_self_ar,n_defined_skill_persistence,n_defined_skill_self_ar,best_concept_vs_self_ar,best_skill_self_ar,worst_concept_vs_self_ar,worst_skill_self_ar
+panel_02_USGS_02290930,big_cypress,USGS-02290930,2,35.0,salinity;specific_conductance,0,1,-0.3217785752983824,0.0014215272792901246,2,2,specific_conductance,0.005324852739914565,salinity,-0.002481798181334316
+panel_03_USGS_255138081321701,big_cypress,USGS-255138081321701,2,35.0,salinity;specific_conductance,0,1,-1.478705232975765,0.0004704548553565169,2,2,salinity,0.0012632979890824236,specific_conductance,-0.0003223882783693899
+panel_04_USGS_255654081350200,big_cypress,USGS-255654081350200,2,36.0,salinity;specific_conductance,0,0,-0.18480275845677518,-0.0067881429363794155,2,2,specific_conductance,-0.0041135058761265775,salinity,-0.009462779996632253

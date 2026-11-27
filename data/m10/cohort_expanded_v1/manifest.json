@@ -1,0 +1,132 @@
+{
+  "region_screen": "big_cypress",
+  "start": "2026-05-29",
+  "end": "2026-11-21",
+  "train_target_date_end": "2026-09-11",
+  "validation_target_date_end": "2026-10-16",
+  "n_observed_sites": 8,
+  "eligible_sites": [
+    "USGS-255327081275900",
+    "USGS-255432081303900",
+    "USGS-255534081324000",
+    "USGS-255654081350200"
+  ],
+  "common_days": 161,
+  "common_transitions": 156,
+  "longest_common_stretch": 95,
+  "temporal_metadata_screen_pass": true,
+  "n_spatial_folds": 4,
+  "concepts": [
+    "salinity",
+    "water_temperature"
+  ],
+  "hydrological_connectivity_verified": false,
+  "exact_sensor_depth_verified": false,
+  "raw_bytes_verified": true,
+  "regional_fcms_trained": 0,
+  "snapshots": {
+    "data\\m10\\daily_01_recovered": {
+      "history_manifest": "05b9a6c54778a5155d3d5e4eac5ff573c21d861e31ea62c017d63cac4ea39595",
+      "panels_manifest": "514be41c9d3998239f9d335a4950ef247e534a57ec254fdf7fc064afe8d372fd",
+      "identity_manifest": "9e91b99ca062a0730a8408355b7604de364c3efccc3144e45058afe8c58af7cb",
+      "identity_audit": "1140290e45b7356a38fa60e2dc1dcaa777debd73a5c658a88d122774d6fe8518",
+      "panel_readiness": "44552f6a046dac2e892c69879e53af373d5d0c5967872e4f7bcdac18e905905b",
+      "raw_sha256_recorded": "f70092df06467189645fd543f4beb1a9a965fb473fac6529655ecb9599e3a5d2",
+      "raw_bytes_verified": true,
+      "raw_verification": {
+        "actual_sha256": "f70092df06467189645fd543f4beb1a9a965fb473fac6529655ecb9599e3a5d2",
+        "recorded_sha256": "f70092df06467189645fd543f4beb1a9a965fb473fac6529655ecb9599e3a5d2",
+        "match": "exact"
+      }
+    },
+    "data\\m10\\daily_02": {
+      "history_manifest": "4713982b9fa08179c5ec15e8a01dcd45ea3a9aa464b73bb884e0b308e6698de5",
+      "panels_manifest": "f1cb3dc40ef6c8c39749232420e659e37b299bcf5227e74c69e418341e87c694",
+      "identity_manifest": "ebc46ac4ea2e3dce1e0fc3a1a5f0809f15f6af07cdb2d3968556de0ee195d8d8",
+      "identity_audit": "60afd41f1e4ec1e0920078b01bd3ceaad665e35054514dcc1d60c4a7ad80792a",
+      "panel_readiness": "6b8fc13c86cb8ec9305a78b3c427ece709d65e75b3285eb271965aae2ea7e6e2",
+      "raw_sha256_recorded": "b9242f1a1b953571bc0397e106239eb145fe15fb1c3547e95b14b4bcd9585fd0",
+      "raw_bytes_verified": true,
+      "raw_verification": {
+        "actual_sha256": "b9242f1a1b953571bc0397e106239eb145fe15fb1c3547e95b14b4bcd9585fd0",
+        "recorded_sha256": "b9242f1a1b953571bc0397e106239eb145fe15fb1c3547e95b14b4bcd9585fd0",
+        "match": "exact"
+      }
+    },
+    "data\\m10\\daily_m8_recovered": {
+      "history_manifest": "f1622a96442d0c03209f1b2bc398003bd0dc207679f50e40c2229a20bb559d69",
+      "panels_manifest": "ae4fb4a4478f125054c0ec519651a6006f0990502f7700a8449c285d50a58fd6",
+      "identity_manifest": "9d055fbd59ba3ba7405a6276e2acd90ef50608e915ab9b4c9f95116221abe8dc",
+      "identity_audit": "b80066f66863459e5f9c23342408129fd18176c089452dc1636132004ea43ad3",
+      "panel_readiness": "d5db35fb803ca9e68efde60c24074f8d4be3abefb0981a35c357da4dc4f41c6f",
+      "raw_sha256_recorded": "2b5a7737095c7aa6e8b894834edc2cb62e3d460c91786a1e4353b68176ea4cd8",
+      "raw_bytes_verified": true,
+      "raw_verification": {
+        "actual_sha256": "2b5a7737095c7aa6e8b894834edc2cb62e3d460c91786a1e4353b68176ea4cd8",
+        "recorded_sha256": "2b5a7737095c7aa6e8b894834edc2cb62e3d460c91786a1e4353b68176ea4cd8",
+        "match": "exact"
+      }
+    },
+    "data\\m10\\daily_03": {
+      "history_manifest": "e951752840f5cfd9cf6a63c8eb924cac5a42e702c64ef379c476c8a25370ae2e",
+      "panels_manifest": "bbfe92c796119c7d47f07032d44ca800d3204aec51c4c60a2744697e64820407",
+      "identity_manifest": "cb4a8c93d95c106f7fcad45fcb7abb82423b004af44f1b16aecd9f37bc15872e",
+      "identity_audit": "8d585aceb321a81ef12ae05e76b048b67c8e508d6362013e40b805a6bc21c531",
+      "panel_readiness": "2835fa5ac5ba6ac4df80dae10822e30b0a6a2937864e7cc99b3fbc92df92c8cd",
+      "raw_sha256_recorded": "6b4bb4be88b2fb4e451b2a6ae4542efc4b68df10aca2988bbbadc5c5665dccea",
+      "raw_bytes_verified": true,
+      "raw_verification": {
+        "actual_sha256": "6b4bb4be88b2fb4e451b2a6ae4542efc4b68df10aca2988bbbadc5c5665dccea",
+        "recorded_sha256": "6b4bb4be88b2fb4e451b2a6ae4542efc4b68df10aca2988bbbadc5c5665dccea",
+        "match": "exact"
+      }
+    },
+    "data\\m10\\daily_04": {
+      "history_manifest": "4ffc97d6b5ac0cc0f18f75b9be1a02a41152c2fe36c07386faf2131b3ac0462b",
+      "panels_manifest": "c15094aaeab04a1451bfa20be64fa20cd3db258017e12cdf7317ef28f3a99858",
+      "identity_manifest": "271aac3e85f6dd9a3c6627e5f4a049c6041a3ab4e19cca8a7f34995e80fd594c",
+      "identity_audit": "c7a0f3aec4d08a844bfb507eb1d4e39d3457794fe7b2bb43757fed7986a0197e",
+      "panel_readiness": "19d830e0590a9f8dbc49735bc3a3aaf600fa94e05024f4dcc00104eb2d8051ec",
+      "raw_sha256_recorded": "372a08083c8fcbb706e12f0f2f6d559e4ebe03ba8c53fa4f4f62f88e2000efdc",
+      "raw_bytes_verified": true,
+      "raw_verification": {
+        "actual_sha256": "372a08083c8fcbb706e12f0f2f6d559e4ebe03ba8c53fa4f4f62f88e2000efdc",
+        "recorded_sha256": "372a08083c8fcbb706e12f0f2f6d559e4ebe03ba8c53fa4f4f62f88e2000efdc",
+        "match": "exact"
+      }
+    },
+    "data\\m10\\daily_05": {
+      "history_manifest": "3d0b67d1543fa79f0b7a56c3af1270cff706b79e2ade4601262832e8499c8cef",
+      "panels_manifest": "a1c84074dff35d7184640351470297e50a61705b8d6f33bda9ea225e5dcff70a",
+      "identity_manifest": "9c172e34d7206514d273bfded622db868448c5b1a3c2c8d45d8eba1ae62c22d8",
+      "identity_audit": "3510a9b35f9abb5dc9ef4a0590394d77a59436288dd8e8e04344fe0b85a6bf8a",
+      "panel_readiness": "26362a45a53fe648cff4e98b1b5efda152f65a555ba76cd1af0574ac9055545a",
+      "raw_sha256_recorded": "5de8804a73f5d758ad82fe78a5fba0830bc2ec177bb9873ae4189d1aab296e90",
+      "raw_bytes_verified": true,
+      "raw_verification": {
+        "actual_sha256": "5de8804a73f5d758ad82fe78a5fba0830bc2ec177bb9873ae4189d1aab296e90",
+        "recorded_sha256": "5de8804a73f5d758ad82fe78a5fba0830bc2ec177bb9873ae4189d1aab296e90",
+        "match": "exact"
+      }
+    },
+    "data\\m10\\daily_06": {
+      "history_manifest": "c69e01257e4e9d97d4d7ce627e4dad58767968958f0b147c4e087b278d8efe51",
+      "panels_manifest": "973be763000be660078e145a451c278cef835a47dec548df8d68b8768085da42",
+      "identity_manifest": "8c399568a3b158b66cf9b09d0be61edf0c98e8074e13be277177288e4a3b22fb",
+      "identity_audit": "d1b26f3d8c39fb7d9a4e3e2b10d499683cc7d9294fa9cf56837665f542375c04",
+      "panel_readiness": "d97cf5b13ae3cad9279093dd32b9e990b87f9d3100ac33a0c0efb054104dbe64",
+      "raw_sha256_recorded": "c09ec407ca9c2d733c445582ebef1155ee47e354897f73fcd023bee76842cde2",
+      "raw_bytes_verified": true,
+      "raw_verification": {
+        "actual_sha256": "c09ec407ca9c2d733c445582ebef1155ee47e354897f73fcd023bee76842cde2",
+        "recorded_sha256": "c09ec407ca9c2d733c445582ebef1155ee47e354897f73fcd023bee76842cde2",
+        "match": "exact"
+      }
+    }
+  },
+  "coordinate_sources": {
+    "data\\m9\\regional_readiness_v1_with_coords\\station_assignments.csv": "0d11fe2c7a46c77e3e8496ae1efb5ae49cbd12e3391d03da0a7603386f49de2f",
+    "data\\m9\\recruitment_big_cypress_v1\\metadata_recruitment_shortlist.csv": "79bf660317fe0544fe288628cdec3b925e2934aba8ed364ae9f5a7c19833102f"
+  },
+  "note": "Near Bottom matching and discovery rectangle membership are screening evidence only; complete full-panel days are used conservatively."
+}

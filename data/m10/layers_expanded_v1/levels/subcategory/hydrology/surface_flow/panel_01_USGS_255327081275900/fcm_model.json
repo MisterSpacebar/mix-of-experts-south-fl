@@ -1,0 +1,48 @@
+{
+  "concepts": [
+    "discharge",
+    "gage_height"
+  ],
+  "n_pairs": 161,
+  "train_pairs": 96,
+  "validation_pairs": 32,
+  "test_pairs": 33,
+  "train_start": "2026-05-30",
+  "train_end": "2026-09-17",
+  "validation_start": "2026-09-18",
+  "validation_end": "2026-10-19",
+  "test_start": "2026-10-20",
+  "test_end": "2026-11-21",
+  "normalization_mean": [
+    10.052650265787085,
+    7.619551637878031
+  ],
+  "normalization_scale": [
+    26.795598159704916,
+    0.20381317553694678
+  ],
+  "ridge_alpha": 0.1,
+  "self_ar_alphas": [
+    0.1,
+    0.1
+  ],
+  "intercepts": [
+    -0.0446827643605963,
+    -0.00965206971411473
+  ],
+  "matrix_source_to_target": [
+    [
+      0.6692842946889564,
+      -0.07966527594093156
+    ],
+    [
+      0.17111503922818525,
+      0.8328661671110269
+    ]
+  ],
+  "method": "train-standardized ridge, signed clipped FCM weights, bounded linear-threshold activation, chronological holdout",
+  "forecast_type": "one-day-ahead prediction conditioned on observed previous-day state",
+  "limitations": "predictive associations not causal effects; daily mean and one site only; test result not an operational risk estimate",
+  "scope_model_status": "independently_fitted_within_one_station",
+  "regional_category_expert": false
+}

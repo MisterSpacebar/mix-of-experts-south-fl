@@ -1,0 +1,17 @@
+source_concept,target_concept,weight,sign,edge_kind,interpretation
+discharge,discharge,0.81527,positive,self_memory,held-out predictive association; NOT demonstrated causality
+salinity,discharge,0.149257,positive,cross_concept,held-out predictive association; NOT demonstrated causality
+water_temperature,discharge,-0.008642,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+gage_height,discharge,0.269056,positive,cross_concept,held-out predictive association; NOT demonstrated causality
+discharge,salinity,-0.117102,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+salinity,salinity,0.899123,positive,self_memory,held-out predictive association; NOT demonstrated causality
+water_temperature,salinity,-0.000748,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+gage_height,salinity,-0.085113,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+discharge,water_temperature,0.044881,positive,cross_concept,held-out predictive association; NOT demonstrated causality
+salinity,water_temperature,-0.024394,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+water_temperature,water_temperature,0.866652,positive,self_memory,held-out predictive association; NOT demonstrated causality
+gage_height,water_temperature,0.037253,positive,cross_concept,held-out predictive association; NOT demonstrated causality
+discharge,gage_height,-0.140515,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+salinity,gage_height,-0.172438,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+water_temperature,gage_height,-0.080356,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+gage_height,gage_height,0.770467,positive,self_memory,held-out predictive association; NOT demonstrated causality

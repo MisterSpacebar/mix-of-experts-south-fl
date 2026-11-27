@@ -1,0 +1,17 @@
+source_concept,target_concept,weight,sign,edge_kind,interpretation
+salinity,salinity,0.51037,positive,self_memory,held-out predictive association; NOT demonstrated causality
+water_temperature,salinity,-0.054268,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+gage_height,salinity,-0.009883,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+specific_conductance,salinity,0.45868,positive,cross_concept,held-out predictive association; NOT demonstrated causality
+salinity,water_temperature,-0.010631,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+water_temperature,water_temperature,0.813453,positive,self_memory,held-out predictive association; NOT demonstrated causality
+gage_height,water_temperature,0.104879,positive,cross_concept,held-out predictive association; NOT demonstrated causality
+specific_conductance,water_temperature,-0.071249,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+salinity,gage_height,-0.067245,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+water_temperature,gage_height,-0.168869,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+gage_height,gage_height,0.870881,positive,self_memory,held-out predictive association; NOT demonstrated causality
+specific_conductance,gage_height,-0.07081,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+salinity,specific_conductance,0.504195,positive,cross_concept,held-out predictive association; NOT demonstrated causality
+water_temperature,specific_conductance,-0.054465,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+gage_height,specific_conductance,-0.005524,negative,cross_concept,held-out predictive association; NOT demonstrated causality
+specific_conductance,specific_conductance,0.465518,positive,self_memory,held-out predictive association; NOT demonstrated causality

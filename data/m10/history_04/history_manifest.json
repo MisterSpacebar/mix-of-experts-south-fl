@@ -1,0 +1,3033 @@
+{
+  "generated_at_utc": "2026-11-27T04:00:40.795526+00:00",
+  "input_plan": "data\\m10\\identity_04\\history_plan.csv",
+  "plan_sha256": "96c9075a9edcf4e64682dbec6187dc966fabde7b7cc0fd1b7e6b0795442738fe",
+  "observations_sha256": "372a08083c8fcbb706e12f0f2f6d559e4ebe03ba8c53fa4f4f62f88e2000efdc",
+  "n_tasks": 3,
+  "n_failed_tasks": 0,
+  "identity_preflight_required": true,
+  "delay_seconds_between_requests": 2.0,
+  "n_panels": 1,
+  "incomplete_panels": [],
+  "n_observations": 50520,
+  "continuous_interval_policy": "explicit_utc_half_open_v1",
+  "by_concept": {
+    "salinity": 16767,
+    "water_temperature": 16986,
+    "specific_conductance": 16767
+  },
+  "requests": [
+    {
+      "panel_id": "panel_04_USGS_255654081350200",
+      "site_id": "USGS-255654081350200",
+      "concept": "salinity",
+      "series_id": "1753f048f9f0473f8b86ed63ba077fbb",
+      "status": "success",
+      "n_records": 16767,
+      "n_other_source_series_records": 0,
+      "n_identical_duplicates_removed": 0,
+      "query_urls": [
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-05-29T00%3A00%3A00Z%2F2026-06-12T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=MTc1M2YwNDhmOWYwNDczZjhiODZlZDYzYmEwNzdmYmJ8MjAyNi0wNi0wOCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-05-29T00%3A00%3A00Z%2F2026-06-12T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-06-12T00%3A00%3A00Z%2F2026-06-26T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=MTc1M2YwNDhmOWYwNDczZjhiODZlZDYzYmEwNzdmYmJ8MjAyNi0wNi0yMiAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-06-12T00%3A00%3A00Z%2F2026-06-26T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-06-26T00%3A00%3A00Z%2F2026-07-10T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=MTc1M2YwNDhmOWYwNDczZjhiODZlZDYzYmEwNzdmYmJ8MjAyNi0wNy0wNiAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-06-26T00%3A00%3A00Z%2F2026-07-10T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-07-10T00%3A00%3A00Z%2F2026-07-24T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=MTc1M2YwNDhmOWYwNDczZjhiODZlZDYzYmEwNzdmYmJ8MjAyNi0wNy0yMCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-07-10T00%3A00%3A00Z%2F2026-07-24T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-07-24T00%3A00%3A00Z%2F2026-08-07T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=MTc1M2YwNDhmOWYwNDczZjhiODZlZDYzYmEwNzdmYmJ8MjAyNi0wOC0wNSAxNzoxNTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-07-24T00%3A00%3A00Z%2F2026-08-07T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-08-07T00%3A00%3A00Z%2F2026-08-21T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=MTc1M2YwNDhmOWYwNDczZjhiODZlZDYzYmEwNzdmYmJ8MjAyNi0wOC0xNyAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-08-07T00%3A00%3A00Z%2F2026-08-21T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-08-21T00%3A00%3A00Z%2F2026-09-04T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=MTc1M2YwNDhmOWYwNDczZjhiODZlZDYzYmEwNzdmYmJ8MjAyNi0wOC0zMSAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-08-21T00%3A00%3A00Z%2F2026-09-04T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-09-04T00%3A00%3A00Z%2F2026-09-18T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=MTc1M2YwNDhmOWYwNDczZjhiODZlZDYzYmEwNzdmYmJ8MjAyNi0wOS0xNCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-09-04T00%3A00%3A00Z%2F2026-09-18T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-09-18T00%3A00%3A00Z%2F2026-10-02T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=MTc1M2YwNDhmOWYwNDczZjhiODZlZDYzYmEwNzdmYmJ8MjAyNi0wOS0yOCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-09-18T00%3A00%3A00Z%2F2026-10-02T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-10-02T00%3A00%3A00Z%2F2026-10-16T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=MTc1M2YwNDhmOWYwNDczZjhiODZlZDYzYmEwNzdmYmJ8MjAyNi0xMC0xMiAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-10-02T00%3A00%3A00Z%2F2026-10-16T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-10-16T00%3A00%3A00Z%2F2026-10-30T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=MTc1M2YwNDhmOWYwNDczZjhiODZlZDYzYmEwNzdmYmJ8MjAyNi0xMC0yNiAxMDozMDowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-10-16T00%3A00%3A00Z%2F2026-10-30T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-10-30T00%3A00%3A00Z%2F2026-11-13T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=MTc1M2YwNDhmOWYwNDczZjhiODZlZDYzYmEwNzdmYmJ8MjAyNi0xMS0wOSAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-10-30T00%3A00%3A00Z%2F2026-11-13T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00480&time=2026-11-13T00%3A00%3A00Z%2F2026-11-22T00%3A00%3A00Z&limit=1000&time_series_id=1753f048f9f0473f8b86ed63ba077fbb"
+      ],
+      "window_coverage": [
+        {
+          "start": "2026-05-29",
+          "end": "2026-06-11",
+          "days": [
+            {
+              "date": "2026-05-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-05-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-05-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-06-12",
+          "end": "2026-06-25",
+          "days": [
+            {
+              "date": "2026-06-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-06-26",
+          "end": "2026-07-09",
+          "days": [
+            {
+              "date": "2026-06-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-07-10",
+          "end": "2026-07-23",
+          "days": [
+            {
+              "date": "2026-07-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-07-24",
+          "end": "2026-08-06",
+          "days": [
+            {
+              "date": "2026-07-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-03",
+              "n_distinct_instants": 37,
+              "span_hours": 9.0
+            },
+            {
+              "date": "2026-08-04",
+              "n_distinct_instants": 0,
+              "span_hours": 0
+            },
+            {
+              "date": "2026-08-05",
+              "n_distinct_instants": 29,
+              "span_hours": 7.0
+            },
+            {
+              "date": "2026-08-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-08-07",
+          "end": "2026-08-20",
+          "days": [
+            {
+              "date": "2026-08-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-08-21",
+          "end": "2026-09-03",
+          "days": [
+            {
+              "date": "2026-08-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-09-04",
+          "end": "2026-09-17",
+          "days": [
+            {
+              "date": "2026-09-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-09-18",
+          "end": "2026-10-01",
+          "days": [
+            {
+              "date": "2026-09-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-02",
+          "end": "2026-10-15",
+          "days": [
+            {
+              "date": "2026-10-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-16",
+          "end": "2026-10-29",
+          "days": [
+            {
+              "date": "2026-10-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-22",
+              "n_distinct_instants": 93,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-30",
+          "end": "2026-11-12",
+          "days": [
+            {
+              "date": "2026-10-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-11-13",
+          "end": "2026-11-21",
+          "days": [
+            {
+              "date": "2026-11-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        }
+      ],
+      "error": ""
+    },
+    {
+      "panel_id": "panel_04_USGS_255654081350200",
+      "site_id": "USGS-255654081350200",
+      "concept": "water_temperature",
+      "series_id": "8ad0cadd47af4a019b79fc1c67bfe6ca",
+      "status": "success",
+      "n_records": 16986,
+      "n_other_source_series_records": 0,
+      "n_identical_duplicates_removed": 0,
+      "query_urls": [
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-05-29T00%3A00%3A00Z%2F2026-06-12T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OGFkMGNhZGQ0N2FmNGEwMTliNzlmYzFjNjdiZmU2Y2F8MjAyNi0wNi0wOCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-05-29T00%3A00%3A00Z%2F2026-06-12T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-06-12T00%3A00%3A00Z%2F2026-06-26T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OGFkMGNhZGQ0N2FmNGEwMTliNzlmYzFjNjdiZmU2Y2F8MjAyNi0wNi0yMiAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-06-12T00%3A00%3A00Z%2F2026-06-26T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-06-26T00%3A00%3A00Z%2F2026-07-10T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OGFkMGNhZGQ0N2FmNGEwMTliNzlmYzFjNjdiZmU2Y2F8MjAyNi0wNy0wNiAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-06-26T00%3A00%3A00Z%2F2026-07-10T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-07-10T00%3A00%3A00Z%2F2026-07-24T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OGFkMGNhZGQ0N2FmNGEwMTliNzlmYzFjNjdiZmU2Y2F8MjAyNi0wNy0yMCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-07-10T00%3A00%3A00Z%2F2026-07-24T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-07-24T00%3A00%3A00Z%2F2026-08-07T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OGFkMGNhZGQ0N2FmNGEwMTliNzlmYzFjNjdiZmU2Y2F8MjAyNi0wOC0wMyAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-07-24T00%3A00%3A00Z%2F2026-08-07T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-08-07T00%3A00%3A00Z%2F2026-08-21T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OGFkMGNhZGQ0N2FmNGEwMTliNzlmYzFjNjdiZmU2Y2F8MjAyNi0wOC0xNyAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-08-07T00%3A00%3A00Z%2F2026-08-21T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-08-21T00%3A00%3A00Z%2F2026-09-04T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OGFkMGNhZGQ0N2FmNGEwMTliNzlmYzFjNjdiZmU2Y2F8MjAyNi0wOC0zMSAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-08-21T00%3A00%3A00Z%2F2026-09-04T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-09-04T00%3A00%3A00Z%2F2026-09-18T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OGFkMGNhZGQ0N2FmNGEwMTliNzlmYzFjNjdiZmU2Y2F8MjAyNi0wOS0xNCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-09-04T00%3A00%3A00Z%2F2026-09-18T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-09-18T00%3A00%3A00Z%2F2026-10-02T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OGFkMGNhZGQ0N2FmNGEwMTliNzlmYzFjNjdiZmU2Y2F8MjAyNi0wOS0yOCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-09-18T00%3A00%3A00Z%2F2026-10-02T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-10-02T00%3A00%3A00Z%2F2026-10-16T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OGFkMGNhZGQ0N2FmNGEwMTliNzlmYzFjNjdiZmU2Y2F8MjAyNi0xMC0xMiAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-10-02T00%3A00%3A00Z%2F2026-10-16T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-10-16T00%3A00%3A00Z%2F2026-10-30T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OGFkMGNhZGQ0N2FmNGEwMTliNzlmYzFjNjdiZmU2Y2F8MjAyNi0xMC0yNiAxMDo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-10-16T00%3A00%3A00Z%2F2026-10-30T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-10-30T00%3A00%3A00Z%2F2026-11-13T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OGFkMGNhZGQ0N2FmNGEwMTliNzlmYzFjNjdiZmU2Y2F8MjAyNi0xMS0wOSAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-10-30T00%3A00%3A00Z%2F2026-11-13T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00010&time=2026-11-13T00%3A00%3A00Z%2F2026-11-22T00%3A00%3A00Z&limit=1000&time_series_id=8ad0cadd47af4a019b79fc1c67bfe6ca"
+      ],
+      "window_coverage": [
+        {
+          "start": "2026-05-29",
+          "end": "2026-06-11",
+          "days": [
+            {
+              "date": "2026-05-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-05-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-05-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-06-12",
+          "end": "2026-06-25",
+          "days": [
+            {
+              "date": "2026-06-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-06-26",
+          "end": "2026-07-09",
+          "days": [
+            {
+              "date": "2026-06-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-07-10",
+          "end": "2026-07-23",
+          "days": [
+            {
+              "date": "2026-07-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-07-24",
+          "end": "2026-08-06",
+          "days": [
+            {
+              "date": "2026-07-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-05",
+              "n_distinct_instants": 94,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-08-07",
+          "end": "2026-08-20",
+          "days": [
+            {
+              "date": "2026-08-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-08-21",
+          "end": "2026-09-03",
+          "days": [
+            {
+              "date": "2026-08-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-09-04",
+          "end": "2026-09-17",
+          "days": [
+            {
+              "date": "2026-09-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-09-18",
+          "end": "2026-10-01",
+          "days": [
+            {
+              "date": "2026-09-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-02",
+          "end": "2026-10-15",
+          "days": [
+            {
+              "date": "2026-10-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-16",
+          "end": "2026-10-29",
+          "days": [
+            {
+              "date": "2026-10-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-22",
+              "n_distinct_instants": 92,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-30",
+          "end": "2026-11-12",
+          "days": [
+            {
+              "date": "2026-10-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-11-13",
+          "end": "2026-11-21",
+          "days": [
+            {
+              "date": "2026-11-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        }
+      ],
+      "error": ""
+    },
+    {
+      "panel_id": "panel_04_USGS_255654081350200",
+      "site_id": "USGS-255654081350200",
+      "concept": "specific_conductance",
+      "series_id": "9a30ac7283a641aa990db23f86db5cd3",
+      "status": "success",
+      "n_records": 16767,
+      "n_other_source_series_records": 0,
+      "n_identical_duplicates_removed": 0,
+      "query_urls": [
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-05-29T00%3A00%3A00Z%2F2026-06-12T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OWEzMGFjNzI4M2E2NDFhYTk5MGRiMjNmODZkYjVjZDN8MjAyNi0wNi0wOCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-05-29T00%3A00%3A00Z%2F2026-06-12T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-06-12T00%3A00%3A00Z%2F2026-06-26T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OWEzMGFjNzI4M2E2NDFhYTk5MGRiMjNmODZkYjVjZDN8MjAyNi0wNi0yMiAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-06-12T00%3A00%3A00Z%2F2026-06-26T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-06-26T00%3A00%3A00Z%2F2026-07-10T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OWEzMGFjNzI4M2E2NDFhYTk5MGRiMjNmODZkYjVjZDN8MjAyNi0wNy0wNiAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-06-26T00%3A00%3A00Z%2F2026-07-10T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-07-10T00%3A00%3A00Z%2F2026-07-24T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OWEzMGFjNzI4M2E2NDFhYTk5MGRiMjNmODZkYjVjZDN8MjAyNi0wNy0yMCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-07-10T00%3A00%3A00Z%2F2026-07-24T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-07-24T00%3A00%3A00Z%2F2026-08-07T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OWEzMGFjNzI4M2E2NDFhYTk5MGRiMjNmODZkYjVjZDN8MjAyNi0wOC0wNSAxNzoxNTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-07-24T00%3A00%3A00Z%2F2026-08-07T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-08-07T00%3A00%3A00Z%2F2026-08-21T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OWEzMGFjNzI4M2E2NDFhYTk5MGRiMjNmODZkYjVjZDN8MjAyNi0wOC0xNyAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-08-07T00%3A00%3A00Z%2F2026-08-21T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-08-21T00%3A00%3A00Z%2F2026-09-04T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OWEzMGFjNzI4M2E2NDFhYTk5MGRiMjNmODZkYjVjZDN8MjAyNi0wOC0zMSAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-08-21T00%3A00%3A00Z%2F2026-09-04T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-09-04T00%3A00%3A00Z%2F2026-09-18T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OWEzMGFjNzI4M2E2NDFhYTk5MGRiMjNmODZkYjVjZDN8MjAyNi0wOS0xNCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-09-04T00%3A00%3A00Z%2F2026-09-18T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-09-18T00%3A00%3A00Z%2F2026-10-02T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OWEzMGFjNzI4M2E2NDFhYTk5MGRiMjNmODZkYjVjZDN8MjAyNi0wOS0yOCAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-09-18T00%3A00%3A00Z%2F2026-10-02T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-10-02T00%3A00%3A00Z%2F2026-10-16T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OWEzMGFjNzI4M2E2NDFhYTk5MGRiMjNmODZkYjVjZDN8MjAyNi0xMC0xMiAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-10-02T00%3A00%3A00Z%2F2026-10-16T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-10-16T00%3A00%3A00Z%2F2026-10-30T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OWEzMGFjNzI4M2E2NDFhYTk5MGRiMjNmODZkYjVjZDN8MjAyNi0xMC0yNiAxMDozMDowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-10-16T00%3A00%3A00Z%2F2026-10-30T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-10-30T00%3A00%3A00Z%2F2026-11-13T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?cursor=OWEzMGFjNzI4M2E2NDFhYTk5MGRiMjNmODZkYjVjZDN8MjAyNi0xMS0wOSAwOTo0NTowMCswMDowMA&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-10-30T00%3A00%3A00Z%2F2026-11-13T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3&f=json",
+        "https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&monitoring_location_id=USGS-255654081350200&parameter_code=00095&time=2026-11-13T00%3A00%3A00Z%2F2026-11-22T00%3A00%3A00Z&limit=1000&time_series_id=9a30ac7283a641aa990db23f86db5cd3"
+      ],
+      "window_coverage": [
+        {
+          "start": "2026-05-29",
+          "end": "2026-06-11",
+          "days": [
+            {
+              "date": "2026-05-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-05-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-05-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-06-12",
+          "end": "2026-06-25",
+          "days": [
+            {
+              "date": "2026-06-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-06-26",
+          "end": "2026-07-09",
+          "days": [
+            {
+              "date": "2026-06-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-06-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-07-10",
+          "end": "2026-07-23",
+          "days": [
+            {
+              "date": "2026-07-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-07-24",
+          "end": "2026-08-06",
+          "days": [
+            {
+              "date": "2026-07-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-07-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-03",
+              "n_distinct_instants": 37,
+              "span_hours": 9.0
+            },
+            {
+              "date": "2026-08-04",
+              "n_distinct_instants": 0,
+              "span_hours": 0
+            },
+            {
+              "date": "2026-08-05",
+              "n_distinct_instants": 29,
+              "span_hours": 7.0
+            },
+            {
+              "date": "2026-08-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-08-07",
+          "end": "2026-08-20",
+          "days": [
+            {
+              "date": "2026-08-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-08-21",
+          "end": "2026-09-03",
+          "days": [
+            {
+              "date": "2026-08-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-08-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-09-04",
+          "end": "2026-09-17",
+          "days": [
+            {
+              "date": "2026-09-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-09-18",
+          "end": "2026-10-01",
+          "days": [
+            {
+              "date": "2026-09-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-22",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-09-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-02",
+          "end": "2026-10-15",
+          "days": [
+            {
+              "date": "2026-10-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-16",
+          "end": "2026-10-29",
+          "days": [
+            {
+              "date": "2026-10-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-22",
+              "n_distinct_instants": 93,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-23",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-24",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-25",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-26",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-27",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-28",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-29",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-10-30",
+          "end": "2026-11-12",
+          "days": [
+            {
+              "date": "2026-10-30",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-10-31",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-01",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-02",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-03",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-04",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-05",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-06",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-07",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-08",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-09",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-10",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-11",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-12",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        },
+        {
+          "start": "2026-11-13",
+          "end": "2026-11-21",
+          "days": [
+            {
+              "date": "2026-11-13",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-14",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-15",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-16",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-17",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-18",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-19",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-20",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            },
+            {
+              "date": "2026-11-21",
+              "n_distinct_instants": 96,
+              "span_hours": 23.75
+            }
+          ]
+        }
+      ],
+      "error": ""
+    }
+  ],
+  "observation_coverage_verified": false,
+  "trained_models": 0,
+  "note": "Selected source time_series_id only. Empty complete requests are distinct from API errors. No interpolation or training claim."
+}

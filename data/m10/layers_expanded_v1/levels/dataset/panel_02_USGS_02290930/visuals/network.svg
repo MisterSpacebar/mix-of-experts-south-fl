@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 720" role="img"
+ aria-label="panel_02_USGS_02290930: full dataset expert">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<defs>
+<marker id="positive" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#256f9c"/></marker>
+<marker id="negative" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#b26750"/></marker>
+</defs>
+<text x="40" y="44" font-size="23" font-weight="bold" font-family="Arial,sans-serif" fill="#173d58">panel_02_USGS_02290930: full dataset expert</text>
+<text x="40" y="70" font-size="13" font-family="Arial,sans-serif" fill="#506675">USGS-02290930 · big_cypress</text>
+<g fill="none" stroke-linecap="round">
+<path d="M 476.2,155.8 Q 372.1,177.9 350.1,281.9" stroke="#256f9c" stroke-width="3.16" opacity=".86" marker-end="url(#positive)"/>
+<rect x="369.6" y="186.4" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="392.6" y="201.4" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#256f9c">+0.50</text>
+<path d="M 345.8,286.2 Q 449.9,264.1 471.9,160.1" stroke="#256f9c" stroke-width="3.01" opacity=".86" marker-end="url(#positive)"/>
+<rect x="406.4" y="231.6" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="429.4" y="246.6" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#256f9c">+0.46</text>
+<path d="M 694.2,373.8 Q 590.1,395.9 568.1,499.9" stroke="#b26750" stroke-width="2.06" opacity=".86" marker-end="url(#negative)"/>
+<rect x="587.6" y="404.4" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="610.6" y="419.4" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b26750">-0.17</text>
+<path d="M 563.8,504.2 Q 667.9,482.1 689.9,378.1" stroke="#256f9c" stroke-width="1.85" opacity=".86" marker-end="url(#positive)"/>
+<rect x="624.4" y="449.6" width="46" height="22" rx="7" fill="#ffffff" stroke="#e3eaf0"/>
+<text x="647.4" y="464.6" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#256f9c">+0.10</text>
+</g>
+<circle cx="520.0" cy="112.0" r="57" fill="#e3f5f1" stroke="#46677b" stroke-width="1.5"/>
+<text x="520.0" y="100.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">salinity</text>
+<text x="520.0" y="130.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#556e7b">water quality</text>
+<path d="M 562.0,76.0 C 625.0,13.0 540.0,5.0 528.0,54.0" fill="none" stroke="#256f9c" stroke-width="1.7" marker-end="url(#positive)"/>
+<text x="578.0" y="24.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#256f9c">self +0.51</text>
+<circle cx="738.0" cy="330.0" r="57" fill="#e3f5f1" stroke="#46677b" stroke-width="1.5"/>
+<text x="738.0" y="310.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">water</text>
+<text x="738.0" y="325.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">temperature</text>
+<text x="738.0" y="348.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#556e7b">water quality</text>
+<path d="M 780.0,294.0 C 843.0,231.0 758.0,223.0 746.0,272.0" fill="none" stroke="#256f9c" stroke-width="1.7" marker-end="url(#positive)"/>
+<text x="796.0" y="242.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#256f9c">self +0.81</text>
+<circle cx="520.0" cy="548.0" r="57" fill="#e7f1fc" stroke="#46677b" stroke-width="1.5"/>
+<text x="520.0" y="536.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">gage height</text>
+<text x="520.0" y="566.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#556e7b">hydrology</text>
+<path d="M 562.0,512.0 C 625.0,449.0 540.0,441.0 528.0,490.0" fill="none" stroke="#256f9c" stroke-width="1.7" marker-end="url(#positive)"/>
+<text x="578.0" y="460.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#256f9c">self +0.87</text>
+<circle cx="302.0" cy="330.0" r="57" fill="#e3f5f1" stroke="#46677b" stroke-width="1.5"/>
+<text x="302.0" y="310.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">specific</text>
+<text x="302.0" y="325.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#173e55">conductance</text>
+<text x="302.0" y="348.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#556e7b">water quality</text>
+<path d="M 344.0,294.0 C 407.0,231.0 322.0,223.0 310.0,272.0" fill="none" stroke="#256f9c" stroke-width="1.7" marker-end="url(#positive)"/>
+<text x="360.0" y="242.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#256f9c">self +0.47</text>
+<rect x="40" y="607" width="20" height="4" rx="2" fill="#256f9c"/>
+<text x="70" y="613" font-family="Arial,sans-serif" font-size="12" fill="#526778">Positive lag-one weight</text>
+<rect x="290" y="607" width="20" height="4" rx="2" fill="#b26750"/>
+<text x="320" y="613" font-family="Arial,sans-serif" font-size="12" fill="#526778">Negative lag-one weight</text>
+<text x="40" y="643" font-family="Arial,sans-serif" font-size="12" fill="#5f7181">4 of 4 non-self edges shown at |weight| ≥ 0.08; 0 capped for readability.</text>
+<text x="40" y="670" font-family="Arial,sans-serif" font-size="12" fill="#5f7181">New station-local fitted model, not a regional category expert or causal FCM.</text>
+<text x="40" y="697" font-family="Arial,sans-serif" font-size="11" fill="#72838d">Edge direction: source today → target next day. Self arrows denote memory, not causality.</text>
+</svg>

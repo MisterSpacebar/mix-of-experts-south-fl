@@ -1,0 +1,5 @@
+concept,n_test_pairs,fcm_mae,fcm_rmse,self_ar_mae,persistence_mae,train_climatology_mae,fcm_vs_persistence_mae_delta,fcm_vs_self_ar_mae_delta,test_target_mean,unit_note
+discharge,36,92.717443,124.278217,49.439189,28.965851,76.181369,63.751593,43.278254,88.582442,ft^3/s
+salinity,36,0.024392,0.035165,0.020122,0.015209,0.095312,0.009184,0.00427,0.308776,ppt
+water_temperature,36,0.402604,0.474342,0.388972,0.199103,2.906915,0.203501,0.013633,26.686255,degC
+gage_height,36,0.295895,0.349663,0.316872,0.165422,0.500793,0.130472,-0.020977,0.298116,ft

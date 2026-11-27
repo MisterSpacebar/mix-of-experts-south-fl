@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 460">
+<rect width="100%" height="100%" fill="white"/>
+<text x="32" y="39" font-family="Arial" font-size="21" fill="#163b59">Held-out 1-day forecast: salinity (ppt)</text>
+<text x="32" y="61" font-family="Arial" font-size="12" fill="#596b75">Each prediction uses the previous observed day. No future test targets used in fitting.</text>
+<path d="M 82,78 V 368 H 910" stroke="#6a7f8f" stroke-width="1.1" fill="none"/>
+<line x1="82" y1="78.0" x2="910" y2="78.0" stroke="#e7edf2"/>
+<text x="73" y="82.0" text-anchor="end" font-family="Arial" font-size="11" fill="#647889">29.51</text>
+<line x1="82" y1="150.5" x2="910" y2="150.5" stroke="#e7edf2"/>
+<text x="73" y="154.5" text-anchor="end" font-family="Arial" font-size="11" fill="#647889">21.98</text>
+<line x1="82" y1="223.0" x2="910" y2="223.0" stroke="#e7edf2"/>
+<text x="73" y="227.0" text-anchor="end" font-family="Arial" font-size="11" fill="#647889">14.44</text>
+<line x1="82" y1="295.5" x2="910" y2="295.5" stroke="#e7edf2"/>
+<text x="73" y="299.5" text-anchor="end" font-family="Arial" font-size="11" fill="#647889">6.91</text>
+<line x1="82" y1="368.0" x2="910" y2="368.0" stroke="#e7edf2"/>
+<text x="73" y="372.0" text-anchor="end" font-family="Arial" font-size="11" fill="#647889">-0.63</text>
+<polyline points="82.0,320.5 105.7,348.0 129.3,335.7 153.0,326.6 176.6,296.4 200.3,278.8 223.9,255.4 247.6,256.3 271.3,258.6 294.9,272.7 318.6,236.0 342.2,199.5 365.9,103.3 389.5,98.1 413.2,115.4 436.9,161.5 460.5,179.1 484.2,211.7 507.8,238.9 531.5,251.6 555.1,249.1 578.8,251.4 602.5,281.2 626.1,263.6 649.8,259.7 673.4,242.9 697.1,232.3 720.7,255.2 744.4,278.0 768.1,267.6 791.7,254.5 815.4,241.3 839.0,249.2 862.7,235.3 886.3,210.5 910.0,184.0" stroke="#1b476a" fill="none" stroke-width="1.9" />
+<polyline points="82.0,278.4 105.7,278.4 129.3,278.4 153.0,278.4 176.6,278.4 200.3,278.4 223.9,277.2 247.6,253.7 271.3,254.5 294.9,256.8 318.6,270.9 342.2,234.3 365.9,198.0 389.5,103.0 413.2,98.0 436.9,114.8 460.5,160.1 484.2,177.5 507.8,210.0 531.5,237.0 555.1,250.0 578.8,247.5 602.5,249.8 626.1,278.4 649.8,261.9 673.4,258.0 697.1,241.3 720.7,230.5 744.4,253.4 768.1,276.3 791.7,265.8 815.4,252.4 839.0,239.2 862.7,247.1 886.3,233.4 910.0,208.6" stroke="#2c98bb" fill="none" stroke-width="1.9" />
+<polyline points="82.0,302.1 105.7,320.5 129.3,348.0 153.0,335.7 176.6,326.6 200.3,296.4 223.9,278.8 247.6,255.4 271.3,256.3 294.9,258.6 318.6,272.7 342.2,236.0 365.9,199.5 389.5,103.3 413.2,98.1 436.9,115.4 460.5,161.5 484.2,179.1 507.8,211.7 531.5,238.9 555.1,251.6 578.8,249.1 602.5,251.4 626.1,281.2 649.8,263.6 673.4,259.7 697.1,242.9 720.7,232.3 744.4,255.2 768.1,278.0 791.7,267.6 815.4,254.5 839.0,241.3 862.7,249.2 886.3,235.3 910.0,210.5" stroke="#c48b47" fill="none" stroke-width="1.9" />
+<text x="82.0" y="392" font-family="Arial" font-size="11" text-anchor="middle" fill="#536978">2026-10-17</text>
+<text x="507.8" y="392" font-family="Arial" font-size="11" text-anchor="middle" fill="#536978">2026-11-04</text>
+<text x="910.0" y="392" font-family="Arial" font-size="11" text-anchor="middle" fill="#536978">2026-11-21</text>
+<text x="91" y="420" font-family="Arial" font-size="13" fill="#1b476a">■ Observed</text>
+<text x="234" y="420" font-family="Arial" font-size="13" fill="#2c98bb">■ Dynamic FCM</text>
+<text x="425" y="420" font-family="Arial" font-size="13" fill="#c48b47">■ Persistence baseline</text>
+<text x="650" y="420" font-family="Arial" font-size="12" fill="#536978">Uncertainty not calibrated</text>
+</svg>

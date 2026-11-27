@@ -1,0 +1,60 @@
+{
+  "concepts": [
+    "salinity",
+    "water_temperature",
+    "specific_conductance"
+  ],
+  "n_pairs": 169,
+  "train_pairs": 101,
+  "validation_pairs": 33,
+  "test_pairs": 35,
+  "train_start": "2026-05-30",
+  "train_end": "2026-09-14",
+  "validation_start": "2026-09-15",
+  "validation_end": "2026-10-17",
+  "test_start": "2026-10-18",
+  "test_end": "2026-11-21",
+  "normalization_mean": [
+    32.172732259271754,
+    31.031837183718373,
+    49068.66355701375
+  ],
+  "normalization_scale": [
+    4.416724513076176,
+    1.1582038033694657,
+    6100.064733842073
+  ],
+  "ridge_alpha": 0.1,
+  "self_ar_alphas": [
+    0.1,
+    0.1,
+    0.1
+  ],
+  "intercepts": [
+    -0.03529737523457863,
+    0.014810920277447829,
+    -0.03545269108584534
+  ],
+  "matrix_source_to_target": [
+    [
+      0.7390544276781994,
+      0.010674118803045848,
+      0.6719370419652845
+    ],
+    [
+      -0.0536406345937129,
+      0.8327855048501036,
+      -0.05336479785478988
+    ],
+    [
+      0.23519880106535485,
+      -0.09091301725035364,
+      0.3029206189668687
+    ]
+  ],
+  "method": "train-standardized ridge, signed clipped FCM weights, bounded linear-threshold activation, chronological holdout",
+  "forecast_type": "one-day-ahead prediction conditioned on observed previous-day state",
+  "limitations": "predictive associations not causal effects; daily mean and one site only; test result not an operational risk estimate",
+  "scope_model_status": "independently_fitted_within_one_station",
+  "regional_category_expert": false
+}

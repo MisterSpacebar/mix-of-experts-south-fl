@@ -1,0 +1,12 @@
+{
+  "generated_at_utc": "2026-11-27T04:04:47.279911+00:00",
+  "history_manifest_source": "data\\m10\\history_05\\history_manifest.json",
+  "observations_sha256": "5de8804a73f5d758ad82fe78a5fba0830bc2ec177bb9873ae4189d1aab296e90",
+  "min_samples_per_source_day": 8,
+  "min_utc_day_span_hours": 8,
+  "approved_only": false,
+  "n_panels": 1,
+  "n_candidate_panels": 1,
+  "incomplete_panels": [],
+  "note": "Daily arithmetic means from available within-day instants only, not instrument uptime-adjusted or gap-filled. A panel candidate still requires chronological validation."
+}
