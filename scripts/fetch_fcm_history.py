@@ -14,6 +14,7 @@ from southfl.historical import fetch_series,windows
 from southfl.net import AcquisitionError,write_csv
 from southfl.observations import COLS
 from southfl.history_selection import PLAN_COLS
+from southfl.temporal_integrity import window_coverage
 
 
 def run(plan_path,out,execute=False,max_tasks=32,max_requests=200,
@@ -80,7 +81,7 @@ def run(plan_path,out,execute=False,max_tasks=32,max_requests=200,
                                 status="success",n_records=len(records),
                                 n_other_source_series_records=other,
                                 n_identical_duplicates_removed=dups,
-                                query_urls=urls,error=""))
+                                query_urls=urls,window_coverage=window_coverage(t,records),error=""))
         except (AcquisitionError,ValueError,KeyError,TypeError) as exc:
             results.append(dict(panel_id=t["panel_id"],site_id=t["site_id"],
                                 concept=t["concept"],series_id=t["series_id"],
@@ -103,6 +104,7 @@ def run(plan_path,out,execute=False,max_tasks=32,max_requests=200,
         "delay_seconds_between_requests":delay_seconds,
         "n_panels":len(panels),"incomplete_panels":sorted(failure_panels),
         "n_observations":len(all_rows),
+        "continuous_interval_policy":"explicit_utc_half_open_v1",
         "by_concept":dict(Counter(x["concept"] for x in all_rows)),
         "requests":results,
         "observation_coverage_verified":False,

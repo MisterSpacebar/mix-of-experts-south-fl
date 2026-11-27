@@ -289,6 +289,11 @@ planning. See [M10 runbook](docs/M10_REGIONAL_EXPANSION.md).
 python scripts/plan_m10_expansion.py --out data/m10/expansion_plan_v1
 ```
 
+## M10.1.1 — continuous acquisition temporal integrity
+
+Continuous USGS acquisition uses explicit UTC day intervals. Earlier
+history runs may omit request-endpoint days; see the [recovery runbook](docs/M10_TEMPORAL_INTEGRITY.md) for a controlled live probe, targeted source recovery, and synchronized East River expansion. Prior snapshots remain unchanged.
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
