@@ -234,6 +234,29 @@ See [M9 Geographic Readiness and Region-Specific Evidence](docs/M9_GEOGRAPHIC_RE
 for source hashes, QA criteria, visual interpretation and bounded
 regional station expansion.
 
+## Milestone 9.1: screened candidate geography, not yet regional FCMs
+
+Source-verified coordinates reveal the East River and Pumpkin River
+station panels lie in two overlapping discovery rectangles and about
+9.5 km apart, even though their original primary screening regions
+differ. The updated offline browser records each canonical pair ONCE,
+reports 89 shared observed days vs 70 valid paired one-day transitions
+(the longest uninterrupted interval is only 7 days), checks source
+unit/datum compatibility, and retains the original M8 station FCM
+diagrams in each geographic findings page.
+
+```powershell
+python scripts/screen_m9_spatial_candidates.py --models data/m8/layers_replication_v1 --panels data/m7/daily_panels_verified_01 --panels data/m8/replication_daily_01 --assignments data/m9/regional_readiness_v1_with_coords/station_assignments.csv --out data/m9/spatial_candidate_screen_v1
+```
+
+Open `data/m9/spatial_candidate_screen_v1/INDEX.md`. The new
+`scripts/plan_m9_recruitment.py` also creates bounded **metadata-only**
+shortlists and a compatible `history_plan.csv` for screened nearby
+stations when local agency inventory and period metadata are supplied.
+It audits skipped alternate USGS ID namespaces without fabricating
+canonical matches. **No regional predictive FCM is trained.**
+See [M9.1 spatial screening and recruitment guide](docs/M9_SPATIAL_CANDIDATES.md).
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
@@ -249,6 +272,7 @@ regional station expansion.
 - [Milestone 8 continuation: independent station replication and transfer](docs/M8_REPLICATION_AND_TRANSFER.md)
 - [M8 scientific evidence browser and transfer-failure diagnostics](docs/M8_EVIDENCE_BROWSER.md)
 - [M9 geographic region FCM inventory and readiness](docs/M9_GEOGRAPHIC_READINESS.md)
+- [M9.1 spatial candidate pairs and regional source recruitment](docs/M9_SPATIAL_CANDIDATES.md)
 
 ## Modeling design (planned)
 
