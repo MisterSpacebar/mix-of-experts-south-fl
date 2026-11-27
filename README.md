@@ -314,6 +314,14 @@ FCM on fixed spatial and chronological folds. See [M10 regional FCM](docs/M10_RE
 python scripts/train_m10_regional_fcm.py --verify-raw --out data/m10/regional_fcm_v1
 ```
 
+## M10.3.2–4 — residual FCM, forcing and expert mixtures
+
+One staged exploratory run on the existing spatial folds. See [combined experiment runbook](docs/M10_RESIDUAL_FORCING_MIXTURE.md).
+
+```powershell
+python scripts/run_m10_residual_forcing_mixture.py --verify-raw --acquire-forcing data/m10/forcing_v1 --out data/m10/residual_forcing_mixture_v1
+```
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
