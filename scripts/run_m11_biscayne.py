@@ -106,8 +106,15 @@ def run(out,config,resume=False,inventory=None):
     st=Stages(out,config,resume)
     st.verify_all()
     if inventory:
-        station_path,period_path=map(Path,inventory)
-        source_deps=[]
+        import shutil
+        def copy_inventory(p):
+            p.mkdir(parents=True)
+            for src,name in zip(inventory,("stations.csv","parameter_periods.csv")):
+                shutil.copyfile(src,p/name)
+            return True
+        source=st.run("inventory",copy_inventory)
+        station_path,period_path=source/"stations.csv",source/"parameter_periods.csv"
+        source_deps=["inventory"]
     else:
         d=st.run("discovery",lambda p:discover_stations(["usgs"],p,config["regions"]),
                  lambda m:m["n_failed_queries"]==0)
@@ -188,7 +195,7 @@ def run(out,config,resume=False,inventory=None):
             continue
         cc=dict(snapshots=sn,coordinates=plan/"shortlist.csv",min_sites=config["min_sites"])
         cp=st.run(region+"_cohort",lambda p:audit(sn,p,assignments=cc["coordinates"],shortlist=cc["coordinates"],
-                   region=region,start=config["start"],end=config["end"],min_sites=config["min_sites"],verify_raw=True),
+                   region=region,start=config["start"],end=config["end"],min_sites=config["min_sites"],verify_raw=True,screen_insufficient=True),
                    dependencies=deps[region])
         cm=json_at(cp/"manifest.json")
         lp=st.run(region+"_layers",lambda p:layers([d for d,_,_ in sn],p),dependencies=[region+"_cohort"])
@@ -214,7 +221,7 @@ def run(out,config,resume=False,inventory=None):
         bundles[region]=dict(atlas=str(ap),bundle=serial_bundle(b))
         integrated_deps.append(region+"_atlas")
         findings.append(dict(region=region,status="regional_replication_complete" if ready else "local_only",reason=reason,
-                             n_observed_sites=cm["n_observed_sites"],n_metadata_eligible=len(cm["eligible_sites"])))
+                             n_observed_sites=cm["n_observed_sites"],n_regional_eligible=len(cm["eligible_sites"])))
     final=st.run("integration",lambda p:integration(p,bundles,findings),dependencies=integrated_deps)
     report=json_at(final/"manifest.json")
     # Root summary is derived from immutable stage checkpoints; safe to recreate.

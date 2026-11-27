@@ -3,10 +3,9 @@ import hashlib
 import json
 import re
 from collections import defaultdict
-from datetime import date,datetime,timezone,timedelta
+from datetime import date
 from pathlib import Path
 
-from .history_selection import PLAN_COLS
 from .regions import regions_for
 from .historical import windows
 

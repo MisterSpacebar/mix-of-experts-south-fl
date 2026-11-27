@@ -200,7 +200,7 @@ def load_snapshot(daily, history, identity, verify_raw=False):
 
 def run(snapshots, out, assignments=ASSIGNMENTS, shortlist=SHORTLIST,
         region="big_cypress", start="2026-05-29", end="2026-11-21",
-        min_sites=3, min_pairs=79, verify_raw=False):
+        min_sites=3, min_pairs=79, verify_raw=False, screen_insufficient=False):
     out = Path(out)
     if out.exists() and any(out.iterdir()):
         raise ValueError("new/empty output required")
@@ -235,6 +235,17 @@ def run(snapshots, out, assignments=ASSIGNMENTS, shortlist=SHORTLIST,
                                   else "outside_or_unlocated" if not inside
                                   else "sensor_or_concept_incompatible")
             stations[sid] = r
+    if screen_insufficient:
+        for r in stations.values():
+            if r["cohort_status"]!="eligible_metadata_screen":
+                continue
+            counts=defaultdict(int)
+            days=r["_dates"]
+            for d in days:
+                if d-timedelta(days=1) in days:
+                    counts[period(d)]+=1
+            if sum(counts.values())<min_pairs or any(counts[k]<n for k,n in (("train",35),("validation",15),("test",15))):
+                r["cohort_status"]="insufficient_split_coverage"
     eligible = sorted(s for s,r in stations.items() if r["cohort_status"] == "eligible_metadata_screen")
     for sid,r in stations.items():
         r["common_window_days"], r["common_window_pairs"], r["common_window_longest_days"] = dates_summary(r["_dates"])

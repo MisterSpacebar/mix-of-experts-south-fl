@@ -105,11 +105,12 @@ def context(verify_raw=False,bundle=None):
                 raise ValueError("invalid station state identity")
             states[row["date"]]={c:float(row[c]) for c in units}
         # Archive scope fixed from panel dates; no target existence test in inference.
-        left=date.fromisoformat(min(states))+timedelta(days=1)
-        right=date.fromisoformat(max(states))
         allowed=set()
-        while left<=right:
-            allowed.add(left.isoformat()); left+=timedelta(days=1)
+        if states:
+            left=date.fromisoformat(min(states))+timedelta(days=1)
+            right=date.fromisoformat(max(states))
+            while left<=right:
+                allowed.add(left.isoformat()); left+=timedelta(days=1)
         stations[site]=dict(r,units=units,datums=datums,states=states,allowed_dates=allowed,
                             geographic_screens=regions_for(float(r["latitude"]),float(r["longitude"])))
         track(path); track(path.parent/"panel_readiness.csv")
@@ -423,7 +424,7 @@ def run(out,verify_raw=False,bundle=None):
             "and [gate weights](mixture_weights.csv). The original M9 evidence atlas remains immutable."]
     if bundle is not None:
         lines=["# Regional research evidence atlas","",f"Region: {router.cohort['region_screen']}. Frozen M10 protocol; independent geographic replication, retrospective only.","",f"Regional holdout folds: {len(router.folds)}. Station-local evidence retained regardless of regional readiness.","","| Concept | Policy | Scope | n | MAE | Persistence MAE |","|---|---|---|---:|---:|---:|"]+[line for line in lines if line.startswith("| ") and not line.startswith("| Concept")]
-        lines+=["","No best policy selected from these test results."]
+        lines+=["","No best policy selected from these test results.","","[Offline HTML atlas](atlas.html) · [Registry](expert_registry.csv) · [Matched policy evidence](paired_policy_evidence.csv)"]
     (out/"INDEX.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
     report["outputs_sha256"]["INDEX.md"]=sha(out/"INDEX.md")
     (out/"manifest.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")

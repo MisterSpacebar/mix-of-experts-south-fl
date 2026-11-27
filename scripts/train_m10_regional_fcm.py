@@ -75,7 +75,7 @@ def load_cohort(cohort, verify_raw=False, config=None):
     with tempfile.TemporaryDirectory() as tmp:
         check=Path(tmp)/"audit"
         fresh=audit_run(snapshots_config,check,region=manifest["region_screen"],
-                        **({} if config is None else dict(assignments=config["coordinates"],shortlist=config["coordinates"],min_sites=config["min_sites"])),
+                        **({} if config is None else dict(assignments=config["coordinates"],shortlist=config["coordinates"],min_sites=config["min_sites"],screen_insufficient=True)),
                         start=manifest["start"],end=manifest["end"],verify_raw=verify_raw)
         keys=("eligible_sites","concepts","common_days","common_transitions",
               "longest_common_stretch","n_observed_sites","n_spatial_folds",
@@ -192,7 +192,7 @@ def run(cohort,out,verify_raw=False,draws=2000,config=None):
                 outputs_sha256={f:sha(out/f) for f in ("predictions.csv","metrics.csv",
                     "paired_comparisons.csv","edge_weights.csv","fold_models.json")})
     (out/"manifest.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
-    lines=["# M10.3.1 — shared regional water-quality FCM","",
+    lines=["# M10.3.1 — shared regional water-quality FCM" if config is None else "# M11 — frozen shared regional water-quality FCM","",
            f"{len(splits)} spatial folds; {len(predictions)} matched station-date-concept targets. No deployed model or spatial transport fit.","",
            "## Aggregate held-out native-unit MAE","",
            "| Concept | Persistence | Pooled self-AR | Pooled ridge | Regional FCM | Target-local FCM |",
@@ -214,7 +214,7 @@ def run(cohort,out,verify_raw=False,draws=2000,config=None):
             "- [FCM edges](edge_weights.csv) · [Lineage](manifest.json)","",
             "Target-local FCM uses target history and is an adaptation reference, not zero-shot. "
             "Previous-day target observations are available at issue time. These data have already "
-            "been examined descriptively; results are retrospective, not prospective confirmation. "
+            been examined descriptively in M10; the M11 protocol is predeclared. Results are retrospective, not prospective confirmation. "
             "Exact sensor depth, common forcing and connectivity remain unverified."]
     (out/"INDEX.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
     return report

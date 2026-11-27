@@ -20,7 +20,7 @@ Get-Content data/m11/biscayne_v1/INDEX.md
 Use the same command to resume. With no explicit inventory, discover USGS
 station and time-series metadata once; if you already have suitable local
 inventory files, add both `--stations PATH --periods PATH` on the first
-and every subsequent run. The inventory is hashed and the protocol frozen.
+and every subsequent run. The inventory is copied into a hash-checked source stage and the protocol frozen.
 The planned history request cap is 1,296 series-window requests (not
 including pagination, retries, preflight or discovery), with 2-second
 pacing. Use your local USGS API key. No secret is stored. No commands are
@@ -40,7 +40,7 @@ observed coverage; all actual observations go through the corrected
 UTC half-open downloader and observed-only panel QA.
 
 Regional eligibility retains M10 sensor/units and temporal checks and
-requires at least four compatible stations. Fixed 60/20/20 calendar
+requires at least four compatible stations. Sites failing minimum observed split counts are retained locally but excluded from the regional pool by coverage only, not test errors. Fixed 60/20/20 calendar
 splits; common observed target dates (>=15) for matched test evaluation.
 Insufficient contiguous block support yields a point estimate without
 an interval, not an artificial interpolated block. No test errors select
