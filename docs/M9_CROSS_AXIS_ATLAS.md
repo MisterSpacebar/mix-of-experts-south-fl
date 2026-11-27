@@ -99,6 +99,14 @@ Expected counts based on the frozen 3-station source:
 - **0 trained regional FCMs, regional expert gates or cross-station
   directed FCM edges**
 
+A source-data spot-check of these 70 aligned *concurrent* changes finds
+same-variable Pearson r ≈ **+0.679** for discharge, **+0.537** for
+salinity, and **+0.875** for water temperature between East River and
+Pumpkin River. These are descriptive co-fluctuations (especially
+plausible under common weather/tidal forcing), **not evidence of a
+directed connection or transferable prediction**. Different-variable
+associations and the exact underlying counts are exported in the CSV.
+
 ## Output organization
 
 ```text
