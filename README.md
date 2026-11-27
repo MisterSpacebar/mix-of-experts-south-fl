@@ -304,6 +304,16 @@ See [M10 regional cohort and acquisition runbook](docs/M10_REGIONAL_COHORT.md).
 python scripts/audit_m10_regional_cohort.py --verify-raw --out data/m10/cohort_corrected_v1
 ```
 
+## M10.3.1 — shared regional FCM hindcast
+
+Evaluate the first shared-parameter water-quality FCM against persistence,
+pooled self-AR, unconstrained ridge and a separately labelled target-local
+FCM on fixed spatial and chronological folds. See [M10 regional FCM](docs/M10_REGIONAL_FCM.md).
+
+```powershell
+python scripts/train_m10_regional_fcm.py --verify-raw --out data/m10/regional_fcm_v1
+```
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
