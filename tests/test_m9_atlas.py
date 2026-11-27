@@ -161,7 +161,12 @@ class RealSourceIntegrationTests(unittest.TestCase):
                         for e in raw_edges)
             self.assertEqual(summary["n_visible_cross_category_within_station_edges"],
                              visible)
-            self.assertGreater(visible,0)
+            self.assertEqual(visible,14)
+            bysite={}
+            for e in raw_edges:
+                if e["cross_category"]=="True" and e["above_display_threshold"]=="True":
+                    bysite[e["site_id"]]=bysite.get(e["site_id"],0)+1
+            self.assertEqual(sorted(bysite.values()),[4,5,5])
             pairs=read_csv(dest/"screened_cross_site_daily_change_associations.csv")
             self.assertEqual(len(pairs),9)
             self.assertEqual({r["n_aligned_daily_change_pairs"] for r in pairs},
@@ -177,7 +182,7 @@ class RealSourceIntegrationTests(unittest.TestCase):
             combined=dest/"visuals/geography_category_evidence_atlas.svg"
             ElementTree.parse(combined)
             text=combined.read_text()
-            self.assertIn('data-type="geographic_screening_only"',text)
+            self.assertEqual(text.count('data-type="geographic_screening_only"'),1)
             self.assertIn('data-type="fitted_station_edge"',text)
             self.assertIn("NOT TRAINED",text)
             self.assertTrue((dest/"visuals/region_category_coverage.png").is_file())
