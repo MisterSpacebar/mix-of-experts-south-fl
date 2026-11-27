@@ -92,6 +92,11 @@ Expected counts based on the frozen 3-station source:
 - 3 separately trained full station FCMs
 - 48 original directional fitted coefficients across all three stations
   (4×4 each), including both self-memory and cross-concept links
+- 14 visible cross-category directed links at the 0.08 SVG display cutoff:
+  5 at East River (all negative), 4 at Pumpkin River (1 positive,
+  3 negative), and 5 at Black Creek (4 positive, 1 negative). These
+  are individually fitted predictive coefficients; the differing
+  signs illustrate why they cannot be pooled naively
 - 3 original unique source station pairs, 1 geographic-screen candidate
 - 9 exploratory matched daily-change concept combinations for the
   geographically screened East River / Pumpkin River pair, each using
