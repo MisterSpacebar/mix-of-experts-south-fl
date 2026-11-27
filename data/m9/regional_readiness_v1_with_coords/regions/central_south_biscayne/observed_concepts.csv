@@ -1,0 +1,5 @@
+region,site_id,panel_id,concept,category,subcategory,unit,reported_vertical_datum,n_observed_days,first_day,last_day
+central_south_biscayne,USGS-0229070854,panel_04_USGS_0229070854,discharge,hydrology,surface_flow,ft^3/s,,165,2026-05-29,2026-11-23
+central_south_biscayne,USGS-0229070854,panel_04_USGS_0229070854,salinity,water_quality,salinity_and_conductance,ppt,,165,2026-05-29,2026-11-23
+central_south_biscayne,USGS-0229070854,panel_04_USGS_0229070854,water_temperature,water_quality,thermal_conditions,degC,,165,2026-05-29,2026-11-23
+central_south_biscayne,USGS-0229070854,panel_04_USGS_0229070854,gage_height,hydrology,surface_flow,ft,,165,2026-05-29,2026-11-23

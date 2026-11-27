@@ -1,0 +1,15 @@
+region,n_observed_station_panels,n_distinct_stations,n_observed_concepts,n_station_local_fcms,n_station_local_category_fcms,n_station_local_subcategory_fcms,n_site_pairs,n_pairs_with_required_overlap,n_physically_compatible_pairs,n_verified_station_coordinates,geographic_region_fcm_status,region_readiness
+north_biscayne,0,0,0,0,0,0,0,0,0,0,NOT_TRAINED,no_observed_station_panels
+central_south_biscayne,1,1,4,1,2,1,0,0,0,0,NOT_TRAINED,one_station_only_no_regional_model
+florida_bay,0,0,0,0,0,0,0,0,0,0,NOT_TRAINED,no_observed_station_panels
+upper_keys,0,0,0,0,0,0,0,0,0,0,NOT_TRAINED,no_observed_station_panels
+middle_keys,0,0,0,0,0,0,0,0,0,0,NOT_TRAINED,no_observed_station_panels
+lower_keys,0,0,0,0,0,0,0,0,0,0,NOT_TRAINED,no_observed_station_panels
+dry_tortugas,0,0,0,0,0,0,0,0,0,0,NOT_TRAINED,no_observed_station_panels
+everglades_interior,0,0,0,0,0,0,0,0,0,0,NOT_TRAINED,no_observed_station_panels
+big_cypress,1,1,4,1,2,1,0,0,0,0,NOT_TRAINED,one_station_only_no_regional_model
+southwest_everglades_coast,1,1,4,1,2,1,0,0,0,0,NOT_TRAINED,one_station_only_no_regional_model
+lake_okeechobee,0,0,0,0,0,0,0,0,0,0,NOT_TRAINED,no_observed_station_panels
+everglades_agricultural_area,0,0,0,0,0,0,0,0,0,0,NOT_TRAINED,no_observed_station_panels
+caloosahatchee,0,0,0,0,0,0,0,0,0,0,NOT_TRAINED,no_observed_station_panels
+st_lucie_connection,0,0,0,0,0,0,0,0,0,0,NOT_TRAINED,no_observed_station_panels

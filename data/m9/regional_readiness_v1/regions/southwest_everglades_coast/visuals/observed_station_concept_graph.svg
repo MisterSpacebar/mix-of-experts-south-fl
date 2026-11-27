@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 450" role="img" aria-label="southwest_everglades_coast observed station concept coverage">
+<rect width="100%" height="100%" fill="white"/>
+<text x="28" y="34" fill="#173d58" font-size="21" font-family="Arial,sans-serif" font-weight="bold">Southwest Everglades Coast: observed concept coverage</text>
+<text x="28" y="57" fill="#506675" font-size="12" font-family="Arial,sans-serif">Lines denote observed measurement membership ONLY — not fitted edges or hydrological connections.</text>
+<text x="245" y="78" text-anchor="middle" font-size="14" font-family="Arial,sans-serif">USGS station panels</text>
+<text x="875" y="78" text-anchor="middle" font-size="14" font-family="Arial,sans-serif">Measured concepts (classified)</text>
+<path d="M 420,225.0 C 590,225.0 590,100.0 700,100.0" fill="none" stroke="#cbd6de" stroke-width="1.5"/>
+<path d="M 420,225.0 C 590,225.0 590,266.7 700,266.7" fill="none" stroke="#cbd6de" stroke-width="1.5"/>
+<path d="M 420,225.0 C 590,225.0 590,350.0 700,350.0" fill="none" stroke="#cbd6de" stroke-width="1.5"/>
+<path d="M 420,225.0 C 590,225.0 590,183.3 700,183.3" fill="none" stroke="#cbd6de" stroke-width="1.5"/>
+<rect x="70" y="204.0" width="350" height="42" rx="10" fill="#e9f3fd" stroke="#52748a"/>
+<text x="245" y="229.0" text-anchor="middle" font-size="13" font-family="Arial,sans-serif" fill="#18435a">USGS-255534081324000</text>
+<rect x="700" y="79.0" width="350" height="42" rx="10" fill="#e9f3fd" stroke="#52748a"/>
+<text x="875" y="104.0" text-anchor="middle" font-size="12" font-family="Arial,sans-serif" fill="#18435a">discharge  [hydrology]</text>
+<rect x="700" y="162.3" width="350" height="42" rx="10" fill="#e9f3fd" stroke="#52748a"/>
+<text x="875" y="187.3" text-anchor="middle" font-size="12" font-family="Arial,sans-serif" fill="#18435a">gage height  [hydrology]</text>
+<rect x="700" y="245.7" width="350" height="42" rx="10" fill="#e3f7f1" stroke="#52748a"/>
+<text x="875" y="270.7" text-anchor="middle" font-size="12" font-family="Arial,sans-serif" fill="#18435a">salinity  [water_quality]</text>
+<rect x="700" y="329.0" width="350" height="42" rx="10" fill="#e3f7f1" stroke="#52748a"/>
+<text x="875" y="354.0" text-anchor="middle" font-size="12" font-family="Arial,sans-serif" fill="#18435a">water temperature  [water_quality]</text>
+<text x="28" y="426" fill="#647887" font-size="12" font-family="Arial,sans-serif">REGIONAL FCM NOT TRAINED. No inferred station-to-station connections or directed regional predictive edges.</text>
+</svg>

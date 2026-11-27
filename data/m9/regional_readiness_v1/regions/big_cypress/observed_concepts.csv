@@ -1,0 +1,5 @@
+region,site_id,panel_id,concept,category,subcategory,unit,reported_vertical_datum,n_observed_days,first_day,last_day
+big_cypress,USGS-255327081275900,panel_01_USGS_255327081275900,discharge,hydrology,surface_flow,ft^3/s,,99,2026-07-04,2026-10-30
+big_cypress,USGS-255327081275900,panel_01_USGS_255327081275900,salinity,water_quality,salinity_and_conductance,ppt,,99,2026-07-04,2026-10-30
+big_cypress,USGS-255327081275900,panel_01_USGS_255327081275900,water_temperature,water_quality,thermal_conditions,degC,,99,2026-07-04,2026-10-30
+big_cypress,USGS-255327081275900,panel_01_USGS_255327081275900,gage_height,hydrology,surface_flow,ft,,99,2026-07-04,2026-10-30

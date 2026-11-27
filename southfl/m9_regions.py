@@ -95,7 +95,10 @@ def station_lookup(stations):
 
     Inventory rows are optional because inventory/ is gitignored. Never
     fabricate point locations from region rectangles or parse ID digits
-    into an unverified geolocation.
+    into an unverified geolocation. Real USGS inventories can mix the
+    canonical "USGS-<site_no>" form with legacy agency-prefixed IDs
+    (e.g. "FL005-<site_no>"); those can never match a panel's canonical
+    site_id anyway, so they are skipped rather than treated as fatal.
     """
     by_site={}
     for item in stations:
@@ -103,7 +106,7 @@ def station_lookup(stations):
             continue
         sid=item.get("site_id","")
         if not sid.startswith("USGS-"):
-            raise ValueError("station inventory requires canonical USGS ID")
+            continue
         coord=_finite_coord(item)
         if coord is None:
             continue

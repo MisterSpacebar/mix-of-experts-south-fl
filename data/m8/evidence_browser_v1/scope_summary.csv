@@ -1,0 +1,11 @@
+level,scope,n_station_fit_artifacts,n_independent_station_signatures,n_transfer_concept_rows,n_donor_target_pairs,n_edge_records,n_weak_magnitude_edges,n_stage_datum_unverified_transfer_rows,n_interval_audit_warnings,evidence_status,regional_expert_status
+category,ecology,0,0,0,0,0,0,0,0,no_station_models_in_this_scope,NOT_TRAINED
+category,hydrology,3,3,12,6,4,0,6,1,station_transfer_evidence_available,NOT_TRAINED
+category,oceanography,0,0,0,0,0,0,0,0,no_station_models_in_this_scope,NOT_TRAINED
+category,socioeconomic,0,0,0,0,0,0,0,0,no_station_models_in_this_scope,NOT_TRAINED
+category,water_quality,3,3,12,6,4,2,0,3,station_transfer_evidence_available,NOT_TRAINED
+dataset,full_station,3,3,24,6,16,9,6,3,station_transfer_evidence_available,NOT_TRAINED
+overall,south_florida,0,0,0,0,0,0,0,0,regional_overall_not_trained,NOT_TRAINED
+subcategory,hydrology/surface_flow,3,3,0,0,0,0,0,0,redundant_concept_scope_not_independent,NOT_TRAINED
+subcategory,water_quality/salinity_and_conductance,0,0,0,0,0,0,0,0,observed_but_no_independent_specialist,NOT_TRAINED
+subcategory,water_quality/thermal_conditions,0,0,0,0,0,0,0,0,observed_but_no_independent_specialist,NOT_TRAINED

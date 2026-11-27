@@ -1,0 +1,16 @@
+{
+  "created_at_utc": "2026-11-26T04:50:12.767143+00:00",
+  "models_manifest_sha256": "d0d54d40a5896d4f2359b826ea6ee30624c8de5acf55276dfd951157c252ab5e",
+  "evidence_manifest_sha256": "614d2875b16259252da0eca4b9d6fb9da7b32fa3fd8be1c4e2422b15295f8fc8",
+  "n_transfer_diagnostics": 48,
+  "n_edge_evidence_rows": 24,
+  "n_unverified_stage_datum_rows": 12,
+  "n_bootstrap_point_outside_ci": 7,
+  "n_scopes": 10,
+  "edge_magnitude_threshold": 0.08,
+  "n_line_ending_only_source_hash_matches": 0,
+  "lineage_portability": "only exact or LF/CRLF-only SHA equivalence accepted",
+  "regional_category_expert_trained": false,
+  "regional_overall_expert_trained": false,
+  "read_only_source_inputs": true
+}

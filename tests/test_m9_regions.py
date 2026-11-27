@@ -163,6 +163,17 @@ class GeographicReadinessTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"conflicting canonical"):
             station_lookup([a,b])
 
+    def test_legacy_agency_prefixed_ids_skipped_not_fatal(self):
+        # Real USGS inventories mix canonical "USGS-<no>" IDs with legacy
+        # agency-prefixed IDs like "FL005-<no>"; the latter can never match
+        # a panel's canonical site_id, so they must be skipped, not raise.
+        canonical=dict(dataset_id="usgs_water",site_id="USGS-A",
+                       latitude=25.9,longitude=-81.5)
+        legacy=dict(dataset_id="usgs_water",site_id="FL005-02286320",
+                   latitude=25.7,longitude=-80.2)
+        found=station_lookup([canonical,legacy])
+        self.assertEqual(list(found),["USGS-A"])
+
 
 class GeographicBrowserTests(unittest.TestCase):
     def test_full_region_browser_preserves_source_models(self):

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 450" role="img" aria-label="everglades_interior observed station concept coverage">
+<rect width="100%" height="100%" fill="white"/>
+<text x="28" y="34" fill="#173d58" font-size="21" font-family="Arial,sans-serif" font-weight="bold">Everglades Interior: observed concept coverage</text>
+<text x="28" y="57" fill="#506675" font-size="12" font-family="Arial,sans-serif">Lines denote observed measurement membership ONLY — not fitted edges or hydrological connections.</text>
+<text x="245" y="78" text-anchor="middle" font-size="14" font-family="Arial,sans-serif">USGS station panels</text>
+<text x="875" y="78" text-anchor="middle" font-size="14" font-family="Arial,sans-serif">Measured concepts (classified)</text>
+<text x="575" y="250" text-anchor="middle" font-size="16" font-family="Arial,sans-serif" fill="#647887">No observed station panels in region</text>
+<text x="28" y="426" fill="#647887" font-size="12" font-family="Arial,sans-serif">REGIONAL FCM NOT TRAINED. No inferred station-to-station connections or directed regional predictive edges.</text>
+</svg>
