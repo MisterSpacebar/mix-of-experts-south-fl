@@ -68,10 +68,12 @@ def _match_prior_screen(screen,models,assignments,stations):
             ):
                 if str(estimate[key])!=reference[key]:
                     raise ValueError("M9.1 pair audit differs from verified observations: "+key)
-            if float(reference["distance_km"]) and abs(
-                    float(reference["distance_km"])-
-                    float(estimate["distance_km"]))>1e-5:
-                raise ValueError("M9.1 source point distance changed")
+            if reference["distance_km"]!="" and estimate["distance_km"]!="":
+                if abs(float(reference["distance_km"])-
+                       float(estimate["distance_km"]))>1e-5:
+                    raise ValueError("M9.1 source point distance changed")
+            elif str(estimate["distance_km"])!=reference["distance_km"]:
+                raise ValueError("M9.1 coordinate-availability state changed")
             if str(estimate["geographic_candidate"])!=reference["geographic_candidate"]:
                 raise ValueError("geographic candidate status changed")
             checked.append(estimate)
@@ -213,8 +215,8 @@ def run(models,panels,assignments,screen,out,min_weight=.08,
                 f" · [station findings]({_relative_link(d/'FINDINGS.md',folder)})"
                 f" · [source provenance]({_relative_link(d/'DATA.md',folder)})")
         notes+=["","## Reproducibility","",
-            f"[M9.1 source screening record]"
-            f"({_relative_link(screen/'regions',folder)}) (browse by region).",
+            f"[M9.1 source screening index]"
+            f"({_relative_link(screen/'INDEX.md',folder)}) (browse by region).",
             "Both site FCMs were independently fitted; any similarity in "
             "coefficients or observed daily changes is descriptive only."]
         (folder/"FINDINGS.md").write_text(
