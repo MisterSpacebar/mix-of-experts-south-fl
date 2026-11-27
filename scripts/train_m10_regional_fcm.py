@@ -43,19 +43,20 @@ def indexed(rows,key):
     return result
 
 
-def load_cohort(cohort, verify_raw=False):
+def load_cohort(cohort, verify_raw=False, config=None):
     """Re-audit source identities/coverage; verify original recorded input hashes."""
     cohort=Path(cohort)
+    snapshots_config=SNAPSHOTS if config is None else config["snapshots"]
     manifest=load_json(cohort/"manifest.json")
     if (manifest["temporal_metadata_screen_pass"] is not True or
         manifest["raw_bytes_verified"] is not True or
         manifest["concepts"]!=list(CONCEPTS) or manifest["regional_fcms_trained"]!=0):
         raise ValueError("requires predeclared, raw-verified regional cohort")
     snapshots={str(normalize(k)):v for k,v in manifest["snapshots"].items()}
-    if set(snapshots)!={str(d) for d,_,_ in SNAPSHOTS}:
+    if set(snapshots)!={str(d) for d,_,_ in snapshots_config}:
         raise ValueError("unexpected cohort source roots")
     lineage={}
-    for daily,history,identity in SNAPSHOTS:
+    for daily,history,identity in snapshots_config:
         record=snapshots[str(daily)]
         paths={"history_manifest":history/"history_manifest.json",
                "panels_manifest":daily/"panels_manifest.json",
@@ -73,7 +74,8 @@ def load_cohort(cohort, verify_raw=False):
     # not trust a manually changed eligible station list or fold table.
     with tempfile.TemporaryDirectory() as tmp:
         check=Path(tmp)/"audit"
-        fresh=audit_run(SNAPSHOTS,check,region=manifest["region_screen"],
+        fresh=audit_run(snapshots_config,check,region=manifest["region_screen"],
+                        **({} if config is None else dict(assignments=config["coordinates"],shortlist=config["coordinates"],min_sites=config["min_sites"],screen_insufficient=True)),
                         start=manifest["start"],end=manifest["end"],verify_raw=verify_raw)
         keys=("eligible_sites","concepts","common_days","common_transitions",
               "longest_common_stretch","n_observed_sites","n_spatial_folds",
@@ -117,18 +119,26 @@ def load_cohort(cohort, verify_raw=False):
             or int(f["target_test_pairs"])!=len(splits[s]["test"])):
             raise ValueError("fold does not match independent donor/target splits")
     dates=[tuple(p[0] for p in splits[s]["test"]) for s in sites]
-    if any(d!=dates[0] for d in dates):
-        raise ValueError("this first experiment requires identical observed test dates")
+    if config is None:
+        if any(d!=dates[0] for d in dates):
+            raise ValueError("this first experiment requires identical observed test dates")
+    else:
+        # Fixed intersection of observed target dates, never outcome-based.
+        common=set.intersection(*(set(d) for d in dates))
+        if len(common)<15:
+            raise ValueError("insufficient shared observed test dates")
+        for s in sites:
+            splits[s]["test"]=[p for p in splits[s]["test"] if p[0] in common]
     return manifest,splits,lineage
 
 
-def run(cohort,out,verify_raw=False,draws=2000):
+def run(cohort,out,verify_raw=False,draws=2000,config=None):
     cohort,out=Path(cohort),Path(out)
     if out.exists() and any(out.iterdir()):
         raise ValueError("new/empty model output required")
     if not 100<=draws<=20000:
         raise ValueError("invalid bootstrap draws")
-    manifest,splits,lineage=load_cohort(cohort,verify_raw)
+    manifest,splits,lineage=load_cohort(cohort,verify_raw,config)
     fitted,predictions,edges={},[],[]
     for s in sorted(splits):
         models,rows=evaluate_fold(splits,s)
@@ -150,8 +160,15 @@ def run(cohort,out,verify_raw=False,draws=2000):
                       (site=="all_sites" or r["site_id"]==site)]
             for baseline in BASELINES:
                 for block in (3,7,14):
+                    try:
+                        estimate=paired_block(selected,baseline,block,draws)
+                    except ValueError:
+                        if config is None:
+                            raise
+                        from statistics import mean
+                        estimate=dict(delta_mae=mean(abs(r["regional_fcm"]-r["actual"])-abs(r[baseline]-r["actual"]) for r in selected),ci_low="",ci_high="",n_dates=len({r["date"] for r in selected}),n_sites=len({r["site_id"] for r in selected}),block_days=block,n_available_blocks=0,draws=0,seed=20261126)
                     comparisons.append(dict(site_id=site,concept=c,baseline=baseline,
-                                            unit=UNITS[c],**paired_block(selected,baseline,block,draws)))
+                                            unit=UNITS[c],**estimate))
     out.mkdir(parents=True,exist_ok=True)
     for filename,rows in (("predictions.csv",predictions),("metrics.csv",scores),
                           ("paired_comparisons.csv",comparisons),("edge_weights.csv",edges)):
@@ -175,7 +192,7 @@ def run(cohort,out,verify_raw=False,draws=2000):
                 outputs_sha256={f:sha(out/f) for f in ("predictions.csv","metrics.csv",
                     "paired_comparisons.csv","edge_weights.csv","fold_models.json")})
     (out/"manifest.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
-    lines=["# M10.3.1 — shared regional water-quality FCM","",
+    lines=["# M10.3.1 — shared regional water-quality FCM" if config is None else "# M11 — frozen shared regional water-quality FCM","",
            f"{len(splits)} spatial folds; {len(predictions)} matched station-date-concept targets. No deployed model or spatial transport fit.","",
            "## Aggregate held-out native-unit MAE","",
            "| Concept | Persistence | Pooled self-AR | Pooled ridge | Regional FCM | Target-local FCM |",
@@ -188,15 +205,17 @@ def run(cohort,out,verify_raw=False,draws=2000):
             "| Concept | Baseline | Delta | 95% interval |","|---|---|---:|---:|"]
     for r in comparisons:
         if r["site_id"]=="all_sites" and r["block_days"]==7:
-            lines.append(f"| {r['concept']} | {r['baseline']} | {r['delta_mae']:.4f} | [{r['ci_low']:.4f}, {r['ci_high']:.4f}] |")
+            ci="not estimable" if r["ci_low"]=="" else f"[{r['ci_low']:.4f}, {r['ci_high']:.4f}]"
+            lines.append(f"| {r['concept']} | {r['baseline']} | {r['delta_mae']:.4f} | {ci} |")
     lines+=["","- [Per-site and aggregate metrics](metrics.csv)",
             "- [Matched predictions and clipping diagnostics](predictions.csv)",
             "- [Block-length sensitivity](paired_comparisons.csv)",
             "- [Fold parameters and donor-only scalers](fold_models.json)",
             "- [FCM edges](edge_weights.csv) · [Lineage](manifest.json)","",
             "Target-local FCM uses target history and is an adaptation reference, not zero-shot. "
-            "Previous-day target observations are available at issue time. These data have already "
-            "been examined descriptively; results are retrospective, not prospective confirmation. "
+            "Previous-day target observations are available at issue time. "+
+            ("These data have already been examined descriptively; " if config is None else "The model protocol was frozen before acquisition; ")+
+            "results are retrospective, not prospective confirmation. "
             "Exact sensor depth, common forcing and connectivity remain unverified."]
     (out/"INDEX.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
     return report
