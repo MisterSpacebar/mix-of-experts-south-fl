@@ -1,0 +1,690 @@
+{
+  "USGS-255327081275900": {
+    "pooled_self_ar": {
+      "kind": "pooled_self_ar",
+      "fit_sites": [
+        "USGS-255432081303900",
+        "USGS-255534081324000",
+        "USGS-255654081350200"
+      ],
+      "means": [
+        32.66230461245958,
+        30.43072040487995
+      ],
+      "scales": [
+        6.467604189033321,
+        1.308589146464931
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.004404586442811032,
+          0.9842062422457268,
+          0.0
+        ],
+        [
+          0.002564593296562904,
+          0.0,
+          0.8825509186923661
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.2804144867339066,
+        0.3901449798076924
+      ],
+      "n_train_pairs": 310,
+      "n_validation_pairs": 105,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "identity"
+    },
+    "pooled_ridge": {
+      "kind": "pooled_ridge",
+      "fit_sites": [
+        "USGS-255432081303900",
+        "USGS-255534081324000",
+        "USGS-255654081350200"
+      ],
+      "means": [
+        32.66230461245958,
+        30.43072040487995
+      ],
+      "scales": [
+        6.467604189033321,
+        1.308589146464931
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.004404586442811018,
+          0.9855957946524906,
+          0.0058495635838445165
+        ],
+        [
+          0.002564593296562811,
+          -0.06369491879612516,
+          0.867420315110892
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.2797368614415881,
+        0.4382162448843716
+      ],
+      "n_train_pairs": 310,
+      "n_validation_pairs": 105,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "identity"
+    },
+    "regional_fcm": {
+      "kind": "regional_fcm",
+      "fit_sites": [
+        "USGS-255432081303900",
+        "USGS-255534081324000",
+        "USGS-255654081350200"
+      ],
+      "means": [
+        32.66230461245958,
+        30.43072040487995
+      ],
+      "scales": [
+        6.467604189033321,
+        1.308589146464931
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.004404586442811018,
+          0.9855957946524906,
+          0.0058495635838445165
+        ],
+        [
+          0.002564593296562811,
+          -0.06369491879612516,
+          0.867420315110892
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.3297683598484275,
+        0.4382162448843716
+      ],
+      "n_train_pairs": 310,
+      "n_validation_pairs": 105,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "clip[-3,3]"
+    },
+    "target_local_fcm": {
+      "kind": "target_local_fcm",
+      "fit_sites": [
+        "USGS-255327081275900"
+      ],
+      "means": [
+        37.0695662749064,
+        29.983227172780193
+      ],
+      "scales": [
+        2.524608116158101,
+        1.012609825764088
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.03151656949404429,
+          0.9520161403654348,
+          -0.017395823338095622
+        ],
+        [
+          -0.03617356198715085,
+          -0.0764571062729168,
+          0.798195261161439
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.472323686532774,
+        0.5407109749579729
+      ],
+      "n_train_pairs": 90,
+      "n_validation_pairs": 35,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "clip[-3,3]"
+    }
+  },
+  "USGS-255432081303900": {
+    "pooled_self_ar": {
+      "kind": "pooled_self_ar",
+      "fit_sites": [
+        "USGS-255327081275900",
+        "USGS-255534081324000",
+        "USGS-255654081350200"
+      ],
+      "means": [
+        34.16663008351132,
+        30.0456199471977
+      ],
+      "scales": [
+        6.241673153204623,
+        1.1770071108203755
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.006429125237512682,
+          0.984170480838386,
+          0.0
+        ],
+        [
+          -0.007738723094029227,
+          0.0,
+          0.8470804169208217
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.26842570686839795,
+        0.44763707705961137
+      ],
+      "n_train_pairs": 295,
+      "n_validation_pairs": 105,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "identity"
+    },
+    "pooled_ridge": {
+      "kind": "pooled_ridge",
+      "fit_sites": [
+        "USGS-255327081275900",
+        "USGS-255534081324000",
+        "USGS-255654081350200"
+      ],
+      "means": [
+        34.16663008351132,
+        30.0456199471977
+      ],
+      "scales": [
+        6.241673153204623,
+        1.1770071108203755
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.0064291252375126805,
+          0.985024578380889,
+          0.003751447359184101
+        ],
+        [
+          -0.007738723094029207,
+          -0.08055462605382224,
+          0.8287404266284399
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.26776376404341734,
+        0.515761399735691
+      ],
+      "n_train_pairs": 295,
+      "n_validation_pairs": 105,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "identity"
+    },
+    "regional_fcm": {
+      "kind": "regional_fcm",
+      "fit_sites": [
+        "USGS-255327081275900",
+        "USGS-255534081324000",
+        "USGS-255654081350200"
+      ],
+      "means": [
+        34.16663008351132,
+        30.0456199471977
+      ],
+      "scales": [
+        6.241673153204623,
+        1.1770071108203755
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.0064291252375126805,
+          0.985024578380889,
+          0.003751447359184101
+        ],
+        [
+          -0.007738723094029207,
+          -0.08055462605382224,
+          0.8287404266284399
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.36974894367979083,
+        0.515761399735691
+      ],
+      "n_train_pairs": 295,
+      "n_validation_pairs": 105,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "clip[-3,3]"
+    },
+    "target_local_fcm": {
+      "kind": "target_local_fcm",
+      "fit_sites": [
+        "USGS-255432081303900"
+      ],
+      "means": [
+        32.55658986175115,
+        31.138528545826933
+      ],
+      "scales": [
+        5.254683730545586,
+        1.122901975271783
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.008495821905198061,
+          0.9804910212128982,
+          0.008062652546619297
+        ],
+        [
+          0.0006802810091273096,
+          -0.057715931871367976,
+          0.8627418152826536
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.27256076015525965,
+        0.4136545513855621
+      ],
+      "n_train_pairs": 105,
+      "n_validation_pairs": 35,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "clip[-3,3]"
+    }
+  },
+  "USGS-255534081324000": {
+    "pooled_self_ar": {
+      "kind": "pooled_self_ar",
+      "fit_sites": [
+        "USGS-255327081275900",
+        "USGS-255432081303900",
+        "USGS-255654081350200"
+      ],
+      "means": [
+        32.588021544463196,
+        30.4748274780978
+      ],
+      "scales": [
+        6.225970831198242,
+        1.2105514325929296
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.008635142872297656,
+          0.9825280778627515,
+          0.0
+        ],
+        [
+          -0.006149913877397599,
+          0.0,
+          0.8821843472732624
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.2783916543758737,
+        0.36719064759964076
+      ],
+      "n_train_pairs": 297,
+      "n_validation_pairs": 105,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "identity"
+    },
+    "pooled_ridge": {
+      "kind": "pooled_ridge",
+      "fit_sites": [
+        "USGS-255327081275900",
+        "USGS-255432081303900",
+        "USGS-255654081350200"
+      ],
+      "means": [
+        32.588021544463196,
+        30.4748274780978
+      ],
+      "scales": [
+        6.225970831198242,
+        1.2105514325929296
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.00863514287229765,
+          0.9849852706240003,
+          0.009859151797734318
+        ],
+        [
+          -0.0061499138773976406,
+          -0.06993036320351323,
+          0.8647556286795735
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.27721647876194255,
+        0.42772682330950534
+      ],
+      "n_train_pairs": 297,
+      "n_validation_pairs": 105,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "identity"
+    },
+    "regional_fcm": {
+      "kind": "regional_fcm",
+      "fit_sites": [
+        "USGS-255327081275900",
+        "USGS-255432081303900",
+        "USGS-255654081350200"
+      ],
+      "means": [
+        32.588021544463196,
+        30.4748274780978
+      ],
+      "scales": [
+        6.225970831198242,
+        1.2105514325929296
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.00863514287229765,
+          0.9849852706240003,
+          0.009859151797734318
+        ],
+        [
+          -0.0061499138773976406,
+          -0.06993036320351323,
+          0.8647556286795735
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.3408015678195572,
+        0.42772682330950534
+      ],
+      "n_train_pairs": 297,
+      "n_validation_pairs": 105,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "clip[-3,3]"
+    },
+    "target_local_fcm": {
+      "kind": "target_local_fcm",
+      "fit_sites": [
+        "USGS-255534081324000"
+      ],
+      "means": [
+        37.29241547889554,
+        29.850905953126635
+      ],
+      "scales": [
+        3.6803117270951,
+        1.2745666329002165
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.0010167370762548841,
+          0.9564478273573681,
+          -0.01264068663169875
+        ],
+        [
+          -0.0033166930384003995,
+          -0.05579943076266654,
+          0.8370249052390697
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.3492651241026012,
+        0.5082246675294854
+      ],
+      "n_train_pairs": 103,
+      "n_validation_pairs": 35,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "clip[-3,3]"
+    }
+  },
+  "USGS-255654081350200": {
+    "pooled_self_ar": {
+      "kind": "pooled_self_ar",
+      "fit_sites": [
+        "USGS-255327081275900",
+        "USGS-255432081303900",
+        "USGS-255534081324000"
+      ],
+      "means": [
+        35.63952387185103,
+        30.324220557244587
+      ],
+      "scales": [
+        4.539148073762691,
+        1.2798708671834422
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.00939616506495918,
+          0.976969887715025,
+          0.0
+        ],
+        [
+          -0.010441980962953377,
+          0.0,
+          0.881293452128774
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.274082931928164,
+        0.36641883255927415
+      ],
+      "n_train_pairs": 298,
+      "n_validation_pairs": 105,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "identity"
+    },
+    "pooled_ridge": {
+      "kind": "pooled_ridge",
+      "fit_sites": [
+        "USGS-255327081275900",
+        "USGS-255432081303900",
+        "USGS-255534081324000"
+      ],
+      "means": [
+        35.63952387185103,
+        30.324220557244587
+      ],
+      "scales": [
+        4.539148073762691,
+        1.2798708671834422
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.009396165064959187,
+          0.9736491967077922,
+          -0.009080908257168951
+        ],
+        [
+          -0.010441980962953389,
+          -0.08055961345166895,
+          0.8518345504022949
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.27633469769628705,
+        0.42827299261352253
+      ],
+      "n_train_pairs": 298,
+      "n_validation_pairs": 105,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "identity"
+    },
+    "regional_fcm": {
+      "kind": "regional_fcm",
+      "fit_sites": [
+        "USGS-255327081275900",
+        "USGS-255432081303900",
+        "USGS-255534081324000"
+      ],
+      "means": [
+        35.63952387185103,
+        30.324220557244587
+      ],
+      "scales": [
+        4.539148073762691,
+        1.2798708671834422
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.009396165064959187,
+          0.9736491967077922,
+          -0.009080908257168951
+        ],
+        [
+          -0.010441980962953389,
+          -0.08055961345166895,
+          0.8518345504022949
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.2895110184696876,
+        0.42827299261352253
+      ],
+      "n_train_pairs": 298,
+      "n_validation_pairs": 105,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "clip[-3,3]"
+    },
+    "target_local_fcm": {
+      "kind": "target_local_fcm",
+      "fit_sites": [
+        "USGS-255654081350200"
+      ],
+      "means": [
+        28.137908496732024,
+        30.302726715686276
+      ],
+      "scales": [
+        6.512607301636848,
+        1.182466983741766
+      ],
+      "alphas": [
+        0.1,
+        0.1
+      ],
+      "coefficients_target_rows": [
+        [
+          -0.005693049947624237,
+          0.9826672512802533,
+          0.025239883695449723
+        ],
+        [
+          0.011443409781765878,
+          -0.0927570742547544,
+          0.8380451420773101
+        ]
+      ],
+      "n_edge_coefficients_clipped": 0,
+      "validation_standardized_mae": [
+        0.464128807528923,
+        0.5933286007403927
+      ],
+      "n_train_pairs": 102,
+      "n_validation_pairs": 35,
+      "train_end": "2026-09-11",
+      "validation_end": "2026-10-16",
+      "weighting": "equal total station weight; normalized to row count",
+      "activation": "clip[-3,3]"
+    }
+  }
+}
