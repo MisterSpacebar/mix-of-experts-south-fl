@@ -119,6 +119,92 @@ class CandidateTests(unittest.TestCase):
             inventory_audit([canonical,dict(canonical,longitude="-80.9")])
 
 
+class RecruitmentTests(unittest.TestCase):
+    def test_metadata_only_nearby_recruitment_uses_verified_reference_panel(self):
+        from scripts.plan_m9_recruitment import run as recruit
+        from southfl.history_selection import PLAN_COLS
+        from southfl.panels import PANEL_SUMMARY_COLS
+        from southfl.sources import STATION_COLUMNS
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            daily=root/"daily";daily.mkdir()
+            pid="panel_USGS_REF"
+            sample=daily/(pid+".csv")
+            write_csv(sample,[
+                dict(date="2026-06-01",site_id="USGS-REF",panel_id=pid,
+                     discharge="10",salinity="12",water_temperature="27",
+                     gage_height="4")],
+                ["date","site_id","panel_id","discharge","salinity",
+                 "water_temperature","gage_height"])
+            meta=dict(
+                panel_id=pid,site_id="USGS-REF",region="big_cypress",
+                concepts="discharge;salinity;water_temperature;gage_height",
+                concept_units="discharge=ft^3/s;salinity=ppt;water_temperature=degC;gage_height=ft",
+                concept_datums="discharge=;salinity=;water_temperature=;gage_height=",
+                n_complete_days=1,n_consecutive_daily_pairs=0,
+                status="candidate_for_held_out_evaluation")
+            write_csv(daily/"panel_readiness.csv",[meta],PANEL_SUMMARY_COLS)
+            (daily/"panels_manifest.json").write_text(json.dumps({
+                "observations_sha256":"0"*64}))
+            assignments=root/"assignments.csv"
+            source=dict(
+                panel_id=pid,site_id="USGS-REF",region="big_cypress",
+                coordinates_status="verified_point_inside_discovery_rectangle",
+                latitude="25.8953888889",longitude="-81.4555",
+                candidate_discovery_regions="big_cypress;southwest_everglades_coast",
+                site_name="REFERENCE RIVER",source_url="https://example.gov",
+                panel_sha256=hashlib.sha256(sample.read_bytes()).hexdigest())
+            write_csv(assignments,[source],list(source))
+            stations=root/"stations.csv"
+            def station(sid,lat,lon):
+                return dict(dataset_id="usgs_water",provider="USGS",
+                    site_id=sid,site_name=sid,
+                    latitude=str(lat),longitude=str(lon),
+                    regions="big_cypress;southwest_everglades_coast",
+                    source_url="https://example.gov",
+                    retrieved_at_utc="2026-11-24T00:00:00Z",
+                    location_type="monitoring location",
+                    coverage_status="metadata_only")
+            write_csv(stations,[station("USGS-REF",25.89538,-81.4555),
+                                station("USGS-NEAR",25.90,-81.48),
+                                station("FL005-02286320",25.92,-81.48)],
+                      STATION_COLUMNS)
+            periods=root/"periods.csv"
+            codes=[("discharge","00060","ft^3/s"),
+                   ("salinity","00480","ppt"),
+                   ("water_temperature","00010","degC"),
+                   ("gage_height","00065","ft")]
+            data=[dict(dataset_id="usgs_water",site_id="USGS-NEAR",
+                concept=concept,parameter_code=code,unit=unit,
+                vertical_datum="",series_id="ts-"+concept,
+                begin_utc="2024-01-01T00:00:00Z",
+                end_utc="2026-11-24T13:45:00Z",
+                evidence="time_series_first_last_metadata",
+                primary_status="Primary",sublocation_identifier="")
+                for concept,code,unit in codes]
+            write_csv(periods,data,list(data[0]))
+            out=root/"recruit"
+            report=recruit(periods,stations,assignments,[daily],
+                           "big_cypress","2026-11-24",180,out,
+                           max_panels=3,max_concepts=4,max_distance_km=40)
+            self.assertEqual(report["n_selected_new_panel_candidates"],1)
+            self.assertEqual(report["n_alt_agency_namespace_inventory_exclusions"],1)
+            plan=read_csv(out/"history_plan.csv")
+            self.assertEqual(len(plan),4)
+            self.assertEqual({x["site_id"] for x in plan},{"USGS-NEAR"})
+            self.assertTrue(all(x["selection_status"]==
+                "metadata_candidate_validate_real_observations" for x in plan))
+            ranked=read_csv(out/"metadata_recruitment_shortlist.csv")
+            self.assertEqual(ranked[0]["n_common_with_verified_stage_reference"],"3")
+            self.assertEqual(ranked[0]["n_missing_stage_datum_concepts"],"1")
+            self.assertTrue((out/"README.md").exists())
+            with self.assertRaisesRegex(ValueError,"new/empty"):
+                recruit(periods,stations,assignments,[daily],
+                        "big_cypress","2026-11-24",180,out)
+            before=sample.read_bytes()
+            self.assertEqual(before,sample.read_bytes())
+
+
 class RealSnapshotTests(unittest.TestCase):
     def test_real_committed_three_site_geometry_and_temporal_counts(self):
         repo=Path(__file__).resolve().parents[1]
