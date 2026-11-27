@@ -94,13 +94,13 @@ def summarize(rows):
     return scores,comparisons
 
 
-def run(out,forcing_dir=None,verify_raw=False,cohort=COHORT,base=BASE):
+def run(out,forcing_dir=None,verify_raw=False,cohort=COHORT,base=BASE,config=None,forcing_config=None):
     out,base=Path(out),Path(base)
     if out.exists() and any(out.iterdir()):
         raise ValueError("new/empty experiment output required")
-    cohort_manifest,splits,lineage=load_cohort(cohort,verify_raw)
+    cohort_manifest,splits,lineage=load_cohort(cohort,verify_raw,config)
     original=verify_original(splits,base)
-    forcing,forcing_manifest=load(forcing_dir) if forcing_dir else ({},{})
+    forcing,forcing_manifest=load(forcing_dir,forcing_config) if forcing_dir else ({},{})
     models,rows={},[]
     for site in sorted(splits):
         model,rs=fold(splits,site,forcing,FEATURES if forcing_dir else {})
@@ -136,7 +136,7 @@ def run(out,forcing_dir=None,verify_raw=False,cohort=COHORT,base=BASE):
                 forcing_manifest_sha256=sha(Path(forcing_dir)/"manifest.json") if forcing_dir else None,
                 forcing_coverage=forcing_manifest.get("coverage",{}),
                 forcing_fold_fits=sum(v["status"]=="fitted" for m in models.values() for v in m["forcing"].values()),
-                raw_reverified=verify_raw,exploratory_reused_test_period=True,
+                raw_reverified=verify_raw,exploratory_reused_test_period=config is None,
                 model_selection_on_test=False,deployed_model_trained=False,
                 regional_transport_model_trained=False,as_issued_availability_verified=False,
                 hydrological_connectivity_verified=False,
@@ -145,7 +145,7 @@ def run(out,forcing_dir=None,verify_raw=False,cohort=COHORT,base=BASE):
     (out/"manifest.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
     lines=["# M10.3.2–4 — exploratory residual, forcing and mixture experiments","",
            f"{len(splits)} spatial folds; {len(original)} original matched targets. Forcing fold fits: {report['forcing_fold_fits']}.",
-           "Same previously inspected test season; no prospective confirmation or deployment.","",
+           ("Same previously inspected test season; no prospective confirmation or deployment." if config is None else "Frozen M10 architecture evaluated on a new geographic cohort; retrospective, not prospective or deployed."),"",
            "| Concept | Model | Sites | n | MAE | Matched persistence MAE | Delta |",
            "|---|---|---:|---:|---:|---:|---:|"]
     for r in scores:

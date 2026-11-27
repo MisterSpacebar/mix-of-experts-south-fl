@@ -43,19 +43,20 @@ def indexed(rows,key):
     return result
 
 
-def load_cohort(cohort, verify_raw=False):
+def load_cohort(cohort, verify_raw=False, config=None):
     """Re-audit source identities/coverage; verify original recorded input hashes."""
     cohort=Path(cohort)
+    snapshots_config=SNAPSHOTS if config is None else config["snapshots"]
     manifest=load_json(cohort/"manifest.json")
     if (manifest["temporal_metadata_screen_pass"] is not True or
         manifest["raw_bytes_verified"] is not True or
         manifest["concepts"]!=list(CONCEPTS) or manifest["regional_fcms_trained"]!=0):
         raise ValueError("requires predeclared, raw-verified regional cohort")
     snapshots={str(normalize(k)):v for k,v in manifest["snapshots"].items()}
-    if set(snapshots)!={str(d) for d,_,_ in SNAPSHOTS}:
+    if set(snapshots)!={str(d) for d,_,_ in snapshots_config}:
         raise ValueError("unexpected cohort source roots")
     lineage={}
-    for daily,history,identity in SNAPSHOTS:
+    for daily,history,identity in snapshots_config:
         record=snapshots[str(daily)]
         paths={"history_manifest":history/"history_manifest.json",
                "panels_manifest":daily/"panels_manifest.json",
@@ -73,7 +74,8 @@ def load_cohort(cohort, verify_raw=False):
     # not trust a manually changed eligible station list or fold table.
     with tempfile.TemporaryDirectory() as tmp:
         check=Path(tmp)/"audit"
-        fresh=audit_run(SNAPSHOTS,check,region=manifest["region_screen"],
+        fresh=audit_run(snapshots_config,check,region=manifest["region_screen"],
+                        **({} if config is None else dict(assignments=config["coordinates"],shortlist=config["coordinates"],min_sites=config["min_sites"])),
                         start=manifest["start"],end=manifest["end"],verify_raw=verify_raw)
         keys=("eligible_sites","concepts","common_days","common_transitions",
               "longest_common_stretch","n_observed_sites","n_spatial_folds",
@@ -117,18 +119,26 @@ def load_cohort(cohort, verify_raw=False):
             or int(f["target_test_pairs"])!=len(splits[s]["test"])):
             raise ValueError("fold does not match independent donor/target splits")
     dates=[tuple(p[0] for p in splits[s]["test"]) for s in sites]
-    if any(d!=dates[0] for d in dates):
-        raise ValueError("this first experiment requires identical observed test dates")
+    if config is None:
+        if any(d!=dates[0] for d in dates):
+            raise ValueError("this first experiment requires identical observed test dates")
+    else:
+        # Fixed intersection of observed target dates, never outcome-based.
+        common=set.intersection(*(set(d) for d in dates))
+        if len(common)<15:
+            raise ValueError("insufficient shared observed test dates")
+        for s in sites:
+            splits[s]["test"]=[p for p in splits[s]["test"] if p[0] in common]
     return manifest,splits,lineage
 
 
-def run(cohort,out,verify_raw=False,draws=2000):
+def run(cohort,out,verify_raw=False,draws=2000,config=None):
     cohort,out=Path(cohort),Path(out)
     if out.exists() and any(out.iterdir()):
         raise ValueError("new/empty model output required")
     if not 100<=draws<=20000:
         raise ValueError("invalid bootstrap draws")
-    manifest,splits,lineage=load_cohort(cohort,verify_raw)
+    manifest,splits,lineage=load_cohort(cohort,verify_raw,config)
     fitted,predictions,edges={},[],[]
     for s in sorted(splits):
         models,rows=evaluate_fold(splits,s)
@@ -150,8 +160,15 @@ def run(cohort,out,verify_raw=False,draws=2000):
                       (site=="all_sites" or r["site_id"]==site)]
             for baseline in BASELINES:
                 for block in (3,7,14):
+                    try:
+                        estimate=paired_block(selected,baseline,block,draws)
+                    except ValueError:
+                        if config is None:
+                            raise
+                        from statistics import mean
+                        estimate=dict(delta_mae=mean(abs(r["regional_fcm"]-r["actual"])-abs(r[baseline]-r["actual"]) for r in selected),ci_low="",ci_high="",n_dates=len({r["date"] for r in selected}),n_sites=len({r["site_id"] for r in selected}),block_days=block,n_available_blocks=0,draws=0,seed=20261126)
                     comparisons.append(dict(site_id=site,concept=c,baseline=baseline,
-                                            unit=UNITS[c],**paired_block(selected,baseline,block,draws)))
+                                            unit=UNITS[c],**estimate))
     out.mkdir(parents=True,exist_ok=True)
     for filename,rows in (("predictions.csv",predictions),("metrics.csv",scores),
                           ("paired_comparisons.csv",comparisons),("edge_weights.csv",edges)):
@@ -188,7 +205,8 @@ def run(cohort,out,verify_raw=False,draws=2000):
             "| Concept | Baseline | Delta | 95% interval |","|---|---|---:|---:|"]
     for r in comparisons:
         if r["site_id"]=="all_sites" and r["block_days"]==7:
-            lines.append(f"| {r['concept']} | {r['baseline']} | {r['delta_mae']:.4f} | [{r['ci_low']:.4f}, {r['ci_high']:.4f}] |")
+            ci="not estimable" if r["ci_low"]=="" else f"[{r['ci_low']:.4f}, {r['ci_high']:.4f}]"
+            lines.append(f"| {r['concept']} | {r['baseline']} | {r['delta_mae']:.4f} | {ci} |")
     lines+=["","- [Per-site and aggregate metrics](metrics.csv)",
             "- [Matched predictions and clipping diagnostics](predictions.csv)",
             "- [Block-length sensitivity](paired_comparisons.csv)",

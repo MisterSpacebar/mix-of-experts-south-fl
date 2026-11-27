@@ -48,8 +48,11 @@ def close(a,b):
     return isclose(float(a),float(b),rel_tol=1e-10,abs_tol=1e-8)
 
 
-def context(verify_raw=False):
-    cm,splits,lineage=load_cohort(COHORT,verify_raw)
+def context(verify_raw=False,bundle=None):
+    COHORT,BASE,LAYERS,COMBINED,FORCING=(globals()[k] for k in ('COHORT','BASE','LAYERS','COMBINED','FORCING')) if bundle is None else (bundle[k] for k in ('cohort','base','layers','combined','forcing'))
+    config=None if bundle is None else bundle['cohort_config']
+    forcing_config=None if bundle is None else bundle['forcing_config']
+    cm,splits,lineage=load_cohort(COHORT,verify_raw,config)
     verify_original(splits,BASE)
     manifest=json_at(COMBINED/"manifest.json")
     if (manifest["sites"]!=sorted(splits) or manifest["deployed_model_trained"] is not False or
@@ -62,7 +65,7 @@ def context(verify_raw=False):
         verify_historical_hash(p,manifest[key])
     for f,h in manifest["outputs_sha256"].items():
         verify_historical_hash(safe_under(COMBINED,f),h)
-    forcing,fm=load_forcing(FORCING)
+    forcing,fm=load_forcing(FORCING,forcing_config)
     folds=json_at(COMBINED/"fold_models.json")
     if set(folds)!=set(splits):
         raise ValueError("missing or unexpected heldout fold")
@@ -181,7 +184,8 @@ def context(verify_raw=False):
     return router,entries,manifest,fm,source_hashes,lineage
 
 
-def replay(router,entries,manifest):
+def replay(router,entries,manifest,bundle=None):
+    COMBINED,LAYERS=(globals()[k] for k in ('COMBINED','LAYERS')) if bundle is None else (bundle[k] for k in ('combined','layers'))
     # Station experts have their OWN original chronological test windows.
     # Never compare their errors to regional models on unmatched dates.
     rows=[]; expected={}
@@ -292,7 +296,7 @@ def coverage(router):
                 screened_observed_sites=len(screened),distinct_local_fitted_scopes=len(local),
                 regional_holdout_folds=len(router.folds) if regional else 0,
                 status="regional_retrospective_evidence" if regional else
-                       "station_local_evidence" if local else "observed_only" if observed else "not_observed",
+                       "station_local_evidence" if local else "observed_only" if observed else "screened_overlap_only" if screened else "not_observed",
                 deployed=False,transport_verified=False))
     return result
 
@@ -334,16 +338,17 @@ def html_atlas(out,router,cover,summary,weights):
                    [[r[k] for k in ("site_id","scope","policy","concept","persistence","regional","local")] for r in weights])+
              "<h2>Evidence files</h2><ul>"+links+"</ul><p>Edges are predictive coefficients, not causality. "
              "Station holdout dates vary; only matched regional policy errors are aggregated here. "
-             "The reused test period is exploratory and forcing publication timing is unverified.</p></html>")
+             "The evaluation is retrospective and forcing publication timing is unverified.</p></html>")
     (out/"atlas.html").write_text(content,encoding="utf-8")
 
 
-def run(out,verify_raw=False):
+def run(out,verify_raw=False,bundle=None):
+    COMBINED=globals()['COMBINED'] if bundle is None else bundle['combined']
     out=Path(out)
     if out.exists() and any(out.iterdir()):
         raise ValueError("new/empty atlas output required")
-    router,entries,manifest,fm,source_hashes,lineage=context(verify_raw)
-    rows,se,re,weights,nmix=replay(router,entries,manifest)
+    router,entries,manifest,fm,source_hashes,lineage=context(verify_raw,bundle)
+    rows,se,re,weights,nmix=replay(router,entries,manifest,bundle)
     scores=summarize(rows); cover=coverage(router)
     original_comparisons={(r["site_id"],r["concept"],r["model"],r["baseline"]):r
         for r in read_csv(COMBINED/"paired_comparisons.csv")}
@@ -376,7 +381,7 @@ def run(out,verify_raw=False):
         n_residual_edges=len(re),n_mixture_weight_rows=len(weights),n_region_category_cells=len(cover),
         replay_matches_original=True,raw_reverified=verify_raw,source_lineage=lineage,
         source_hashes=source_hashes,source_experiment_manifest_sha256=sha(COMBINED/"manifest.json"),
-        model_selection_on_test=False,exploratory_reused_test_period=True,
+        model_selection_on_test=False,exploratory_reused_test_period=bundle is None,
         deployed_experts=0,overall_ecosystem_fcms_trained=0,new_models_trained=0,
         regional_transport_model_trained=False,hydrological_connectivity_verified=False,
         as_issued_availability_verified=False,exact_sensor_depth_verified=False,
@@ -401,6 +406,9 @@ def run(out,verify_raw=False):
             "particularly Biscayne Bay; verify exact sensor depths, hydrological connectivity and forcing provenance.",
             "","See [lineage](manifest.json), [station edges](station_edges.csv), [regional residual edges](residual_edges.csv) "
             "and [gate weights](mixture_weights.csv). The original M9 evidence atlas remains immutable."]
+    if bundle is not None:
+        lines=["# Regional research evidence atlas","",f"Region: {router.cohort['region_screen']}. Frozen M10 protocol; independent geographic replication, retrospective only.",""]+lines[10:]
+        lines+=["","No best policy selected from these test results."]
     (out/"INDEX.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
     report["outputs_sha256"]["INDEX.md"]=sha(out/"INDEX.md")
     (out/"manifest.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")

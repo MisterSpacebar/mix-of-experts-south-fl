@@ -39,14 +39,14 @@ def number(v):
         return None
 
 
-def weather_rows(raw,start=START,end=END):
+def weather_rows(raw,start=START,end=END,weather_id=WEATHER_ID):
     if not isinstance(raw,list):
         raise ValueError("expected NCEI daily-summaries list")
     result={}
     for r in raw:
         d=r["DATE"]
         date.fromisoformat(d)
-        if r["STATION"]!=WEATHER_ID or not start<=d<=end or d in result:
+        if r["STATION"]!=weather_id or not start<=d<=end or d in result:
             raise ValueError("unexpected or duplicate weather station/date")
         row={}
         for code,name in zip(("PRCP","AWND","TMIN","TMAX"),WEATHER):
@@ -67,10 +67,10 @@ def weather_rows(raw,start=START,end=END):
     return result
 
 
-def tide_rows(raw,start,end):
+def tide_rows(raw,start,end,tide_id=TIDE_ID):
     if not isinstance(raw,dict) or raw.get("error"):
         raise AcquisitionError("CO-OPS response has no usable observations")
-    if str(raw.get("metadata",{}).get("id"))!=TIDE_ID:
+    if str(raw.get("metadata",{}).get("id"))!=tide_id:
         raise ValueError("unexpected CO-OPS station")
     result={}
     seen=set()
@@ -93,9 +93,9 @@ def tide_rows(raw,start,end):
     return out
 
 
-def assemble(weather,tide):
+def assemble(weather,tide,target_start="2026-05-30",target_end="2026-11-21"):
     rows=[]
-    for day in dates("2026-05-30","2026-11-21"):
+    for day in dates(target_start,target_end):
         # Target day D is forecast at the UTC day boundary. Weather
         # calendar D-2 (local-day proxy) and coastal UTC D-1 are prior.
         w=(day-timedelta(days=2)).isoformat()
@@ -105,7 +105,20 @@ def assemble(weather,tide):
     return rows
 
 
-def acquire(out):
+def forcing_settings(config):
+    if config is None:
+        return WEATHER_ID,TIDE_ID,START,END,"2026-05-30","2026-11-21"
+    first=date.fromisoformat(config["start"])
+    last=date.fromisoformat(config["end"])
+    if not 79<=(last-first).days<=365:
+        raise ValueError("unsupported forcing window")
+    return (config["weather_id"],config["tide_id"],
+            (first-timedelta(days=2)).isoformat(),(last-timedelta(days=1)).isoformat(),
+            (first+timedelta(days=1)).isoformat(),last.isoformat())
+
+
+def acquire(out,config=None):
+    weather_id,tide_id,start_date,end_date,target_start,target_end=forcing_settings(config)
     out=Path(out)
     if out.exists() and any(out.iterdir()):
         raise ValueError("new/empty forcing output required")
@@ -128,23 +141,23 @@ def acquire(out):
         finally:
             requests.append(record)
     url=url_with_params("https://www.ncei.noaa.gov/access/services/data/v1",
-        dict(dataset="daily-summaries",stations=WEATHER_ID,startDate=START,endDate=END,
+        dict(dataset="daily-summaries",stations=weather_id,startDate=start_date,endDate=end_date,
              dataTypes="PRCP,AWND,TMIN,TMAX",units="metric",includeAttributes="true",format="json"))
-    weather=fetch("weather.json",url,weather_rows)
-    start=date.fromisoformat(START)
-    while start<=date.fromisoformat(END):
-        stop=min(start+timedelta(days=27),date.fromisoformat(END))
+    weather=fetch("weather.json",url,lambda raw:weather_rows(raw,start_date,end_date,weather_id))
+    start=date.fromisoformat(start_date)
+    while start<=date.fromisoformat(end_date):
+        stop=min(start+timedelta(days=27),date.fromisoformat(end_date))
         a,b=start.isoformat(),stop.isoformat()
         url=url_with_params("https://api.tidesandcurrents.noaa.gov/api/prod/datagetter",
-            dict(station=TIDE_ID,product="water_level",begin_date=start.strftime("%Y%m%d"),
+            dict(station=tide_id,product="water_level",begin_date=start.strftime("%Y%m%d"),
                  end_date=stop.strftime("%Y%m%d"),datum="MSL",time_zone="gmt",units="metric",
                  application="southfl_fcm_research",format="json"))
-        tide.update(fetch(f"level_{a}.json",url,lambda raw,a=a,b=b:tide_rows(raw,a,b)))
+        tide.update(fetch(f"level_{a}.json",url,lambda raw,a=a,b=b:tide_rows(raw,a,b,tide_id)))
         start=stop+timedelta(days=1)
-    rows=assemble(weather,tide)
+    rows=assemble(weather,tide,target_start,target_end)
     write_csv(out/"forcing_daily.csv",rows,COLS)
-    manifest=dict(weather_station=WEATHER_ID,water_level_station=TIDE_ID,
-                  source_window=[START,END],weather_lag_days_from_target=2,
+    manifest=dict(weather_station=weather_id,water_level_station=tide_id,
+                  source_window=[start_date,end_date],weather_lag_days_from_target=2,
                   coastal_level_lag_days_from_target=1,water_level_datum="MSL",
                   weather_time_basis="source daily calendar label; retrospective lag, not proven publication latency",
                   water_level_time_basis="UTC observed 6-minute levels; provisional or verified; reject nonzero flags",
@@ -155,11 +168,12 @@ def acquire(out):
     return manifest
 
 
-def load(out):
+def load(out,config=None):
+    weather_id,tide_id,start_date,end_date,target_start,target_end=forcing_settings(config)
     out=Path(out)
     m=json.loads((out/"manifest.json").read_text(encoding="utf-8"))
-    if (m["weather_station"]!=WEATHER_ID or m["water_level_station"]!=TIDE_ID
-            or m["source_window"]!=[START,END] or m["water_level_datum"]!="MSL"):
+    if (m["weather_station"]!=weather_id or m["water_level_station"]!=tide_id
+            or m["source_window"]!=[start_date,end_date] or m["water_level_datum"]!="MSL"):
         raise ValueError("forcing source identity changed")
     verify_historical_hash(out/"forcing_daily.csv",m["forcing_sha256"])
     # Rebuild features from successful source payloads, not edited CSV values.
@@ -173,17 +187,17 @@ def load(out):
         verify_historical_hash(p,r["sha256"])
         raw=json.loads(p.read_text(encoding="utf-8"))
         if p.name=="weather.json":
-            weather=weather_rows(raw)
+            weather=weather_rows(raw,start_date,end_date,weather_id)
         elif p.name.startswith("level_"):
             a=p.stem.removeprefix("level_")
-            b=min(date.fromisoformat(a)+timedelta(days=27),date.fromisoformat(END)).isoformat()
-            part=tide_rows(raw,a,b)
+            b=min(date.fromisoformat(a)+timedelta(days=27),date.fromisoformat(end_date)).isoformat()
+            part=tide_rows(raw,a,b,tide_id)
             if set(part)&set(tide):
                 raise ValueError("duplicate source water-level day")
             tide.update(part)
         else:
             raise ValueError("unknown source payload")
-    expected=assemble(weather,tide)
+    expected=assemble(weather,tide,target_start,target_end)
     stored=read_csv(out/"forcing_daily.csv")
     if len(expected)!=len(stored):
         raise ValueError("forcing date coverage mismatch")
