@@ -1,0 +1,78 @@
+{
+  "weather_station": "USW00012897",
+  "water_level_station": "8725520",
+  "source_window": [
+    "2026-05-27",
+    "2026-11-20"
+  ],
+  "weather_lag_days_from_target": 2,
+  "coastal_level_lag_days_from_target": 1,
+  "water_level_datum": "MSL",
+  "weather_time_basis": "source daily calendar label; retrospective lag, not proven publication latency",
+  "water_level_time_basis": "UTC observed 6-minute levels; provisional or verified; reject nonzero flags",
+  "proxy_only": true,
+  "as_issued_availability_verified": false,
+  "requests": [
+    {
+      "file": "weather.json",
+      "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=USW00012897&startDate=2026-05-27&endDate=2026-11-20&dataTypes=PRCP%2CAWND%2CTMIN%2CTMAX&units=metric&includeAttributes=true&format=json",
+      "sha256": "8e67c92a87a2e5f32b926f8c3bc1266104cf81415aa83d429b628360e2a3e7ec",
+      "status": "success",
+      "n_usable_source_days": 173
+    },
+    {
+      "file": "level_2026-05-27.json",
+      "url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=8725520&product=water_level&begin_date=20260527&end_date=20260623&datum=MSL&time_zone=gmt&units=metric&application=southfl_fcm_research&format=json",
+      "sha256": "0305096f2d064c9e8ea71dc1dc89a35fe4ceea9c436e4e3d17d5a4a8220430b5",
+      "status": "success",
+      "n_usable_source_days": 28
+    },
+    {
+      "file": "level_2026-06-24.json",
+      "url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=8725520&product=water_level&begin_date=20260624&end_date=20260721&datum=MSL&time_zone=gmt&units=metric&application=southfl_fcm_research&format=json",
+      "sha256": "8261f35b60c8b770c5e485caba45a39c63e8ca8c6b0aaeab7acfc67e29f88863",
+      "status": "success",
+      "n_usable_source_days": 28
+    },
+    {
+      "file": "level_2026-07-22.json",
+      "url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=8725520&product=water_level&begin_date=20260722&end_date=20260818&datum=MSL&time_zone=gmt&units=metric&application=southfl_fcm_research&format=json",
+      "sha256": "0eb35d2eaa631ab9b41703f06bacdfeb5e650b09455c8a7c97b87f342b9c29ae",
+      "status": "success",
+      "n_usable_source_days": 28
+    },
+    {
+      "file": "level_2026-08-19.json",
+      "url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=8725520&product=water_level&begin_date=20260819&end_date=20260915&datum=MSL&time_zone=gmt&units=metric&application=southfl_fcm_research&format=json",
+      "sha256": "9a0b7b802ab16eea21290cf54c3010ad7a74d87e339ab76d221a87ddd827b8f5",
+      "status": "success",
+      "n_usable_source_days": 28
+    },
+    {
+      "file": "level_2026-09-16.json",
+      "url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=8725520&product=water_level&begin_date=20260916&end_date=20261013&datum=MSL&time_zone=gmt&units=metric&application=southfl_fcm_research&format=json",
+      "sha256": "10bd2cb2cd83b91071fcd6d1cdba3a1a8f2d55a8b838cea49ee2fc8d07f5cd40",
+      "status": "success",
+      "n_usable_source_days": 28
+    },
+    {
+      "file": "level_2026-10-14.json",
+      "url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=8725520&product=water_level&begin_date=20261014&end_date=20261110&datum=MSL&time_zone=gmt&units=metric&application=southfl_fcm_research&format=json",
+      "sha256": "8f905f768457e4653a568063f753a09622aadb32886a09bedeb0cab5055399d3",
+      "status": "success",
+      "n_usable_source_days": 18
+    },
+    {
+      "file": "level_2026-11-11.json",
+      "url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=8725520&product=water_level&begin_date=20261111&end_date=20261120&datum=MSL&time_zone=gmt&units=metric&application=southfl_fcm_research&format=json",
+      "sha256": "84109e7043cb7506aec989385bc36ea9f7886d2abd25fee243533b08d04b3069",
+      "status": "success",
+      "n_usable_source_days": 0
+    }
+  ],
+  "forcing_sha256": "f502509c38bc70f9f5b9ac0fe9319800366768b03ac727f9603ecff6afc73fe2",
+  "coverage": {
+    "weather": 170,
+    "weather_water_level": 154
+  }
+}
