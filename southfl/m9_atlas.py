@@ -42,7 +42,7 @@ COFLUCTUATION_COLS=[
     "interpretation",
 ]
 SCOPE_COLS=[
-    "primary_region","category","n_distinct_trained_station_panels",
+    "discovery_region","category","n_distinct_trained_station_panels",
     "n_distinct_measured_concepts","n_source_trained_edges",
     "n_cross_category_visible_edges_touching_category",
     "n_screened_site_pairs_touching_region",
@@ -270,7 +270,7 @@ def category_region_coverage(stations,pairs,edges):
                     (p["site_a"] in {s["site_id"] for s in in_region} or
                      p["site_b"] in {s["site_id"] for s in in_region})}
             records.append({
-                "primary_region":region,"category":category,
+                "discovery_region":region,"category":category,
                 "n_distinct_trained_station_panels":len(has_cat),
                 "n_distinct_measured_concepts":len({
                     c for s in has_cat for c in s["_concepts"]
