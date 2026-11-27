@@ -322,6 +322,14 @@ One staged exploratory run on the existing spatial folds. See [combined experime
 python scripts/run_m10_residual_forcing_mixture.py --verify-raw --acquire-forcing data/m10/forcing_v1 --out data/m10/residual_forcing_mixture_v1
 ```
 
+## M10.4 — hierarchical expert registry and evidence atlas
+
+Replay frozen station/category and regional mixture experts through an archive-only research router. See [M10.4 runbook](docs/M10_HIERARCHICAL_ATLAS.md).
+
+```powershell
+python scripts/build_m10_hierarchical_atlas.py --verify-raw --out data/m10/hierarchical_atlas_v1
+```
+
 ## Documentation
 
 - [18-dataset source catalog](catalog/datasets.json)
